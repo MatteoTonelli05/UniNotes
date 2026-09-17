@@ -14,7 +14,6 @@
 Tipologie di approcci ai modelli:
 1. **Labelled Transition Systems (LTS) and Process Algebra**
 2. **Petri Nets**
-/lin
 # Labelled Transition Systems (LTS) and Finite State Processes (FSP)
 
 Un **Labelled Transition System (LTS)** è la struttura matematica formale che descrive una macchina a stati in cui i passaggi da uno stato sono associati a specifiche etichette. 
@@ -29,5 +28,7 @@ _(è una macchina a stati finiti)_
 > [!quote] Nella programmazione concorrente quando si parla di *processo* intendiamo l'esecuzione di un programma sequenziale, in cui:
 > -  lo *stato* di quel processo è l'insieme dei valori delle variabili
 > - lo stato cambia a seconda deli *statement*, ovvero una o più *azioni atomiche*.
+
+[[Sintassi FSP - LTS]]
 
 ---

@@ -22,7 +22,7 @@
 
 L'operatore `->` (prefisso d'azione) indica una sequenza temporale in cui prima avviene l'azione a sinistra, poi il sistema si comporta come il processo a destra.
 
-```
+``` FSP
 PROCESSO = (azione -> PROCESSO_SUCCESSIVO).
 ```
 _(Nota: ogni definizione di processo in FSP termina con un punto `.`)_
@@ -30,7 +30,7 @@ _(Nota: ogni definizione di processo in FSP termina con un punto `.`)_
 
 `STOP` è un processo speciale predefinito che rappresenta uno stato finale (nessuna transizione ulteriore).
 
-```
+``` FSP
 ONESHOT = (once -> STOP).
 ```
 
@@ -41,14 +41,14 @@ ONESHOT = (once -> STOP).
 
 Se definiamo un processo richiamando se stesso, otteniamo un comportamento che si ripete all'infinito:
 
-```
+``` FSP
 SWITCH = OFF,
 OFF    = (on -> ON),
 ON     = (off -> OFF).
 ```
 
 Oppure in forma contratta (sostituendo le definizioni):
-```
+``` FSP
 SWITCH = (on -> off -> SWITCH).
 ```
 
@@ -70,7 +70,7 @@ Il costrutto Scelta (`|`) in FSP definisce che, Se $x$ e $y$ sono azioni, la not
 
 Una volta eseguita la prima azione, il comportamento successivo sarà descritto da $P$ (se la prima azione è stata $x$) oppure da $Q$ (se la prima azione è stata $y$)
 
->_Esempio_
+> [!Esempio]
 >Un distributore automatizzato di bevande che eroga caffè caldo se viene premuto il pulsante rosso, oppure tè freddo se viene premuto il pulsante blu.
 >``` FSP
 >DRINKS = ( red  -> coffee -> DRINKS
@@ -84,10 +84,56 @@ Una volta eseguita la prima azione, il comportamento successivo sarà descritto 
 
 Il processo `(x -> P | x -> Q)` è detto non-deterministico poiché, a seguito dell'azione $x$, può comportarsi a tutti gli effetti sia come $P$ sia come $Q$.
 
-```
+``` FSP
 COIN = ( toss -> heads -> COIN
        | toss -> tails -> COIN
        ).
 ```
 ![[Pasted image 20260918104501.png|369]]
+
+### Indexed Processes
+
+Sia le azioni che i processi locali possono essere **indicizzati**.
+
+``` FSP
+BUFF = (in[i:0..3] -> out[i] -> BUFF).
+```
+![[Pasted image 20260918121258.png]]
+**Requisito**: Gli intervalli devono sempre essere **finiti** per permettere l'analisi automatica dei modelli.
+
+_si può scrivere in modo più pulito definendo il range_
+``` FSP
+range T = 0..3
+
+BUFF       = (in[i:T] -> STORE[i]),
+STORE[i:T] = (out[i] -> BUFF).
+```
+
+> [!important] `STORE[i:T]` 
+> è un **processo locale indicizzato**: serve a memorizzare temporaneamente il valore `i` letto prima di eseguire la corrispettiva azione `out[i]`.
+
+> [!question] A cosa serve?
+> Possiamo per esempio numerare il ticking
+> ``` FSP
+> CLOCK = TICKING[0]
+> TICKING[t:0..9] = (tick -> TICKING[t+1])
+> ```
+> ![[Pasted image 20260918121626.png]]
+
+> [!attention] ERRORE
+> Come si può vedere l'esempio precedente ritorna un errore dato che non esiste `ticking[10]`. Per riparare servono le *Guardie*
+
+### Guard Actions
+
+`(when B x -> P | y -> Q)`
+- **Se `B` è vera (`true`)**: sia l'azione `x` che l'azione `y` sono disponibili e possono essere scelte.
+- **Se `B` è falsa (`false`)**: l'azione `x` è completamente **bloccata/disabilitata**; il sistema può scegliere soltanto l'azione `y`
+
+> [!idea] Il problema precedente risolto tramite le guardie:
+> ```
+> CLOCK = TICKING[0],
+>TICKING[t:0..9] = ( when (t < 9) tick -> TICKING[t+1]
+>                 | when (t == 9) tick -> TICKING[0]
+>                  ).
+> ```
 

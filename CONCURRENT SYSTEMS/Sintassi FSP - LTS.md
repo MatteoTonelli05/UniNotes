@@ -123,6 +123,22 @@ STORE[i:T] = (out[i] -> BUFF).
 > [!attention] ERRORE
 > Come si può vedere l'esempio precedente ritorna un errore dato che non esiste `ticking[10]`. Per riparare servono le *Guardie*
 
+### Processi Parametrizzati e Costanti
+
+I processi possono essere **parametrizzati** per consentire di descriverli in forma generale e poi istanziarli per uno specifico valore numerico.
+
+Ad esempio, anziché fissare rigidamente la dimensione di un buffer a 3, definiamo un processo generale `BUFF` con dimensione $N$
+
+``` FSP
+BUFF(N=3) = (in[i:0..N] -> out[i] -> BUFF).
+```
+
+In alternativa, se il valore deve essere riutilizzato in più punti del sistema, si può dichiarare una **costante globale**:
+
+``` FSP
+const N = 3
+BUFF = (in[i:0..N] -> out[i] -> BUFF).
+```
 ### Guard Actions
 
 `(when B x -> P | y -> Q)`

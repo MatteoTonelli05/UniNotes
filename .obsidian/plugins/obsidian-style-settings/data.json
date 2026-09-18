@@ -6,5 +6,6 @@
   "things-style@@strong-color": "#FF79C6",
   "things-style@@text-highlight-bg-l": "#F1FA8C",
   "things-style@@text-highlight-bg-d": "#282A36",
-  "things-style@@heading-underline-color": true
+  "things-style@@heading-underline-color": true,
+  "simply-colorful-theme@@h1-color@@light": "#1D02F9"
 }

@@ -1,0 +1,6 @@
+/* Center all images in Reading and Editing modes */
+.markdown-source-view.mod-cm6 .cm-content .image-embed,
+.markdown-preview-view img {
+  display: block;
+  margin-inline: auto !important;
+}

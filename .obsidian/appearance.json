@@ -1,3 +1,7 @@
 {
-  "cssTheme": "Things"
+  "cssTheme": "Simply Colorful",
+  "accentColor": "",
+  "enabledCssSnippets": [
+    "center-images"
+  ]
 }

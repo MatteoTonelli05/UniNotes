@@ -1,3 +1,5 @@
+# Sintassi FSP - LTS
+
 > [!attention] FSP usa una regola sintattica sui nomi:
 > Le **Azioni** (gli eventi/transizioni) iniziano sempre con la **lettera minuscola** (es. `on`, `off`, `tick`).
 > I **Processi** (gli stati/comportamenti) iniziano sempre con la **lettera MAIUSCOLA** (es. `SWITCH`, `ON`, `STOP`).

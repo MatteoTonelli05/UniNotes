@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "0d60803a57bfa8a8",
+        "id": "c7bc61f0763205e8",
         "type": "tabs",
         "children": [
           {
-            "id": "54da4351058b9162",
+            "id": "d55647a326384120",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -200,11 +200,13 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "54da4351058b9162",
+  "active": "d55647a326384120",
   "lastOpenFiles": [
+    "CONCURRENT SYSTEMS/Allegati/Pasted image 20260918160817.png",
+    "CONCURRENT SYSTEMS/Allegati/Pasted image 20260918155056.png",
+    "CONCURRENT SYSTEMS/Sintassi FSP - LTS.md",
     "CONCURRENT SYSTEMS/MODELLING - module 1.2.md",
     "CONCURRENT SYSTEMS/OVERVIEW - module 1.1.md",
-    "CONCURRENT SYSTEMS/Sintassi FSP - LTS.md",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20260918121626.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20260918121614.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20260918121258.png",

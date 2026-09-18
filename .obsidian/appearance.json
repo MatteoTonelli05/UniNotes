@@ -1,7 +1,8 @@
 {
-  "cssTheme": "Simply Colorful",
+  "cssTheme": "Ember",
   "accentColor": "",
   "enabledCssSnippets": [
     "center-images"
-  ]
+  ],
+  "theme": "obsidian"
 }

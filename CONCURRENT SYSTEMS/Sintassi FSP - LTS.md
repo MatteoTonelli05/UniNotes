@@ -155,3 +155,26 @@ BUFF = (in[i:0..N] -> out[i] -> BUFF).
 >                  ).
 > ```
 
+> [!idea] Es. Count Down Timer
+> ```
+> COUNTDOWN (N=3) = (start->COUNTDOWN[N]), 
+> COUNTDOWN[i:0..N] = (when(i>0) tick->COUNTDOWN[i-1] 
+> 	|when(i==0) beep->STOP 
+> 	|stop->STOP 
+> 	).
+> ```
+> ![[Pasted image 20260918155056.png]]
+
+### Parallel Composition
+
+Se `P` e `Q` sono due processi, `(P || Q)` rappresenta l'esecuzione concorrente di `P` e `Q`
+
+**Modellazione per Interleaving**: L'LTS risultante genera tutte le possibili _interleavings_ delle tracce dei singoli processi costituenti. _Ricorda che la Parallel Composition è un processo a se._
+
+> LTS/FSP non assume un tempo reale, ma modella la concorrenza consentendo alle azioni non condivise dei processi di alternarsi in qualsiasi ordine logico.
+
+![[Pasted image 20260918160817.png|581]]
+> [!attention] Notare come:
+> - i **Processi Primitivi** sono definiti usando _action prefix_ e _choice_
+> - i **Processi Compositi** iniziano con `||` e sono definiti solo tramite _parallel composition_
+

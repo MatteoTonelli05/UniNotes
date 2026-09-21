@@ -72,7 +72,7 @@ Il costrutto Scelta (`|`) in FSP definisce che, Se $x$ e $y$ sono azioni, la not
 
 Una volta eseguita la prima azione, il comportamento successivo sarà descritto da $P$ (se la prima azione è stata $x$) oppure da $Q$ (se la prima azione è stata $y$)
 
-> [!Esempio]
+> [!example] Esempio
 >Un distributore automatizzato di bevande che eroga caffè caldo se viene premuto il pulsante rosso, oppure tè freddo se viene premuto il pulsante blu.
 >``` FSP
 >DRINKS = ( red  -> coffee -> DRINKS
@@ -155,7 +155,7 @@ BUFF = (in[i:0..N] -> out[i] -> BUFF).
 >                  ).
 > ```
 
-> [!idea] Es. Count Down Timer
+> [!example] Es. Count Down Timer
 > ```
 > COUNTDOWN (N=3) = (start->COUNTDOWN[N]), 
 > COUNTDOWN[i:0..N] = (when(i>0) tick->COUNTDOWN[i-1] 
@@ -177,4 +177,11 @@ Se `P` e `Q` sono due processi, `(P || Q)` rappresenta l'esecuzione concorrente 
 > [!attention] Nota:
 > - i **Processi Primitivi** sono definiti usando _action prefix_ (`->`) e _choice_(`|`)
 > - i **Processi Compositi** iniziano con `||` e sono definiti solo tramite _parallel composition_
+
+> [!example] Esempio: CLOCK RADIO
+> Dobbiamo modellare una radio sveglia che integra due attività indipendenti, un'orologio che scatta il tempo con un azione continua e una radio che può essere accesa e spenta
+> ```
+> 
+> ```
+> ![[Pasted image 20260921110729.png]]
 

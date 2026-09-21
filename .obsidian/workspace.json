@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CONCURRENT SYSTEMS/Sintassi FSP - LTS.md",
+                "file": "CONCURRENT SYSTEMS/MODELLING - module 1.2.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Sintassi FSP - LTS"
+              "title": "MODELLING - module 1.2"
             }
           }
         ]
@@ -80,7 +80,7 @@
             }
           },
           {
-            "id": "6cec66f431ef24f6",
+            "id": "5e91bd3e79cffd84",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
@@ -202,9 +202,10 @@
   },
   "active": "d55647a326384120",
   "lastOpenFiles": [
+    "CONCURRENT SYSTEMS/CONCURRENT SYSTEMS.md",
+    "CONCURRENT SYSTEMS/Sintassi FSP - LTS.md",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20260918160817.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20260918155056.png",
-    "CONCURRENT SYSTEMS/Sintassi FSP - LTS.md",
     "CONCURRENT SYSTEMS/MODELLING - module 1.2.md",
     "CONCURRENT SYSTEMS/OVERVIEW - module 1.1.md",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20260918121626.png",
@@ -214,12 +215,10 @@
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20260918102746.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20260917181019.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20260917180926.png",
-    "CONCURRENT SYSTEMS/CONCURRENT SYSTEMS.md",
     "Tags",
     "MACHINE LEARNING/01 - Storia 💀.md",
     "MACHINE LEARNING/01 - Introduzione.md",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20260917143644.png",
-    "CONCURRENT SYSTEMS/Allegati",
-    "MACHINE LEARNING/Allegati/Pasted image 20260917143630.png"
+    "CONCURRENT SYSTEMS/Allegati"
   ]
 }

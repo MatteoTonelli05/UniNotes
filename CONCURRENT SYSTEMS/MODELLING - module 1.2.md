@@ -32,3 +32,21 @@ _(è una macchina a stati finiti)_
 [[Sintassi FSP - LTS]]
 
 ---
+
+# Petri Nets
+
+==TO-DO==
+
+---
+---
+# Modellare la Concorrenza
+
+L'esecuzione di un programma concorrente consiste in più processi attivi contemporaneamente.
+
+> [!question] Dobbiamo modellare la **velocità** relativa con cui un processo esegue rispetto a un altro?
+> Poiché vogliamo progettare programmi concorrenti che funzionino in modo **corretto indipendentemente dal numero di processori e dal sistema operativo**, si sceglie di non modellare la velocità relativa.
+>
+> _un processo può impiegare un tempo arbitrariamente lungo per passare da un'azione all'altra_
+
+
+

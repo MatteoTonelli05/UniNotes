@@ -181,7 +181,14 @@ Se `P` e `Q` sono due processi, `(P || Q)` rappresenta l'esecuzione concorrente 
 > [!example] Esempio: CLOCK RADIO
 > Dobbiamo modellare una radio sveglia che integra due attività indipendenti, un'orologio che scatta il tempo con un azione continua e una radio che può essere accesa e spenta
 > ```
-> 
+> CLOCK = (tick -> CLOCK)
+> RADIO = (on -> off -> RADIO)
+> || CLOCK_RADIO = (CLOCK || RADIO)
 > ```
 > ![[Pasted image 20260921110729.png]]
+
+#### Algebra - Parallel Composition
+
+**Commutativa** `(P || Q) = (Q || P)`
+**Associativa** `(P || (Q || R)) = ((P || Q) || R) = (P || Q || R)`
 

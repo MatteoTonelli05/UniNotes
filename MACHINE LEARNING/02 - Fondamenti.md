@@ -174,11 +174,11 @@ Si presenta in due forme principali:
 - **Misura di Errore o Loss Function (da Minimizzare):** Rappresenta il costo o lo scostamento tra la predizione del modello e la realtà. Si cerca la configurazione di parametri che minimizza l'errore: $$\Theta^* = \arg\min_{\Theta} f(\text{Train}, M(\Theta))$$
 ---
 ### Modalità di Ottimizzazione
-Per determinare i parametri ottimi $\Theta^*$, la funzione obiettivo può essere ottimizzata secondo due approcci:
+Per determinare i parametri ottimi $\Theta^*$, la funzione obiettivo può essere ottimizzata secondo due approcci di ottimizzazione:
 
-- **Ottimizzazione Esplicita:** con metodi che operano a partire dalla sua definizione matematica.
+- **Esplicita:** con metodi che operano a partire dalla sua definizione matematica.
 
-- **Ottimizzazione Implicita:** utilizzando euristici che modificano i parametri in modo coerente con $f$
+- **Implicita:** utilizzando euristici che modificano i parametri in modo coerente con $f$
 
 ---
 ## Iperparametri

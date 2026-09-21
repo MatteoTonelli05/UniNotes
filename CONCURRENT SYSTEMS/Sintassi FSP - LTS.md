@@ -174,7 +174,7 @@ Se `P` e `Q` sono due processi, `(P || Q)` rappresenta l'esecuzione concorrente 
 > LTS/FSP non assume un tempo reale, ma modella la concorrenza consentendo alle azioni non condivise dei processi di alternarsi in qualsiasi ordine logico.
 
 ![[Pasted image 20260918160817.png|581]]
-> [!attention] Notare come:
-> - i **Processi Primitivi** sono definiti usando _action prefix_ e _choice_
+> [!attention] Nota:
+> - i **Processi Primitivi** sono definiti usando _action prefix_ (`->`) e _choice_(`|`)
 > - i **Processi Compositi** iniziano con `||` e sono definiti solo tramite _parallel composition_
 

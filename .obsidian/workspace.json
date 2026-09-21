@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CONCURRENT SYSTEMS/MODELLING - module 1.2.md",
+                "file": "CONCURRENT SYSTEMS/Sintassi FSP - LTS.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "MODELLING - module 1.2"
+              "title": "Sintassi FSP - LTS"
             }
           }
         ]
@@ -94,7 +94,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "994e93d0a7538110",
@@ -202,11 +203,11 @@
   },
   "active": "d55647a326384120",
   "lastOpenFiles": [
+    "CONCURRENT SYSTEMS/MODELLING - module 1.2.md",
     "CONCURRENT SYSTEMS/CONCURRENT SYSTEMS.md",
     "CONCURRENT SYSTEMS/Sintassi FSP - LTS.md",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20260918160817.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20260918155056.png",
-    "CONCURRENT SYSTEMS/MODELLING - module 1.2.md",
     "CONCURRENT SYSTEMS/OVERVIEW - module 1.1.md",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20260918121626.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20260918121614.png",

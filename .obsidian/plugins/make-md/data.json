@@ -39,7 +39,8 @@
   "deleteFileOption": "trash",
   "expandedSpaces": [
     "/",
-    "//CONCURRENT SYSTEMS"
+    "//CONCURRENT SYSTEMS",
+    "//MACHINE LEARNING"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Tags",

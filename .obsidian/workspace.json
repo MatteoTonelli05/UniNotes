@@ -94,7 +94,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "994e93d0a7538110",
@@ -202,6 +203,10 @@
   },
   "active": "d55647a326384120",
   "lastOpenFiles": [
+    "SISTEMI INFORMATIVI/Allegati/Pasted image 20260924171714.png",
+    "SISTEMI INFORMATIVI/Allegati/Pasted image 20260924165948.png",
+    "SISTEMI INFORMATIVI/Allegati/Pasted image 20260924165932.png",
+    "SISTEMI INFORMATIVI/Allegati/Pasted image 20260924165532.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Linguagi Regolari.md",
     "SISTEMI INFORMATIVI/Introduzione.md",
     "SISTEMI INFORMATIVI/Allegati/Pasted image 20260924145753.png",
@@ -213,9 +218,6 @@
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20260924122754.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20260924122532.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20260924121520.png",
-    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20260924121037.png",
-    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20260924114611.png",
-    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20260924114557.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Introduzione.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI",

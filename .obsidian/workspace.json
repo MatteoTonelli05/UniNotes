@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Linguagi Regolari.md",
+                "file": "SISTEMI INFORMATIVI/Introduzione.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Linguagi Regolari"
+              "title": "Introduzione"
             }
           }
         ]
@@ -202,6 +202,9 @@
   },
   "active": "d55647a326384120",
   "lastOpenFiles": [
+    "SISTEMI INFORMATIVI/Introduzione.md",
+    "SISTEMI INFORMATIVI/SISTEMI INFORMATIVI.md",
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Linguagi Regolari.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20260924124732.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20260924124516.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20260924122754.png",
@@ -212,9 +215,7 @@
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20260924114557.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20260924113453.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20260924113435.png",
-    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20260924104015.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Introduzione.md",
-    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Linguagi Regolari.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI",
     "LINGUAGGI FORMALI E SISTEMI COMPUTAZIONALI/Allegati",
@@ -222,7 +223,6 @@
     "LINGUAGGI FORMALI E SISTEMI COMPUTAZIONALI/Immagini",
     "LINGUAGGI FORMALI E SISTEMI COMPUTAZIONALI/LINGUAGGI FORMALI E SISTEMI COMPUTAZIONALI.md",
     "MACHINE LEARNING/02 - Fondamenti.md",
-    "SISTEMI INFORMATIVI/SISTEMI INFORMATIVI.md",
     "SISTEMI INFORMATIVI",
     "LINGUAGGI FORMALI E SISTEMI COMPUTAZIONALI",
     "MACHINE LEARNING/01 - Introduzione.md",

@@ -109,14 +109,20 @@ Per valutare il contributo dell'Innovazione Tecnologica, si distinguono due metr
 
 La **digitalizzazione aziendale** è sempre passata da **3 fasi**.
 
+### Fase 1
+
 > [!abstract] Fase 1
 > Automazione delle attività di raccolta, archiviazione e reperimento dei dati di natura operativa (es. stipendi, gestione ordini, fatturazione, ecc.).
 
 > [!question] Perchè si parte dalla finanza?
-> Perchè si parla
+> Perchè si parla di un settore caratterizzato da:
 > - ripetitività delle operazioni da controllare
 > - natura strutturata dei processi da gestire (regolarizzate dalla legge)
 > - grandi quantità di dati
+
+> [!important] Benefici
+> - Riduzione dei tempi e dei costi di elaborazione della risorsa informazione
+> - minore probabilità di errore
 
 > [!danger] **Strutturare il dipartimento Sistemi Informativi (SI) sotto il CFO (Direzione Finanziaria)**.
 > 1. **La prima fase (Storica/Operativa):** Quando un'azienda inizia a digitalizzarsi, le prime cose che automatizza sono i compiti amministrativi e contabili legati alla finanza: gestione paghe, fatturazione, contabilità, ordini. Per questo motivo, storicamente l'IT nasceva come "costola" del dipartimento finanziario.
@@ -126,3 +132,49 @@ La **digitalizzazione aziendale** è sempre passata da **3 fasi**.
 >3. **Il problema oggi (Mancanza di Efficacia Strategica):** Se l'IT rimane sotto la finanza, i Sistemi Informativi verranno visti solo come un **centro di costo da minimizzare** e un mero strumento per automatizzare i dati operativi. Si perde così tutta la parte di **innovazione, efficacia, trasformazione del business e Business Process Reengineering (BPR)**.
 
 
+### Fase 2
+
+> [!abstract] Fase 2
+> Automazione delle attività di controllo e valutazione dell’andamento aziendale e delle scelte direzionali _(es. controllo della produzione, analisi what-if, gestione del budget, ecc.)_
+
+_il sistema informatico assume un ruolo non solo passivo ma anche di controllo attivo supportando i dirigenti e i quadri intermedi_
+
+> [!important] Benefici
+> - Riduzione dei costi di coordinamento e controllo 
+> - Possibilità di analisi impossibili se eseguite manualmente _(uso di AI)_
+
+### Fase 3
+
+> [!abstract] Fase 3
+> Integrazione tra le applicazioni settoriali, informatizzazione delle comunicazioni
+
+Si usa in situazioni in cui:
+- I sistemi informatici integrati sono orientati ai dati _(centrale deve essere il dato condiviso)_
+- Assenza di ridondanze e di incoerenze _(una volta uniti i sistemi si rischia la duplicazione)_
+- Possibilità di cooperare e di lavorare a distanza 
+
+> [!quote] Macchie di Leopardo
+> La digitalizzazione spesso nasce a **macchia di leopardo**, per cui bisogna riempire i gap
+
+> [!important] Benefici
+> - Aumento della qualità dei dati 
+> - Globalizzazione dell’azienda
+> 
+ 
+---
+
+## Sistemi Informativi vs Basi di Dati
+
+### Distinzione Concettuale
+
+* **Sistema Informativo (SI):** Comprende l'intera organizzazione aziendale, i processi, le informazioni e le persone, si adatta alla struttura aziendale ma allo stesso tempo la modifica e la ottimizza.
+* **Base di Dati (Database):** Sottoporzione del SI destinata alla **memorizzazione strutturata dei dati**  su cui opera il SI.
+	  - *Un errore nella modellazione della base di dati compromette l'intero Sistema Informativo.*
+### Separazione tra Logica Applicativa e Logica dei Dati
+
+La progettazione di una base di dati deve essere **indipendente** dalle singole applicazioni che la utilizzano.
+
+* **Logica dei Dati (Stabile):** Codifica la realtà delle informazioni (es. concetti di Cliente, Prodotto, Ordine), le quali rimangono costanti nel tempo.
+* **Logica Applicativa (Variabile):** Gestisce i processi e le procedure aziendali, che cambiano frequentemente in base al contesto operativo.
+![[Pasted image 20260924184817.png|439]]
+## DBMS

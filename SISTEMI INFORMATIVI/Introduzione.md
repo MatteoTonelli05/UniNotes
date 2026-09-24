@@ -72,7 +72,57 @@ La scomposizione è basata sulla funzione (area di specializzazione)
 
 I processi, per poter operare, hanno bisogno di informazioni (conoscere il contesto nella sua totalità).
 
-**INFORMATION PROCESSING CAPACITY:** capacità elaborativa di un’organizzazione rispetto ai propri processi.
+- **INFORMATION PROCESSING CAPACITY:** capacità elaborativa di un’organizzazione rispetto ai propri processi.
 
-**SISTEMA INFORMATIVO**: l'insieme delle informazioni utilizzate, generate e gestite dai processi aziendali.
+- **SISTEMA INFORMATIVO**: l'insieme delle informazioni utilizzate, generate e gestite dai processi aziendali.
+
+- **SISTEMA INFORMATICO**: La porzione del sistema informativo in cui le informazioni sono raccolte, elaborate, archiviate e scambiate mediante l’uso di tecnologie informatiche
+
+### Ruolo dei sistemi informatici
+
+Dagli anni '70 a oggi, il ruolo dei **Sistemi Informatici** (SI) è cambiato radicalmente:
+* **Passato:** Semplici strumenti di supporto per aumentare l'**efficienza** dei singoli processi aziendali.
+* **Oggi:** Elementi centrali dell'organizzazione in grado di riprogettare e rivoluzionare l'intera struttura aziendale, aumentando l'**efficacia** complessiva dell'azienda 
+
+L'informatica assume quindi una **duplice veste**:
+1. **Tecnologia:** Con le proprie evoluzioni tecniche.
+2. **Disciplina Organizzativa:** In grado di guidare la struttura e la gestione aziendale.
+#### Struttura e Livelli
+* **Organizzazione** $\rightarrow$ **Sistema Informativo** (gestisce *Informazione* e *Processi*)
+* **Tecnologie Informatiche** $\rightarrow$ **Sistema Informatico** (gestisce *Dati* e *Procedure*)
+![[Pasted image 20260924175317.png]]
+---
+
+### Efficacia ed efficienza
+![[Pasted image 20260924175345.png]]
+Per valutare il contributo dell'Innovazione Tecnologica, si distinguono due metriche fondamentali nel Sistema Produttivo: 
+
+1. **EFFICIENZA** $\rightarrow$ Indica la capacità di un sistema di ottimizzare le risorse utilizzate per produrre un dato output. $$\text{Efficienza} = \frac{\text{Output Effettivo}}{\text{Input}}$$
+2. **EFFICACIA** $\rightarrow$ Indica la capacità di raggiungere gli obiettivi stabiliti o l'output desiderato dal mercato/azienda. $$\text{Efficacia} = \frac{\text{Output Effettivo}}{\text{Output Atteso}}$$ 
+>[!abstract] In Sintesi 
+> - **Efficienza** = Fare le cose nel modo giusto (sprecare meno input). 
+>-  **Efficacia** = Fare le cose giuste (raggiungere il risultato finale desiderato).
+
+---
+
+## Digitalizzazione Aziendale
+
+La **digitalizzazione aziendale** è sempre passata da **3 fasi**.
+
+> [!abstract] Fase 1
+> Automazione delle attività di raccolta, archiviazione e reperimento dei dati di natura operativa (es. stipendi, gestione ordini, fatturazione, ecc.).
+
+> [!question] Perchè si parte dalla finanza?
+> Perchè si parla
+> - ripetitività delle operazioni da controllare
+> - natura strutturata dei processi da gestire (regolarizzate dalla legge)
+> - grandi quantità di dati
+
+> [!danger] **Strutturare il dipartimento Sistemi Informativi (SI) sotto il CFO (Direzione Finanziaria)**.
+> 1. **La prima fase (Storica/Operativa):** Quando un'azienda inizia a digitalizzarsi, le prime cose che automatizza sono i compiti amministrativi e contabili legati alla finanza: gestione paghe, fatturazione, contabilità, ordini. Per questo motivo, storicamente l'IT nasceva come "costola" del dipartimento finanziario.
+>$\quad$
+>2. **Il limite della visione del CFO:** Il dipartimento di finanza e controllo (CFO) gestisce l'azienda con una mentalità focalizzata su **taglio dei costi, controllo di gestione ed efficienza operativa nel breve termine**.
+  >  $\quad$
+>3. **Il problema oggi (Mancanza di Efficacia Strategica):** Se l'IT rimane sotto la finanza, i Sistemi Informativi verranno visti solo come un **centro di costo da minimizzare** e un mero strumento per automatizzare i dati operativi. Si perde così tutta la parte di **innovazione, efficacia, trasformazione del business e Business Process Reengineering (BPR)**.
+
 

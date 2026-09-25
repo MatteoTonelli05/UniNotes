@@ -178,3 +178,8 @@ La progettazione di una base di dati deve essere **indipendente** dalle singole 
 * **Logica Applicativa (Variabile):** Gestisce i processi e le procedure aziendali, che cambiano frequentemente in base al contesto operativo.
 ![[Pasted image 20260924184817.png|439]]
 ## DBMS
+
+Un **DBMS** (come MySQL, PostgreSQL, Oracle, SQL Server) è il **software principale che gestisce operativamente la base di dati** e si posiziona esattamente al **Livello dei Dati** (_Data Tier_) dell'architettura _Three-Tier_.
+
+> [!quote] Il DBMS fa da **"cuscinetto"** isolante. Le applicazioni non devono sapere _come_ i dati sono salvati sui dischi fisici. L'applicazione chiede semplicemente al DBMS _"dammi i dati del cliente X"_ e il DBMS si occupa di tutto, evitando le incoerenze e le concorrenze della **Fase 3**.
+

@@ -14,5 +14,26 @@ _(gestione del cliente, amministrazione, gestione produzione, parte commerciale)
 
 > per **programmazione** si intende la pianificazione spicciola
 
-
+> [!question] Quanto l'azienda investirà sul fatto che questi processi funzionino bene? 
+> Se il processo ha un Information Processing Capacity allineata con quelli dell'azienda, per capirlo ci si basa su due misurazioni:
+>- intensità informativa del processo _(quanto il processo è complesso)_
+>- intensità informativa del prodotto _(il prodotto è ricco di informazione)_
+>
 ![[Pasted image 20260925124210.png]]
+
+## SI direzionali
+
+> [!question] Perchè si affrontano dopo i SI operativi?
+> Perchè prende in input le informazioni prodotte dai SI operativi.
+
+I SI Direzionali operano secondo il modello del controllo di gestione:
+* Definizione degli obiettivi aziendali.
+* Rilevazione delle prestazioni effettive.
+* Confronto tra atteso ed effettivo (analisi degli scostamenti).
+* Azioni correttive.
+![[Pasted image 20260925142355.png]]
+## SI analitici
+
+escono fuori da quelli che è il perimetro aziendale perchè si misurano fenomenti esterni all'azienda
+
+i SI analitici vengono utilizzate da aziende con clientela numerosa

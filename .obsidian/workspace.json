@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "MACHINE LEARNING/02 - Fondamenti.md",
+                "file": "MACHINE LEARNING/02 - Training e Valutazione Prestazioni.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "02 - Fondamenti"
+              "title": "02 - Training e Valutazione Prestazioni"
             }
           }
         ]
@@ -203,6 +203,13 @@
   },
   "active": "d55647a326384120",
   "lastOpenFiles": [
+    "MACHINE LEARNING/02 - Dati e Pattern.md",
+    "MACHINE LEARNING/02 - Tipi di Learning.md",
+    "MACHINE LEARNING/02 - Problemi di Learning.md",
+    "MACHINE LEARNING/02 - Training e Valutazione Prestazioni.md",
+    "MACHINE LEARNING/Allegati/Pasted image 20260925151522.png",
+    "MACHINE LEARNING/Allegati/Pasted image 20260925145611.png",
+    "MACHINE LEARNING/Allegati/Pasted image 20260925145610.png",
     "MACHINE LEARNING/Allegati/Pasted image 20260925144129.png",
     "SISTEMI INFORMATIVI/Classificazione dei SI.md",
     "SISTEMI INFORMATIVI/Allegati/Pasted image 20260925142355.png",
@@ -213,10 +220,6 @@
     "SISTEMI INFORMATIVI/Classificazione dei SistemiInformativi.md",
     "SISTEMI INFORMATIVI/Allegati/Pasted image 20260925115121.png",
     "SISTEMI INFORMATIVI/Allegati/Pasted image 20260925115036.png",
-    "SISTEMI INFORMATIVI/Allegati/Pasted image 20260924184817.png",
-    "SISTEMI INFORMATIVI/Allegati/Pasted image 20260924175345.png",
-    "SISTEMI INFORMATIVI/Allegati/Pasted image 20260924175317.png",
-    "SISTEMI INFORMATIVI/Allegati/Pasted image 20260924171714.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Linguagi Regolari.md",
     "SISTEMI INFORMATIVI/Allegati",
     "SISTEMI INFORMATIVI/SISTEMI INFORMATIVI.md",
@@ -227,7 +230,6 @@
     "LINGUAGGI FORMALI E SISTEMI COMPUTAZIONALI/Concetti Matematici di base.md",
     "LINGUAGGI FORMALI E SISTEMI COMPUTAZIONALI/Immagini",
     "LINGUAGGI FORMALI E SISTEMI COMPUTAZIONALI/LINGUAGGI FORMALI E SISTEMI COMPUTAZIONALI.md",
-    "MACHINE LEARNING/02 - Fondamenti.md",
     "SISTEMI INFORMATIVI",
     "LINGUAGGI FORMALI E SISTEMI COMPUTAZIONALI",
     "MACHINE LEARNING/01 - Introduzione.md",

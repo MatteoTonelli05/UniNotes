@@ -221,10 +221,7 @@ _es. agricoltura automatica, gestioni dati aziendali, AI_
 > [!hint] Idea
 > La digital transformation prende forza dall'elevata quantità di **dati**, più dati ci sono, più si può attuare una digital transformation.
 >
-
-### **Big Data** vs **Small Data**
-
-
+> Oggi nella **DIGITAL AGE** possiamo sfruttare social, ai, sensoristica per raccogliere e condividere dati
 ### Il ciclo di adozione delle tecnologie
 
 > [!important] **Gartner**
@@ -261,3 +258,40 @@ $\quad$
 > Il **CIO** deve saper posizionare ciascuna tecnologia sull'Hype Cycle per evitare due errori fatali: 
 > 1. Investire enormi budget nel **Peak** pensando che sia una tecnologia già matura. 
 > 2. Abbandonare la tecnologia nel **Trough** scambiando la fisiologica disillusione per un fallimento definitivo del concetto.
+
+---
+
+## Figure professionali (Role Map)
+
+### Management e Strategia
+
+#### Responsabile Sistemi Informatici (CIO / Direttore SI)
+* **Ruolo:** Ponte diretto tra direzione aziendale e area tecnica.
+* **Competenze:** Gestione economica, allineamento dell'IT agli obiettivi di business, valutazione dei costi-benefici delle soluzioni di mercato.
+* **Obiettivo:** Gestire la visione strategica dell'infrastruttura e mediare tra utenti finali e sviluppatori.
+
+#### Consulente / Progettista Software House
+* **Ruolo:** Supervisore di progetti di informatizzazione per conto terzi.
+* **Competenze:** Project management, gestione della relazione con il cliente, analisi dei rischi di riprogettazione.
+* **Obiettivo:** Guidare i team di sviluppo e garantire la riuscita dei progetti di trasformazione tecnologica nei clienti.
+
+---
+
+### Architettura e Gestione dei Dati
+
+#### Data Architect
+* **Ruolo:** Progettista dell'infrastruttura e della strategia dei dati dell'organizzazione.
+* **Competenze:** Definizione di standard aziendali, integrazione di sistemi eterogenei, gestione di database.
+* **Obiettivo:** Creare un'architettura dati scalabile e sicura a supporto degli scopi strategici aziendali.
+
+#### Data Scientist
+* **Ruolo:** Analista avanzato per l'estrazione di valore da grandi moli di dati.
+* **Competenze:** Statistica, matematica, informatica e forte sensibilità di business.
+* **Obiettivo:** Individuare i problemi a maggior valore per l'organizzazione e comunicare le metriche estratte ai decision maker.
+
+### Innovazione Organizzativa
+
+#### Digital Transformation Manager
+* **Ruolo:** Profilo ibrido per la modernizzazione dei processi operativi.
+* **Competenze:** Conoscenza approfondita dei processi aziendali unita alla padronanza delle tecnologie emergenti.
+* **Obiettivo:** Ridisegnare il modello di business e incrementare l'efficienza complessiva dell'organizzazione tramite la digitalizzazione.

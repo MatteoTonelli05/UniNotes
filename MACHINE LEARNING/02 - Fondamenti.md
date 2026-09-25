@@ -288,6 +288,13 @@ $$\text{Errore} = 100\% - \text{Accuratezza}$$
   >  In un problema di classificazione binaria dove una classe è molto rara, un classificatore "dummy" che non predice mai la classe rara può raggiungere un'accuratezza vicina al 100% pur essendo del tutto inutile.
   >  
   >  **In contesti con classi sbilanciate è necessario valutare le prestazioni tramite metriche diverse come quelle Precision e Recall.**
+
+### Matrice di Confusione
+
+La matrice di confusione (**confusion matrix**) è molto utile nei problemi di classificazione per capire come sono distribuiti gli errori.
+
+![[Pasted image 20260925144129.png|392]]
+
 ## Metriche per Problemi di Regressione
 
 ### RMSE (Root Mean Squared Error)
@@ -295,3 +302,5 @@ $$\text{Errore} = 100\% - \text{Accuratezza}$$
 È la metrica standard usata nei problemi di regressione per valutare lo scostamento continuo tra le stime e i valori reali.
 
 - Si calcola eseguendo la radice quadrata della media dei quadrati delle differenze tra i valori predetti ($pred_i$) e i valori reali ($true_i$).$$\text{RMSE} = \sqrt{\frac{1}{N}\sum_{i=1}^{N}(pred_i - true_i)^2}$$
+
+

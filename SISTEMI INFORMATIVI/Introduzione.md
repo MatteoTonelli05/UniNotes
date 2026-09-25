@@ -182,4 +182,82 @@ La progettazione di una base di dati deve essere **indipendente** dalle singole 
 Un **DBMS** (come MySQL, PostgreSQL, Oracle, SQL Server) è il **software principale che gestisce operativamente la base di dati** e si posiziona esattamente al **Livello dei Dati** (_Data Tier_) dell'architettura _Three-Tier_.
 
 > [!quote] Il DBMS fa da **"cuscinetto"** isolante. Le applicazioni non devono sapere _come_ i dati sono salvati sui dischi fisici. L'applicazione chiede semplicemente al DBMS _"dammi i dati del cliente X"_ e il DBMS si occupa di tutto, evitando le incoerenze e le concorrenze della **Fase 3**.
+### L'Evoluzione dei DBMS
 
+L'architettura e la tecnologia delle basi di dati si sono evolute per rispondere alle mutevoli esigenze aziendali e dimensionali dei dati:
+
+#### 1. Modello Relazionale (Anni '70 - Oggi)
+* **Introduzione:** Sviluppato negli anni '70 (grazie al modello di Codd), rappresenta tuttora lo standard de facto per la gestione dei dati strutturati.
+* **Caratteristiche:** Organizzazione dei dati in tabelle correlate e garanzia delle proprietà **ACID** (Atomicità, Coerenza, Isolamento, Durabilità).
+
+#### 2. L'Avvento di Internet e l'Era dei Big Data (1991 - Oggi)
+* **Evoluzione:** Con la nascita e la diffusione del Web a partire dal 1991, il volume, la velocità e la varietà dei dati sono cresciuti in modo esponenziale (*Track Big Data*).
+* **Esigenze:** Necessità di gestire volumi massivi di dati operativi, log di sistema e interazioni utente in tempo reale, superando i limiti di scalabilità dei DBMS relazionali tradizionali.
+
+#### 3. Basi di Dati NoSQL (Anni 2000 - Oggi)
+* **Evoluzione:** Nascono per offrire maggiore flessibilità e scalabilità orizzontale rispetto ai sistemi RDBMS.
+* **Caratteristiche:** Superano lo schema rigido tabellare, gestendo dati non strutturati o semistrutturati tramite modelli flessibili (es. **modello documentale** come MongoDB, *key-value*, *column-family*, *graph database*).
+
+#### 4. Vector Database e IA Generativa (Oggi)
+* **Evoluzione:** Nuova famiglia di DBMS emersa con l'esplosione dell'Intelligenza Artificiale e del Deep Learning.
+* **Caratteristiche:** Gestiscono l'**embedding dei dati** (rappresentazioni vettoriali ad alta dimensione di testi, immagini o audio) per abilitare ricerche semantiche, sistemi di raccomandazione e architetture RAG (*Retrieval-Augmented Generation*).
+
+### Il Ruolo del CIO nella Digital Innovation
+
+Un bravo **CIO (Chief Information Officer)** deve guidare la **Digital Innovation** bilanciando due aspetti fondamentali:
+
+* **Monitoraggio delle Nuove Tecnologie:** Riconoscere quando adottare nuovi paradigmi (es. NoSQL o Vector DB) per creare valore e vantaggio competitivo.
+* **Governance e Valutazione dei Rischi:** Valutare attentamente la maturità della tecnologia, integrandola con i sistemi esistenti senza compromettere l'affidabilità e la sicurezza dell'ecosistema informativo aziendale.
+
+---
+
+## Digital Transformation
+
+> [!abstract] Cos'è la Digital Transformation (**DT**)?
+> Adozione massiva di tecnologie digitali nell'ambito aziendale.
+
+_es. agricoltura automatica, gestioni dati aziendali, AI_
+
+> [!hint] Idea
+> La digital transformation prende forza dall'elevata quantità di **dati**, più dati ci sono, più si può attuare una digital transformation.
+>
+
+### **Big Data** vs **Small Data**
+
+
+### Il ciclo di adozione delle tecnologie
+
+> [!important] **Gartner**
+> Azienda più grande in ambito della consulenza informatica in azienda.
+> Gartner ha definito l'Hype Cycle dell'adozione delle tecnologie.
+> 
+> ![[Pasted image 20260925115036.png]]
+
+#### Le 5 Fasi del Ciclo 
+
+1. **INNOVATION TRIGGER** (Innesco dell'Innovazione) 
+	- La tecnologia fa la sua prima comparsa (breakthrough tecnologico). 
+	- L'adozione è guidata da soggetti altamente innovativi (*early adopters*) 
+	$\quad$
+2. **PEAK OF INFLATED EXPECTATIONS** (Picco delle Aspettative Eccessive) 
+	- L'attenzione dei media e dell'opinione pubblica raggiunge il massimo. 
+	- Vengono pubblicizzati i primi casi di successo spettacolari. Molte aziende cercano di adottare la tecnologia per paura di rimanere escluse (anche se non necessaria), anche se si verificano parallelamente numerosi fallimenti legati alla scarsa maturità della tecnologia stessa. 
+	$\quad$
+3. **TROUGH OF DISILLUSIONMENT** (Cavo della Disillusione) 
+	- L'interesse crolla poiché la tecnologia non mantiene le promesse esagerate della fase precedente. 
+	- L'adozione forzata della tecnologia in contesti non idonei porta a un aumento evidente dei casi di fallimento. Media e aziende perdono l'entusiasmo e molti fornitori abbandonano il settore. 
+	$\quad$
+4. **SLOPE OF ENLIGHTENMENT** (Salita dell'Illuminazione) 
+	- Si sviluppa una comprensione più matura della tecnologia. 
+	- Grazie alla sperimentazione passata su ampio spettro, si identificano con chiarezza i reali campi di applicazione efficaci. La tecnologia si affina, diventa più flessibile e si adatta ai contesti in cui è effettivamente utile. 
+	$\quad$
+5. **PLATEU OF PRODUCTIVITY** (Altopiano della Produttività) 
+	- La tecnologia raggiunge la piena maturità aziendale. 
+	- Lo strumento diventa affidabile, stabile e ampiamente integrato nei processi standard. I benefici per l'organizzazione sono chiaramente dimostrati e accettati dal mercato di massa. 
+$\quad$
+
+![[Pasted image 20260925115121.png]]
+> [!tip] Collegamento per il CIO 
+> Il **CIO** deve saper posizionare ciascuna tecnologia sull'Hype Cycle per evitare due errori fatali: 
+> 1. Investire enormi budget nel **Peak** pensando che sia una tecnologia già matura. 
+> 2. Abbandonare la tecnologia nel **Trough** scambiando la fisiologica disillusione per un fallimento definitivo del concetto.

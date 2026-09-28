@@ -294,12 +294,4 @@ Anziché addestrare un classificatore binario standard (che richiederebbe sia la
 3. **Soglia di Allarme:** Se un nuovo punto (come il punto rosso nel grafico) supera una determinata **soglia di distanza**, viene segnalato come **probabile anomalia**.
     
 
-### 3. Collegamento con la Valutazione dei Modelli
-
-Anche per l'Anomaly Detection si applicano le metriche viste nelle slide precedenti:
-
-- **Falsi Positivi ($\text{FP}$):** Il macchinario funziona bene, ma il sistema genera un falso allarme.
-    
-- **Falsi Negativi ($\text{FN}$):** C'è un'anomalia reale, ma la soglia è troppo tollerante e il sistema non la rileva.
-    
-- Variare la soglia di distanza genera le relative curve **ROC** e **DET** per bilanciare la sensibilità del sensore.
+![[Pasted image 20260928124419.png|473]]

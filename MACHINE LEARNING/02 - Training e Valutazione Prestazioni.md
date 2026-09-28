@@ -178,3 +178,9 @@ $$Accuracy = \frac{TP+N}{T} \quad con \quad T = P+N$$
 > Sia la curva **ROC** (_Receiver Operating Characteristic_) sia la curva **DET** (_Detection Error Tradeoff_) sono strumenti grafici usati per valutare e confrontare le prestazioni dei **classificatori binari** al variare della soglia di decisione (_decision threshold_).
 > 
 
+> [!hint] L'output di un classificatore è solitamente  **probabilistico**
+> vale a dire un valore continuo compreso nell'intervallo $[0,1]$, dunque c'è da definire una soglia $t$ dopo la quale il classificatore trasformerà la probabilità in predizione.
+> 
+> _es. è un cane al 60%, è un gatto al 30%, soglia $t$ al 50%, dunque **è un cane**_
+
+![[Pasted image 20260928093834.png]]

@@ -113,6 +113,8 @@ Lo split può essere random (**shuffling**) oppure mirato (es. per mantenere sep
 > [!abstract] Cherry Picking
 > Usare il *test set* per orientare le scelte durante lo sviluppo di un sistema è a forte rischio di overfitting (crea modelli capaci solo su quel set).
 
+
+
 ---
 # Metriche per la misura di prestazioni
 
@@ -254,10 +256,50 @@ _ovviamente c'è da scegliere una soglia_
 
 ### Metriche di Valutazione: AP e mAP
 
-- **Average Precision (AP):** Viene calcolata integrando l'area sotto la curva Precision-Recall per **una singola classe** sull'intero dataset.
+> [!hint] Ricorda: **Average Precision (AP)**
+>  misura l'area sotto la curva Precision-Recall, ossia quanto il modello riesce a rimanere **preciso** man mano che cerca di **trovare tutti gli oggetti** reali ordinati per confidenza.
     
-- **mean Average Precision (mAP):** È la **media aritmetica delle AP** calcolate su tutte le classi presenti nel dataset:
+**mean Average Precision (mAP):** È la **media aritmetica delle AP** calcolate su tutte le classi presenti nel dataset:$$\text{mAP} = \frac{1}{K} \sum_{k=1}^{K} \text{AP}_k$$_(dove $K$ è il numero totale di classi)_.
+
+
+## Closed Set vs. Open Set
+
+I vari Training, Validatoin e Test possono essere raggruppati in due diverse macro-categorie: 
+
+- **Closed Set (Insieme Chiuso):** È l'ipotesi più comune nei benchmark tradizionali. Si assume che ogni dato da classificare appartenga **obbligatoriamente** a una delle classi note durante l'addestramento (es. classificare una persona solo in `{uomo, donna}`).
+    $\quad$
+- **Open Set (Insieme Aperto):** Rispecchia il mondo reale, dove i dati presi in input possono appartenere a una delle classi note oppure a **nessuna di esse** (es. un modello addestrato a riconoscere `{mela, pera, banana}` che si trova davanti a un'arancia o a una scarpa).
+
+> [!question] Come gestire i problemi Open Set
+>1. **Aggiungere la classe "Resto del mondo":** Si crea una classe fittizia aggiuntiva e si arricchisce il training set con vari "esempi negativi" che il modello imparerà a classificare in questa categoria generica.
+  > $\quad$
+>2. **Utilizzare una Soglia di Decisione ($t$):** Si permette al modello di rifiutare la classificazione se non è sufficientemente sicuro. Il pattern viene assegnato a una classe nota solo se la sua probabilità $p$ supera la soglia ($p > t$); altrimenti viene trattato come sconosciuto / negativo.
+### 1. Il Problema della Mancanza di Dati di Anomalia
+
+Nei contesti industriali o di monitoraggio (es. prevenzione rottura di macchinari), si verificano due condizioni tipiche:
+
+- I **dati di funzionamento normale** sono abbondanti.
     
-    $$\text{mAP} = \frac{1}{K} \sum_{k=1}^{K} \text{AP}_k$$
+- I **dati di anomalia/guasto** sono estremamente rari, imprevisti o sconosciuti a priori (non si possono raccogliere abbastanza esempi di ogni possibile tipo di rottura).
     
-    _(dove $K$ è il numero totale di classi)_.
+
+### 2. L'Approccio "One-Class" (Non Supervisionato)
+
+Anziché addestrare un classificatore binario standard (che richiederebbe sia la classe normale sia la classe anomala), si modella **solamente la classe del funzionamento normale** in modo non supervisionato:
+
+1. **Modellizzazione:** Il sistema impara la distribuzione e i confini dei dati "normali" (nel grafico rappresentati dalla nuvola di punti neri tra _vibrazione_ e _assorbimento_).
+    
+2. **Misura di Distanza:** Si calcola quanto un nuovo dato dista dal centro della distribuzione normale (es. usando la **distanza di Mahalanobis**, rappresentata dalle ellissi concentriche nel grafico).
+    
+3. **Soglia di Allarme:** Se un nuovo punto (come il punto rosso nel grafico) supera una determinata **soglia di distanza**, viene segnalato come **probabile anomalia**.
+    
+
+### 3. Collegamento con la Valutazione dei Modelli
+
+Anche per l'Anomaly Detection si applicano le metriche viste nelle slide precedenti:
+
+- **Falsi Positivi ($\text{FP}$):** Il macchinario funziona bene, ma il sistema genera un falso allarme.
+    
+- **Falsi Negativi ($\text{FN}$):** C'è un'anomalia reale, ma la soglia è troppo tollerante e il sistema non la rileva.
+    
+- Variare la soglia di distanza genera le relative curve **ROC** e **DET** per bilanciare la sensibilità del sensore.

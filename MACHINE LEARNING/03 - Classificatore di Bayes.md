@@ -1,3 +1,5 @@
+## Bayes
+
 Sia $\mathbf{V}$ uno spazio di pattern $d$-dimensionali e $W = \{w_1, w_2 \dots w_s\}$ un insieme di $s$ classi disgiunte costituite da elementi di $\mathbf{V}$
 
 Per ogni $\mathbf{x} \in \mathbf{V}$ e per ogni $w_i \in W$, indichiamo con $p(\mathbf{x}|w_i)$ la *densità di probabilità condizionale* (o condizionata) di $\mathbf{x}$ data $w_i$, ovvero la densità di probabilità che il prossimo pattern sia $\mathbf{x}$ sotto l'ipotesi che la sua classe di appartenenza sia $w_i$
@@ -15,3 +17,11 @@ $$P(w_i|\mathbf{x}) = \frac{p(\mathbf{x}|w_i) \cdot P(w_i)}{p(\mathbf{x})}$$
 > [!hint] Concetto di Ottimale
 > Se conosciamo dunque sia la frequenza delle classi sia la forma dei dati al loro interno, applicare la regola di Bayes ci permette di calcolare la probabilità **a posteriori** $P(w_i\vert{}\mathbf{x})$, ovvero la certezza che un elemento appartenga alla classe $w_i$ dopo averne osservato le caratteristiche $\mathbf{x}$. Scegliere la classe con la probabilità a posteriori più alta garantisce matematicamente il minor numero di errori possibile.
 
+## Classificatore di Bayes
+
+Dato un pattern $x$ da classificare in una delle $s$ classi $w_1,w_2,...,w_s$ di cui sono note:
+- la probabilità a priori $P(w_1),P(w_2),...,P(w_s)$
+- la densità di probabilità condizionali $p(x|w_1),p(x|w_2),...,p(x|w_s)$
+
+la regola di classificazione di Bayes assegna $x$ alla classe $b$ per cui è massima la probabilità a posteriori:$$b=\arg\max_{i=1..s}{\{P(w_i|x)\}}$$
+ Massimizzare la probabilità a posteriori significa massimizzare la densità di probabilità condizionale tenendo comunque conto della probabilità a priori delle classi.

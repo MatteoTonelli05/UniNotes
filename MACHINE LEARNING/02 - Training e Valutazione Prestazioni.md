@@ -179,8 +179,34 @@ $$Accuracy = \frac{TP+N}{T} \quad con \quad T = P+N$$
 > 
 
 > [!hint] L'output di un classificatore è solitamente  **probabilistico**
-> vale a dire un valore continuo compreso nell'intervallo $[0,1]$, dunque c'è da definire una soglia $t$ dopo la quale il classificatore trasformerà la probabilità in predizione.
+> vale a dire un valore continuo compreso nell'intervallo $[0,1]$, dunque in particolare nei problemi di classificazione binaria la decisione finale dipende dal confronto con una soglia $t$.
 > 
 > _es. è un cane al 60%, è un gatto al 30%, soglia $t$ al 50%, dunque **è un cane**_
 
-![[Pasted image 20260928093834.png]]
+- **Soglie restrittive (elevate, $t \to 1$):** Riducono i Falsi Positivi ($\text{FPR}$), ma aumentano i Falsi Negativi ($\text{FNR}$).
+    
+- **Soglie tolleranti (basse, $t \to 0$):** Riducono i Falsi Negativi ($\text{FNR}$), ma aumentano i Falsi Positivi ($\text{FPR}$).
+![[Pasted image 20260928093834.png]]_Il grafico in alto mostra l'andamento dei due errori al variare di $t$. Il punto di intersezione tra le due curve ($\text{FPR} = \text{FNR}$) definisce l'**Equal Error Rate (EER)**.
+
+> [!hint] Invece di osservare entrambi gli errori in funzione di $t$, si elimina il parametro $t$ tracciando un tipo di errore direttamente in funzione dell'altro:
+> ![[Pasted image 20260928095317.png]]
+
+
+
+>**Curva DET (Detection Error Tradeoff):**
+> Mostra direttamente il _trade-off_ tra i due tipi di errore. Più la curva si avvicina all'origine $(0,0)$, migliore è il classificatore.
+        
+> **Curva ROC (Receiver Operating Characteristic):**
+>Poiché l'asse $Y$ misura i _True Positives_ ($\text{TPR}$) anziché i _False Negatives_ ($\text{FNR}$), la curva ROC risulta essere **ribaltata verticalmente** rispetto alla curva DET. Più la curva si avvicina all'angolo in alto a sinistra $(0,1)$, migliore è il modello.
+
+> [!danger]  
+> se le due curve si intersecano, **nessun modello domina l'altro per tutti i possibili valori di soglia**
+> 
+> ![[Pasted image 20260928095747.png]]
+
+> [!important] Soluzione
+> Per ottenere un confronto sintetico e globale svincolato da una singola soglia, si calcola l'**AUC**, che "media" le prestazioni del sistema su tutti i punti di lavoro:
+>
+>- **Definizione:** È l'area della superficie compresa sotto la curva ROC, con valori compresi nell'intervallo $[0, 1]$.
+  >  
+  ![[Pasted image 20260928095721.png]]

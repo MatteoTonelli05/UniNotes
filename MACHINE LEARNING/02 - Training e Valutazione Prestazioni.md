@@ -210,3 +210,36 @@ $$Accuracy = \frac{TP+N}{T} \quad con \quad T = P+N$$
 >- **Definizione:** È l'area della superficie compresa sotto la curva ROC, con valori compresi nell'intervallo $[0, 1]$.
   >  
   ![[Pasted image 20260928095721.png]]
+
+### Precision - Recall
+![[Pasted image 20260928101220.png|207]]
+
+**PRECISION:** indica quanto è accurato il sistema $$Precision = \frac{TP}{TP+FP}$$
+RECALL: indica quanto è selettivo $$Recall = \frac{TP}{TP+FN}=\frac{TP}{P}=TPR$$
+![[Pasted image 20260928101234.png]]![[Pasted image 20260928101531.png|368]]
+#### F1-score
+
+> [!abstract]  L'**F1-score** è la **media armonica** di Precision e Recall, con valori compresi tra $0$ e $1$ 
+> $$\text{F1-score} = 2\times\frac{Precision\times Recall}{Precision + Recall}$$
+
+> [!question] Perchè la media armonica?
+> Applica una **penalizzazione maggiore** (rispetto alla media aritmetica) quando i due valori sono sbilanciati o molto diversi tra loro. Ciò impedisce che un modello con Recall altissima ma Precision pessima ottenga un punteggio elevato.
+
+#### Average Precision (AP)
+
+> [!abstract] L'**Average Precision (AP)** rappresenta l'equivalente dell'AUC per il grafico Recall/Precision
+> $$AP=\sum_n{(R_n-R_{n-1})P_n}$$
+> _$P_n$ e $R_n$ indicano rispettivamente i valori di Precision e Recall calcolati alla $n$-esima soglia di decisione._
+
+> [!question] Cosa cambia rispetto all'AUC ROC?
+> Per calcolare l'AP si utilizza un'integrazione con rettangoli anziché trapezi, per evitare di fornire stime sovra-ottimistiche dell'area sottesa
+
+Quando l'applicazione impone vincoli operativi precisi (ad esempio un limite massimo tollerabile di falsi allarmi o un minimo di rilevamenti garantito), anziché usare una media sintetica è preferibile ricavare valori puntuali direttamente dal grafico Recall/Precision:
+
+- **$Precision @ Recall = X$**: Qual è la precisione ottenibile garantendo di catturare almeno una percentuale $X$ di positivi reali?
+    
+- **Recall @ Precision = X:** Quanti positivi reali si riescono a rilevare garantendo che l'accuratezza dei positivi sia almeno del $X\%$?
+  
+  ![[Pasted image 20260928103354.png|372]]
+## Metriche per l'Object Detection
+

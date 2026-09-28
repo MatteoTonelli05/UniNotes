@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "MACHINE LEARNING/02 - Tipi di Learning.md",
-                "mode": "preview",
+                "file": "MACHINE LEARNING/02 - Training e Valutazione Prestazioni.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "02 - Tipi di Learning"
+              "title": "02 - Training e Valutazione Prestazioni"
             }
           }
         ]
@@ -203,6 +203,11 @@
   },
   "active": "d55647a326384120",
   "lastOpenFiles": [
+    "MACHINE LEARNING/Allegati/Pasted image 20260928103354.png",
+    "MACHINE LEARNING/Allegati/Pasted image 20260928101531.png",
+    "MACHINE LEARNING/Allegati/Pasted image 20260928101234.png",
+    "MACHINE LEARNING/Allegati/Pasted image 20260928101220.png",
+    "MACHINE LEARNING/02 - Tipi di Learning.md",
     "CONCURRENT SYSTEMS/OVERVIEW - module 1.1.md",
     "MACHINE LEARNING/02 - Training e Valutazione Prestazioni.md",
     "MACHINE LEARNING/Allegati/Pasted image 20260928095747.png",
@@ -210,16 +215,12 @@
     "MACHINE LEARNING/Allegati/Pasted image 20260928095317.png",
     "MACHINE LEARNING/Allegati/Pasted image 20260928093834.png",
     "MACHINE LEARNING/02 - Dati e Pattern.md",
-    "MACHINE LEARNING/02 - Tipi di Learning.md",
     "MACHINE LEARNING/02 - Problemi di Learning.md",
     "MACHINE LEARNING/Allegati/Pasted image 20260925151522.png",
     "MACHINE LEARNING/Allegati/Pasted image 20260925145611.png",
     "MACHINE LEARNING/Allegati/Pasted image 20260925145610.png",
-    "MACHINE LEARNING/Allegati/Pasted image 20260925144129.png",
     "SISTEMI INFORMATIVI/Classificazione dei SI.md",
-    "SISTEMI INFORMATIVI/Allegati/Pasted image 20260925142355.png",
     "SISTEMI INFORMATIVI/Introduzione.md",
-    "SISTEMI INFORMATIVI/Allegati/Pasted image 20260925124210.png",
     "SISTEMI INFORMATIVI/Classificazione dei SistemiInformativi.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Linguagi Regolari.md",
     "SISTEMI INFORMATIVI/Allegati",

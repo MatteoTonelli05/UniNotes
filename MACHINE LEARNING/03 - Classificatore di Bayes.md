@@ -23,5 +23,9 @@ Dato un pattern $x$ da classificare in una delle $s$ classi $w_1,w_2,...,w_s$ di
 - la probabilità a priori $P(w_1),P(w_2),...,P(w_s)$
 - la densità di probabilità condizionali $p(x|w_1),p(x|w_2),...,p(x|w_s)$
 
-la regola di classificazione di Bayes assegna $x$ alla classe $b$ per cui è massima la probabilità a posteriori:$$b=\arg\max_{i=1..s}{\{P(w_i|x)\}}$$
+>[!abstract] La regola di classificazione di Bayes assegna $x$ alla classe $b$ per cui è massima la probabilità a posteriori:$$b=\arg\max_{i=1..s}{\{P(w_i|x)\}}$$
+ 
  Massimizzare la probabilità a posteriori significa massimizzare la densità di probabilità condizionale tenendo comunque conto della probabilità a priori delle classi.
+
+> [!example] La regola si dimostra ottima in quanto minimizza l’errore di classificazione. Ad esempio nel caso di 2 classi e 𝑑 = 1 $$P(\text{error}) = \int_{\mathcal{R}_1} p(x\vert{}w_2)P(w_2)\,dx + \int_{\mathcal{R}_2} p(x\vert{}w_1)P(w_1)\,dx$$![[Pasted image 20260928155630.png|470]]
+

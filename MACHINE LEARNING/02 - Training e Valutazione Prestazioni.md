@@ -243,3 +243,21 @@ Quando l'applicazione impone vincoli operativi precisi (ad esempio un limite mas
   ![[Pasted image 20260928103354.png|372]]
 ## Metriche per l'Object Detection
 
+> [!attention] A differenza della semplice classificazione d'immagini, l'Object Detection richiede anche la localizzazione degli oggetti (tramite bounding box)
+> I possibili errori includono perciò oggetti non rilevati (**_FN_**), oggetti inventati (**_FP_**), classe errata o bounding box imprecisa
+
+### IoU (Intersection over Union)
+
+Per stabilire se una predizione è un **True Positive (TP)** o un **False Positive (FP)** ad una determinata confidenza, si impiega la sovrapposizione tra la bounding box predetta e quella reale (_ground truth_).
+$$IoU = \frac{\text{Area di Intersezione}}{\text{Area di Unione}}$$
+_ovviamente c'è da scegliere una soglia_ 
+
+### Metriche di Valutazione: AP e mAP
+
+- **Average Precision (AP):** Viene calcolata integrando l'area sotto la curva Precision-Recall per **una singola classe** sull'intero dataset.
+    
+- **mean Average Precision (mAP):** È la **media aritmetica delle AP** calcolate su tutte le classi presenti nel dataset:
+    
+    $$\text{mAP} = \frac{1}{K} \sum_{k=1}^{K} \text{AP}_k$$
+    
+    _(dove $K$ è il numero totale di classi)_.

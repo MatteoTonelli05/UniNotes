@@ -16,34 +16,7 @@ I grandi modelli (soprattutto le reti neurali profonde) raggiungono prestazioni 
 - **Disponibilità dei dati:** Evitare di applicare il Machine Learning se non si dispone di un numero sufficiente di dati per il training e il test.
     
 - **Costo dell'etichettatura:** La raccolta e l'annotazione dei dati richiedono uno sforzo ingente. È possibile velocizzare il processo cercando dataset online o utilizzando piattaforme di _crowdsourcing_ (es. Amazon Mechanical Turk).
-    
-
-### Gestione del Dataset e Validazione
-
-- **Rappresentatività:** Raccogliere dati reali e rappresentativi del problema senza scartare a priori i casi difficili o "scomodi".
-    
-- **Divisione corretta:** Suddividere accuratamente i dati in set di _Train_, _Validation_ e _Test_ (preferibilmente usando la **Cross-Validation**).
-    
-- **Evitare il Cherry Picking:** Non selezionare manualmente o manipolare il Test Set per far sembrare il modello più performante (_overfitting del test set_).
-    
-
-### 3. Valutazione e Confronti
-
-- **Automazione delle pipeline:** Automatizzare fin da subito il codice per la valutazione delle metriche: verrà eseguito centinaia di volte durante gli esperimenti.
-    
-- **Confronti equi:** Confrontare le prestazioni del modello solo con sistemi addestrati sullo **stesso dataset** e seguendo il **medesimo protocollo di test**.
-    
-- **Affidabilità statistica:** Se i dataset sono piccoli, valutare gli **intervalli di confidenza** ed eseguire più _run_ indipendenti con diverse condizioni iniziali/seed per verificare la stabilità dei risultati.
-    
-
-### 4. Qualità del Codice (Ingegneria del Software)
-
-- **Codice strutturato e testing:** Scrivere codice ordinato e implementare _unit testing_ e _debug_ incrementale.
-    
-- **Natura probabilistica:** Poiché i modelli di ML sono approssimati e non "esatti", scovare un errore concettuale o un bug nel codice di addestramento può essere estremamente complesso se il progetto non è ben strutturato.
-### 2. Come si vince una competizione ML / Kaggle? (Slide 50)
-
-Attraverso le parole del **#1 Kaggler al mondo (2018)**, la slide evidenzia un approccio di lavoro metodico e sistematico:
+### Come si vince una competizione ML / Kaggle? 
 
 1. **Comprensione del problema:** Leggere attentamente la descrizione della competizione e dei dati.
     
@@ -60,7 +33,7 @@ Attraverso le parole del **#1 Kaggler al mondo (2018)**, la slide evidenzia un a
 7. **Iterazione:** Ritornare ai passi precedenti in base a ciò che emerge dalle analisi.
     
 
-### 3. Model vs. Data Optimization: Il paradigma Data-Centric (Slide 51)
+### Model vs. Data Optimization: Il paradigma Data-Centric (Slide 51)
 
 Mentre la maggior parte del tempo viene spesso spesa a raffinare le architetture o fare il tuning degli iperparametri, la realtà industriale richiede un cambio di mentalità:
 

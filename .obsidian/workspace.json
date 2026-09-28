@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "MACHINE LEARNING/02 - Training e Valutazione Prestazioni.md",
+                "file": "MACHINE LEARNING/02 - Best Practice.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "02 - Training e Valutazione Prestazioni"
+              "title": "02 - Best Practice"
             }
           }
         ]
@@ -94,8 +94,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "994e93d0a7538110",
@@ -203,6 +202,8 @@
   },
   "active": "d55647a326384120",
   "lastOpenFiles": [
+    "MACHINE LEARNING/02 - Training e Valutazione Prestazioni.md",
+    "MACHINE LEARNING/02 - Best Practice.md",
     "MACHINE LEARNING/Allegati/Pasted image 20260928124419.png",
     "MACHINE LEARNING/Allegati/Pasted image 20260928103354.png",
     "MACHINE LEARNING/Allegati/Pasted image 20260928101531.png",
@@ -210,7 +211,6 @@
     "MACHINE LEARNING/Allegati/Pasted image 20260928101220.png",
     "MACHINE LEARNING/02 - Tipi di Learning.md",
     "CONCURRENT SYSTEMS/OVERVIEW - module 1.1.md",
-    "MACHINE LEARNING/02 - Training e Valutazione Prestazioni.md",
     "MACHINE LEARNING/Allegati/Pasted image 20260928095747.png",
     "MACHINE LEARNING/Allegati/Pasted image 20260928095721.png",
     "MACHINE LEARNING/Allegati/Pasted image 20260928095317.png",
@@ -218,7 +218,6 @@
     "MACHINE LEARNING/02 - Dati e Pattern.md",
     "MACHINE LEARNING/02 - Problemi di Learning.md",
     "MACHINE LEARNING/Allegati/Pasted image 20260925151522.png",
-    "MACHINE LEARNING/Allegati/Pasted image 20260925145611.png",
     "SISTEMI INFORMATIVI/Classificazione dei SI.md",
     "SISTEMI INFORMATIVI/Introduzione.md",
     "SISTEMI INFORMATIVI/Classificazione dei SistemiInformativi.md",

@@ -274,7 +274,7 @@ I vari Training, Validatoin e Test possono essere raggruppati in due diverse mac
 >1. **Aggiungere la classe "Resto del mondo":** Si crea una classe fittizia aggiuntiva e si arricchisce il training set con vari "esempi negativi" che il modello imparerà a classificare in questa categoria generica.
   > $\quad$
 >2. **Utilizzare una Soglia di Decisione ($t$):** Si permette al modello di rifiutare la classificazione se non è sufficientemente sicuro. Il pattern viene assegnato a una classe nota solo se la sua probabilità $p$ supera la soglia ($p > t$); altrimenti viene trattato come sconosciuto / negativo.
-### 1. Il Problema della Mancanza di Dati di Anomalia
+### Il Problema della Mancanza di Dati di Anomalia
 
 Nei contesti industriali o di monitoraggio (es. prevenzione rottura di macchinari), si verificano due condizioni tipiche:
 
@@ -282,10 +282,10 @@ Nei contesti industriali o di monitoraggio (es. prevenzione rottura di macchinar
     
 - I **dati di anomalia/guasto** sono estremamente rari, imprevisti o sconosciuti a priori (non si possono raccogliere abbastanza esempi di ogni possibile tipo di rottura).
     
+> [!important] **Soluzione: L'Approccio "One-Class" (Non Supervisionato)**
+>Anziché addestrare un classificatore binario standard (che richiederebbe sia la classe normale sia la classe anomala), si modella **solamente la classe del funzionamento normale** in modo non supervisionato:
 
-### 2. L'Approccio "One-Class" (Non Supervisionato)
-
-Anziché addestrare un classificatore binario standard (che richiederebbe sia la classe normale sia la classe anomala), si modella **solamente la classe del funzionamento normale** in modo non supervisionato:
+#### Come funziona il "**One-Class**"
 
 1. **Modellizzazione:** Il sistema impara la distribuzione e i confini dei dati "normali" (nel grafico rappresentati dalla nuvola di punti neri tra _vibrazione_ e _assorbimento_).
     
@@ -293,5 +293,7 @@ Anziché addestrare un classificatore binario standard (che richiederebbe sia la
     
 3. **Soglia di Allarme:** Se un nuovo punto (come il punto rosso nel grafico) supera una determinata **soglia di distanza**, viene segnalato come **probabile anomalia**.
     
-
 ![[Pasted image 20260928124419.png|473]]
+
+---
+

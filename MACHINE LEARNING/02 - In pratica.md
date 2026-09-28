@@ -33,7 +33,7 @@ I grandi modelli (soprattutto le reti neurali profonde) raggiungono prestazioni 
 7. **Iterazione:** Ritornare ai passi precedenti in base a ciò che emerge dalle analisi.
     
 
-### Model vs. Data Optimization: Il paradigma Data-Centric (Slide 51)
+### Model vs. Data Optimization: Il paradigma Data-Centric
 
 Mentre la maggior parte del tempo viene spesso spesa a raffinare le architetture o fare il tuning degli iperparametri, la realtà industriale richiede un cambio di mentalità:
 
@@ -52,7 +52,7 @@ Mentre la maggior parte del tempo viene spesso spesa a raffinare le architetture
     - **Tool dedicati:** Sviluppo e utilizzo di strumenti efficienti per gestire l'intero ciclo di vita del dato.
         
 
-### 4. Aspetti Critici con Clienti e nel Mondo Reale (Slide 52)
+### Aspetti Critici con Clienti e nel Mondo Reale 
 
 Quando si lavora a un progetto reale di ML con un cliente o uno stakeholder non tecnico, è essenziale chiarire preventivamente diversi aspetti controintuitivi:
 

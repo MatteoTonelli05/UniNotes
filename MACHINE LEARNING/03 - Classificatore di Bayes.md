@@ -28,4 +28,7 @@ Dato un pattern $x$ da classificare in una delle $s$ classi $w_1,w_2,...,w_s$ di
  Massimizzare la probabilità a posteriori significa massimizzare la densità di probabilità condizionale tenendo comunque conto della probabilità a priori delle classi.
 
 > [!example] La regola si dimostra ottima in quanto minimizza l’errore di classificazione. Ad esempio nel caso di 2 classi e 𝑑 = 1 $$P(\text{error}) = \int_{\mathcal{R}_1} p(x\vert{}w_2)P(w_2)\,dx + \int_{\mathcal{R}_2} p(x\vert{}w_1)P(w_1)\,dx$$![[Pasted image 20260928155630.png|470]]
+> Le due curve rappresentano le distribuzioni di probabilità delle classi (ad esempio l'altezza di donne e uomini pesata sulla loro frequenza). L'area di sovrapposizione indica l'incertezza e definisce l'errore inevitabile; per questo si fissa una **soglia di decisione** ($x_B$) per cui, se $x > x_B$, il dato viene assegnato a una classe, altrimenti all'altra. 
+> 
+> _Il grafico dimostra visivamente che **solo mettendo il confine $x_B$ nel punto in cui le due curve si incrociano si ottiene l'area d'errore minima**. Qualsiasi altra scelta ($x^*$) aggiunge il triangolino rosso di "errore evitabile"._
 

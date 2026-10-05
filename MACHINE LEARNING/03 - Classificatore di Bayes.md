@@ -43,8 +43,7 @@ Dato un pattern $x$ da classificare in una delle $s$ classi $w_1,w_2,...,w_s$ di
 >- **Dati del Training Set (18 campioni totali)**: 8 maschi e 10 femmine.
 >- **Stima Empirica/Grossolana dei Parametri**:
 >	- **Probabilità a priori**:$$P(w_1) = \frac{8}{18}, \quad P(w_2) = \frac{10}{18}$$
->	- **Densità condizionale $p(x\vert{}w_i)$ in un intorno del punto $x$**: Si contano i punti presenti nella regione circolare attorno a $x$:
-  >      
+>	- **Densità condizionale $p(x\vert{}w_i)$ in un intorno del punto $x$**: Si contano i punti presenti nella regione circolare attorno a $x$: 
 > - Per i maschi ($w_1$): $p(x\vert{}w_1) = \frac{1}{8}$ (1 punto blu su 8).
       >      
         >- Per le femmine ($w_2$): $p(x\vert{}w_2) = \frac{2}{10} = \frac{1}{5}$ (2 punti rossi su 10).

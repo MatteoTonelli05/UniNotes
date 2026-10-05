@@ -54,13 +54,13 @@ $$P(w_2\vert{}x) = \frac{2/18}{1/6} = \frac{6}{9} = \frac{2}{3} \approx 66.7\%$$
 > [!important] Problema
 > La stima delle probabilità a priori $P(w_i)$ è generalmente semplice, ma conoscere le reali densità di probabilità condizionali $p(x\vert{}w_i)$ è quasi impossibile in contesti reali. Per ovviare a ciò, si utilizzano due approcci principali
 
+---
 ## Bayes: Approccio Parametrico
 
 Si ipotizza a priori la forma analitica della distribuzione (es. distribuzione Gaussiana/Multinormale) e dal training set si apprendono solo i parametri chiave (es. vettore medio $\mu$ e matrice di covarianza $\Sigma$).
 
 > [!attention] Ha **meno gradi di libertà** e riduce notevolmente il rischio di _overfitting_ quando il training set è piccolo.
 
----
 ### Parametrico - Distribuzione normale mono-dimensionale ($d=1$)
 
 La densità di probabilità della curva a campana è definita come:

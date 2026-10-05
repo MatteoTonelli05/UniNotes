@@ -94,7 +94,19 @@ In cui
 
 Quando un dato $x$ è un vettore con $d$ caratteristiche (es. $x = [\text{peso}, \text{altezza}]^T$), la curva a campana monodimensionale diventa una **superficie/solido tridimensionale** (o una iper-superficie in più di 3 dimensioni)
 
-(pag. 9)
+Definiamo alcune **notazioni** come:
+- $x_i$: Il pattern $i$-esimo (un vettore di caratteristiche).
+- $x_i^j$: La componente $j$-esima (lo scalare) del pattern $i$-esimo.
+
+
+Con la formula della densità multinormale $$p(x) = \frac{1}{(2\pi)^{d/2} \vert{}\Sigma\vert{}^{1/2}} \, e^{-\frac{1}{2} (x - \mu)^t \Sigma^{-1} (x - \mu)}$$
+$$\text{con }\quad  \mu=[\mu^1,\mu^2,...,\mu^d]\text{  e  } \sum^{-1}{(x-\mu)}$$
 
 ---
 
+#### Non parametrici - 
+
+> [!example] Esempio
+> - in un cubo 3D di lato 1, la distanza media di due punti scelti a caso è 0.66
+> - in un upercubo con 1M di dimensioni, la distanza media di due punti scelti a caso è 408.25
+> 

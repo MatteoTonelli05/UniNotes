@@ -80,7 +80,7 @@
             }
           },
           {
-            "id": "7b366e40a293b954",
+            "id": "abf9eff81768e948",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
@@ -111,7 +111,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CONCURRENT SYSTEMS/OVERVIEW - module 1.1.md",
+                "file": "MACHINE LEARNING/03 - Classificatore di Bayes.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -186,8 +186,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -201,7 +200,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "d55647a326384120",
+  "active": "5f2b2ca8301e68d7",
   "lastOpenFiles": [
     "MACHINE LEARNING/Allegati/Pasted image 20261005105634.png",
     "SISTEMI INFORMATIVI/Classificazione dei SI.md",

@@ -39,24 +39,13 @@ Dato un pattern $x$ da classificare in una delle $s$ classi $w_1,w_2,...,w_s$ di
 > **Problema**: Classificare persone in due classi ($W = \{w_1, w_2\}$ con $w_1 = \text{maschi (blu)}$ e $w_2 = \text{femmine (rosso)}$) sulla base di due caratteristiche ($d=2$: peso ed altezza).
 > 
 >![[Pasted image 20261005105634.png]]
->
->- **Dati del Training Set (18 campioni totali)**: 8 maschi e 10 femmine.
->- **Stima Empirica/Grossolana dei Parametri**:
->	- **Probabilità a priori**:$$P(w_1) = \frac{8}{18}, \quad P(w_2) = \frac{10}{18}$$
->	- **Densità condizionale $p(x\vert{}w_i)$ in un intorno del punto $x$**: Si contano i punti presenti nella regione circolare attorno a $x$: 
-> - Per i maschi ($w_1$): $p(x\vert{}w_1) = \frac{1}{8}$ (1 punto blu su 8).
-      >      
-        >- Per le femmine ($w_2$): $p(x\vert{}w_2) = \frac{2}{10} = \frac{1}{5}$ (2 punti rossi su 10).
-          >  
-    >- **Evidenza $p(x)$**:
-        >
-        $$p(x) = \left(\frac{1}{8} \times \frac{8}{18}\right) + \left(\frac{1}{5} \times \frac{10}{18}\right) = \frac{1}{18} + \frac{2}{18} = \frac{3}{18} = \frac{1}{6}$$
-      >  
->- **Calcolo della Probabilità a Posteriori**:
-  >  
-    $$P(w_1\vert{}x) = \frac{1/18}{1/6} = \frac{3}{9} = \frac{1}{3} \approx 33.3\%$$
-    >
-    $$P(w_2\vert{}x) = \frac{2/18}{1/6} = \frac{6}{9} = \frac{2}{3} \approx 66.7\%$$
-    >
->- **Esito**: Poiché $P(w_2\vert{}x) > P(w_1\vert{}x)$, il pattern $x$ viene classificato come **femmina ($w_2$)**
+>_**Dati del Training Set (18 campioni totali)**: 8 maschi e 10 femmine._
+>Quindi possiamo dire che la probabilità a priori è $$P(w_1) = \frac{8}{18}, \quad P(w_2) = \frac{10}{18}$$
+>**Densità condizionale $p(x\vert{}w_i)$ in un intorno del punto $x$**, contando i punti presenti nella regione circolare attorno a $x$: $$\text{Per i maschi } (w_1):p(x|w_1)=\frac{1}{8} \text{(1 punto blu su 8)}
+>\text{Per le femmine } (w_2):p(x|w_2)=\frac{2}{10}=\frac{1}{5} \text{(2 punto blu su 10)}$$
+>Calcoliamo quindi $p(x) = \left(\frac{1}{8} \times \frac{8}{18}\right) + \left(\frac{1}{5} \times \frac{10}{18}\right) = \frac{1}{18} + \frac{2}{18} = \frac{3}{18} = \frac{1}{6}$
+> **Calcolo della Probabilità a Posteriori**:
+$$P(w_1\vert{}x) = \frac{1/18}{1/6} = \frac{3}{9} = \frac{1}{3} \approx 33.3\%$$
+$$P(w_2\vert{}x) = \frac{2/18}{1/6} = \frac{6}{9} = \frac{2}{3} \approx 66.7\%$$
+ Poiché $P(w_2\vert{}x) > P(w_1\vert{}x)$, il pattern $x$ viene classificato come **femmina ($w_2$)**.
 

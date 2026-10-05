@@ -42,7 +42,7 @@ Dato un pattern $x$ da classificare in una delle $s$ classi $w_1,w_2,...,w_s$ di
 >_**Dati del Training Set (18 campioni totali)**: 8 maschi e 10 femmine._
 >Quindi possiamo dire che la probabilità a priori è $$P(w_1) = \frac{8}{18}, \quad P(w_2) = \frac{10}{18}$$
 >**Densità condizionale $p(x\vert{}w_i)$ in un intorno del punto $x$**, contando i punti presenti nella regione circolare attorno a $x$: $$\text{Per i maschi } (w_1):p(x|w_1)=\frac{1}{8} \text{(1 punto blu su 8)}$$$$
->\text{Per le femmine } (w_2):p(x|w_2)=\frac{2}{10}=\frac{1}{5} \text{(2 punto blu su 10)}$$
+>\text{Per le femmine } (w_2):p(x|w_2)=\frac{2}{10}=\frac{1}{5} \text{(2 punto rossi su 10)}$$
 >Calcoliamo quindi $p(x) = \left(\frac{1}{8} \times \frac{8}{18}\right) + \left(\frac{1}{5} \times \frac{10}{18}\right) = \frac{1}{18} + \frac{2}{18} = \frac{3}{18} = \frac{1}{6}$
 > **Calcolo della Probabilità a Posteriori**:
 $$P(w_1\vert{}x) = \frac{1/18}{1/6} = \frac{3}{9} = \frac{1}{3} \approx 33.3\%$$
@@ -95,7 +95,7 @@ Definiamo alcune **notazioni** come:
 - $x_i^j$: La componente $j$-esima (lo scalare) del pattern $i$-esimo.
 
 
-Con la formula della densità multinormale $$p(x) = \frac{1}{(2\pi)^{d/2} \vert{}\Sigma\vert{}^{1/2}} \, e^{-\frac{1}{2} (x - \mu)^t \Sigma^{-1} (x - \mu)}$$$$\text{con }\quad  \mu=[\mu^1,\mu^2,...,\mu^d]\text{  vettore medio e   } \sum^{-1}{(x-\mu)}$$
+Con la formula della densità multinormale $$p(x) = \frac{1}{(2\pi)^{d/2} \vert{}\Sigma\vert{}^{1/2}} \, e^{-\frac{1}{2} (x - \mu)^t \Sigma^{-1} (x - \mu)}$$$$\text{con }\quad  \mu=[\mu^1,\mu^2,...,\mu^d]\text{  vettore medio e   } \Sigma = [\sigma^{ij}] \text{  matrice di covarianza  }(d \times d)$$
 
 ---
 

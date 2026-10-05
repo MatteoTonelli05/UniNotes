@@ -61,9 +61,22 @@ $$P(w_2\vert{}x) = \frac{2/18}{1/6} = \frac{6}{9} = \frac{2}{3} \approx 66.7\%$$
 Si ipotizza a priori la forma analitica della distribuzione (es. distribuzione Gaussiana/Multinormale) e dal training set si apprendono solo i parametri chiave (es. vettore medio $\mu$ e matrice di covarianza $\Sigma$).
 
 > [!attention] Ha **meno gradi di libertà** e riduce notevolmente il rischio di _overfitting_ quando il training set è piccolo.
+
+#### ESEMPIO - distribuzione normale mono-dimensionale ($d=1$)
+
+La densità di probabilità della curva a campana è definita come:
+$$p(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^{2}}{2\sigma^{2}}}$$
+In cui
+- **$\mu$ (Media o valor medio)**: Indica la **posizione del centro** della campana (dove la curva raggiunge il suo picco massimo).
+    
+- **$\sigma$ (Deviazione Standard o scarto quadratico medio)**: Indica quanto la campana è **larga o stretta**.
+    
+- **$\sigma^2$ (Varianza)**: Il quadrato della deviazione standard.
+
+![[Pasted image 20261005122517.png|466]]
 ### Approccio Non Parametrico
 
 Non fa assunzioni sulla forma della distribuzione, ma la ricostruisce direttamente dai dati (es. tramite _Parzen Window_), richiede però un numero maggiore di dati per produrre una stima accurata.
 
-### Esempio - distribuzione normale mono-dimensionale ($d=1$)
+
 

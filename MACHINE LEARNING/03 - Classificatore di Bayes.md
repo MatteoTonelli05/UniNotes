@@ -90,12 +90,24 @@ In cui
 
 Quando un dato $x$ è un vettore con $d$ caratteristiche (es. $x = [\text{peso}, \text{altezza}]^T$), la curva a campana monodimensionale diventa una **superficie/solido tridimensionale** (o una iper-superficie in più di 3 dimensioni)
 
-Definiamo alcune **notazioni** come:
-- $x_i$: Il pattern $i$-esimo (un vettore di caratteristiche).
+Per non fare confusione tra i vettori e i singoli numeri:
+- $x_i$: Il pattern $i$-esimo (es. le misure dell'individuo $i$)
 - $x_i^j$: La componente $j$-esima (lo scalare) del pattern $i$-esimo.
 
+Con la formula della densità multinormale $$p(x) = \frac{1}{(2\pi)^{d/2} \vert{}\Sigma\vert{}^{1/2}} \, e^{-\frac{1}{2} (x - \mu)^t \Sigma^{-1} (x - \mu)}$$
+> [!important] I due parametri fondamentali
+> Nel caso 1D avevamo la media $\mu$ e la varianza $\sigma^2$. Nel caso $d$-dimensionale abbiamo:
+> - Vettore medio $\mu = [\mu^1,\mu^2,...,\mu^d]^T$ che fissa le coordinate del centro della distribuzione
+> - È una matrice quadrata $d \times d$ che descrive la dispersione dei dati in tutte le direzioni.$$\Sigma = \begin{bmatrix} \sigma^{11} & \sigma^{12} & \dots & \sigma^{1d} \\ \sigma^{21} & \sigma^{22} & \dots & \sigma^{2d} \\ \vdots & \vdots & \ddots & \vdots \\ \sigma^{d1} & \sigma^{d2} & \dots & \sigma^{dd} \end{bmatrix}$$
 
-Con la formula della densità multinormale $$p(x) = \frac{1}{(2\pi)^{d/2} \vert{}\Sigma\vert{}^{1/2}} \, e^{-\frac{1}{2} (x - \mu)^t \Sigma^{-1} (x - \mu)}$$$$\text{con }\quad  \mu=[\mu^1,\mu^2,...,\mu^d]\text{  vettore medio e   } \Sigma = [\sigma^{ij}] \text{  matrice di covarianza  }(d \times d)$$
+> [!info] Info e Proprietà
+> 1. È sempre **simmetrica** ($\sigma^{ij} = \sigma^{ji}$) e **definita positiva** (quindi ammette sempre la matrice inversa $\Sigma^{-1}$). Essendo simmetrica, per definirla bastano $\frac{d(d+1)}{2}$ parametri distinti.
+> 2. Gli elementi diagonali ($\sigma^{ii}$) sono le **varianze** delle singole componenti $x^i$ (ossia $(\sigma^i)^2$)
+> 3. Gli elementi fuori diagonali **($\sigma^{ij}$ con $i \neq j$)** sono le **covarianze** tra la caratteristica $x^i$ e la caratteristica $x^j$:
+> 	- **$\sigma^{ij} = 0$**: $x^i$ e $x^j$ sono **statisticamente indipendenti**.
+> 	- **$\sigma^{ij} > 0$**: **Correlazione positiva** (all'aumentare di $x^i$ tende ad aumentare anche $x^j$).
+> 	- **$\sigma^{ij} < 0$**: **Correlazione negativa** (all'aumentare di $x^i$ tende a diminuire $x^j$).
+
 
 ---
 

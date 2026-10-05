@@ -2,7 +2,7 @@
 
 Sia $\mathbf{V}$ uno spazio di pattern $d$-dimensionali e $W = \{w_1, w_2 \dots w_s\}$ un insieme di $s$ classi disgiunte costituite da elementi di $\mathbf{V}$
 
-Per ogni $\mathbf{x} \in \mathbf{V}$ e per ogni $w_i \in W$, indichiamo con $p(\mathbf{x}|w_i)$ la *densità di probabilità condizionale* (o condizionata) di $\mathbf{x}$ data $w_i$, ovvero la densità di probabilità che il prossimo pattern sia $\mathbf{x}$ sotto l'ipotesi che la sua classe di appartenenza sia $w_i$
+Per ogni $\mathbf{x} \in \mathbf{V}$ (**dato**) e per ogni $w_i \in W$ (**classe**), indichiamo con $p(\mathbf{x}|w_i)$ la *densità di probabilità condizionata di $\mathbf{x}$ data $w_i$, ovvero la densità di probabilità che il prossimo pattern sia $\mathbf{x}$ sotto l'ipotesi che la sua classe di appartenenza sia $w_i$
 
 Per ogni $w_i \in W$, indichiamo con $P(w_i)$ la *probabilità a priori* di $w_i$ ovvero la probabilità, indipendentemente dall'osservazione, che il prossimo pattern da classificare sia di classe $w_i$
 

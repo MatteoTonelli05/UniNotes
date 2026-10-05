@@ -113,7 +113,7 @@ Con la formula della densità multinormale $$p(x) = \frac{1}{(2\pi)^{d/2} \vert{
 ### Distanza di Mahalanobis
 
 $$r^2=(x-\mu)^t \Sigma^{-1} (x-\mu)$$
-
+![[Pasted image 20261005172953.png|316]]
 > [!important] La Distanza di Mahalanobis definisce la distanza dal centro di un certo dato.
 > Se arriva un ragazzo alto 200 cm che pesa 100 kg, la sua distanza dal centro $\mu$ è 0.
 > Se arriva un ragazzo alto 200 cm ma che pesa 60 kg:
@@ -122,6 +122,5 @@ $$r^2=(x-\mu)^t \Sigma^{-1} (x-\mu)$$
 >
 >- La **distanza di Mahalanobis** dice: _"Ehi, per un giocatore alto 200 cm, pesare 60 kg è un'anomalia assurda perché le due cose sono correlate!"_ e gli dà una distanza **enorme** (lo scarta).
 
-![[Pasted image 20261005172953.png|350]]
 
 ---

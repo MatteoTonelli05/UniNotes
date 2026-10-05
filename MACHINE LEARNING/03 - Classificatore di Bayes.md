@@ -57,6 +57,9 @@ $$P(w_2\vert{}x) = \frac{2/18}{1/6} = \frac{6}{9} = \frac{2}{3} \approx 66.7\%$$
 ---
 ## Bayes: Approccio Parametrico
 
+> [!abstract] Stima per Massima Verosimiglianza (Maximum Likelihood Estimation - MLE)
+> È il metodo statistico utilizzato nell'**approccio parametrico** per calcolare i parametri incogniti di una distribuzione teorica (es. $\mu$ e $\sigma^2$ per la Gaussiana) a partire dai dati reali del *Training Set*.
+
 Si ipotizza a priori la forma analitica della distribuzione (es. distribuzione Gaussiana/Multinormale) e dal training set si apprendono solo i parametri chiave (es. vettore medio $\mu$ e matrice di covarianza $\Sigma$).
 
 > [!attention] Ha **meno gradi di libertà** e riduce notevolmente il rischio di _overfitting_ quando il training set è piccolo.
@@ -122,5 +125,15 @@ $$r^2=(x-\mu)^t \Sigma^{-1} (x-\mu)$$
 >
 >- La **distanza di Mahalanobis** dice: _"Ehi, per un giocatore alto 200 cm, pesare 60 kg è un'anomalia assurda perché le due cose sono correlate!"_ e gli dà una distanza **enorme** (lo scarta).
 
+==Vuoi un esempio? pdf Classificazione-1 pag.12==
 
 ---
+## Classificatore di Bayes con Distribuzioni Multinormali
+
+> [!abstract] Dopo aver imparato a calcolare la Multinormale per una singola classe. Qui vediamo **cosa succede quando abbiamo $2$ classi di dati nello spazio 2D** e dobbiamo decidere dove tracciare la linea di confine tra di esse.
+
+![[Pasted image 20261005183614.png|367]]
+
+_le due "montagne" del grafo rappresentano le densità di probabilità condizionali delle due classi ($p(\mathbf{x}\vert{}\omega_1)$ e $p(\mathbf{x}\vert{}\omega_2)$) già pesate per le rispettive probabilità a priori $P(\omega_1)$ e $P(\omega_2)$.
+_La regola di Bayes assegna ogni punto $\mathbf{x}$ alla classe con la montagnola più alta in quel punto.
+

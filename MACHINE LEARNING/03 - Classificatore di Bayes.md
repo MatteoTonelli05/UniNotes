@@ -55,14 +55,17 @@ $$P(w_2\vert{}x) = \frac{2/18}{1/6} = \frac{6}{9} = \frac{2}{3} \approx 66.7\%$$
 
 > [!important] Problema
 > La stima delle probabilità a priori $P(w_i)$ è generalmente semplice, ma conoscere le reali densità di probabilità condizionali $p(x\vert{}w_i)$ è quasi impossibile in contesti reali. Per ovviare a ciò, si utilizzano due approcci principali
+### Approccio Non Parametrico
 
+Non fa assunzioni sulla forma della distribuzione, ma la ricostruisce direttamente dai dati (es. tramite _Parzen Window_), richiede però un numero maggiore di dati per produrre una stima accurata.
 ### Approccio Parametrico
 
 Si ipotizza a priori la forma analitica della distribuzione (es. distribuzione Gaussiana/Multinormale) e dal training set si apprendono solo i parametri chiave (es. vettore medio $\mu$ e matrice di covarianza $\Sigma$).
 
 > [!attention] Ha **meno gradi di libertà** e riduce notevolmente il rischio di _overfitting_ quando il training set è piccolo.
 
-#### ESEMPIO - distribuzione normale mono-dimensionale ($d=1$)
+---
+#### Parametrico - Distribuzione normale mono-dimensionale ($d=1$)
 
 La densità di probabilità della curva a campana è definita come:
 $$p(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^{2}}{2\sigma^{2}}}$$
@@ -84,10 +87,14 @@ In cui
 >_La deviazione standard sarà $\sigma = \sqrt{318.8} \approx 17.855$._
 >
 
-### Approccio Non Parametrico
+#### Parametrico - Distribuzione Normale Multivariata (Multinormale)
 
-Non fa assunzioni sulla forma della distribuzione, ma la ricostruisce direttamente dai dati (es. tramite _Parzen Window_), richiede però un numero maggiore di dati per produrre una stima accurata.
+> [!question] Cosa cambia dalla variante mono-dimensionale al multivariato?
+> Nel caso multivariato abbiamo $d>1$ ovvero due o più caratteristiche contemporaneamente
 
+Quando un dato $x$ è un vettore con $d$ caratteristiche (es. $x = [\text{peso}, \text{altezza}]^T$), la curva a campana monodimensionale diventa una **superficie/solido tridimensionale** (o una iper-superficie in più di 3 dimensioni)
 
+(pag. 9)
 
+---
 

@@ -94,7 +94,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "994e93d0a7538110",
@@ -118,6 +119,8 @@
   },
   "active": "d55647a326384120",
   "lastOpenFiles": [
+    "MACHINE LEARNING/Allegati/Pasted image 20261005172953.png",
+    "MACHINE LEARNING/Allegati/Pasted image 20261005172950.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261005164412.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Linguagi Regolari.md",
     "MACHINE LEARNING/03 - Classificatore di Bayes.md",
@@ -132,10 +135,8 @@
     "MACHINE LEARNING/Allegati/Pasted image 20260928103354.png",
     "MACHINE LEARNING/Allegati/Pasted image 20260928101531.png",
     "MACHINE LEARNING/Allegati/Pasted image 20260928101234.png",
-    "MACHINE LEARNING/Allegati/Pasted image 20260928101220.png",
     "MACHINE LEARNING/02 - Tipi di Learning.md",
     "CONCURRENT SYSTEMS/OVERVIEW - module 1.1.md",
-    "MACHINE LEARNING/Allegati/Pasted image 20260928095747.png",
     "MACHINE LEARNING/02 - Dati e Pattern.md",
     "MACHINE LEARNING/02 - Problemi di Learning.md",
     "SISTEMI INFORMATIVI/Introduzione.md",

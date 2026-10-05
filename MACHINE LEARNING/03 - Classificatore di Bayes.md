@@ -110,11 +110,18 @@ Con la formula della densità multinormale $$p(x) = \frac{1}{(2\pi)^{d/2} \vert{
 > 	
 ![[Pasted image 20261005164412.png|305]]
 
+### Distanza di Mahalanobis
+
+$$r^2=(x-\mu)^t \Sigma^{-1} (x-\mu)$$
+
+> [!important] La Distanza di Mahalanobis definisce la distanza dal centro di un certo dato.
+> Se arriva un ragazzo alto 200 cm che pesa 100 kg, la sua distanza dal centro $\mu$ è 0.
+> Se arriva un ragazzo alto 200 cm ma che pesa 60 kg:
+>
+>- La **distanza Euclidea normale** vedrebbe solo la differenza di peso (40 kg di scarto).
+>
+>- La **distanza di Mahalanobis** dice: _"Ehi, per un giocatore alto 200 cm, pesare 60 kg è un'anomalia assurda perché le due cose sono correlate!"_ e gli dà una distanza **enorme** (lo scarta).
+
+![[Pasted image 20261005172953.png|350]]
 
 ---
-## Bayes: Approccio Non Parametrico
-
-> [!example] Esempio
-> - in un cubo 3D di lato 1, la distanza media di due punti scelti a caso è 0.66
-> - in un upercubo con 1M di dimensioni, la distanza media di due punti scelti a caso è 408.25
-

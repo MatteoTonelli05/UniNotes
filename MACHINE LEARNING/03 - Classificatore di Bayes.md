@@ -1,5 +1,8 @@
 ## Bayes
 
+> [!abstract] Teoria
+> Il problema della classificazione viene formalizzato in termini probabilistici. Se tutte le distribuzioni di probabilità in gioco sono note, la regola di Bayes rappresenta la **soluzione ottima** (migliore classificazione teoricamente possibile).
+
 Sia $\mathbf{V}$ uno spazio di pattern $d$-dimensionali e $W = \{w_1, w_2 \dots w_s\}$ un insieme di $s$ classi disgiunte costituite da elementi di $\mathbf{V}$
 
 Per ogni $\mathbf{x} \in \mathbf{V}$ (**dato**) e per ogni $w_i \in W$ (**classe**), indichiamo con $p(\mathbf{x}|w_i)$ la *densità di probabilità condizionata di $\mathbf{x}$ data $w_i$, ovvero la densità di probabilità che il prossimo pattern sia $\mathbf{x}$ sotto l'ipotesi che la sua classe di appartenenza sia $w_i$

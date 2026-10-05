@@ -107,13 +107,12 @@ Con la formula della densità multinormale $$p(x) = \frac{1}{(2\pi)^{d/2} \vert{
 > 	- **$\sigma^{ij} = 0$**: $x^i$ e $x^j$ sono **statisticamente indipendenti**.
 > 	- **$\sigma^{ij} > 0$**: **Correlazione positiva** (all'aumentare di $x^i$ tende ad aumentare anche $x^j$).
 > 	- **$\sigma^{ij} < 0$**: **Correlazione negativa** (all'aumentare di $x^i$ tende a diminuire $x^j$).
-
+![[Pasted image 20261005164412.png|305]]
 
 ---
-
 ## Bayes: Approccio Non Parametrico
 
 > [!example] Esempio
 > - in un cubo 3D di lato 1, la distanza media di due punti scelti a caso è 0.66
 > - in un upercubo con 1M di dimensioni, la distanza media di due punti scelti a caso è 408.25
-> 
+

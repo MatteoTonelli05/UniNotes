@@ -51,21 +51,17 @@ $$P(w_2\vert{}x) = \frac{2/18}{1/6} = \frac{6}{9} = \frac{2}{3} \approx 66.7\%$$
 
 ---
 
-## Bayes: Approccio Parametrico vs Non-Parametrico
-
 > [!important] Problema
 > La stima delle probabilità a priori $P(w_i)$ è generalmente semplice, ma conoscere le reali densità di probabilità condizionali $p(x\vert{}w_i)$ è quasi impossibile in contesti reali. Per ovviare a ciò, si utilizzano due approcci principali
-### Approccio Non Parametrico
 
-Non fa assunzioni sulla forma della distribuzione, ma la ricostruisce direttamente dai dati (es. tramite _Parzen Window_), richiede però un numero maggiore di dati per produrre una stima accurata.
-### Approccio Parametrico
+## Bayes: Approccio Parametrico
 
 Si ipotizza a priori la forma analitica della distribuzione (es. distribuzione Gaussiana/Multinormale) e dal training set si apprendono solo i parametri chiave (es. vettore medio $\mu$ e matrice di covarianza $\Sigma$).
 
 > [!attention] Ha **meno gradi di libertà** e riduce notevolmente il rischio di _overfitting_ quando il training set è piccolo.
 
 ---
-#### Parametrico - Distribuzione normale mono-dimensionale ($d=1$)
+### Parametrico - Distribuzione normale mono-dimensionale ($d=1$)
 
 La densità di probabilità della curva a campana è definita come:
 $$p(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^{2}}{2\sigma^{2}}}$$
@@ -87,7 +83,7 @@ In cui
 >_La deviazione standard sarà $\sigma = \sqrt{318.8} \approx 17.855$._
 >
 
-#### Parametrico - Distribuzione Normale Multivariata (Multinormale)
+### Parametrico - Distribuzione Normale Multivariata (Multinormale)
 
 > [!question] Cosa cambia dalla variante mono-dimensionale al multivariato?
 > Nel caso multivariato abbiamo $d>1$ ovvero due o più caratteristiche contemporaneamente
@@ -99,12 +95,11 @@ Definiamo alcune **notazioni** come:
 - $x_i^j$: La componente $j$-esima (lo scalare) del pattern $i$-esimo.
 
 
-Con la formula della densità multinormale $$p(x) = \frac{1}{(2\pi)^{d/2} \vert{}\Sigma\vert{}^{1/2}} \, e^{-\frac{1}{2} (x - \mu)^t \Sigma^{-1} (x - \mu)}$$
-$$\text{con }\quad  \mu=[\mu^1,\mu^2,...,\mu^d]\text{  e  } \sum^{-1}{(x-\mu)}$$
+Con la formula della densità multinormale $$p(x) = \frac{1}{(2\pi)^{d/2} \vert{}\Sigma\vert{}^{1/2}} \, e^{-\frac{1}{2} (x - \mu)^t \Sigma^{-1} (x - \mu)}$$$$\text{con }\quad  \mu=[\mu^1,\mu^2,...,\mu^d]\text{  vettore medio e   } \sum^{-1}{(x-\mu)}$$
 
 ---
 
-#### Non parametrici - 
+## Bayes: Approccio Non Parametrico
 
 > [!example] Esempio
 > - in un cubo 3D di lato 1, la distanza media di due punti scelti a caso è 0.66

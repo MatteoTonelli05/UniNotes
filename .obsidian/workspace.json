@@ -100,93 +100,10 @@
   "right": {
     "id": "994e93d0a7538110",
     "type": "split",
-    "children": [
-      {
-        "id": "91ea1cf2f5cc5473",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "5f2b2ca8301e68d7",
-            "type": "leaf",
-            "state": {
-              "type": "backlink",
-              "state": {
-                "file": "MACHINE LEARNING/03 - Classificatore di Bayes.md",
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              },
-              "icon": "links-coming-in",
-              "title": "Riferimenti"
-            }
-          },
-          {
-            "id": "ccbf465c132aa4a9",
-            "type": "leaf",
-            "state": {
-              "type": "outgoing-link",
-              "state": {
-                "file": "CONCURRENT SYSTEMS/OVERVIEW - module 1.1.md",
-                "linksCollapsed": false,
-                "unlinkedCollapsed": true
-              },
-              "icon": "links-going-out",
-              "title": "Collegamenti in uscita"
-            }
-          },
-          {
-            "id": "f5e5e2cd1f9bfe8b",
-            "type": "leaf",
-            "state": {
-              "type": "tag",
-              "state": {
-                "sortOrder": "frequency",
-                "useHierarchy": true,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-tags",
-              "title": "Etichette"
-            }
-          },
-          {
-            "id": "91541a7a3fcf74ca",
-            "type": "leaf",
-            "state": {
-              "type": "all-properties",
-              "state": {
-                "sortOrder": "frequency",
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-archive",
-              "title": "Tutte le proprietà"
-            }
-          },
-          {
-            "id": "41c5d3f1f30f7a02",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "CONCURRENT SYSTEMS/OVERVIEW - module 1.1.md",
-                "followCursor": false,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-list",
-              "title": "Struttura"
-            }
-          }
-        ]
-      }
-    ],
+    "children": [],
     "direction": "horizontal",
-    "width": 300
+    "width": 285.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -200,7 +117,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "5f2b2ca8301e68d7",
+  "active": "d55647a326384120",
   "lastOpenFiles": [
     "MACHINE LEARNING/Allegati/Pasted image 20261005105634.png",
     "SISTEMI INFORMATIVI/Classificazione dei SI.md",

@@ -74,9 +74,20 @@ In cui
 - **$\sigma^2$ (Varianza)**: Il quadrato della deviazione standard.
 
 ![[Pasted image 20261005122517.png|466]]
+> [!question] Come calcolare $\mu$ e $\sigma^2$ dai dati
+> ![[Pasted image 20261005123451.png]]
+> Per calcolare la **media campionaria** ($\mu$) si sommano tutti i numeri e si dividono per il numero dei campioni$$\mu = \frac{1}{10} \sum_{i=1}^{10} x_i = \frac{3+7+9+(-2)+15+54+(-11)+0+23+(-8)}{10} = \frac{90}{10} = 9$$
+> _il centro della campana gaussiana sarà posizionato a 9_
+>
+>Per la varianza campionaria ($\mu^2$) bisogna invece misurare la distanza da ogni punto alla media 9, elevarla al quadrato e fare la media di quegli scarti:
+>$$\sigma^2 = \frac{1}{10} \sum_{i=1}^{10} (x_i - \mu)^2 = \frac{(3-9)^2 + (7-9)^2 + (9-9)^2 + \dots + (-8-9)^2}{10} = 318.8$$
+>_La deviazione standard sarà $\sigma = \sqrt{318.8} \approx 17.855$._
+>
+
 ### Approccio Non Parametrico
 
 Non fa assunzioni sulla forma della distribuzione, ma la ricostruisce direttamente dai dati (es. tramite _Parzen Window_), richiede però un numero maggiore di dati per produrre una stima accurata.
+
 
 
 

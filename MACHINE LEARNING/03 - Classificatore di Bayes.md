@@ -137,5 +137,22 @@ $$r^2=(x-\mu)^t \Sigma^{-1} (x-\mu)$$
 *le due "montagne" del grafo rappresentano le densità di probabilità condizionali delle due classi ($p(\mathbf{x}\vert{}\omega_1)$ e $p(\mathbf{x}\vert{}\omega_2)$) già pesate per le rispettive probabilità a priori $P(\omega_1)$ e $P(\omega_2)$.*
 *La regola di Bayes assegna ogni punto $\mathbf{x}$ alla classe con la montagnola più alta in quel punto*
 
+> [!hint] Proiettando questo confronto sul piano di base, lo spazio viene diviso in regioni di decisione ($R_1$ e $R_2$)
+
+> [!error] E sul confine?
+> Il **Decision Boundary** (o superficie decisionale) è la linea/superficie di confine in cui le probabilità a posteriori delle due classi sono perfettamente uguali ($P(\omega_1\vert{}\mathbf{x}) = P(\omega_2\vert{}\mathbf{x})$).
+> Perciò la classificazione è completamente ambigua
+
+### La forma geometrica del confine
+
+La forma della linea di confine dipende a tutti gli effetti dalle forme delle due montagne, ovvero dalle **Matrici di Covarianza** ($\Sigma$) delle due classi:
+- $\Sigma_1=\Sigma_2 \rightarrow$ le due montagne, essendo uguali, si tagliano perfettamente lungo una linea dritta/piano (**Iper-piano**)
+![[Pasted image 20261006140111.png]]
+- $\Sigma_1\neq\Sigma_2 \rightarrow$ le due montagne, essendo diverse, si incrociano lungo una curva (**Iper-quadratica**).
+
+![[Pasted image 20261006140146.png]]
+
+---
+
 
 

@@ -163,3 +163,10 @@ La forma della linea di confine dipende a tutti gli effetti dalle forme delle du
 
 > [!abstract] Uno dei più grandi punti di forza del classificatore di Bayes rispetto ad altri algoritmi è che **fornisce in output un valore probabilistico reale compreso tra 0 e 1** (la cui somma tra le classi fa 1).
 
+Grazie alla confidenza  possiamo:
+- integrare Bayes in multi-classificatori (anche non binari)
+- calcolare la **confidenza** di una certa valutazione
+
+> [!example] Se un dato ottiene ad esempio $P(w_1\vert{}\mathbf{x}) = 0.51$ e $P(w_2\vert{}\mathbf{x}) = 0.49$, la confidenza è bassissima
+
+Se non si è interessati alla confidenza (quindi alla percentuale) basta trasformare la formula di Bayes da: $$P(w_2|x)=\frac{p(x|w_2)\cdot p(x|w_2)}{p(x)}$$con:$$b=\arg\max_{i=1..s}{\{ p(x|w_2)\cdot P(w_i) \}}$$

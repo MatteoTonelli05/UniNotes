@@ -154,5 +154,12 @@ La forma della linea di confine dipende a tutti gli effetti dalle forme delle du
 
 ---
 
+### Esempio
+![[Pasted image 20261006141701.png|422]]![[Pasted image 20261006141734.png|427]]
 
+---
+
+### Bayes e Confidenza di Classificazione
+
+> [!abstract] Uno dei più grandi punti di forza del classificatore di Bayes rispetto ad altri algoritmi è che **fornisce in output un valore probabilistico reale compreso tra 0 e 1** (la cui somma tra le classi fa 1).
 

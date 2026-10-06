@@ -64,6 +64,10 @@ Si ipotizza a priori la forma analitica della distribuzione (es. distribuzione G
 
 > [!attention] Ha **meno gradi di libertà** e riduce notevolmente il rischio di _overfitting_ quando il training set è piccolo.
 
+> [!error] Attenzione
+> La scelta della forma analitica è fatta comunque con un criterio, può essere fatta in due modalità:
+> - modo **formale** (es. test di Malkovich - Afifi)
+> - modo **empirico** (es. tool predisposti o confronto istogrammi con curve teoriche)
 ### Parametrico - Distribuzione normale mono-dimensionale ($d=1$)
 
 La densità di probabilità della curva a campana è definita come:
@@ -169,4 +173,4 @@ Grazie alla confidenza  possiamo:
 
 > [!example] Se un dato ottiene ad esempio $P(w_1\vert{}\mathbf{x}) = 0.51$ e $P(w_2\vert{}\mathbf{x}) = 0.49$, la confidenza è bassissima
 
-Se non si è interessati alla confidenza (quindi alla percentuale) basta trasformare la formula di Bayes da: $$P(w_2|x)=\frac{p(x|w_2)\cdot p(x|w_2)}{p(x)}$$con:$$b=\arg\max_{i=1..s}{\{ p(x|w_2)\cdot P(w_i) \}}$$
+Se non si è interessati alla confidenza (quindi alla percentuale) basta trasformare la formula di Bayes da: $$b = \arg\max_{i=1..s} \left\{ P(w_i\vert{}x) \right\} = \arg\max_{i=1..s} \left\{ \frac{p(x\vert{}w_i) \cdot P(w_i)}{p(x)} \right\}$$a (eliminando la divisione per $p(x)$): $$b = \arg\max_{i=1..s} \left\{ p(x\vert{}w_i) \cdot P(w_i) \right\}$$

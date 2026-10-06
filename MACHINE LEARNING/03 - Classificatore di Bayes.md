@@ -134,6 +134,8 @@ $$r^2=(x-\mu)^t \Sigma^{-1} (x-\mu)$$
 
 ![[Pasted image 20261005183614.png|367]]
 
-_le due "montagne" del grafo rappresentano le densità di probabilità condizionali delle due classi ($p(\mathbf{x}\vert{}\omega_1)$ e $p(\mathbf{x}\vert{}\omega_2)$) già pesate per le rispettive probabilità a priori $P(\omega_1)$ e $P(\omega_2)$.
-_La regola di Bayes assegna ogni punto $\mathbf{x}$ alla classe con la montagnola più alta in quel punto.
+*le due "montagne" del grafo rappresentano le densità di probabilità condizionali delle due classi ($p(\mathbf{x}\vert{}\omega_1)$ e $p(\mathbf{x}\vert{}\omega_2)$) già pesate per le rispettive probabilità a priori $P(\omega_1)$ e $P(\omega_2)$.*
+*La regola di Bayes assegna ogni punto $\mathbf{x}$ alla classe con la montagnola più alta in quel punto*
+
+
 

@@ -174,3 +174,5 @@ Grazie alla confidenza  possiamo:
 > [!example] Se un dato ottiene ad esempio $P(w_1\vert{}\mathbf{x}) = 0.51$ e $P(w_2\vert{}\mathbf{x}) = 0.49$, la confidenza è bassissima
 
 Se non si è interessati alla confidenza (quindi alla percentuale) basta trasformare la formula di Bayes da: $$b = \arg\max_{i=1..s} \left\{ P(w_i\vert{}x) \right\} = \arg\max_{i=1..s} \left\{ \frac{p(x\vert{}w_i) \cdot P(w_i)}{p(x)} \right\}$$a (eliminando la divisione per $p(x)$): $$b = \arg\max_{i=1..s} \left\{ p(x\vert{}w_i) \cdot P(w_i) \right\}$$
+
+---

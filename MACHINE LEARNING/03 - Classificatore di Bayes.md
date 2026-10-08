@@ -198,8 +198,29 @@ Nel blocco precedente abbiamo visto l'approccio parametrico: si assume che la di
 
 ### Stima della Densità e Curse of Dimensionality
 
-Molti ricercatori ritengono che stimare accuratamente la densità di probabilità sia un problema concettualmente _più complesso_ dell'intero compito di classificazione. Perché affrontarlo? Perché se le classi reali hanno forme irregolari, asimmetriche o a più picchi, l'approccio parametrico fallisce miseramente.
+> [!attention] Cos'è la stime della densità?
+>La **stima della densità** è il processo attraverso il quale cerchiamo di **ricostruire la funzione di densità di probabilità $p(x)$** di una popolazione a partire da un insieme finito di dati osservati (il _training set_)
+>
+> _Letteralmente la ricerca del tipo di distribuzione dei dati del dataset_
 
+> [!example] Esempio del Cubo vs Ipercubo
+> - In un cubo 3D di lato 1, la distanza media tra due punti casuali è $\approx 0.66$
+> - In un ipercubo ad $1.000.000$ di dimensioni (di lato 1), la distanza media sale a **$408.25$**
+>
+> _è facile intuire che i punti del set così isolati al crescere delle dimensioni rendono difficilissimo stimare la densità_
+
+Come possiamo stimare la densità $p(x)$ in un generico punto $x$ senza usare una formula predefinita?
+1. **Definizione della Regione $R$**: Si considera una piccola regione $R$ di volume $V$ centrata attorno al punto $x$ che si vuole valutare.
+	
+2. **Probabilità $P_1$**: La probabilità che un **punto generico** cada dentro la regione $R$ è $P_1 = \int_{\mathcal{R}} p(x') dx'$.
+    
+3. **Distribuzione Binomiale**: Dati $n$ campioni indipendenti nel training set, la probabilità che $k$ di questi cadano nella regione $R$ segue una distribuzione binomiale. $$P_k=\binom{n}{k}\cdot P_1^k(1-P_1)^{n-k}$$ 
+	l valore medio di punti attesi è $k = n \cdot P_1$, da cui $P_1 \approx \frac{k}{n}$.
+
+> [!hint] Ricorda
+> La binomiale è la probabilità che su $n$ tentativi, $k$ volte ci sia successo 
+
+4. **Approssimazione**: Se la regione $R$ ha un volume $V$ molto piccolo, possiamo assumere che $p(x)$ non vari significativamente al suo interno:$$P_1=\int_Rp(x') dx'\approx p(x)\cdot V$$$$P_1 \approx p(x) \cdot V \implies p(x) = \frac{P_1}{V} = \frac{k}{n \cdot V}$$
 ### Parzen Window (Kernel Ipercubico vs Soft/Gaussiano)
 
 ## Classificatori Nearest Neighbor (NN e k-NN)

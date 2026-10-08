@@ -189,3 +189,17 @@ Grazie alla confidenza possiamo:
 > **a** (eliminando la divisione per $p(x)$):
 > $$b = \arg\max_{i=1..s} \left\{ p(x|w_i) \cdot P(w_i) \right\}$$
 
+## Bayes: Approccio Non Parametrico
+   ### Stima della Densità e Curse of Dimensionality
+   ### Parzen Window (Kernel Ipercubico vs Soft/Gaussiano)
+
+## Classificatori Nearest Neighbor (NN e k-NN)
+   ### Nearest Neighbor (1-NN) e Tassellazione di Voronoi
+   ### k-Nearest Neighbor (k-NN) e Confidenza
+   ### Complessità Computazionale, Editing e Condensing
+
+## Metriche di Distanza e Normalizzazione
+   ### Metriche e Spazi di Variazione (Minkowski, Euclidea)
+   ### Tecniche di Normalizzazione (Min-Max, Standardization, Whitening)
+   ### Metric Learning (LDA)
+   ### Similarità e Distanza Coseno

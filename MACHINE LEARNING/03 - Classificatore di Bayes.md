@@ -190,9 +190,12 @@ Grazie alla confidenza possiamo:
 > $$b = \arg\max_{i=1..s} \left\{ p(x|w_i) \cdot P(w_i) \right\}$$
 
 ## Bayes: Approccio Non Parametrico
-   
+
+> [!abstract] Non vengono fatte ipotesi sulle distribuzioni dei pattern e le densità di probabilità sono **stimate direttamente** dal training set.
+
 ### Stima della Densità e Curse of Dimensionality
-   
+
+
 ### Parzen Window (Kernel Ipercubico vs Soft/Gaussiano)
 
 ## Classificatori Nearest Neighbor (NN e k-NN)

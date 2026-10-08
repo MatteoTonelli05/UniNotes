@@ -192,7 +192,6 @@ Grazie alla confidenza possiamo:
 ## Bayes: Approccio Non Parametrico
 
 > [!abstract] Non vengono fatte ipotesi sulle distribuzioni dei pattern e le densità di probabilità sono **stimate direttamente** dal training set.
-
 ### Stima della Densità e Curse of Dimensionality
 
 

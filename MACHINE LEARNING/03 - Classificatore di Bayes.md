@@ -188,3 +188,4 @@ Grazie alla confidenza possiamo:
 > $$b = \arg\max_{i=1..s} \left\{ P(w_i|x) \right\} = \arg\max_{i=1..s} \left\{ \frac{p(x|w_i) \cdot P(w_i)}{p(x)} \right\}$$
 > **a** (eliminando la divisione per $p(x)$):
 > $$b = \arg\max_{i=1..s} \left\{ p(x|w_i) \cdot P(w_i) \right\}$$
+

@@ -100,31 +100,10 @@
   "right": {
     "id": "994e93d0a7538110",
     "type": "split",
-    "children": [
-      {
-        "id": "5ed74ccf56d9d416",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "41176f62fc608d8d",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "MACHINE LEARNING/03 - Classificatore di Bayes.md",
-                "followCursor": false,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-list",
-              "title": "Struttura"
-            }
-          }
-        ]
-      }
-    ],
+    "children": [],
     "direction": "horizontal",
-    "width": 285.5
+    "width": 285.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -138,7 +117,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "41176f62fc608d8d",
+  "active": "d55647a326384120",
   "lastOpenFiles": [
     "MACHINE LEARNING/03 - Classificatore di Bayes.md",
     "MACHINE LEARNING/Allegati/Pasted image 20261006141734.png",

@@ -191,9 +191,14 @@ Grazie alla confidenza possiamo:
 
 ## Bayes: Approccio Non Parametrico
 
-> [!abstract] Non vengono fatte ipotesi sulle distribuzioni dei pattern e le densità di probabilità sono **stimate direttamente** dal training set.
+Nel blocco precedente abbiamo visto l'approccio parametrico: si assume che la distribuzione abbia una forma fissa (la campana Gaussiana) e si stimano solo media $\mu$ e covarianza $\Sigma$.
+
+> [!abstract] Nell'approccio non parametrico 
+> Non vengono fatte ipotesi sulle distribuzioni dei pattern e le densità di probabilità $p(x\vert{}w_i)$ sono **stimate direttamente** dal training set.
+
 ### Stima della Densità e Curse of Dimensionality
 
+Molti ricercatori ritengono che stimare accuratamente la densità di probabilità sia un problema concettualmente _più complesso_ dell'intero compito di classificazione. Perché affrontarlo? Perché se le classi reali hanno forme irregolari, asimmetriche o a più picchi, l'approccio parametrico fallisce miseramente.
 
 ### Parzen Window (Kernel Ipercubico vs Soft/Gaussiano)
 

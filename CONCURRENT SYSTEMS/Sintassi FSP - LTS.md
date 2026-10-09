@@ -199,7 +199,8 @@ L'operatore di composizione parallela `||` in FSP definisce un'algebra e soddisf
 > [!question] Abbiamo bisogno di modellare la velocità con cui un processo viene eseguito rispetto a un altro?
 > Considerando che la velocità di un processo dipende dai processori e dallo scheduling del SO che non possiamo controllare, stabiliamo semplicemente che i processi si eseguono a velocità relative arbitrarie.
 
-
+> [!abstract] **Interleaving** (intercalamento)
+> la situazione in cui due azioni $a$ e $b$ di due processi diversi vengono eseguite simultaneamente viene modellata nello scenario come una sequenza nell'ordine $a \rightarrow b$ oppure $b \rightarrow a$
 ### Interactions & Shared Actions
 #### Sincronizzazione su Azioni Condivise
 #### Handshake (Accoppiamento Forte)

@@ -192,3 +192,53 @@ Se `P` e `Q` sono due processi, `(P || Q)` rappresenta l'esecuzione concorrente 
 **Commutativa** `(P || Q) = (Q || P)`
 **Associativa** `(P || (Q || R)) = ((P || Q) || R) = (P || Q || R)`
 
+#### Modellare la Concorrenza per Interleaving
+
+### Interactions & Shared Actions
+#### Sincronizzazione su Azioni Condivise
+#### Handshake (Accoppiamento Forte)
+#### Multi-Party Synchronisation
+
+### Process Labelling & Prefix Sets
+#### Process Labelling (Istanze Distinte)
+#### Parametrised Composite Processes (forall)
+#### Set di Prefissi (Condivisione Risorse e Mutua Esclusione)
+
+### Relabelling (Adattamento Interfacce)
+
+### Hiding & Silent Actions
+#### Operatori di Nascondimento (\ e @)
+#### Minimizzazione dell'LTS
+
+### Sequential Processes
+#### Processo Locale END (Terminazione)
+#### Composizione Sequenziale (P; Q)
+#### Contesti Ricorsivi e Costrutto If-Then-Else
+#### Composizione Parallela di Processi Sequenziali
+
+## Petri Nets
+### Introduzione e Concetti Base
+#### Struttura Grafica (Posti, Transizioni e Archi)
+#### Token e Marca (Marking)
+
+### Dinamica e Regole di Esecuzione
+#### Abilitazione e Scatto (Firing)
+#### Transizioni al Limite (Source e Sink)
+#### Archi Pesati
+
+### Modellazione di Sistemi Concorrenti
+#### Interpretazioni di Posti e Transizioni
+#### Parallelismo e Sincronizzazione
+#### Computazione Data-Flow
+#### Conflitto, Scelta e Confusione
+#### Asincronia e Località
+#### Non-Determinismo
+
+### Aspetti Avanzati di Modellazione
+#### Eventi Atomici vs Non-Atomici
+#### Gerarchie (Astrazione e Raffinamento)
+
+### Estensioni e Strumenti
+#### Archi Inibitori (Inhibitor Arcs - Test a Zero)
+#### Reti Temporizzate (Timed Nets) e Reti ad Alto Livello (Coloured Nets)
+#### Tool per Reti di Petri (PIPE 2, TINA)

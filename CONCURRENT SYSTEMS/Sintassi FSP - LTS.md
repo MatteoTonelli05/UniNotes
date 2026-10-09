@@ -238,10 +238,27 @@ USER  = (ready -> use -> USER).
 ```
 
 `ready` viene usato per sbloccare lo user nel consumare quello che il maker ha prodotto.
-#### Sincronizzazione su Azioni Condivise
 #### Handshake (Accoppiamento Forte)
+
+Se il comportamento del modello `MAKER_USER` precedente non è desiderato (ad esempio se vogliamo evitare che il produttore `MAKER` vada avanti a produrre un secondo oggetto prima che il primo sia stato effettivamente consumato), si introduce il meccanismo dell'**Handshake**
+
+```
+MAKERv2 = (make -> ready -> used -> MAKERv2).
+USERv2  = (ready -> use -> used -> USERv2).
+
+||MAKER_USERv2 = (MAKERv2 || USERv2).
+```
 #### Multi-Party Synchronisation
 
+La sincronizzazione basata su azioni condivise in FSP non è limitata a soli due processi, ma può coinvolgere un numero arbitrario di processi (**sincronizzazione multi-parte**).
+
+```
+MAKE_A   = (makeA -> ready -> used -> MAKE_A).
+MAKE_B   = (makeB -> ready -> used -> MAKE_B).
+ASSEMBLE = (ready -> assemble -> used -> ASSEMBLE).
+
+||FACTORY = (MAKE_A || MAKE_B || ASSEMBLE).
+```
 ### Process Labelling & Prefix Sets
 #### Process Labelling (Istanze Distinte)
 #### Parametrised Composite Processes (forall)

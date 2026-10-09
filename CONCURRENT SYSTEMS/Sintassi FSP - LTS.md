@@ -409,10 +409,8 @@ Il processo composito `S` eseguirà in interleaving le azioni `a.x` e `b.x` e ra
 
 Una Rete di Petri è rappresentata graficamente come un **grafo orientato bipartito** composto da due tipi distinti di nodi:
 
-1. Posti (Places) $\rightarrow$ Rappresentano le condizioni, gli stati locali o le risorse del sistema. 
-		-  i cerchi $(p_1,p_2,...)$
-2. Transizioni (Transitions) $\rightarrow$ Rappresentano gli eventi o le azioni che modificano lo stato del sistema.
-		- le barre/rettangoli $(t_1,t_2,...)$
+1. **POSTI (PLACES)** $\quad \rightarrow \quad$ Rappresentano le condizioni, gli stati locali o le risorse del sistema. *Rappresentati dai cerchi $(p_1,p_2,...)$.*
+2. **TRANSIZIONI (TRANSITION)** $\quad \rightarrow \quad$ Rappresentano gli eventi o le azioni che modificano lo stato del sistema. *Rappresentate dalle barre/rettangoli $(t_1,t_2,...)$.*
 ![[Pasted image 20261009170354.png|290]]
 > [!error] Archi Orientati (Directed Arcs)
 > - Connettono nodi di **tipo diverso**
@@ -420,7 +418,14 @@ Una Rete di Petri è rappresentata graficamente come un **grafo orientato bipart
 
 #### Token e Marca (Marking)
 
+La dinamica di una Rete di Petri viene espressa mediante l'uso dei **Token**:
+
+- **TOKEN (MARCHE)** $\quad \rightarrow \quad$ Indicano quali condizioni sono attualmente verificate o quante risorse sono disponibili in un determinato istante. *Rappresentati da pallini neri.*
+- **MARCA (MARKING)** $\quad \rightarrow \quad$ La distribuzione globale dei token all'interno di tutti i posti della rete definisce il **Marking** (la marca), che corrisponde allo **stato globale istantaneo** della Rete di Petri.
+![[Pasted image 20261009172621.png]]
 ### Dinamica e Regole di Esecuzione
+
+L'evoluzione dello stato (il cambio di marca) in una Rete di Petri avviene attraverso il movimento dei token generato dallo **scatto (firing)** delle transizioni.
 #### Abilitazione e Scatto (Firing)
 #### Transizioni al Limite (Source e Sink)
 #### Archi Pesati

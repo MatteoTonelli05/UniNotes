@@ -399,7 +399,13 @@ In FSP si valuta una condizione booleana: se vera il processo si comporta come `
 Il processo composito `S` eseguirà in interleaving le azioni `a.x` e `b.x` e raggiungerà lo stato finale `END` solo dopo che entrambi i processi avranno completato la propria transizione.
 ## Petri Nets
 ### Introduzione e Concetti Base
-#### Struttura Grafica (Posti, Transizioni e Archi)
+
+> [!definition] Definizione
+> Le **Reti di Petri** (introdotte da Carl Adam Petri attorno al 1965) costituiscono un modello matematico e grafico per descrivere e analizzare il flusso di informazioni e di controllo in sistemi distribuiti, asincroni e concorrenti.
+
+> [!question] Cosa cambia da **FSP/LTS**?
+> Le Reti di Petri non si basano sull'interleaving
+#### Struttura G rafica (Posti, Transizioni e Archi)
 #### Token e Marca (Marking)
 
 ### Dinamica e Regole di Esecuzione

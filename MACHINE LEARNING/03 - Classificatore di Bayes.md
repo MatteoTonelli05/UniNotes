@@ -220,8 +220,15 @@ Come possiamo stimare la densità $p(x)$ in un generico punto $x$ senza usare un
 > [!hint] Ricorda
 > La binomiale è la probabilità che su $n$ tentativi, $k$ volte ci sia successo 
 
+> [!example]
+> - **$\binom{n}{k}$** $\rightarrow$ **Per tutte le combinazioni possibili** di disporre $k$ successi in $n$ tentativi...
+>- **$p^k$** $\rightarrow$ ...moltiplichi la probabilità che quei $k$ eventi si verifichino tutti...  
+>- **$(1 - p)^{n-k}$** $\rightarrow$ ...per la probabilità che i restanti $n - k$ tentativi falliscano tutti.
+
 4. **Approssimazione**: Se la regione $R$ ha un volume $V$ molto piccolo, possiamo assumere che $p(x)$ non vari significativamente al suo interno:$$P_1=\int_Rp(x') dx'\approx p(x)\cdot V$$$$P_1 \approx p(x) \cdot V \implies p(x) = \frac{P_1}{V} = \frac{k}{n \cdot V}$$
 ### Parzen Window (Kernel Ipercubico vs Soft/Gaussiano)
+
+La regione $R$, denominata finestra (**Window**), è costituita da un ipercubo d-dimensionale, definito dalla funzione $$
 
 ## Classificatori Nearest Neighbor (NN e k-NN)
 ### Nearest Neighbor (1-NN) e Tassellazione di Voronoi

@@ -227,16 +227,10 @@ BEN  = (work -> meet -> STOP).
 
 L'azione `meet` è condivisa ed agisce da **punto di sincronizzazione**.
 - Ovvero, in entrambi i casi, l'azione `meet` può avvenire solo dopo che sia `play` sia `work` sono state eseguite.
-
+![[Pasted image 20261009141705.png|361]]
 ##### Esempio di Produttore Consumatore
 
-```
-MAKER = (make -> ready -> MAKER).
-USER  = (ready -> use -> USER).
-
-||MAKER_USER = (MAKER || USER).
-```
-
+![[Pasted image 20261009141739.png|436]]
 `ready` viene usato per sbloccare lo user nel consumare quello che il maker ha prodotto.
 #### Handshake (Accoppiamento Forte)
 
@@ -248,6 +242,8 @@ USERv2  = (ready -> use -> used -> USERv2).
 
 ||MAKER_USERv2 = (MAKERv2 || USERv2).
 ```
+
+![[Pasted image 20261009141803.png]]
 #### Multi-Party Synchronisation
 
 La sincronizzazione basata su azioni condivise in FSP non è limitata a soli due processi, ma può coinvolgere un numero arbitrario di processi (**sincronizzazione multi-parte**).

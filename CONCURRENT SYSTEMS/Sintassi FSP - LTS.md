@@ -208,7 +208,36 @@ Invece di provare a tracciare cosa succede _esattamente nello stesso istante fis
 > Se due azioni $A$ e $B$ di due processi diversi avvengono contemporaneamente, il modello interleaving le analizza come due casi distinti: prima $A$ poi $B$ ($A \rightarrow B$), oppure prima $B$ poi $A$ ($B \rightarrow A$).
 ### Interactions & Shared Actions
 
+L'interazione tra processi concorrenti in FSP e LTS viene modellata attraverso le **azioni condivise** (_shared actions_), ovvero azioni che appartengono all'alfabeto di più processi contemporaneamente.
 
+> [!abstract] Un'azione **condivisa** deve invece essere eseguita **simultaneamente e in modo sincrono** da tutti i processi nel cui alfabeto figura quell'azione.
+> A differenza delle azioni non confivise che possono essere intercalate (*interleaved*)
+
+##### Esempio di Shared Action
+
+```
+BILL = (play -> meet -> STOP).
+BEN  = (work -> meet -> STOP).
+
+||BILL_BEN = (BILL || BEN).
+```
+
+- `BILL` ha alfabeto `{play, meet}`.
+- `BEN` ha alfabeto `{work, meet}`.
+
+L'azione `meet` è condivisa ed agisce da **punto di sincronizzazione**.
+- Ovvero, in entrambi i casi, l'azione `meet` può avvenire solo dopo che sia `play` sia `work` sono state eseguite.
+
+##### Esempio di Produttore Consumatore
+
+```
+MAKER = (make -> ready -> MAKER).
+USER  = (ready -> use -> USER).
+
+||MAKER_USER = (MAKER || USER).
+```
+
+`ready` viene usato per sbloccare lo user nel consumare quello che il maker ha prodotto.
 #### Sincronizzazione su Azioni Condivise
 #### Handshake (Accoppiamento Forte)
 #### Multi-Party Synchronisation

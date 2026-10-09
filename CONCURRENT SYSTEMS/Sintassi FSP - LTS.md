@@ -410,6 +410,7 @@ Il processo composito `S` eseguirà in interleaving le azioni `a.x` e `b.x` e ra
 Una Rete di Petri è rappresentata graficamente come un **grafo orientato bipartito** composto da due tipi distinti di nodi:
 
 1. **POSTI (PLACES)** $\quad \rightarrow \quad$ Rappresentano le condizioni, gli stati locali o le risorse del sistema. *Rappresentati dai cerchi $(p_1,p_2,...)$.*
+
 2. **TRANSIZIONI (TRANSITION)** $\quad \rightarrow \quad$ Rappresentano gli eventi o le azioni che modificano lo stato del sistema. *Rappresentate dalle barre/rettangoli $(t_1,t_2,...)$.*
 ![[Pasted image 20261009170354.png|290]]
 > [!error] Archi Orientati (Directed Arcs)
@@ -421,15 +422,34 @@ Una Rete di Petri è rappresentata graficamente come un **grafo orientato bipart
 La dinamica di una Rete di Petri viene espressa mediante l'uso dei **Token**:
 
 - **TOKEN (MARCHE)** $\quad \rightarrow \quad$ Indicano quali condizioni sono attualmente verificate o quante risorse sono disponibili in un determinato istante. *Rappresentati da pallini neri.*
+
 - **MARCA (MARKING)** $\quad \rightarrow \quad$ La distribuzione globale dei token all'interno di tutti i posti della rete definisce il **Marking** (la marca), che corrisponde allo **stato globale istantaneo** della Rete di Petri.
 ![[Pasted image 20261009172621.png]]
 ### Dinamica e Regole di Esecuzione
 
 L'evoluzione dello stato (il cambio di marca) in una Rete di Petri avviene attraverso il movimento dei token generato dallo **scatto (firing)** delle transizioni.
 #### Abilitazione e Scatto (Firing)
+
+> [!question] A cosa servono i token?
+> Una transizione $t$ è abilitata ed è pronta a scattare se **ciascuno dei suoi posti in input possiede almeno un token**.
+
+![[Pasted image 20261009174323.png]]
+> [!hint] Scatto (Firing)
+> Quando una transizione scatta, compie un'azione ATOMICA e ISTANTANEA
+> 1. Rimuove un token da **ognuno** dei suoi posti in input
+> 2. Deposita un nuovo token in **ognuno** dei suoi posti in output
 #### Transizioni al Limite (Source e Sink)
+![[Pasted image 20261009174721.png|400]]
 #### Archi Pesati
 
+In una variante molto usata (weighted PetriNets), ad ogni arco orientato viene associato un numero intero positivo detto **peso dell'arco** $w(p,t)$ o $w(t,p)$:
+
+- **Abilitazione con peso**: Una transizione $t$ è abilitata solo se ogni posto in input $p$ contiene **almeno $w(p,t)$ token**.
+    
+- **Scatto con peso**: Lo scatto rimuove esattamente $w(p,t)$ token da ciascun posto in input $p$ e aggiunge $w(t,p)$ token in ciascun posto in output $p$.
+    
+- _Esempio di reazione chimica_: $2H_2 + O_2 \rightarrow 2H_2O$ si modella ponendo peso 2 sull'arco da $H_2$ alla transizione e peso 2 sull'arco dalla transizione a $H_2O$.
+![[Pasted image 20261009174854.png]]
 ### Modellazione di Sistemi Concorrenti
 #### Interpretazioni di Posti e Transizioni
 #### Parallelismo e Sincronizzazione

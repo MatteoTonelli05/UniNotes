@@ -203,6 +203,11 @@ L'operatore di composizione parallela `||` in FSP definisce un'algebra e soddisf
 > L'**interleaving** (in italiano _intercalamento_) è il modello teorico e concettuale con cui rappresentiamo l'esecuzione di più processi concorrenti come un'unica sequenza ordinata di azioni.
 
 Invece di provare a tracciare cosa succede _esattamente nello stesso istante fisico_ su più processori, l'interleaving "appiattisce" il tempo e modella la concorrenza mescolando i singoli passi atomici dei vari processi.
+
+> [!important] La simultaneità è una scelta non-deterministica
+> Se due azioni $A$ e $B$ di due processi diversi avvengono contemporaneamente, il modello interleaving le analizza come due casi distinti: prima $A$ poi $B$ ($A \rightarrow B$), oppure prima $B$ poi $A$ ($B \rightarrow A$).
+
+
 ### Interactions & Shared Actions
 #### Sincronizzazione su Azioni Condivise
 #### Handshake (Accoppiamento Forte)

@@ -256,7 +256,17 @@ ASSEMBLE = (ready -> assemble -> used -> ASSEMBLE).
 ||FACTORY = (MAKE_A || MAKE_B || ASSEMBLE).
 ```
 ### Process Labelling & Prefix Sets
+
+Quando si desidera istanziare più copie dello stesso processo all'interno di un sistema concorrente, occorre fare attenzione alla condivisione involontaria delle azioni.
 #### Process Labelling (Istanze Distinte)
+
+Per creare istanze indipendenti, si utilizza il **Process Labelling** (`etichetta:PROCESSO`), che aggiunge un prefisso all'alfabeto del processo
+
+```
+SWITCH = (on -> off -> SWITCH).
+
+||TWO_SWITCH = (a:SWITCH || b:SWITCH).
+```
 #### Parametrised Composite Processes (forall)
 #### Set di Prefissi (Condivisione Risorse e Mutua Esclusione)
 

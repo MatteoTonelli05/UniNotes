@@ -289,13 +289,92 @@ _(Equivale a comporre `(s[1]:SWITCH || s[2]:SWITCH || ... || s[N]:SWITCH)`)_.
 #### Set di Prefissi (Condivisione Risorse e Mutua Esclusione)
 
 L'etichettatura può essere applicata anche specificando un insieme (set) di etichette di prefisso nella forma `{a1..ax}::P`
+- Sostituisce ogni etichetta di azione $n$ nell'alfabeto di $P$ con il set di etichette $a1.n, ..., ax.n$.
+
+```
+RESOURCE = (acquire -> release -> RESOURCE).
+USER     = (acquire -> use -> release -> USER).
+
+||RESOURCE_SHARE = ( a:USER 
+                   || b:USER 
+                   || {a,b}::RESOURCE 
+                   ).
+```
+
+![[Pasted image 20261009151414.png]]
+> [!attention] Analisi del Comportamento:
+> 1. L'alfabeto della risorsa si espande in `{a.acquire, a.release, b.acquire, b.release}`
+> 2. Quando l'utente `a` esegue `a.acquire`, la risorsa passa allo stato occupato e offre **solo** l'azione `a.release`.
+> 3. L'utente `b` viene bloccato sulla sua `b.acquire` finché `a` non esegue `a.release`
+
+> [!hint] Viene così garantita formalmente la **mutua esclusione** nell'accesso alla risorsa.
 ### Relabelling (Adattamento Interfacce)
 
+> [!error] Quando si progettano processi indipendenti, ciascuno viene spesso definito con il proprio alfabeto specifico. Nella composizione di un sistema più ampio, potrebbe essere necessario far interagire tali processi traducendo o connettendo i loro nomi di azione per stabilire la sincronizzazione.
+
+##### Esempio di Relabelling
+
+Un client esegue un'operazione mediante `call` e attende con `wait`. Un server offre un servizio rispondendo alle richieste `request` e inviando una risposta `reply`:
+```
+CLIENT = (call -> wait -> continue -> CLIENT).
+SERVER = (request -> service -> reply -> SERVER).
+
+||CLIENT_SERVER = (CLIENT || SERVER)
+                  /{call/request, reply/wait}.
+```
+
+> [!hint] Effetto del Relabelling
+> - Nella descrizione del `SERVER`, l'azione `request` viene sostituita da `call`.
+> - Nella descrizione del `CLIENT`, l'azione `wait` viene sostituita da `reply`.
+>
+>Di conseguenza, `call` e `reply` diventano azioni condivise tra `CLIENT` e `SERVER`, sincronizzando la chiamata e il completamento del servizio.
 ### Hiding & Silent Actions
+
+In alcuni contesti è necessario rendere alcune azioni di un processo "private", ovvero non accessibili per la sincronizzazione o l'interazione con altri processi esterni.
 #### Operatori di Nascondimento (\ e @)
+
+##### Operatore Hiding (\):
+**Sintassi**: `\ {a1, ..., ax}`
+
+Rimuove i nomi delle azioni specificate dall'alfabeto del processo P e trasforma tali transizioni in azioni silenti (rappresentate dal simbolo $\tau$ o tau).   
+```
+USER = (acquire -> use -> release -> USER)\{use}.
+```
+##### Operatore Interface (@):
+**Sintassi**: `@ {a1, ..., ax}`
+
+Espone esclusivamente le azioni indicate nel set e nasconde tutte le altre azioni presenti nell'alfabeto del processo (rendendole silenti $\tau$).  
+```
+USER = (acquire -> use -> release -> USER)@{acquire, release}.
+```
+
+> [!bstract] Proprietà delle Azioni Silenti ($\tau$)
+> Le azioni silenti rappresentano eventi interni non osservabili dall'esterno.
+> A differenza delle azioni normali, le azioni $\tau$ di processi diversi non si sincronizzano mai tra loro e non possono condizionare l'esecuzione degli altri processi concorrenti. 
+
+![[Pasted image 20261009152724.png]]
 #### Minimizzazione dell'LTS
 
+Nascondere le azioni interne consente di applicare algoritmi di **minimizzazione dello stato** per semplificare il modello:
+
+> [!important] **Rimozione delle azioni $\tau$**
+> Un'azione silente può essere eliminata dall'LTS fondendo gli stati connessi da essa, a patto che il comportamento osservabile dall'esterno (cioè l'insieme delle tracce pubbliche ammesse) rimanga del tutto invariato.
+
+> [!question] A cosa serve?
+> La minimizzazione riduce drasticamente il numero di stati e di transizioni delle macchine a stati complesse, rendendo possibile l'analisi automatica di sistemi di grandi dimensioni (riduzione della complessità nell'analisi delle proprietà).
+
+![[Pasted image 20261009152755.png]]*Esempio di prima **minimizzato***
 ### Sequential Processes
+
+Sebbene in astratto un processo rappresenti sempre una sequenza di stati e transizioni, FSP distingue concettualmente tre tipi di processi:
+
+1. **PROCESSI LOCALI**: definiscono uno stato all'interno di un processo primitivo.
+    
+2. **PROCESSI PRIMITIVI**: definiti mediante un insieme di processi locali, prefissi d'azione e scelte.
+    
+3. **PROCESSI COMPOSITI**: usano la composizione parallela, il relabelling e l'hiding per combinare processi primitivi.
+    
+Estendiamo questa definizione introducendo i **processi sequenziali**, ossia processi capaci di **terminare**.
 #### Processo Locale END (Terminazione)
 #### Composizione Sequenziale (P; Q)
 #### Contesti Ricorsivi e Costrutto If-Then-Else

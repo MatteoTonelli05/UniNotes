@@ -370,16 +370,38 @@ Sebbene in astratto un processo rappresenti sempre una sequenza di stati e trans
 
 1. **PROCESSI LOCALI**: definiscono uno stato all'interno di un processo primitivo.
     
-2. **PROCESSI PRIMITIVI**: definiti mediante un insieme di processi locali, prefissi d'azione e scelte.
+2. **PROCESSI PRIMITIVI**: definiti mediante un insieme di processi locali, prefissi d'azione e scelte. Ad es. `SWITCH = (on -> off -> SWITCH).`
     
-3. **PROCESSI COMPOSITI**: usano la composizione parallela, il relabelling e l'hiding per combinare processi primitivi.
+3. **PROCESSI COMPOSITI**: usano la composizione parallela, il relabelling e l'hiding per combinare processi primitivi. Ad es. `||TWO_SWITCH = (a:SWITCH || b:SWITCH).`
     
-Estendiamo questa definizione introducendo i **processi sequenziali**, ossia processi capaci di **terminare**.
-#### Processo Locale END (Terminazione)
-#### Composizione Sequenziale (P; Q)
+Estendiamo questa definizione introducendo i **processi sequenziali**, ossia processi capaci di **terminare**. Ovvero che arriva a `END`.
+
+> [!question] A cosa serve `END`
+> Permette la **composizione sequenziale** `P; Q` significa: _"fai tutto il processo P; quando P arriva a `END`, fai partire Q"_.
+
 #### Contesti Ricorsivi e Costrutto If-Then-Else
+
+La composizione sequenziale può essere impiegata all'interno di definizioni ricorsive ed essere combinata con strutture di controllo condizionali:
+
+```
+if <cond> then Q else R
+```
+
+In FSP si valuta una condizione booleana: se vera il processo si comporta come `Q`, altrimenti come `R`
+
 #### Composizione Parallela di Processi Sequenziali
 
+> [!abstract] Quando due o più processi sequenziali vengono composti in parallelo (`SP1 || SP2`), la composizione globale termina soltanto quando **tutti** i singoli processi costituenti sono giunti a terminazione (`END`).
+
+##### Esempio
+
+![[Pasted image 20261009154926.png|294]]
+```
+P  = (x -> END).
+||S = (a:P || b:P).
+```
+
+Il processo composito `S` eseguirà in interleaving le azioni `a.x` e `b.x` e raggiungerà lo stato finale `END` solo dopo che entrambi i processi avranno completato la propria transizione.
 ## Petri Nets
 ### Introduzione e Concetti Base
 #### Struttura Grafica (Posti, Transizioni e Archi)

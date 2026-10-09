@@ -267,9 +267,28 @@ SWITCH = (on -> off -> SWITCH).
 
 ||TWO_SWITCH = (a:SWITCH || b:SWITCH).
 ```
+
+> [!attention] Risultato
+> - L'alfabeto di `a:SWITCH` diventa `{a.on, a.off}`.
+> 
+>- L'alfabeto di `b:SWITCH` diventa `{b.on, b.off}`.
+
 #### Parametrised Composite Processes (forall)
+
+Quando il numero di istanze di un processo è elevato o parametrizzato, si utilizza il costrutto `forall` per comporre in parallelo una serie di processi indicizzati:
+
+```
+||SWITCHES(N=3) = (forall[i:1..N] s[i]:SWITCH).
+```
+o in forma abbreviata
+```
+||SWITCHES(N=3) = (s[i:1..N]:SWITCH).
+```
+
+_(Equivale a comporre `(s[1]:SWITCH || s[2]:SWITCH || ... || s[N]:SWITCH)`)_.
 #### Set di Prefissi (Condivisione Risorse e Mutua Esclusione)
 
+L'etichettatura può essere applicata anche specificando un insieme (set) di etichette di prefisso nella forma `{a1..ax}::P`
 ### Relabelling (Adattamento Interfacce)
 
 ### Hiding & Silent Actions

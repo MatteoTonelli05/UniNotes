@@ -100,31 +100,10 @@
   "right": {
     "id": "994e93d0a7538110",
     "type": "split",
-    "children": [
-      {
-        "id": "716c5456896184de",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "3c10e579bb2b893b",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "CONCURRENT SYSTEMS/Sintassi FSP - LTS.md",
-                "followCursor": false,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-list",
-              "title": "Struttura"
-            }
-          }
-        ]
-      }
-    ],
+    "children": [],
     "direction": "horizontal",
-    "width": 285.5
+    "width": 285.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -138,7 +117,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "3c10e579bb2b893b",
+  "active": "d55647a326384120",
   "lastOpenFiles": [
     "CONCURRENT SYSTEMS/MODELLING - module 1.2.md",
     "CONCURRENT SYSTEMS/OVERVIEW - module 1.1.md",

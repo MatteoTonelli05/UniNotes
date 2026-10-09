@@ -189,10 +189,16 @@ Se `P` e `Q` sono due processi, `(P || Q)` rappresenta l'esecuzione concorrente 
 
 #### Algebra - Parallel Composition
 
-**Commutativa** `(P || Q) = (Q || P)`
-**Associativa** `(P || (Q || R)) = ((P || Q) || R) = (P || Q || R)`
+L'operatore di composizione parallela `||` in FSP definisce un'algebra e soddisfa due leggi algebriche fondamentali:
+
+- **Commutativa** `(P || Q) = (Q || P)` 
+- **Associativa** `(P || (Q || R)) = ((P || Q) || R) = (P || Q || R)`
 
 #### Modellare la Concorrenza per Interleaving
+
+> [!question] Abbiamo bisogno di modellare la velocità con cui un processo viene eseguito rispetto a un altro?
+> Considerando che la velocità di un processo dipende dai processori e dallo scheduling del SO che non possiamo controllare, stabiliamo semplicemente che i processi si eseguono a velocità relative arbitrarie.
+
 
 ### Interactions & Shared Actions
 #### Sincronizzazione su Azioni Condivise

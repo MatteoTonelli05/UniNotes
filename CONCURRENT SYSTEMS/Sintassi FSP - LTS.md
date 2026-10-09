@@ -404,8 +404,20 @@ Il processo composito `S` eseguirà in interleaving le azioni `a.x` e `b.x` e ra
 > Le **Reti di Petri** (introdotte da Carl Adam Petri attorno al 1965) costituiscono un modello matematico e grafico per descrivere e analizzare il flusso di informazioni e di controllo in sistemi distribuiti, asincroni e concorrenti.
 
 > [!question] Cosa cambia da **FSP/LTS**?
-> Le Reti di Petri non si basano sull'interleaving
-#### Struttura G rafica (Posti, Transizioni e Archi)
+> Le Reti di Petri non si basano sull'interleaving per modellare la concorrenza, ma rappresentano direttamente le relazioni di dipendenza causale e di indipendenza tra eventi.
+#### Struttura Grafica (Posti, Transizioni e Archi)
+
+Una Rete di Petri è rappresentata graficamente come un **grafo orientato bipartito** composto da due tipi distinti di nodi:
+
+1. Posti (Places) $\rightarrow$ Rappresentano le condizioni, gli stati locali o le risorse del sistema. 
+		-  i cerchi $(p_1,p_2,...)$
+2. Transizioni (Transitions) $\rightarrow$ Rappresentano gli eventi o le azioni che modificano lo stato del sistema.
+		- le barre/rettangoli $(t_1,t_2,...)$
+![[Pasted image 20261009170354.png|290]]
+> [!error] Archi Orientati (Directed Arcs)
+> - Connettono nodi di **tipo diverso**
+> - **NON** esistono archi diretti tra nodi di stesso tipo
+
 #### Token e Marca (Marking)
 
 ### Dinamica e Regole di Esecuzione

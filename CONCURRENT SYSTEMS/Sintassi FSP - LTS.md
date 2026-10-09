@@ -206,9 +206,9 @@ Invece di provare a tracciare cosa succede _esattamente nello stesso istante fis
 
 > [!important] La simultaneità è una scelta non-deterministica
 > Se due azioni $A$ e $B$ di due processi diversi avvengono contemporaneamente, il modello interleaving le analizza come due casi distinti: prima $A$ poi $B$ ($A \rightarrow B$), oppure prima $B$ poi $A$ ($B \rightarrow A$).
-
-
 ### Interactions & Shared Actions
+
+
 #### Sincronizzazione su Azioni Condivise
 #### Handshake (Accoppiamento Forte)
 #### Multi-Party Synchronisation

@@ -396,11 +396,6 @@ In FSP si valuta una condizione booleana: se vera il processo si comporta come `
 ##### Esempio
 
 ![[Pasted image 20261009154926.png|294]]
-```
-P  = (x -> END).
-||S = (a:P || b:P).
-```
-
 Il processo composito `S` eseguirà in interleaving le azioni `a.x` e `b.x` e raggiungerà lo stato finale `END` solo dopo che entrambi i processi avranno completato la propria transizione.
 ## Petri Nets
 ### Introduzione e Concetti Base

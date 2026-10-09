@@ -29,7 +29,7 @@ _(è una macchina a stati finiti)_
 > -  lo *stato* di quel processo è l'insieme dei valori delle variabili
 > - lo stato cambia a seconda deli *statement*, ovvero una o più *azioni atomiche*.
 
-[[Sintassi FSP - LTS]]
+[[Sintassi FSP - LTS - module 1.2]]
 
 ---
 

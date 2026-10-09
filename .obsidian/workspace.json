@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CONCURRENT SYSTEMS/Sintassi FSP - LTS.md",
+                "file": "CONCURRENT SYSTEMS/PetriNets - module 1.2.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Sintassi FSP - LTS"
+              "title": "PetriNets - module 1.2"
             }
           }
         ]
@@ -119,18 +119,21 @@
   },
   "active": "d55647a326384120",
   "lastOpenFiles": [
+    "CONCURRENT SYSTEMS/Sintassi FSP - LTS - module 1.2.md",
+    "CONCURRENT SYSTEMS/PetriNets - module 1.2.md",
+    "CONCURRENT SYSTEMS/CONCURRENT SYSTEMS.md",
+    "Untitled.md",
+    "CONCURRENT SYSTEMS/MODELLING - module 1.2.md",
+    "CONCURRENT SYSTEMS/Allegati/Pasted image 20261009180705.png",
+    "CONCURRENT SYSTEMS/Allegati/Pasted image 20261009180654.png",
+    "CONCURRENT SYSTEMS/Allegati/Pasted image 20261009180019.png",
+    "CONCURRENT SYSTEMS/Allegati/Pasted image 20261009175950.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261009174854.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261009174721.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261009174323.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261009172621.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261009170354.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261009154926.png",
-    "CONCURRENT SYSTEMS/Allegati/Pasted image 20261009152755.png",
-    "CONCURRENT SYSTEMS/Allegati/Pasted image 20261009152724.png",
-    "CONCURRENT SYSTEMS/Allegati/Pasted image 20261009151414.png",
-    "CONCURRENT SYSTEMS/Allegati/Pasted image 20261009141803.png",
-    "CONCURRENT SYSTEMS/Allegati/Pasted image 20261009141739.png",
-    "CONCURRENT SYSTEMS/MODELLING - module 1.2.md",
     "CONCURRENT SYSTEMS/OVERVIEW - module 1.1.md",
     "MACHINE LEARNING/03 - Classificatore di Bayes.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Linguagi Regolari.md",
@@ -155,8 +158,6 @@
     "LINGUAGGI FORMALI E SISTEMI COMPUTAZIONALI",
     "MACHINE LEARNING/01 - Introduzione.md",
     "MACHINE LEARNING/Allegati/Untitled.md",
-    "CONCURRENT SYSTEMS/Sintassi FSP - LTS.md",
-    "CONCURRENT SYSTEMS/CONCURRENT SYSTEMS.md",
     "Tags",
     "MACHINE LEARNING/01 - Storia 💀.md",
     "CONCURRENT SYSTEMS/Allegati"

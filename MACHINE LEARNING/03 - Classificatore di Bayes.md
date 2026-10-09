@@ -228,9 +228,36 @@ Come possiamo stimare la densità $p(x)$ in un generico punto $x$ senza usare un
 4. **Approssimazione**: Se la regione $R$ ha un volume $V$ molto piccolo, possiamo assumere che $p(x)$ non vari significativamente al suo interno:$$P_1=\int_Rp(x') dx'\approx p(x)\cdot V$$$$P_1 \approx p(x) \cdot V \implies p(x) = \frac{P_1}{V} = \frac{k}{n \cdot V}$$
 ### Parzen Window (Kernel Ipercubico vs Soft/Gaussiano)
 
-La regione $R$, denominata finestra (**Window**), è costituita da un ipercubo d-dimensionale, definito dalla funzione $$
+Il metodo **Parzen Window** definisce la regione di stima $R$ come un **ipercubo $d$-dimensionale** di lato $h_n$ e volume $V_n = h_n^d$. Si definisce la funzione finestra unitaria: $$\varphi(u)=\begin{cases}1 & |u_j|\le\frac{1}{2}, \, j=1...d \\ 0 & \text{altrimenti}\end{cases}$$ Il numero di punti $k_n$ che cadono dentro l'ipercubo centrato in $x$ è dato dalla somma $\sum_{i=1}^{n}\varphi(\frac{x_i-x}{h_n})$. La densità stimata nel punto $x$ diventa quindi: $$p_n(x) = \frac{1}{n \cdot V_n} \sum_{i=1}^{n} \varphi\left(\frac{x_i - x}{h_n}\right)$$
+>[!attention] Impatto dell'Iperparametro $h_n$ (Dimensione Finestra) 
+> - **Finestra troppo piccola ($h_n$ piccolo)**: Stima rumorosa, molto frastagliata e instabile (forte rischio di *overfitting*). 
+> - **Finestra troppo grande ($h_n$ grande)**: Stima sfuocata, troppo smussata e vaga (rischio di *underfitting*). 
+> 
+> Per garantire convergenza matematica al crescere del numero dei campioni $n$, la dimensione del volume deve contrarsi secondo la regola: $$V_n = \frac{V_1}{\sqrt{n}}$$
 
+#### Parzen Window con Soft Kernel (Gaussian Kernel)
+
+Invece di usare funzioni finestra ipercubiche rigide (che generano stime a scalini), si preferiscono **Kernel morbidi (*soft*)** grazie ai quali ogni pattern $x_i$ contribuisce alla densità in base alla sua effettiva distanza dal punto $x$.
+
+Le funzioni Kernel devono essere funzioni densità (integrate su tutto lo spazio danno 1). Utilizzando la **Multinormale Standard**:
+$$\varphi(u) = \frac{1}{(2\pi)^{d/2}} e^{-\frac{u^t u}{2}}$$
+
+**Vantaggio**: Ogni punto del Training Set "irradia" una collinetta di probabilità sfumata. Le superfici decisionali risultanti diventano molto più **regolari, fluide e smussate (*smoothed*)**.
+
+![[Pasted image 20261009112955.png|418]]
+#### Esempio Pratico: Maschi / Femmine con Parzen Window
+
+Valutando il punto $x = [57, 168]^T$ con $P(w_1) = 8/18$ e $P(w_2) = 10/18$:
+
+- **Kernel Ipercubico ($h=10$)**:$$p(x|w_1) = 0.0038, \quad p(x|w_2) = 0.0040$$$$P(w_1|x) \approx 43\%, \quad P(w_2|x) \approx 57\% \implies \text{Femmina } (w_2)$$
+  *Produce regioni "a gradini" e superfici squadrate.*
+
+- **Kernel Gaussiano ($h=3$)**:$$p(x|w_1) = 0.0024, \quad p(x|w_2) = 0.0041$$$$P(w_1|x) \approx 32\%, \quad P(w_2|x) \approx 68\% \implies \text{Femmina } (w_2)$$
+  *Produce superfici decisionali morbide e sfumature continue.*
+
+---
 ## Classificatori Nearest Neighbor (NN e k-NN)
+
 ### Nearest Neighbor (1-NN) e Tassellazione di Voronoi
 ### k-Nearest Neighbor (k-NN) e Confidenza
 ### Complessità Computazionale, Editing e Condensing

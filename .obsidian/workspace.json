@@ -94,8 +94,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "994e93d0a7538110",
@@ -119,6 +118,8 @@
   },
   "active": "d55647a326384120",
   "lastOpenFiles": [
+    "CONCURRENT SYSTEMS/Allegati/Pasted image 20261012115753.png",
+    "CONCURRENT SYSTEMS/Allegati/Pasted image 20261012115223.png",
     "CONCURRENT SYSTEMS/Sintassi FSP - LTS - module 1.2.md",
     "CONCURRENT SYSTEMS/PetriNets - module 1.2.md",
     "CONCURRENT SYSTEMS/CONCURRENT SYSTEMS.md",
@@ -133,7 +134,6 @@
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261009174323.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261009172621.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261009170354.png",
-    "CONCURRENT SYSTEMS/Allegati/Pasted image 20261009154926.png",
     "CONCURRENT SYSTEMS/OVERVIEW - module 1.1.md",
     "MACHINE LEARNING/03 - Classificatore di Bayes.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Linguagi Regolari.md",

@@ -77,9 +77,18 @@ Si verifica quando in una rete **conflitto e concorrenza sono combinati insieme*
 
 > [!hint] Principio di località
 > Ogni sotto-parte di un sistema complesso può essere modellata da una Rete di Petri locale. L'abilitazione e lo scatto di una transizione dipendono **esclusivamente dallo stato locale** (la marca dei posti in input) e modificano solo lo stato dei posti direttamente connessi ad essa.
-### Non-Determinismo
 
+
+> [!attention] Non-Determinismo
+> Nelle reti di petri la scelta di quale transizione far scattare viene effettuata in modo non deterministico (casualmente o da forze non modellate)
 
 ## Aspetti Avanzati di Modellazione
 ### Eventi Atomici vs Non-Atomici
+
+_Il verificarsi di eventi (primitivi) è **istantaneo**, gli eventi non primitivi devono essere modellati tramite eventi primitivi multipli_
+![[Pasted image 20261012115223.png|445]]
 ### Gerarchie (Astrazione e Raffinamento)
+
+ASTRAZIONE $\quad \rightarrow \quad$ rimpiazzare un'intera rete con un singolo stato
+RAFFINAMENTO $\quad \rightarrow \quad$ rimpiazzare un singolo stato con una rete dettagliata
+![[Pasted image 20261012115753.png]]

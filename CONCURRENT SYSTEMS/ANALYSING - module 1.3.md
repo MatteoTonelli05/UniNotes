@@ -97,9 +97,12 @@ FSP offre due approcci per definire e verificare le proprietà:
 ![[Pasted image 20261012172804.png]]
 ### Progress Properties (Liveness)
 
+> [!abstract] Si definisce utilizzando la parola chiave `progress`
+
 ![[Pasted image 20261012172946.png|415]]
 
-> [!abstract] Assertisce che in **qualsiasi esecuzione infinita** del sistema, **almeno una** delle azioni presenti nel set `{a1, a2, ..., an}` verrà eseguita **infinite volte** (_infinitely often_).
+> [!question] Cosa fa?
+>  Assertisce che in **qualsiasi esecuzione infinita** del sistema, **almeno una** delle azioni presenti nel set `{a1, a2, ..., an}` verrà eseguita **infinite volte** (_infinitely often_).
 
 ![[Pasted image 20261012173035.png]]
 ## Supporto Logico Generale: Fluents e LTL

@@ -1,12 +1,31 @@
 # Analysing Concurrent Systems
 
 ## Analisi dei Sistemi: Verification vs Testing
-### Definizioni: Fault, Error e Failure
-### Testing di Safety e Liveness
-### Limiti del Testing nei Sistemi Concorrenti
-### Verifica Formale vs Testing
 
+Nello sviluppo del software, specialmente concorrente, esistono diverse attività di analisi del sistema con obiettivi differenti:
+
+1. **Testing** $\quad \rightarrow \quad$ Attività volta a **scovare i malfunzionamenti** eseguendo il sistema con determinati input.
+2.  **Verification** $\quad \rightarrow \quad$Controllare se il sistema è conforme alle sue specifiche formali
+3.  **Validation** $\quad \rightarrow \quad$Controllare se il sistema soddisfa le reali aspettative dell'utente/cliente
+### Definizioni: Fault, Error e Failure
+
+| Error                                                                           | Fault                                                                                    | Failure                                                                                             |
+| ------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| Un'azione umana <br>errata commessa durante la <br>progettazione o la codifica. | La manifestazione o <br>presenza dell'errore <br>all'interno del codice<br>o del sistema | L'evento visibile in cui<br>il sistema devia dal<br>comportamento atteso <br>a causa di un _fault_. |
+> [!abstract] Un singolo _fault_ può causare molteplici _failures_, e una _failure_ può essere causata da più _faults_ combinati
+### Testing di Safety e Liveness
+
+I test tradizionali su sistemi software si dividono principalmente in due categorie:
+
+1. **Test di Safety**: Verificano che il comportamento del sistema rispetti le specifiche 
+2. **Test di Liveness**: Verificano che il sistema compia progressi (_progress / non-progress tests_). Sono molto più difficili da configurare ed eseguire tramite test classici.
+
+> [!error] Bisogna stare attenti a controllare la totalità del sistema
 ## Metodi Formali per la Verifica
+
+> [!question] Cosa cambia tra verifica e testing?
+> - il **Testing** dimostra che una proprietà vale per alcuni scenari selezionati, trova il bug, ma non assicura che il sistema sia privo di difetti.
+> - la **Verifica** dimostra che una proprietà valga per TUTTI gli scenari e garantisce la correttezza matematica del modello rispetto alla specifica.
 ### Approcci Principali: Model Checking e Prove Induttive
 ### Il Principio del Model-Checking
 ### Applicazioni del Model-Checking (Hardware e Software)

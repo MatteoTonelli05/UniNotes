@@ -27,8 +27,21 @@ I test tradizionali su sistemi software si dividono principalmente in due catego
 > - il **Testing** dimostra che una proprietà vale per alcuni scenari selezionati, trova il bug, ma non assicura che il sistema sia privo di difetti.
 > - la **Verifica** dimostra che una proprietà valga per TUTTI gli scenari e garantisce la correttezza matematica del modello rispetto alla specifica.
 ### Approcci Principali: Model Checking e Prove Induttive
-### Il Principio del Model-Checking
+
+#### Model Checking
+
+> [!question] Cosa fa?
+> Verifica il sistema generando uno per uno tutti gli stati del sistema e controllando le proprietà stato per stato.
+
+_viene automatizzato da strumenti di **model checker**, i quali se analizza un proprietà violata genera un controesempio che porta all'errore_
+
+#### Prove induttive di invarianti
+
+Le proprietà invarianti vengono dimostrate per induzione sugli stati del sistema, può essere automatizzato da strumenti chiamati sistemi deduttivi.
+
+> [!important] Le proprietà invarianti sono quelle proprietà che non cambiano mai a partire dall'avvio del sistema
 ### Applicazioni del Model-Checking (Hardware e Software)
+![[Pasted image 20261012165532.png|594]]
 ### Il Problema dell'Esplosione dello Spazio degli Stati (State-Space Explosion)
 
 ## Specificare le Proprietà dei Sistemi

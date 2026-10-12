@@ -113,44 +113,263 @@ Il supporto ad-hoc visto finora (`property` e `progress`) ha limiti di espressiv
 > [!abstract] Le Linear Temporal Logic (LTL) servono semplicemente a scrivere formule matematiche che descrivono **come le cose cambiano lungo il tempo (lungo la traccia degli stati)**.  
 
 _In **LTL** (Linear Temporal Logic), il tempo viene visto come una linea retta di momenti/stati che si succedono (Stato 0 $\rightarrow$ Stato 1 $\rightarrow$ Stato 2 $\rightarrow$ ...)._
-#### Operatore Always (`[]` / `G`)
+#### Operatore Always (${\small \square}/G$)
 
 >La formula `[] p` è vera in uno stato $s$ se e solo se la proprietà $p$ è vera nello stato $s$ e **in tutti gli stati futuri** lungo l'esecuzione.
 
 _Esempio: proprietà di Safety_
-#### Operatore Eventually (`<>` / `F`)
+#### Operatore Eventually ($\diamond/F$)
 
 > La formula `<> p` è vera in uno stato $s$ se e solo se la proprietà $p$ è vera in $s$ oppure **in almeno uno stato futuro** $s'$ lungo l'esecuzione.
 
 _Esempio: proprietà di Liveness_
 ### Proprietà Fondamentali e Deduzione Temporale
 
-Possiamo definire una **Dualità tra Always ed Eventually**:$$\text{NOT } (<> p) \equiv [] (\text{NOT } p)$$$$\text{NOT } ([] p) \equiv <> (\text{NOT } p)$$
+Possiamo definire una **Dualità tra Always ed Eventually**:$$\text{NOT } (\diamond p) \equiv {\small \square} (\text{NOT } p)$$$$\text{NOT } ({\small \square} p) \equiv \diamond (\text{NOT } p)$$
     _(Dire che "non è mai vero che $p$ accadrà" equivale a dire che "sempre non vale $p$")_.
     
 E possiamo definire anche **Sequenze di Operatori Composti**:
-- `[] <> p` (_Always Eventually_): $p$ accade infinite volte lungo la traccia (esprime un requisito di **progresso/infinità**).
-- `<> [] p` (_Eventually Always_): Da un certo istante in poi, $p$ rimarrà vera per sempre (esprime la **stabilizzazione**).
+- ${\small \square} \diamond p$ (_Always Eventually_): $p$ accade infinite volte lungo la traccia (esprime un requisito di **progresso/infinità**).
+- $\diamond\text{ }{\small \square}\text{ }p$ (_Eventually Always_): Da un certo istante in poi, $p$ rimarrà vera per sempre (esprime la **stabilizzazione**).
 ## Fluents in FSP
 
 Per applicare LTL all'algebra dei processi FSP (dove le transizioni sono descritte da tracce di azioni), occorre un ponte tra le azioni del modello e le proposizioni logiche. Questo ponte è rappresentato dai **Fluents**.
 ### Definizione e Sintassi dei Fluents
+
+> [!abstract] Un **Fluent** è una condizione booleana astratta (una proposizione) il cui valore di verità cambia nel tempo al verificarsi delle azioni.
+
+``` FSP
+fluent FL = <{s1, ..., sn}, {e1, ..., en}> initially B
+```
+
+- `{s1, ..., sn}`: **Azioni Iniziatrici** (_initiating actions_). Quando si verifica una qualsiasi di queste azioni, il fluent `FL` diventa **`True`**.
+- `{e1, ..., en}`: **Azioni Terminatrici** (_terminating actions_). Quando si verifica una qualsiasi di queste azioni, il fluent `FL` diventa **`False`**.
+- `initially B`: Valore booleano iniziale (`True` o `False`). Se omesso, di default è `False`.
+- _Vincolo_: Un'azione non può essere contemporaneamente sia iniziatrice che terminatrice per lo stesso fluent.
+    
 ### Families of Fluents (Indicizzati)
+
+I fluents possono essere definiti per famiglie di indici esplicite, analogamente ai processi:
+
+``` FSP
+fluent LIGHT[i:1..2] = <{on[i]}, {off[i], power_cut}>
+```
+
+_(Corrisponde a definire due distinti fluents: `LIGHT_1` per l'indice 1 e `LIGHT_2` per l'indice 2)_.
+``` FSP
+fluent LIGHT = <{on}, {off, power_cut}> initially False
+```
 ### Action Fluents
+
+Esistono fluents speciali definiti direttamente sulle singole azioni per indicare l'evento istantaneo: _"l'azione è appena stata eseguita"_.
+
+- **Semantica**: Un **Action Fluent** porta lo stesso nome dell'azione. Diventa `True` nell'istante esatto in cui l'azione avviene e torna immediatamente `False` all'azione successiva (compresa la transizione silente $\tau$).
 ### Espressioni Fluent e Operatori Logici
+I fluents (sia espliciti che action fluents) possono essere combinati con gli ordinari operatori booleani:
+
+- `&&` (congiunzione / AND)
+- `||` (disgiunzione / OR)
+- `!` (negazione / NOT)
+- `<->` (equivalenza)
+- `->` (implicazione: $(A \rightarrow B) \equiv (!A \vert{}\vert{} B)$)
+ 
+**Esempio di Implicazione**:
+``` FSP
+fluent POWER = <power_on, power_off>
+fluent LIGHT = <on, off>
+
+LIGHT -> POWER
+```
+
+_(Esprime la condizione: "Se la luce è accesa (`LIGHT` è `True`), allora la corrente deve essere attiva (`POWER` è `True`)"_).
+
+---
+---
+---
+---
+
 ### Espressioni `forall` ed `exists`
 
+Per valutare espressioni booleane su insiemi di fluents indicizzati si utilizzano i quantificatori:
+
+- **`forall` (AND generalizzato)**:
+    
+    Snippet di codice
+    
+    ```
+    forall [i:1..2] LIGHT[i]   // Equivale a: LIGHT[1] && LIGHT[2]
+    ```
+    
+
+- **`exists` (OR generalizzato)**:
+    
+    Snippet di codice
+    
+    ```
+    exists [i:1..2] LIGHT[i]   // Equivale a: LIGHT[1] || LIGHT[2]
+    ````
+
 ## Model Checking in FSP tramite FLTL (Fluent LTL)
+
 ### Caso di Studio: Il Problema della Sezione Critica (Critical Section)
+
+Consideriamo un sistema con due processi (`USER a` e `USER b`) che eseguono codice non critico (`ncs`) e vogliono accedere a una risorsa/sezione critica condivisa (`cs`).
+
+Snippet di codice
+
+```
+USER    = (ncs -> enterCS -> cs -> exitCS -> USER).
+||USERS = (a:USER || b:USER).
+```
+
+Se eseguiamo questo sistema senza alcun controllo, la proprietà di **Mutua Esclusione viene violata**: esistono scenari di esecuzione (tracce) in cui sia `a` che `b` si trovano contemporaneamente all'interno di `cs`.
+
 ### Verifica della Safety (Mutua Esclusione con `[]`)
+
+Per verificare formalmente la violazione con il Model Checker dell'LTSA, procediamo in due passi:
+
+1. **Definiamo gli stati astratti d'interesse mediante i Fluents**:
+    
+    Snippet di codice
+    
+    ```
+    fluent USER_A_IN_CS = <a.enterCS, a.exitCS>
+    fluent USER_B_IN_CS = <b.enterCS, b.exitCS>
+    ```
+    
+
+- `USER_A_IN_CS` è `True` tra l'azione `a.enterCS` e `a.exitCS`.
+    
+- `USER_B_IN_CS` è `True` tra l'azione `b.enterCS` e `b.exitCS`.
+    
+
+2. **Scriviamo la proprietà di Safety in FLTL usando l'operatore Always `[]`**:
+    
+    Snippet di codice
+    
+    ```
+    assert MUTEX = [] !(USER_A_IN_CS && USER_B_IN_CS)
+    ```
+    
+
+_(Significa: "In ogni singolo stato, non deve MAI accadere che sia A che B siano contemporaneamente nella sezione critica")_.
+
 ### Individuazione delle Violazioni con LTSA
+
+Eseguendo la verifica (_Check LTL property_) all'interno dell'LTSA, il tool esplora lo spazio degli stati e **individua la violazione**, mostrando la traccia esatta del controesempio (_counterexample_):
+
+Plaintext
+
+```
+Trace to property violation in MUTEX:
+  a.ncs
+  a.enterCS       --> USER_A_IN_CS diventa True
+  b.ncs
+  b.enterCS       --> USER_B_IN_CS diventa True (MUTEX violata!)
+```
+
 ### Risoluzione del Problema tramite Lock
+
+Per garantire la mutua esclusione, introduciamo un processo condiviso `LOCK` che funge da semaforo/mutua esclusione e obbliga i processi ad acquisire il lock prima di entrare in `cs` e a rilasciarlo all'uscita:
+
+Snippet di codice
+
+```
+USER = (ncs -> acquire -> enterCS -> cs -> exitCS -> release -> USER).
+LOCK = (acquire -> release -> LOCK).
+
+||USERS = (a:USER || b:USER || {a,b}::LOCK).
+
+fluent USER_A_IN_CS = <a.enterCS, a.exitCS>
+fluent USER_B_IN_CS = <b.enterCS, b.exitCS>
+
+assert MUTEX = [] !(USER_A_IN_CS && USER_B_IN_CS)
+```
+
+- **Risultato del Model Checking**: Con l'introduzione del `LOCK`, la proprietà `MUTEX` viene **verificata con successo** per tutti i possibili scenari.
+    
+
 ### Verifica della Liveness (Assenza di Starvation con `<>`)
 
+Oltre alla Safety, dobbiamo assicurarci che il sistema rispetti la **Liveness**: se un utente richiede di entrare in sezione critica (`a.acquire`), prima o poi gli verrà concesso l'accesso (`a.enterCS`).
+
+Esprimiamo l'assenza di starvation tramite l'operatore Eventually `<>`:
+
+Snippet di codice
+
+```
+assert NO_STARV = [] (a.acquire -> <> a.enterCS)
+```
+
+_(Si legge: "È SEMPRE vero (`[]`) che se si verifica l'azione `a.acquire`, da quel momento PRIMA O POI (`<>`) si verificherà l'azione `a.enterCS`")_.
+
 ## Altri Operatori della Fluent Linear Temporal Logic (FLTL)
+
+Oltre ad `Always` (`[]`) ed `Eventually` (`<>`), FLTL mette a disposizione altri operatori temporali per esprimere relazioni di precedenza:
+
 ### Operatore Until (`U`)
-#### Specificare Safety e Liveness con `Until`
-#### Mutex tramite `Until`
+
+- **Semantica**: La formula `p U q` è vera se $q$ diventa vera nello stato attuale o in un istante futuro, e $p$ rimane continuamente vera **fino a quell'istante**.
+    
+- **Esempio (Polite - Bussare prima di entrare)**:
+    
+    Snippet di codice
+    
+    ```
+    assert POLITE = (!enter U knock)
+    ```
+    
+
+_(Modella sia la Safety "non si può entrare prima di bussare", sia la Liveness "l'azione knock deve prima o poi verificarsi")_.
+
+#### Mutex tramite `Until` (Uso di soli Action Fluents)
+
+Utilizzando `Until`, la mutua esclusione può essere definita direttamente sugli action fluents senza creare fluents espliciti:
+
+Snippet di codice
+
+```
+assert MUTEX_U = [] ((a.enterCS -> (!b.enterCS U a.exitCS)) &&
+                     (b.enterCS -> (!a.enterCS U b.exitCS)))
+```
+
+_(Garantisce sia la mutua esclusione sia la liveness che, se un processo entra, prima o poi uscirà)_.
+
 ### Operatore Weak Until (`W`)
+
+- **Semantica**: La formula `p W q` è vera se $p$ vale fino a quando non diventa vera $q$, oppure se $p$ rimane vera **indefinitamente** (senza l'obbligo che $q$ debba per forza accadere).
+    
+- **Differenza con `Until`**: Il `Weak Until` rimuove il requisito di liveness (non obbliga $q$ ad accadere).
+    
+- **Esempio**:
+    
+    Snippet di codice
+    
+    ```
+    assert POLITE_W = (!enter W knock)
+    ```
+    
+
+_(Diventa una pura proprietà di Safety: non richiede che si bussi per forza, ma garantisce che se non si bussa non si può entrare)_.
+
 ### Equivalenze Algebriche tra Operatori Temporali
+
+Tutti gli operatori temporali visti possono essere derivati algebricamente dall'operatore `Until` (`U`):
+
+- `<> p` $\equiv \text{True } U \text{ p}$
+    
+- `[] p` $\equiv ! (<> !p)$
+    
+- `p W q` $\equiv []p \text{ } \vert{}\vert{} \text{ } (p \text{ } U \text{ } q)$
+    
+
 ### Espressioni "Rigid" (`rigid(1)` e `rigid(0)`)
+
+In FLTL non esistono le costanti esplicite `True` e `False` come simboli atomici. Le espressioni booleane costanti vengono definite come **espressioni rigide** (_rigid expressions_), cioè espressioni il cui valore non cambia con il passare del tempo / l'esecuzione delle azioni:
+
+Snippet di codice
+
+```
+assert True  = rigid(1)
+assert False = rigid(0)
+```

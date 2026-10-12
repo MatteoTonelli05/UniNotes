@@ -40,12 +40,30 @@ _viene automatizzato da strumenti di **model checker**, i quali se analizza un p
 Le proprietà invarianti vengono dimostrate per induzione sugli stati del sistema, può essere automatizzato da strumenti chiamati sistemi deduttivi.
 
 > [!important] Le proprietà invarianti sono quelle proprietà che non cambiano mai a partire dall'avvio del sistema
-### Applicazioni del Model-Checking (Hardware e Software)
-![[Pasted image 20261012165532.png|594]]
 ### Il Problema dell'Esplosione dello Spazio degli Stati (State-Space Explosion)
 
+> [!error] Dovendo analizzare tutte le casistiche c'è il problema dell'esplosione dello spazio degli stati, per cui si può utilizzare:
+> - RIDUZIONE DEGLI STATI: limitando il dominio dei valori
+> - COSTRUZIONE INCREMENTALE: esplorare solo gli stati effettivamente raggiungibili dall'esecuzione
+> - SYMBOLIC MODEL CHECKING: lavorare con insiemi/rappresentazioni simboliche di stati
+> 
 ## Specificare le Proprietà dei Sistemi
+
+> [!quote] Una **proprietà** è un attributo o un requisito del sistema che deve risultare **vero per ogni possibile traccia / scenario di esecuzione**.
 ### Proprietà di Safety e Proprietà di Liveness
+
+Le proprietà di correttezza nei sistemi concorrenti si dividono in **due grandi categorie**:
+
+##### 1. Safety Properties
+
+- Asseriscono che **"qualcosa di male non deve mai accadere"**
+- Deve valere **in ogni singolo stato** dell'LTS.
+- Spesso vengono specificate in forma negativa: definiscono uno stato sgradito/errato che non deve essere mai raggiunto.
+
+_Esempio: assenza di deadlock, Mutua Esclusione _
+##### 2. Liveness Properties
+
+-
 ### Specificare Proprietà in FSP
 
 ## Supporto Ad-Hoc in FSP

@@ -106,13 +106,34 @@ FSP offre due approcci per definire e verificare le proprietà:
 
 ![[Pasted image 20261012173035.png]]
 ## Supporto Logico Generale: Fluents e LTL
-### Introduzione alle Logiche Temporali
+
+Il supporto ad-hoc visto finora (`property` e `progress`) ha limiti di espressività. Per esprimere proprietà arbitrarie e complesse di Safety e Liveness in modo unico e flessibile, si ricorre alla **Linear Temporal Logic (LTL)** combinata con il concetto di **Fluent**.
 ### Linear Temporal Logic (LTL) e Operatori di Base
+
+> [!abstract] Le Linear Temporal Logic (LTL) servono semplicemente a scrivere formule matematiche che descrivono **come le cose cambiano lungo il tempo (lungo la traccia degli stati)**.  
+
+_In **LTL** (Linear Temporal Logic), il tempo viene visto come una linea retta di momenti/stati che si succedono (Stato 0 $\rightarrow$ Stato 1 $\rightarrow$ Stato 2 $\rightarrow$ ...)._
 #### Operatore Always (`[]` / `G`)
+
+>La formula `[] p` è vera in uno stato $s$ se e solo se la proprietà $p$ è vera nello stato $s$ e **in tutti gli stati futuri** lungo l'esecuzione.
+
+_Esempio: proprietà di Safety_
 #### Operatore Eventually (`<>` / `F`)
+
+> La formula `<> p` è vera in uno stato $s$ se e solo se la proprietà $p$ è vera in $s$ oppure **in almeno uno stato futuro** $s'$ lungo l'esecuzione.
+
+_Esempio: proprietà di Liveness_
 ### Proprietà Fondamentali e Deduzione Temporale
 
+Possiamo definire una **Dualità tra Always ed Eventually**:$$\text{NOT } (<> p) \equiv [] (\text{NOT } p)$$$$\text{NOT } ([] p) \equiv <> (\text{NOT } p)$$
+    _(Dire che "non è mai vero che $p$ accadrà" equivale a dire che "sempre non vale $p$")_.
+    
+E possiamo definire anche **Sequenze di Operatori Composti**:
+- `[] <> p` (_Always Eventually_): $p$ accade infinite volte lungo la traccia (esprime un requisito di **progresso/infinità**).
+- `<> [] p` (_Eventually Always_): Da un certo istante in poi, $p$ rimarrà vera per sempre (esprime la **stabilizzazione**).
 ## Fluents in FSP
+
+Per applicare LTL all'algebra dei processi FSP (dove le transizioni sono descritte da tracce di azioni), occorre un ponte tra le azioni del modello e le proposizioni logiche. Questo ponte è rappresentato dai **Fluents**.
 ### Definizione e Sintassi dei Fluents
 ### Families of Fluents (Indicizzati)
 ### Action Fluents

@@ -54,25 +54,54 @@ Le proprietà invarianti vengono dimostrate per induzione sugli stati del sistem
 
 Le proprietà di correttezza nei sistemi concorrenti si dividono in **due grandi categorie**:
 
-##### 1. Safety Properties
+#### 1. Safety Properties
 
 - Asseriscono che **"qualcosa di male non deve mai accadere"**
 - Deve valere **in ogni singolo stato** dell'LTS.
 - Spesso vengono specificate in forma negativa: definiscono uno stato sgradito/errato che non deve essere mai raggiunto.
 
 _Esempio: assenza di deadlock, Mutua Esclusione _
-##### 2. Liveness Properties
+#### 2. Liveness Properties
 
--
+- Asseriscono che **"qualcosa di buono prima o poi deve accadere"**
+- In ogni traccia di esecuzione, il sistema deve prima o poi raggiungere uno stato in cui la condizione è vera.
+
+_Esempio: Assenza di starvation (prima o poi un utente otterrà la risorsa richiesta)_
 ### Specificare Proprietà in FSP
+
+FSP offre due approcci per definire e verificare le proprietà:
+
+- **Supporto Ad-Hoc (Costrutti nativi specifici)**:
+    1. **Property Processes**: usati per le proprietà di _Safety_.
+    2. **Progress Properties**: usati per le proprietà di _Liveness / Progress_.
+        
+- **Supporto Logico Generale**:
+    - Uso dei **Fluents** e della **Linear Temporal Logic (FLTL)** 
 
 ## Supporto Ad-Hoc in FSP
 ### Property Processes (Safety)
-#### Funzionamento, Stato ERROR e Requisito di Determinismo
-### Progress Properties (Liveness)
-#### Sintassi `progress` e Assenza di Starvation
-#### Esempio di Violazione del Progress
 
+> [!abstract] Si definisce un normale processo FSP preceduto dalla parola chiave `property`
+
+![[Pasted image 20261012171937.png|512]]
+> [!question] Come funziona?
+> Un _property process_ definisce un processo **deterministico** che descrive esclusivamente le tracce ammesse / corrette.
+>
+>Se il sistema tenta di eseguire un'azione presente nell'alfabeto della proprietà ma **non prevista** dalla sequenza ammessa, la transizione porta automaticamente allo stato speciale **`ERROR`** (`-1`)
+
+#### Requisiti dei Property Processes
+
+1. **Trasparenza** $\quad \rightarrow \quad$ La composizione di un _property process_ **non deve alterare** il normale funzionamento del sistema; serve solo da "osservatore/guardiano".
+2. **Determinismo** $\quad \rightarrow \quad$a definizione della proprietà **non deve contenere scelte non-deterministiche** (altrimenti la verifica fallisce o diventa ambigua)
+3. **Alphabet Extension** $\quad \rightarrow \quad$ È possibile estendere esplicitamente l'alfabeto della proprietà per catturare eventicatastrofici che non devono mai verificarsi
+![[Pasted image 20261012172804.png]]
+### Progress Properties (Liveness)
+
+![[Pasted image 20261012172946.png|415]]
+
+> [!abstract] Assertisce che in **qualsiasi esecuzione infinita** del sistema, **almeno una** delle azioni presenti nel set `{a1, a2, ..., an}` verrà eseguita **infinite volte** (_infinitely often_).
+
+![[Pasted image 20261012173035.png]]
 ## Supporto Logico Generale: Fluents e LTL
 ### Introduzione alle Logiche Temporali
 ### Linear Temporal Logic (LTL) e Operatori di Base

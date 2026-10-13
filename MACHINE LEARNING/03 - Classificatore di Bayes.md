@@ -271,8 +271,10 @@ Valutando il punto $x = [57, 168]^T$ con $P(w_1) = 8/18$ e $P(w_2) = 10/18$:
 
 La regola nearest neighbor produce un partizionamento dello dello spazio, noto come **tassellazione di Voronoi** 
 ![[Pasted image 20261013152934.png]]
-
+> [!attention] Così facendo ogni elemento determina un tassello all'interno del quale i pattern saranno assegnati alla stessa classe, il problema è che basta un elemento **outlier** affinchè tutta la classificazione vada in vacca
 ### k-Nearest Neighbor (k-NN) e Confidenza
+
+
 ### Complessità Computazionale, Editing e Condensing
 
 ## Metriche di Distanza e Normalizzazione

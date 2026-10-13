@@ -232,4 +232,6 @@ tale che $L(D) = L(E)$.
 > [!question] Quali sono gli stati di accettazione?
 > Quelli che contengono almeno uno stato di accettazione nell'automa originale.
 
+---
+
 

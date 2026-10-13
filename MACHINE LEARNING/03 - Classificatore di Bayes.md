@@ -256,29 +256,6 @@ Valutando il punto $x = [57, 168]^T$ con $P(w_1) = 8/18$ e $P(w_2) = 10/18$:
   *Produce superfici decisionali morbide e sfumature continue.*
 
 ---
-## Classificatori Nearest Neighbor (NN e k-NN)
-
-> [!abstract] Data un metrica $dist(\cdot)$ nello spazio multidimensionale *(es. distanza euclidea)* il classificatore **nearest neighbor** classifica un pattern $x$ con la stessa classe dell'elemento $x'$ da esso più vicino nel training set $TS$:
-> $$dist(x,x') = min_{x_i\in{TS}}{\{dist(x,x_i)\}}$$
-
-> [!question] Come funziona?
-> Si presuppone che se $x'$ è molto vicino a $x$: $$P(w_i|x) \approx P(w_i|x')$$
-
-> [!error] Attenzione
-> Nonostante si possa **dimostrare** che la probabilità di errore $P$ del NN non è mai peggiore del doppo del minimo errore possibile $P^*$ (quello Bayesiano)
-> Nonostante ciò bisogna valutare il contesto.
-### Nearest Neighbor (1-NN) e Tassellazione di Voronoi
-
-La regola nearest neighbor produce un partizionamento dello dello spazio, noto come **tassellazione di Voronoi** 
-![[Pasted image 20261013152934.png]]
-> [!attention] Così facendo ogni elemento determina un tassello all'interno del quale i pattern saranno assegnati alla stessa classe, il problema è che basta un elemento **outlier** affinchè tutta la classificazione vada in vacca
-### k-Nearest Neighbor (k-NN) e Confidenza
-
-> [!abstract] Come ovviare alla problematica dell'1-NN
-> La regola **k-Nearest Neighbor (k-NN)** determina i $k$ elementi più vicini al pattern $𝐱$ da classificare ($k$ è un iperparametro); ogni pattern tra i $k$ vicini vota per la classe cui esso stesso appartiene; il pattern $𝐱$ viene assegnato alla classe che ha ottenuto il maggior numero di voti.
-> 
-> ![[Pasted image 20261013154508.png]]
-### Complessità Computazionale, Editing e Condensing
 
 ## Metriche di Distanza e Normalizzazione
 ### Metriche e Spazi di Variazione (Minkowski, Euclidea)

@@ -265,7 +265,8 @@ Valutando il punto $x = [57, 168]^T$ con $P(w_1) = 8/18$ e $P(w_2) = 10/18$:
 > Si presuppone che se $x'$ è molto vicino a $x$: $$P(w_i|x) \approx P(w_i|x')$$
 
 > [!error] Attenzione
-> Nonostante si possa **dimostrare** che la probabilità di errore $P$ del NN non è mai peggiore del doppo del minimo errore possibile $P^*$
+> Nonostante si possa **dimostrare** che la probabilità di errore $P$ del NN non è mai peggiore del doppo del minimo errore possibile $P^*$ (quello Bayesiano)
+> Nonostante ciò bisogna valutare la 
 ### Nearest Neighbor (1-NN) e Tassellazione di Voronoi
 ### k-Nearest Neighbor (k-NN) e Confidenza
 ### Complessità Computazionale, Editing e Condensing

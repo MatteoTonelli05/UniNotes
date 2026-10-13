@@ -266,8 +266,12 @@ Valutando il punto $x = [57, 168]^T$ con $P(w_1) = 8/18$ e $P(w_2) = 10/18$:
 
 > [!error] Attenzione
 > Nonostante si possa **dimostrare** che la probabilità di errore $P$ del NN non è mai peggiore del doppo del minimo errore possibile $P^*$ (quello Bayesiano)
-> Nonostante ciò bisogna valutare la 
+> Nonostante ciò bisogna valutare il contesto.
 ### Nearest Neighbor (1-NN) e Tassellazione di Voronoi
+
+La regola nearest neighbor produce un partizionamento dello dello spazio, noto come **tassellazione di Voronoi** 
+![[Pasted image 20261013152934.png]]
+
 ### k-Nearest Neighbor (k-NN) e Confidenza
 ### Complessità Computazionale, Editing e Condensing
 

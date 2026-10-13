@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CONCURRENT SYSTEMS/ANALYSING - module 1.3.md",
+                "file": "MACHINE LEARNING/03 - Classificatore di Bayes.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "ANALYSING - module 1.3"
+              "title": "03 - Classificatore di Bayes"
             }
           }
         ],
@@ -218,13 +218,17 @@
   },
   "active": "d573745c723e73e6",
   "lastOpenFiles": [
+    "MACHINE LEARNING/02 - Problemi di Learning.md",
+    "MACHINE LEARNING/03 - Classificatore di Bayes.md",
+    "MACHINE LEARNING/02 - Training e Valutazione Prestazioni.md",
+    "MACHINE LEARNING/02 - Tipi di Learning.md",
+    "CONCURRENT SYSTEMS/ANALYSING - module 1.3.md",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261012173035.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261012172946.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261012172804.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261012171937.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261012165532.png",
     "CONCURRENT SYSTEMS/PetriNets - module 1.2.md",
-    "CONCURRENT SYSTEMS/ANALYSING - module 1.3.md",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261012115753.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261012115223.png",
     "CONCURRENT SYSTEMS/Sintassi FSP - LTS - module 1.2.md",
@@ -234,16 +238,11 @@
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261009180705.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261009180654.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261009180019.png",
-    "CONCURRENT SYSTEMS/Allegati/Pasted image 20261009175950.png",
     "CONCURRENT SYSTEMS/OVERVIEW - module 1.1.md",
-    "MACHINE LEARNING/03 - Classificatore di Bayes.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Linguagi Regolari.md",
     "SISTEMI INFORMATIVI/Classificazione dei SI.md",
     "MACHINE LEARNING/02 - In pratica.md",
-    "MACHINE LEARNING/02 - Training e Valutazione Prestazioni.md",
-    "MACHINE LEARNING/02 - Tipi di Learning.md",
     "MACHINE LEARNING/02 - Dati e Pattern.md",
-    "MACHINE LEARNING/02 - Problemi di Learning.md",
     "SISTEMI INFORMATIVI/Introduzione.md",
     "SISTEMI INFORMATIVI/Classificazione dei SistemiInformativi.md",
     "SISTEMI INFORMATIVI/Allegati",

@@ -258,6 +258,14 @@ Valutando il punto $x = [57, 168]^T$ con $P(w_1) = 8/18$ e $P(w_2) = 10/18$:
 ---
 ## Classificatori Nearest Neighbor (NN e k-NN)
 
+> [!abstract] Data un metrica $dist(\cdot)$ nello spazio multidimensionale *(es. distanza euclidea)* il classificatore **nearest neighbor** classifica un pattern $x$ con la stessa classe dell'elemento $x'$ da esso più vicino nel training set $TS$:
+> $$dist(x,x') = min_{x_i\in{TS}}{\{dist(x,x_i)\}}$$
+
+> [!question] Come funziona?
+> Si presuppone che se $x'$ è molto vicino a $x$: $$P(w_i|x) \approx P(w_i|x')$$
+
+> [!error] Attenzione
+> Nonostante si possa **dimostrare** che la probabilità di errore $P$ del NN non è mai peggiore del doppo del minimo errore possibile $P^*$
 ### Nearest Neighbor (1-NN) e Tassellazione di Voronoi
 ### k-Nearest Neighbor (k-NN) e Confidenza
 ### Complessità Computazionale, Editing e Condensing

@@ -274,7 +274,10 @@ La regola nearest neighbor produce un partizionamento dello dello spazio, noto c
 > [!attention] Così facendo ogni elemento determina un tassello all'interno del quale i pattern saranno assegnati alla stessa classe, il problema è che basta un elemento **outlier** affinchè tutta la classificazione vada in vacca
 ### k-Nearest Neighbor (k-NN) e Confidenza
 
-
+> [!abstract] Come ovviare alla problematica dell'1-NN
+> La regola **k-Nearest Neighbor (k-NN)** determina i $k$ elementi più vicini al pattern $𝐱$ da classificare ($k$ è un iperparametro); ogni pattern tra i $k$ vicini vota per la classe cui esso stesso appartiene; il pattern $𝐱$ viene assegnato alla classe che ha ottenuto il maggior numero di voti.
+> 
+> ![[Pasted image 20261013154508.png]]
 ### Complessità Computazionale, Editing e Condensing
 
 ## Metriche di Distanza e Normalizzazione

@@ -103,7 +103,7 @@ Questa espressione è aggiunta con l'operatore di unione all'arco da $q_{i}$ a $
 ...la strategia per costruire l'***espressione regolare*** è la seguente:
 - Per ogni stato di accettazione $q$ applicare il processo di riduzione per creare un automa equivalente con espressioni regolari negli archi, eliminando tutti gli stati eccetto $q$ e lo stato iniziale $q_{0}$.
 - Se $q\neq q_{0}$ allora si ha un automa con due stati come definito in figura.
-
+![[Pasted image 20261014114915.png]]
 > [!attention] Se lo *stato iniziale* è uno ***stato di accettazione***
 >Va fatto una ulteriore riduzione, mantenendo lo stato iniziale.
 >Una volta fatto questo, rimane uno *stato unico* con un **autociclo** che come etichetta contiene l'espressione regolare dell'automa.

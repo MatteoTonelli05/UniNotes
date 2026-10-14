@@ -114,10 +114,31 @@
   "right": {
     "id": "994e93d0a7538110",
     "type": "split",
-    "children": [],
+    "children": [
+      {
+        "id": "e2a5952279951694",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c8ddd8709dcfdb69",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/2 - Espressioni Regolari.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Struttura"
+            }
+          }
+        ]
+      }
+    ],
     "direction": "horizontal",
-    "width": 285.5,
-    "collapsed": true
+    "width": 285.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -133,6 +154,8 @@
   },
   "active": "d573745c723e73e6",
   "lastOpenFiles": [
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261014110606.png",
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261014110429.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261014102848.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261014102836.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261014102825.png",
@@ -153,8 +176,6 @@
     "MACHINE LEARNING/02 - Tipi di Learning.md",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261012173035.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261012172946.png",
-    "CONCURRENT SYSTEMS/Allegati/Pasted image 20261012172804.png",
-    "CONCURRENT SYSTEMS/Allegati/Pasted image 20261012171937.png",
     "CONCURRENT SYSTEMS/PetriNets - module 1.2.md",
     "CONCURRENT SYSTEMS/Sintassi FSP - LTS - module 1.2.md",
     "Untitled.md",

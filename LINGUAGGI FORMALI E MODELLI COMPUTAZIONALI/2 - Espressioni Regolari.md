@@ -1,3 +1,5 @@
+## Espressioni Regolari
+
 > Un ***Finite Automaton*** (DFA o NFA) è un metodo per costruire una macchina che riconosce **linguaggio regolare**
 
 >[!abstract] Espressioni regolari
@@ -79,5 +81,12 @@ $$L(E^{*})=(L(E))^{*}$$
 
 ---
 
-### Equivalenza di FA e espressioni regolari
+## Equivalenza di FA e espressioni regolari
 
+> [!question] Le espressioni regolari possono formalizzare le stesse cose che formalizzano FA, DFA, NFA, $\epsilon$-NFA?
+> Si, tramite alcuni trasformazioni infatti si può passare da uno all'altro
+> 
+> ![[Pasted image 20261014110429.png]]
+
+### Da DFA a RE
+![[Pasted image 20261014110606.png]]

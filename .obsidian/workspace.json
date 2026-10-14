@@ -109,36 +109,16 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "994e93d0a7538110",
     "type": "split",
-    "children": [
-      {
-        "id": "db1539b0fdba50fa",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "e85734e147c276fe",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/3 - Linguaggi Regolari.md",
-                "followCursor": false,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-list",
-              "title": "Struttura"
-            }
-          }
-        ]
-      }
-    ],
+    "children": [],
     "direction": "horizontal",
-    "width": 285.5
+    "width": 285.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -154,6 +134,7 @@
   },
   "active": "d573745c723e73e6",
   "lastOpenFiles": [
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261014173919.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261014145822.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/1 - FA, DFA, NFA, E-NFA.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/3 - Linguaggi Regolari.md",
@@ -167,7 +148,6 @@
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261014125217.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261014125204.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261014124830.png",
-    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261014124634.png",
     "CONCURRENT SYSTEMS/ANALYSING - module 1.3.md",
     "CONCURRENT SYSTEMS/CONCURRENT SYSTEMS.md",
     "Linguaggi Regolari.md",

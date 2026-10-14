@@ -40,7 +40,8 @@
   "expandedSpaces": [
     "/",
     "//LINGUAGGI FORMALI E SISTEMI COMPUTAZIONALI",
-    "//LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI"
+    "//LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI",
+    "//CONCURRENT SYSTEMS"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Tags",

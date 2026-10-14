@@ -114,94 +114,10 @@
   "right": {
     "id": "994e93d0a7538110",
     "type": "split",
-    "children": [
-      {
-        "id": "e1a1f752b36c7714",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "1d8cf029aa15b7a4",
-            "type": "leaf",
-            "state": {
-              "type": "backlink",
-              "state": {
-                "file": "CONCURRENT SYSTEMS/ANALYSING - module 1.3.md",
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              },
-              "icon": "links-coming-in",
-              "title": "Riferimenti"
-            }
-          },
-          {
-            "id": "5bd873e1cc79db09",
-            "type": "leaf",
-            "state": {
-              "type": "outgoing-link",
-              "state": {
-                "file": "CONCURRENT SYSTEMS/ANALYSING - module 1.3.md",
-                "linksCollapsed": false,
-                "unlinkedCollapsed": true
-              },
-              "icon": "links-going-out",
-              "title": "Collegamenti in uscita"
-            }
-          },
-          {
-            "id": "c2f3f43b13e4ce7d",
-            "type": "leaf",
-            "state": {
-              "type": "tag",
-              "state": {
-                "sortOrder": "frequency",
-                "useHierarchy": true,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-tags",
-              "title": "Etichette"
-            }
-          },
-          {
-            "id": "c871cfb2bdf2f23a",
-            "type": "leaf",
-            "state": {
-              "type": "all-properties",
-              "state": {
-                "sortOrder": "frequency",
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-archive",
-              "title": "Tutte le proprietà"
-            }
-          },
-          {
-            "id": "6b30ab06796561cc",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/2 - Espressioni Regolari.md",
-                "followCursor": false,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-list",
-              "title": "Struttura"
-            }
-          }
-        ],
-        "currentTab": 4
-      }
-    ],
+    "children": [],
     "direction": "horizontal",
-    "width": 285.5
+    "width": 285.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -217,8 +133,13 @@
   },
   "active": "d573745c723e73e6",
   "lastOpenFiles": [
-    "Linguaggi Regolari.md",
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261014102848.png",
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261014102836.png",
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261014102825.png",
+    "CONCURRENT SYSTEMS/ANALYSING - module 1.3.md",
+    "CONCURRENT SYSTEMS/CONCURRENT SYSTEMS.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/2 - Espressioni Regolari.md",
+    "Linguaggi Regolari.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/1 - FA, DFA, NFA, E-NFA.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/0 - Introduzione.md",
     "MACHINE LEARNING/02 - Problemi di Learning.md",
@@ -230,16 +151,12 @@
     "MACHINE LEARNING/Allegati/Pasted image 20261013152934.png",
     "MACHINE LEARNING/02 - Training e Valutazione Prestazioni.md",
     "MACHINE LEARNING/02 - Tipi di Learning.md",
-    "CONCURRENT SYSTEMS/ANALYSING - module 1.3.md",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261012173035.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261012172946.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261012172804.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261012171937.png",
-    "CONCURRENT SYSTEMS/Allegati/Pasted image 20261012165532.png",
     "CONCURRENT SYSTEMS/PetriNets - module 1.2.md",
-    "CONCURRENT SYSTEMS/Allegati/Pasted image 20261012115753.png",
     "CONCURRENT SYSTEMS/Sintassi FSP - LTS - module 1.2.md",
-    "CONCURRENT SYSTEMS/CONCURRENT SYSTEMS.md",
     "Untitled.md",
     "CONCURRENT SYSTEMS/MODELLING - module 1.2.md",
     "CONCURRENT SYSTEMS/OVERVIEW - module 1.1.md",
@@ -259,7 +176,6 @@
     "SISTEMI INFORMATIVI",
     "LINGUAGGI FORMALI E SISTEMI COMPUTAZIONALI",
     "MACHINE LEARNING/01 - Introduzione.md",
-    "MACHINE LEARNING/Allegati/Untitled.md",
     "Tags",
     "CONCURRENT SYSTEMS/Allegati"
   ]

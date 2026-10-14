@@ -119,7 +119,9 @@ Dato un DFA, che rappresenta tutte le stringhe che **NON** terminano con `01`:
 >		- **Predecessori**: $\{ q_{1} \}$
 >		- **Successori**: $\{ q_{0},q_{1} \}$
 
-Analizziamo tutte le *combinazioni* che partono dai **predecessori** e arrivano ai **successori**, calcolando $Q_{i}+S^{*}P_{j}$.
+Analizziamo tutte le *combinazioni* che partono dai **predecessori** e arrivano ai **successori**, calcolando  
+`Arco Diretto da predecessore a successore` + 
+`espr.reg. per andare al successore passando per lo stato da eliminare`
 
 | Predecessore | Successore | Espressione                      |
 | ------------ | ---------- | -------------------------------- |
@@ -128,7 +130,7 @@ Analizziamo tutte le *combinazioni* che partono dai **predecessori** e arrivano 
 Sostituendo le espressioni regolari ottenute ed eliminando il nodo $q_{2}$ si ottiene il seguente *automa*.
 ![[Pasted image 20261014124830.png|543]]
 > [!abstract] Sono tutti nodi di accettazione
-> _guarda "Se lo *stato iniziale* è uno ***stato di accettazione***", bisogna eseguire un ulteriore riduzione_
+> Si fissa un solo stato di accettazione (uno per volta), e si calcola l'espressione regolare per finire in quello di ogni stato di accettazione
 
 Dobbiamo quindi fare un'ulteriore riduzione, ma non possiamo rimuovere $q_0$ poichè è un nodo iniziale.
 

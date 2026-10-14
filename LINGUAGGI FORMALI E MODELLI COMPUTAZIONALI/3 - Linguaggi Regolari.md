@@ -15,15 +15,26 @@
 ---
 #### Dimostrazioni delle proprietà
 
-> [!important] Unione $L \cup M$
-> **Teorema:** Per ogni coppia di linguaggi regolari $L \text{e} M, L \cup M$ è regolare.
-> **Dimostrazione:** Sia $L = L(E) \text{e} M = L(F)$. Allora $L(E + F) = L \cup M$ per definizione.
+> [!important] Chiusura rispetto all'Unione $L \cup M$
+> **TEOREMA:** Per ogni coppia di linguaggi regolari $L \text{e} M, L \cup M$ è regolare.
+> 
+> **DIMOSTRAZIONE:** Poiché L e M sono regolari, essi sono descritti da espressioni regolari, poniamo $L = L(R) \text{ e } M = L(S)$. Allora $L \cup M = L(R + S)$ per la definizione dell’operatore $+$ delle espressioni regolari.
 
-> [!important] Complemento ($\overline{L}$)
-> **Teorema:** Se $L$ e’ un linguaggio regolare su $\Sigma$, allora anche $\overline{L} = \Sigma^* \backslash L$ è regolare
-> **Prova:** Sia $L$ riconosciuto da un DFA $A = (Q, \Sigma, \delta, q_0, F)$
->Sia $B = (Q, \Sigma, \delta, q_0, Q \setminus F)$. Allora $L(B) = \overline{L}$.
-    
-> [!important] Chiusura di Kleene / Star ($L^*$)
-    
+> [!abstract] Teorema 3.3.2: Chiusura rispetto al complemento
+> Se $L$ è un linguaggio regolare sull'alfabeto $\Sigma$, allora anche $\overline{L} = \Sigma^* - L$ è regolare.
+> 
+> > [!cite] DIMOSTRAZIONE
+> > Sia $L = L(A)$ per un **DFA** $A = (Q, \Sigma, \delta, q_0, F)$.  
+> > Allora $\overline{L} = L(B)$, dove $B$ è il **DFA** $(Q, \Sigma, \delta, q_0, Q - F)$.  
+> > 
+> > In altre parole, $B$ è esattamente come $A$, ma gli stati accettati di $A$ sono diventati stati non accettanti di $B$, e viceversa.  
+> > 
+> > Allora $w \in L(B) \iff \hat{\delta}(q_0, w) \in Q - F \iff w \notin L(A)$. $\blacksquare$
+>
+> > [!warning] WARNING
+> > È importante che $\hat{\delta}(q_0, w)$ sia **sempre definito**; vale a dire che **non ci siano transizioni mancanti** in $A$.
+> >
+> > > [!danger] CRITICAL
+> > > Nel caso in cui manchino delle transizioni, alcune stringhe potrebbero non condurre ad alcuno stato di $A$ (né accettante né non accettante) e le stringhe verrebbero a mancare sia in $L(A)$ che in $L(B)$.
+
 

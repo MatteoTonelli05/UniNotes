@@ -96,3 +96,8 @@ $$L(E^{*})=(L(E))^{*}$$
 Tutti gli archi che comprendono lo stato $s$ vengono **rimossi** e per compensare, viene *introdotta* per ogni predecessore ($q_{i}$) di $s$ e ogni successore $(p_{j})$ una ***espressione regolare*** che rappresenta *tutti i percorsi* che partono da $q_{i}$, passano da $s$ e finiscono in $p_{j}$.
 - L'espressione per questi percorsi è $Q_{i}S^{*}P_{j}$
 
+Questa espressione è aggiunta con l'operatore di unione all'arco da $q_{i}$ a $p_{j}$.
+![[Pasted image 20261014112739.png|267]]
+##### 2. Una volta rimossi tutti i nodi di accettazione...
+
+... 

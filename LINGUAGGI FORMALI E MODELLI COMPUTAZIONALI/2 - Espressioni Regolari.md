@@ -166,9 +166,22 @@ $$
 > L'espressione regolare del `DFA` dato è la seguente:
 > $$ E_{fin}= E_{q0} + E_{q1} = (1+0(0+10)^{*})^{*}+(1+0(0+10)^{*}11)^{*}.0(0+10)^{*}$$
 
+_Ricorda:  la concatenazione può essere definita dal carattere `.` o da nulla (omessa)_
+
 ---
+### Da RE a $\epsilon$-NFA
+![[Pasted image 20261014143323.png]]
+#### Dimostrazione per induzione
 
-
-
-
+**Base:** Automi per 
+	a.$\qquad \epsilon$       (stringa vuota)
+	b.$\qquad\emptyset$      (insieme vuoto)
+	c.$\qquad a$      (qualsiasi simbolo/carattere)
+![[Pasted image 20261014143440.png|194]]
+**Induzione:** Automi per 
+	a.$\qquad R+S$       (addizione/oppure)
+	b.$\qquad RS$           (concatenazione)
+	c.$\qquad R^*$            (stella di Kleene)
+![[Pasted image 20261014143827.png|266]]
+> [!hint] Una volta che abbiamo i blocchi $\epsilon$-NFA per ogni operazione è facile andare a costruire l'$\epsilon$-NFA finale
 

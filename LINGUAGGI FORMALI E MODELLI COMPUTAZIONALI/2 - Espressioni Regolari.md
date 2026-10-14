@@ -108,3 +108,6 @@ Questa espressione è aggiunta con l'operatore di unione all'arco da $q_{i}$ a $
 >Va fatto una ulteriore riduzione, mantenendo lo stato iniziale.
 >Una volta fatto questo, rimane uno *stato unico* con un **autociclo** che come etichetta contiene l'espressione regolare dell'automa.
 
+---
+#### Esempio da DFA a RE
+

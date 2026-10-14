@@ -47,12 +47,37 @@ $$L(E^{*})=(L(E))^{*}$$
 
 
 > [!example] Esempio
+> Vogliamo scrivere un'espressione regolare per descrivere tutte le stringhe composte da `0` e `1` in cui i caratteri si alternano sempre (es. `0101`, `10101`, `0`, `1`, $\epsilon$, ecc.).
 > 
-Le espressioni regolari per $L=\{ w\in \{ 0,1 \}^{*} :0,1 \text{ alternati in } w\}$
-$$(01)^{*}+(10)^{*}+0(10)^{*}+1(01)^{*}$$ o *equivalentemente* $$(\epsilon + 1)(01)^{*}(\epsilon+0) $$
+>- **Prima forma (Unione di tutte le combinazioni possibili):**
+    >$$(01)^* + (10)^* + 0(10)^* + 1(01)^*$$
+>
+> 	 - $(01)^*$ gestisce le stringhe pari che iniziano con 0 (es. `0101`).
+>    
+>	- $(10)^*$ gestisce le stringhe pari che iniziano con 1 (es. `1010`).
+>  
+>	- $0(10)^*$ gestisce le stringhe dispari che iniziano con 0 (es. `01010`).
+>  
+>	- $1(01)^*$ gestisce le stringhe dispari che iniziano con 1 (es. `10101`).
+>  
+>- **Seconda forma (Più compatta):**
+  >  
+>	$$(\epsilon + 1)(01)^*(\epsilon + 0)$$
+>
+>	- $(\epsilon + 1)$: la stringa può opzionalmente iniziare con `1`.
+>  
+>	- $(01)^*$: poi c'è il blocco centrale di coppie `01` riprodotto zero o più volte.
+> 
+>	- $(\epsilon + 0)$: infine, la stringa può opzionalmente finire con `0`
 
 > [!summary] Ordine di precedenza degli operatori
+> Proprio come nelle espressioni matematiche dove la moltiplicazione ($\cdot$) ha la precedenza sull'addizione ($+$), anche nelle espressioni regolari c'è una gerarchia per evitare di dover mettere troppe parentesi:
+> 
 > 1. Chiusura ($^{*}$)
 > 2. Concatenazione ($.$)
 > 3. Più ($+$)
+
+---
+
+### Equivalenza di FA e espressioni regolari
 

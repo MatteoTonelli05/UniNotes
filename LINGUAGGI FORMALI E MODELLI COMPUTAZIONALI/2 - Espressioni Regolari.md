@@ -123,6 +123,8 @@ Analizziamo tutte le *combinazioni* che partono dai **predecessori** e arrivano 
 `Arco Diretto da predecessore a successore` + 
 `espr.reg. per andare al successore passando per lo stato da eliminare`
 
+> [!attention] Le due componenti di questa espressione non hanno la stella di Kleene, perchè si mette a tutto solo  una volta calcolata l'espressione 
+
 | Predecessore | Successore | Espressione                      |
 | ------------ | ---------- | -------------------------------- |
 | $q_{1}$      | $q_{0}$    | $\emptyset + 1\emptyset^{*}1=11$ |
@@ -137,14 +139,15 @@ Dobbiamo quindi fare un'ulteriore riduzione, ma non possiamo rimuovere $q_0$ poi
 1. Fisso $q_{1}$, lo chiamo $A_{q1}$ e calcolo l'espressione regolare del `DFA` risultante.
 ![[Pasted image 20261014125204.png|552]]
 
-2. Usando la formula descritta in precedenza:
+2. Usando la formula descritta $(R+SU^*T)^*SU^*\qquad$_(Esempio: laghetto)_:
+![[Pasted image 20261014135237.png|307]]
 $$
 E_{q1}=(1+0(0+10)^{*}11)^{*}.0(0+10)^{*}
 $$
 
 3. Ora fisso $q_{0}$ e lo chiamo $A_{q0}$
 ![[Pasted image 20261014125217.png|532]]
-4. ***Elimino*** il nodo $q_{1}$.
+4. ***Elimino*** il nodo $q_{1}$ e calcolo l'espressione regolare
 	- **Predecessori**: $\{ q_{0} \}$
 	- **Successori**: $\{ q_{0}\}$
 
@@ -154,10 +157,16 @@ $$
 ![[Pasted image 20261014125232.png|540]]$$
 E_{q0}=(1+0(0+10)^{*})^{*}
 $$
+> [!question] Che differenza c'è tra le due RE calcolate?
+> Nella prima non abbiamo eliminato $q_0$ perchè è lo stato iniziale
+> Nel secondo abbiamo eliminato $q_1$ perchè NON è uno stato iniziale
+
 
 > [!done] Espressione regolare finale
 > L'espressione regolare del `DFA` dato è la seguente:
 > $$ E_{fin}= E_{q0} + E_{q1} = (1+0(0+10)^{*})^{*}+(1+0(0+10)^{*}11)^{*}.0(0+10)^{*}$$
+
+---
 
 
 

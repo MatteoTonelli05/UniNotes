@@ -166,7 +166,7 @@ o viceversa.
 
 ##### Algoritmo
 
-> [!caution] Table-filling algorithm
+> [!caution] Table-filling algorithm (**Riempi Tabella**)
 > Possiamo ***calcolare coppie di stati distinguibili*** con il seguente metodo induttivo.
 >
 > **Base:** Se $p\in F$ e $q\notin F$ allora $p\not\equiv q$

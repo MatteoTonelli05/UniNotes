@@ -41,7 +41,8 @@
     "/",
     "//LINGUAGGI FORMALI E SISTEMI COMPUTAZIONALI",
     "//LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI",
-    "//CONCURRENT SYSTEMS"
+    "//CONCURRENT SYSTEMS",
+    "//SISTEMI INFORMATIVI"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Tags",

@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/3 - Linguaggi Regolari.md",
+                "file": "SISTEMI INFORMATIVI/Classificazione dei SI.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "3 - Linguaggi Regolari"
+              "title": "Classificazione dei SI"
             }
           }
         ],
@@ -109,8 +109,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "994e93d0a7538110",
@@ -134,12 +133,12 @@
   },
   "active": "d573745c723e73e6",
   "lastOpenFiles": [
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/3 - Linguaggi Regolari.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261014181505.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261014175629.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261014173919.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261014145822.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/1 - FA, DFA, NFA, E-NFA.md",
-    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/3 - Linguaggi Regolari.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/2 - Espressioni Regolari.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261014143827.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261014143638.png",
@@ -147,7 +146,6 @@
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261014143323.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261014135237.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261014125232.png",
-    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261014125217.png",
     "CONCURRENT SYSTEMS/ANALYSING - module 1.3.md",
     "CONCURRENT SYSTEMS/CONCURRENT SYSTEMS.md",
     "Linguaggi Regolari.md",

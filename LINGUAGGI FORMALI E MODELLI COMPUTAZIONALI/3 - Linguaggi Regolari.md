@@ -112,20 +112,141 @@ riepilogo dei modi per tradurre una rappresentazione in un’altra dello stesso 
 2. una certa stringa w appartiene al linguaggio descritto $w \in L$?
 3. due descrizioni definiscono lo stesso linguaggio?
 
-#### 1. Verificare se un Linguaggio Regolare è vuoto $L = \emptyset$
+#### Testare se un linguaggio è vuoto
 
-> [!hint] Osservazione
-> **Base:** lo stato iniziale è sicuramente raggiungibile dallo stato iniziale
+> [!cite] Teorema
+> $L(A)=\emptyset$ per **FA** $A$ ***se e solo se*** uno stato finale è raggiungibile dallo stato iniziale in $A$.
+
+Totale: $O(n^{2})$ passi.
+
+> Oppure
+
+Possiamo guardare un'[[Espressioni Regolari|espressione regolare]] $E$ di lunghezza $s$ e vedere se $L(E)=\emptyset$ in $O(s)$ passi.
+Usiamo il seguente metodo:
+- $E=F+G$ allora $L(E)$ è vuoto *se e solo se* sia $L(F)$ che $L(G)$ sono **vuoti**.
+- $E=F.G$ allora $L(E)$ è vuoto *se e solo se* $L(F)$ e $L(G)$ sono vuoti
+- $E=F^{*}$ allora $L(E)$ non è mai vuoto perché $\epsilon \in L(E)$
+- $E=\epsilon$ allora $L(E)$ non è vuoto
+- $E=a$ allora $L(E)$ non è vuoto
+- $E=\emptyset$ allora $L(E)$ è vuoto
+
+### Controllare l'appartenenza
+
+> [!abstract] Per DFA
+> Per controllare se $w\in L(A)$ per `DFA` $A$, simuliamo $A$ su $w$. Se $|w|=n$ questo prende $O(n)$ passi.
+
+> [!caution] Per NFA
+> Se $A$ è un `NFA` e ha $s$ stati, simulare $A$ su $w$ prende $O(ns^{2})$ passi.
+
+Lo stesso vale per $\epsilon$-NFA calcolando preventivamente le $\text{ECLOSE}$ di tutti gli stati.
+
+> [!todo] Per espressione regolare
+> Se $L=L(E)$ per l'espressione regolare $E$ di lunghezza $s$ prima convertiamo $E$ in un $\epsilon$-NFA con $2s$ stati, poi simuliamo $w$ su questo automa in $O(ns^{2})$ 
+
+### Equivalenza e Minimizzazione di Automi
+
+#### Equivalenza degli Stati
+
+> [!tldr] Idea
+> Due stati sono ***equivalenti*** se e solo se per ogni stringa dell'alfabeto, partendo dai due stati *si raggiunge uno stato di accettazione*. 
+
+Sia $A=(Q,\Sigma,\delta,q_{0},F)$ un DFA e $\{ p,q \}\subseteq Q$. 
+Definiamo:
+$$p\equiv q \iff \forall w\in\Sigma^{*}:\hat{\delta}(p,w)\in F \iff \hat{\delta}(q,w)\in F$$
+
+> [!summary] Se $p\equiv q$ diciamo che $p$ e $q$ sono ***equivalenti***
+
+> [!fail] Se $p\not\equiv q$ diciamo che $p$ e $q$ sono ***distinguibili***
+
+In altre parole $p$ e $q$ sono **distinguibili** *se e solo se*
+$$
+\exists w:\hat{\delta}(p,w)\in F \text{ e } \hat{\delta}(q,w)\notin F
+$$
+o viceversa.
+
+##### Algoritmo
+
+> [!caution] Table-filling algorithm
+> Possiamo ***calcolare coppie di stati distinguibili*** con il seguente metodo induttivo.
 >
-> **Induzione:** se lo stato $q$ è raggiungibile dallo stato iniziale e c'è un arco da $q$ a $p$ con etichetta arbitraria, anche $p$ è raggiungibile
+> **Base:** Se $p\in F$ e $q\notin F$ allora $p\not\equiv q$
+>
+> **Induzione:** Se $\exists a\in \Sigma :\delta(p,a) \not\equiv \delta(q,a)$ allora $p\not\equiv q$.
 
-##### Prima Soluzione
+##### Esempio
 
-Utilizzando il passo induttivo appena descritto si determina l’insieme degli stati raggiungibili. Se in questo insieme c’è uno stato accettante, la risposta è “no” (il linguaggio dell’automa non è vuoto), altrimenti è “si”
+![[Pasted image 20261014181505.png]]
+Inizio contrassegnando come distinte tutte le coppie di stati ***accettazione***/***non accettazione*** (*passo base*).
 
-##### Seconda Soluzione
+Successivamente scorro tutte le coppie di nodi:
+- Controllo gli archi uscenti dalla coppia con lo stesso simbolo e controllo la coppia di stati che raggiungono.
+- Se la coppia di stati è già stata segnata, allora segno nella tabella anche quella corrente.
 
-Si osserve l'espressione regolare $E$ di lunghezza $n$
 
-> [!hint] Osservazione
-> 
+> [!done] Fine dell'algoritmo
+> L'algoritmo finisce quando passo tutte le coppie di stati ancora non segnati, ***senza modificare la tabella***.
+
+La tabella finale dell'esempio è la seguente:
+![[attachements/TableFillingAlgo.png]]
+
+> Stati equivalenti:
+- $(A,E)$
+- $(B,H)$
+- $(D,F)$
+
+> [!cite] Teorema
+> Se $p$ e $q$ **non sono distinti** dall'algoritmo, allora $p \equiv q$
+
+###### Testare l'equivalenza di linguaggi regolari
+> Il ***table-filling algorithm*** da una procedura facile per testare se due linguaggi regolari sono equivalenti.
+
+> [!hint] Test
+> Siano $L$ e $M$ ***linguaggi regolari*** descritti in qualche forma.
+
+Per testare se $L=M$
+1. Converto sia $L$ che $M$ in `DFA`
+2. Immaginiamo il `DFA` che è l'unione dei due `DFA`
+3. Se l'algoritmo dice che i due stati iniziali sono ***distinguibili*** allora $L\neq M$ altrimenti $L=M$
+
+> Esempio di `DFA` equivalenti
+
+![[attachements/EquivalentDFA.png]]
+
+![[attachements/EquivalentDFATable.png]]
+
+#### Minimizzazione di DFA
+> [!cite] Algoritmo
+> Per minimizzare un `DFA` mettiamo insieme tutti gli ***stati equivalenti*** considerando poi come stati le ***classi di equivalenza*** $p/_{\equiv}$ al posto di $p$ ed eliminando eventuali stati non raggiungibili dallo stato iniziale.
+
+> Esempio
+
+![[attachements/EquivalenceExample.png]]
+
+Dal seguente `DFA`, dopo aver applicato il *table-filling algorithm*, possiamo trovare le seguenti classi di equivalenza:
+$$
+\{ \{ A,E \},\{ B,H \}, \{ C \}, \{ D,F \}, \{ G \} \}
+$$
+
+> [!nota]
+> $p /_{\equiv}$ è classe di equivalenza della [[../Algebra e Geometria/Basi dell'algebra/1 - Introduzione#Relazione di Equivalenza|relazione di equivalenza]], cioè una relazione *riflessiva*, *simmetrica* e *transitiva*.
+
+Per minimizzare un `DFA` $A=(Q,\Sigma,\delta,q_{0},F)$ dove assumiamo di aver già eliminato tutti gli stati non raggiungibili dallo stato iniziale.
+
+Costruiamo ora un `DFA` $B=(Q /_{\equiv},\Sigma /_{\equiv},\gamma /_{\equiv},q_{0} /_{\equiv},F/_{\equiv})$ dove:
+- $\gamma(p/_{\equiv}, a)=\delta(p,a)/_{\equiv}$
+- $Q/_{\equiv}$ è l'insieme delle classi di equivalenza degli stati di $Q$
+- $F/_{\equiv}$ è l'insieme di quelle degli **stati accettanti**.
+
+Affinché $B$ sia ben definito, dobbiamo mostrare che:
+- Se
+$$
+p\equiv q
+$$
+allora
+$$
+\delta(p,a) \equiv \delta(q,a)
+$$
+Ma se $\delta(p,a) \not\equiv \delta(q,a)$ allora l'algoritmo concluderebbe $p\not\equiv q$, quindi $B$ è ***ben definito***.
+
+Di seguito l'automa equivalente a quello in esempio:
+![[attachements/EquivalentAutomata.png]]

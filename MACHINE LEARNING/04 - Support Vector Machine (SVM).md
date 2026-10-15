@@ -1,5 +1,7 @@
 ## Introduzione e Principi Base
 
+> [!abstract] **SVM** nasce come classificatore binario (2 classi), estendibile a più classi.
+
 
 ### Classification Boundaries
 

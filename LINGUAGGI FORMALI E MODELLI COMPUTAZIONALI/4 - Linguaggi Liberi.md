@@ -63,7 +63,7 @@ In particolare possiamo definire due tipi di scelta della variabile da derivare:
 1. **Derivazione a destra ($\mathop{\Rightarrow}\limits_{rm}$):** Ad ogni passo si sostituisce **sempre la variabile più a destra**.
 2. **Derivazione a sinistra ($\mathop{\Rightarrow}\limits_{lm}$):** Ad ogni passo si sostituisce **sempre la variabile più a sinistra**.
 
-> Rispettivamente **RightMost e LeftMost Derivation**, si possono usare entrambe ma in quel caso non ci sarebbe nessuna regola di scelta
+> Rispettivamente **RightMost e LeftMost Derivation**, non importa quale si usi dato che sono equivalenti, entrambe le scelte possono portare allo stesso insieme di stringhe.
 
 ![[Pasted image 20261015111809.png|565]]
 

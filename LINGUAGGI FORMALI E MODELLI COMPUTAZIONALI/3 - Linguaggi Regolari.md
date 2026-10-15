@@ -174,7 +174,7 @@ o viceversa.
 > **Induzione:** Se $\exists a\in \Sigma :\delta(p,a) \not\equiv \delta(q,a)$ allora $p\not\equiv q$.
 
 ##### Esempio
-![[Pasted image 20261014181505.png|581]]
+![[Pasted image 20261014181505.png|648]]
 Inizio contrassegnando come distinte tutte le coppie di stati ***accettazione***/***non accettazione*** (*passo base*).
 
 Successivamente scorro tutte le coppie di nodi:

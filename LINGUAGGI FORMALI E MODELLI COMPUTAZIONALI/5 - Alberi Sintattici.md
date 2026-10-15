@@ -73,3 +73,6 @@ Se ogni stringa generata dal linguaggio $L(G)$ ha un **unico** albero sintattico
 > > $E \rightarrow E - T \mid T$ ha la ricorsione a sinistra
 > > $E \rightarrow T \mid E - T$ ha la ricorsione a destra
 
+### Ambiguità Inerente
+
+Un CFL L e’ inerentemente ambiguo se tutte le grammatiche per L sono ambigue.

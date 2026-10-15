@@ -94,7 +94,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "994e93d0a7538110",
@@ -118,6 +119,7 @@
   },
   "active": "d573745c723e73e6",
   "lastOpenFiles": [
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261015124008.png",
     "MACHINE LEARNING/01 - Introduzione.md",
     "MACHINE LEARNING/02 - In pratica.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/5 - Alberi Sintattici.md",
@@ -154,7 +156,6 @@
     "SISTEMI INFORMATIVI/Introduzione.md",
     "SISTEMI INFORMATIVI/Classificazione dei SistemiInformativi.md",
     "SISTEMI INFORMATIVI/Allegati",
-    "SISTEMI INFORMATIVI/SISTEMI INFORMATIVI.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI",
     "LINGUAGGI FORMALI E SISTEMI COMPUTAZIONALI/Allegati",

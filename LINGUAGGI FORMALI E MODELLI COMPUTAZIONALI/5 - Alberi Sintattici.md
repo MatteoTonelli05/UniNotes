@@ -34,7 +34,20 @@ Questo teorema stabilisce che i tre seguenti concetti sono **perfettamente equiv
 3. Esiste un **albero sintattico** con radice $A$ e prodotto $w$.
 #### Esempio per dimostrare il Teorema
 
-> [!hint] _Strategia di dimostrazione_: Cerchiamo di passare da uno stato all'altro.
-![[Pasted image 20261015120936.png|206]]
+##### Costruiamo la derivata a sinistra
 
-##### 1. Costruiamo la derivata a sinistra
+Andiamo a de-costruire l'albero suddividendolo in sottoalberi
+![[Pasted image 20261015124008.png]]
+
+---
+
+### Ambiguità in Grammatiche e Linguaggi
+
+Consideriamo la grammatica: 
+1. $E \rightarrow I$ 
+2. $E\rightarrow E+E$
+3. $E\rightarrow E*E$
+4. $E\rightarrow(E)$
+5. $. . .$
+
+> [!]

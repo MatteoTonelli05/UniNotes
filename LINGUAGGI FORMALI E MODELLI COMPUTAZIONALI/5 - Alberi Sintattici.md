@@ -67,5 +67,5 @@ Se ogni stringa generata dal linguaggio $L(G)$ ha un **unico** albero sintattico
 > [!warning] Ci sono ancora ambiguità su sequenze dello stesso operatore 
 > $a+b+c$ va letto come $(a+b)+c$ o $a+(b+c)$?
 >
->
+> La soluzione unica è forzare la letturra $(a+b)+c$ (associativa a sinistra) 
 

@@ -12,9 +12,13 @@
 
 ### Esempio informale di CFG
 
-Consideriamo $L_{pal}=\{w\in\Sigma^*:w=w^R\} \quad$ _il linguaggio delle stringhe palindrome_
+Consideriamo $L_{pal}=\{w\in\Sigma^*:w=w^R\}$ su un alfabeto binario $\{0,1\}$ 
+_(il linguaggio delle stringhe palindrome)_
 
-> [!hint] Definiamo $L_{pal} induttivamente$
+> [!question] Perchè NON è regolare?
+> Un automa a stati finiti ha memoria finita ($n$ stati). Se proviamo a leggere la prima metà della stringa per verificare la seconda metà speculare, l'automa è costretto a entrare in un ciclo (loop) perdendo il conteggio esatto dei simboli scritti.
+
+> [!hint] Definiamo $L_{pal}$ induttivamente
 > **Base:** $\epsilon, 0, 1$ sono palindromi
 > **Induzione:** se $w$ è una palindroma, anche $0w0$ e $1w1$ lo sono
 
@@ -33,3 +37,34 @@ Una CFG è un **quadrubla** $$G = (V,T,P,S)$$dove:
 > > [!attention] ATTENZIONE: le frecce sono cone le transizioni $\delta$
 
 ---
+### Concetto di Derivazione ($\Rightarrow$)
+
+> [!abstract] **Derivare** significa sostituire una **variabile** $A$ presente in una stringa con il corpo di una delle sue regole (Esempio: $A \rightarrow\gamma$) $$\alpha A \beta \Rightarrow \alpha \gamma \beta$$
+> Definiamo il **contesto** come ciò che circonda la variabile derivata
+> - **Contesto** a sinistra ($\alpha$)
+> - **Contesto** a destra ($\beta$)
+
+> [!example] Ad esempio per derivare $a*(a+b00)$ da $E$...
+>![[Pasted image 20261015105351.png]]
+>
+>Seguiamo le **derivazioni**:
+>
+>![[Pasted image 20261015105411.png]]
+>> _in pratica ad ogni passo si sceglie una variabile e la si sostituisce seguendo le regole della grammatica._
+>
+> Si può scrivere anche $E \overset{*}{\Rightarrow} a*(a+b00)$ il che significa che da $E$ con 0,1 o più passi si possa arrivare a $a*(a+b00)$, dimostriamo così il linguaggio della grammatica
+
+---
+> [!question] Perchè si chiama **Libera dal Contesto**?
+> Perchè di fatti non interessa del contesto ma solo della variabile di partenza
+
+In particolare possiamo definire due tipi di scelta della variabile da derivare:
+
+1. **Derivazione a destra ($\mathop{\Rightarrow}\limits_{rm}$):** Ad ogni passo si sostituisce **sempre la variabile più a destra**.
+2. **Derivazione a sinistra ($\mathop{\Rightarrow}\limits_{lm}$):** Ad ogni passo si sostituisce **sempre la variabile più a sinistra**.
+
+> Rispettivamente **RightMost e LeftMost Derivation**, si possono usare entrambe ma in quel caso non ci sarebbe nessuna regola di scelta
+
+![[Pasted image 20261015111809.png|565]]
+
+

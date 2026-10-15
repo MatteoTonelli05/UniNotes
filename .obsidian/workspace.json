@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SISTEMI INFORMATIVI/Classificazione dei SI.md",
+                "file": "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/4 - Linguaggi Liberi.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Classificazione dei SI"
+              "title": "4 - Linguaggi Liberi"
             }
           }
         ],
@@ -109,7 +109,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "994e93d0a7538110",
@@ -134,6 +135,8 @@
   "active": "d573745c723e73e6",
   "lastOpenFiles": [
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/3 - Linguaggi Regolari.md",
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/4 - Linguaggi Liberi.md",
+    "SISTEMI INFORMATIVI/Classificazione dei SI.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261014181505.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261014175629.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261014173919.png",
@@ -160,7 +163,6 @@
     "Untitled.md",
     "CONCURRENT SYSTEMS/MODELLING - module 1.2.md",
     "CONCURRENT SYSTEMS/OVERVIEW - module 1.1.md",
-    "SISTEMI INFORMATIVI/Classificazione dei SI.md",
     "MACHINE LEARNING/02 - In pratica.md",
     "MACHINE LEARNING/02 - Dati e Pattern.md",
     "SISTEMI INFORMATIVI/Introduzione.md",

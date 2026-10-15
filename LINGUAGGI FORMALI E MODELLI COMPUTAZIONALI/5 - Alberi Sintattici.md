@@ -43,11 +43,29 @@ Andiamo a de-costruire l'albero suddividendolo in sottoalberi
 
 ### Ambiguità in Grammatiche e Linguaggi
 
-Consideriamo la grammatica: 
-1. $E \rightarrow I$ 
-2. $E\rightarrow E+E$
-3. $E\rightarrow E*E$
-4. $E\rightarrow(E)$
-5. $. . .$
+Consideriamo la grammatica: $$E \rightarrow I \mid E+E \mid E*E \mid (E)$$
+>[!error] Per la stringa $E+E*E$, possiamo trovare due derivazioni diverse che producono **due alberi sintattici distinti**
+>1.  $E + (E * E)$
+>2. $(E+E)*E$
 
-> [!]
+#### Definizione Formale di Grammatica Ambigua
+
+> [!quote] Definizione non formale
+> Ciò che rende dannosa una grammatica è unicamente l'esistenza di **più alberi sintattici distinti** per la stessa stringa.
+
+Una CFG $G = (V, T, P, S)$ è **ambigua** se esiste almeno una stringa $w \in T^*$ che ammette **due o più alberi sintattici distinti**.
+
+Se ogni stringa generata dal linguaggio $L(G)$ ha un **unico** albero sintattico, la grammatica è detta **non-ambigua**.
+
+> [!question] Come rimuovere le ambiguità?
+> Per le espressioni matematiche, risolviamo l'ambiguità introducendo una **gerarchia di variabili**:
+> 1. **$E$ (Expressions):** Somma di Termini ($+$).
+> 2. **$T$ (Terms):** Moltiplicazione di Fattori ($*$).
+> 3. **$F$ (Factors):** Identificatori $I$ o espressioni tra parentesi $(E)$
+
+
+> [!warning] Ci sono ancora ambiguità su sequenze dello stesso operatore 
+> $a+b+c$ va letto come $(a+b)+c$ o $a+(b+c)$?
+>
+>
+

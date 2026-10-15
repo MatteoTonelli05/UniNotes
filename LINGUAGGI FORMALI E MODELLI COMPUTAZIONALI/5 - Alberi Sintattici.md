@@ -67,5 +67,9 @@ Se ogni stringa generata dal linguaggio $L(G)$ ha un **unico** albero sintattico
 > [!warning] Ci sono ancora ambiguità su sequenze dello stesso operatore 
 > $a+b+c$ va letto come $(a+b)+c$ o $a+(b+c)$?
 >
-> La soluzione unica è forzare la letturra $(a+b)+c$ (associativa a sinistra) 
+> La soluzione unica è forzare la letturra $(a+b)+c$ (associativa a sinistra),
+> per fare ciò bisogna imporre la ricorsione a **SINISTRA**
+> > [!hint]
+> > $E \rightarrow E - T \mid T$ ha la ricorsione a sinistra
+> > $E \rightarrow T \mid E - T$ ha la ricorsione a destra
 

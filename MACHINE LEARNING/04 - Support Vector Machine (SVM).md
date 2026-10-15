@@ -2,6 +2,11 @@
 
 > [!abstract] **SVM** nasce come classificatore binario (2 classi), estendibile a più classi.
 
+> [!hint] Date **due classi** di pattern multidimensionali linearmente separabili, tra tutti i possibili **iperpiani** di separazione, SVM determina quello in grado di separare le classi con il maggior margine possibili
+> ![[Pasted image 20261015163458.png]]
+>
+
+
 
 ### Classification Boundaries
 

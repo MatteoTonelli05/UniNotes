@@ -36,11 +36,11 @@ Anziché salvare **tutti** i punti del dataset e calcolare centinaia di distanze
     
 - **Condensing:** Deriva nuovi punti sintetici (i prototipi) che non esistevano originariamente nel Training Set.
 
-**2  Soluzione. Strutture Spaziali (es. $k$-d tree, Ball tree)**
+##### **2  Soluzione. Strutture Spaziali (es. $k$-d tree, Ball tree)**
 
 Sono strutture dati ad albero pensate per indicizzare i punti nello spazio ed evitare di calcolare la distanza con _tutti_ gli elementi del dataset. Dividono ricorsivamente lo spazio in regioni più piccole, consentendo di scartare intere sezioni lontane dal punto da classificare. Questo riduce la complessità computazionale da un confronto lineare $O(N)$ a uno logaritmico $O(\log N)$ in fase di ricerca dei vicini. Diventano tuttavia meno efficienti all'aumentare delle dimensioni delle caratteristiche (_maledizione della dimensionalità_).
 
-**3  Soluzione. Libreria FLANN (Fast Library for Approximate Nearest Neighbors)**
+##### **3  Soluzione. Libreria FLANN 
 
 È una libreria open-source scritta in C++ che velocizza la ricerca trovando i vicini _approssimati_ anziché quelli esatti. Integra diversi algoritmi (come foreste di $k$-d tree casuali e k-means gerarchici) e seleziona automaticamente quello migliore e i suoi parametri in base al dataset. In cambio di un'infima perdita di accuratezza, offre un'accelerazione di diversi ordini di grandezza nei tempi di calcolo. È fondamentale per applicazioni in tempo reale e con dataset enormi, come nella computer vision.
 

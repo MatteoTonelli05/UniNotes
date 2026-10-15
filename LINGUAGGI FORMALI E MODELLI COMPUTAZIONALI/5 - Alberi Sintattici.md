@@ -75,4 +75,14 @@ Se ogni stringa generata dal linguaggio $L(G)$ ha un **unico** albero sintattico
 
 ### Ambiguità Inerente
 
-Un CFL L e’ inerentemente ambiguo se tutte le grammatiche per L sono ambigue.
+Un CFL $L$ è inerentemente ambiguo se tutte le grammatiche per $L$ sono ambigue.
+
+> [!example]
+> $$L = \{a^nb^nc^md^m:n\ge1,m\ge1\}\cup\{a^nb^mc^md^n:n\ge1,m\ge1\}$$
+> Una grammatica per $L$ è:
+> ![[Pasted image 20261015150944.png]]
+> ![[Pasted image 20261015151011.png]]
+> ![[Pasted image 20261015151021.png]]
+
+---
+

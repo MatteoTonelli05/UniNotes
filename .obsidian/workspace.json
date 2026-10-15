@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/5 - Alberi Sintattici.md",
+                "file": "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/3 - Linguaggi Regolari.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "5 - Alberi Sintattici"
+              "title": "3 - Linguaggi Regolari"
             }
           }
         ]
@@ -119,24 +119,25 @@
   },
   "active": "d573745c723e73e6",
   "lastOpenFiles": [
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261015151213.png",
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261015151206.png",
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261015151157.png",
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261015151150.png",
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261015151141.png",
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/4 - Linguaggi Liberi.md",
+    "MACHINE LEARNING/02 - Tipi di Learning.md",
+    "SISTEMI INFORMATIVI/Classificazione dei SI.md",
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/5 - Alberi Sintattici.md",
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261015151021.png",
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261015151011.png",
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261015150944.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261015124008.png",
     "MACHINE LEARNING/01 - Introduzione.md",
     "MACHINE LEARNING/02 - In pratica.md",
-    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/5 - Alberi Sintattici.md",
-    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/4 - Linguaggi Liberi.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261015120936.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261015115609.png",
-    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261015115354.png",
-    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261015115022.png",
     "CONCURRENT SYSTEMS/ANALYSING - module 1.3.md",
-    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261015114459.png",
-    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261015114334.png",
-    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261015111809.png",
-    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261015105411.png",
-    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261015105351.png",
-    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261015105255.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/3 - Linguaggi Regolari.md",
-    "SISTEMI INFORMATIVI/Classificazione dei SI.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/1 - FA, DFA, NFA, E-NFA.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/2 - Espressioni Regolari.md",
     "CONCURRENT SYSTEMS/CONCURRENT SYSTEMS.md",
@@ -146,7 +147,6 @@
     "MACHINE LEARNING/03 - Classificatore NN.md",
     "MACHINE LEARNING/03 - Classificatore di Bayes.md",
     "MACHINE LEARNING/02 - Training e Valutazione Prestazioni.md",
-    "MACHINE LEARNING/02 - Tipi di Learning.md",
     "CONCURRENT SYSTEMS/PetriNets - module 1.2.md",
     "CONCURRENT SYSTEMS/Sintassi FSP - LTS - module 1.2.md",
     "Untitled.md",

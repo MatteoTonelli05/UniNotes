@@ -174,8 +174,7 @@ o viceversa.
 > **Induzione:** Se $\exists a\in \Sigma :\delta(p,a) \not\equiv \delta(q,a)$ allora $p\not\equiv q$.
 
 ##### Esempio
-
-![[Pasted image 20261014181505.png]]
+![[Pasted image 20261014181505.png|581]]
 Inizio contrassegnando come distinte tutte le coppie di stati ***accettazione***/***non accettazione*** (*passo base*).
 
 Successivamente scorro tutte le coppie di nodi:
@@ -187,7 +186,7 @@ Successivamente scorro tutte le coppie di nodi:
 > L'algoritmo finisce quando passo tutte le coppie di stati ancora non segnati, ***senza modificare la tabella***.
 
 La tabella finale dell'esempio è la seguente:
-![[attachements/TableFillingAlgo.png]]
+![[Pasted image 20261015151141.png|481]]
 
 > Stati equivalenti:
 - $(A,E)$
@@ -210,9 +209,9 @@ Per testare se $L=M$
 
 > Esempio di `DFA` equivalenti
 
-![[attachements/EquivalentDFA.png]]
+![[Pasted image 20261015151150.png|568]]
 
-![[attachements/EquivalentDFATable.png]]
+![[Pasted image 20261015151157.png|578]]
 
 #### Minimizzazione di DFA
 > [!cite] Algoritmo
@@ -220,7 +219,7 @@ Per testare se $L=M$
 
 > Esempio
 
-![[attachements/EquivalenceExample.png]]
+![[Pasted image 20261015151206.png]]
 
 Dal seguente `DFA`, dopo aver applicato il *table-filling algorithm*, possiamo trovare le seguenti classi di equivalenza:
 $$
@@ -249,4 +248,4 @@ $$
 Ma se $\delta(p,a) \not\equiv \delta(q,a)$ allora l'algoritmo concluderebbe $p\not\equiv q$, quindi $B$ è ***ben definito***.
 
 Di seguito l'automa equivalente a quello in esempio:
-![[attachements/EquivalentAutomata.png]]
+![[Pasted image 20261015151213.png]]

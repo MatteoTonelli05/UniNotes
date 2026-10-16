@@ -13,7 +13,22 @@
 
 ## SVM Lineare: Pattern Separabili
 
-Date due classi di pattern (**lineramente separabili**)
+### Definizione del problema
+
+> [!abstract] Definizione del problema
+> Date due classi di pattern (**lineramente separabili**) e un training set $TS$ contenente $m$ campioni $(x_1,y_1)...(x_n,y_n)$, dove $x_i\in R^d$ sono i pattern multidimensionali e $y_i\in \{+1,-1\}$ le etichette delle due classi.
+>
+>Un generico iperpiano di separazione è descritto dalla funzione $$D(x) = w \cdot x + b$$
+>Dove:
+>- $w$ è il vettore normale (perpendicolare) all'iperpiano.
+>- $\frac{b}{\Vert{}w\Vert{}}$ rappresenta la distanza dell'iperpiano dall'origine.
+>
+> ![[Pasted image 20261016131748.png|311]]
+
+Definiamo così la distanza $r$ di un generico punto $x$ dall'iperpiano $$r = \frac{D(x)}{\Vert{}w\Vert{}}$$
+Per garantire che i punti delle due classi ($y_i = +1$ e $y_i = -1$) siano separati correttamente e stiano all'esterno del margine (con distanza minima di $1/\Vert{}w\Vert{}$), si impongono le condizioni:
+- $w \cdot x_i + b \ge +1$ se $y_i = +1$
+- $w \cdot x_i + b \le -1$ se $y_i = -1$
 
 ### Iperpiano di Separazione e Parametri
 

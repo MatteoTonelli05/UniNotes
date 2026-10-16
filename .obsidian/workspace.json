@@ -80,7 +80,7 @@
             }
           },
           {
-            "id": "60f2bb95d57959e9",
+            "id": "224162034fa1f083",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
@@ -100,7 +100,91 @@
   "right": {
     "id": "994e93d0a7538110",
     "type": "split",
-    "children": [],
+    "children": [
+      {
+        "id": "395055fcee54eb2d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6b392247419ca7e4",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "MACHINE LEARNING/04 - Support Vector Machine (SVM).md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Riferimenti"
+            }
+          },
+          {
+            "id": "93c60fafa0dc2e8e",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "MACHINE LEARNING/04 - Support Vector Machine (SVM).md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Collegamenti in uscita"
+            }
+          },
+          {
+            "id": "4d783c465e643aca",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Etichette"
+            }
+          },
+          {
+            "id": "8e94a7fcac5917b7",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Tutte le proprietà"
+            }
+          },
+          {
+            "id": "2e44294daf54eb87",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "MACHINE LEARNING/04 - Support Vector Machine (SVM).md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Struttura"
+            }
+          }
+        ]
+      }
+    ],
     "direction": "horizontal",
     "width": 285.5,
     "collapsed": true

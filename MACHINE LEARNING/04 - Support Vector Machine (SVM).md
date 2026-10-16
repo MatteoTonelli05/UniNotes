@@ -6,17 +6,14 @@
 > ![[Pasted image 20261015163458.png]]
 >
 
-
-
-### Classification Boundaries
-
-### Optimal Hyperplane
-
-### Massimizzazione del Margine e Generalizzazione
-
-### Ottimizzazione Convessa
+> [!question] Perchè massimizzare il margine?
+> Un margine più ampio garantisce che anche i punti futuri (del _test set_) vicini ai confini vengano classificati correttamente con maggiore stabilità.
+>
+> Il problema si formula come un'**ottimizzazione convessa** (_convex optimization_), il che garantisce l'esistenza di un **unico minimo globale**
 
 ## SVM Lineare: Pattern Separabili
+
+Date due classi di pattern (**lineramente separabili**)
 
 ### Iperpiano di Separazione e Parametri
 

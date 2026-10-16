@@ -182,32 +182,21 @@ LIGHT -> POWER
 ```
 
 _(Esprime la condizione: "Se la luce è accesa (`LIGHT` è `True`), allora la corrente deve essere attiva (`POWER` è `True`)"_).
-
----
----
----
----
-
 ### Espressioni `forall` ed `exists`
 
 Per valutare espressioni booleane su insiemi di fluents indicizzati si utilizzano i quantificatori:
 
 - **`forall` (AND generalizzato)**:
-    
-    Snippet di codice
-    
-    ```
-    forall [i:1..2] LIGHT[i]   // Equivale a: LIGHT[1] && LIGHT[2]
-    ```
-    
+
+``` FSP
+  forall [i:1..2] LIGHT[i]   // Equivale a: LIGHT[1] && LIGHT[2]
+```
 
 - **`exists` (OR generalizzato)**:
     
-    Snippet di codice
-    
-    ```
-    exists [i:1..2] LIGHT[i]   // Equivale a: LIGHT[1] || LIGHT[2]
-    ````
+``` FSP
+exists [i:1..2] LIGHT[i]   // Equivale a: LIGHT[1] || LIGHT[2]
+````
 
 ## Model Checking in FSP tramite FLTL (Fluent LTL)
 
@@ -215,9 +204,7 @@ Per valutare espressioni booleane su insiemi di fluents indicizzati si utilizzan
 
 Consideriamo un sistema con due processi (`USER a` e `USER b`) che eseguono codice non critico (`ncs`) e vogliono accedere a una risorsa/sezione critica condivisa (`cs`).
 
-Snippet di codice
-
-```
+``` FSP
 USER    = (ncs -> enterCS -> cs -> exitCS -> USER).
 ||USERS = (a:USER || b:USER).
 ```

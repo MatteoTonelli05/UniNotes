@@ -216,36 +216,26 @@ Se eseguiamo questo sistema senza alcun controllo, la proprietà di **Mutua Escl
 Per verificare formalmente la violazione con il Model Checker dell'LTSA, procediamo in due passi:
 
 1. **Definiamo gli stati astratti d'interesse mediante i Fluents**:
-    
-    Snippet di codice
-    
-    ```
-    fluent USER_A_IN_CS = <a.enterCS, a.exitCS>
-    fluent USER_B_IN_CS = <b.enterCS, b.exitCS>
-    ```
-    
+
+``` FSP
+fluent USER_A_IN_CS = <a.enterCS, a.exitCS>
+fluent USER_B_IN_CS = <b.enterCS, b.exitCS>
+```
 
 - `USER_A_IN_CS` è `True` tra l'azione `a.enterCS` e `a.exitCS`.
-    
 - `USER_B_IN_CS` è `True` tra l'azione `b.enterCS` e `b.exitCS`.
-    
 
 2. **Scriviamo la proprietà di Safety in FLTL usando l'operatore Always `[]`**:
-    
-    Snippet di codice
-    
-    ```
-    assert MUTEX = [] !(USER_A_IN_CS && USER_B_IN_CS)
-    ```
-    
 
+```
+assert MUTEX = [] !(USER_A_IN_CS && USER_B_IN_CS)
+```
+    
 _(Significa: "In ogni singolo stato, non deve MAI accadere che sia A che B siano contemporaneamente nella sezione critica")_.
 
 ### Individuazione delle Violazioni con LTSA
 
 Eseguendo la verifica (_Check LTL property_) all'interno dell'LTSA, il tool esplora lo spazio degli stati e **individua la violazione**, mostrando la traccia esatta del controesempio (_counterexample_):
-
-Plaintext
 
 ```
 Trace to property violation in MUTEX:
@@ -259,9 +249,7 @@ Trace to property violation in MUTEX:
 
 Per garantire la mutua esclusione, introduciamo un processo condiviso `LOCK` che funge da semaforo/mutua esclusione e obbliga i processi ad acquisire il lock prima di entrare in `cs` e a rilasciarlo all'uscita:
 
-Snippet di codice
-
-```
+``` FSP
 USER = (ncs -> acquire -> enterCS -> cs -> exitCS -> release -> USER).
 LOCK = (acquire -> release -> LOCK).
 
@@ -274,7 +262,6 @@ assert MUTEX = [] !(USER_A_IN_CS && USER_B_IN_CS)
 ```
 
 - **Risultato del Model Checking**: Con l'introduzione del `LOCK`, la proprietà `MUTEX` viene **verificata con successo** per tutti i possibili scenari.
-    
 
 ### Verifica della Liveness (Assenza di Starvation con `<>`)
 
@@ -282,9 +269,7 @@ Oltre alla Safety, dobbiamo assicurarci che il sistema rispetti la **Liveness**:
 
 Esprimiamo l'assenza di starvation tramite l'operatore Eventually `<>`:
 
-Snippet di codice
-
-```
+``` FSP
 assert NO_STARV = [] (a.acquire -> <> a.enterCS)
 ```
 
@@ -300,12 +285,9 @@ Oltre ad `Always` (`[]`) ed `Eventually` (`<>`), FLTL mette a disposizione altri
     
 - **Esempio (Polite - Bussare prima di entrare)**:
     
-    Snippet di codice
-    
-    ```
-    assert POLITE = (!enter U knock)
-    ```
-    
+``` FSP
+assert POLITE = (!enter U knock)
+```
 
 _(Modella sia la Safety "non si può entrare prima di bussare", sia la Liveness "l'azione knock deve prima o poi verificarsi")_.
 
@@ -313,9 +295,7 @@ _(Modella sia la Safety "non si può entrare prima di bussare", sia la Liveness 
 
 Utilizzando `Until`, la mutua esclusione può essere definita direttamente sugli action fluents senza creare fluents espliciti:
 
-Snippet di codice
-
-```
+``` FSP
 assert MUTEX_U = [] ((a.enterCS -> (!b.enterCS U a.exitCS)) &&
                      (b.enterCS -> (!a.enterCS U b.exitCS)))
 ```
@@ -329,14 +309,11 @@ _(Garantisce sia la mutua esclusione sia la liveness che, se un processo entra, 
 - **Differenza con `Until`**: Il `Weak Until` rimuove il requisito di liveness (non obbliga $q$ ad accadere).
     
 - **Esempio**:
-    
-    Snippet di codice
-    
-    ```
-    assert POLITE_W = (!enter W knock)
-    ```
-    
 
+``` FSP
+assert POLITE_W = (!enter W knock)
+```
+    
 _(Diventa una pura proprietà di Safety: non richiede che si bussi per forza, ma garantisce che se non si bussa non si può entrare)_.
 
 ### Equivalenze Algebriche tra Operatori Temporali
@@ -348,15 +325,12 @@ Tutti gli operatori temporali visti possono essere derivati algebricamente dall'
 - `[] p` $\equiv ! (<> !p)$
     
 - `p W q` $\equiv []p \text{ } \vert{}\vert{} \text{ } (p \text{ } U \text{ } q)$
-    
 
 ### Espressioni "Rigid" (`rigid(1)` e `rigid(0)`)
 
 In FLTL non esistono le costanti esplicite `True` e `False` come simboli atomici. Le espressioni booleane costanti vengono definite come **espressioni rigide** (_rigid expressions_), cioè espressioni il cui valore non cambia con il passare del tempo / l'esecuzione delle azioni:
 
-Snippet di codice
-
-```
+``` FSP
 assert True  = rigid(1)
 assert False = rigid(0)
 ```

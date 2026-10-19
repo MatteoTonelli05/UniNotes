@@ -32,7 +32,10 @@ Per garantire che i punti delle due classi ($y_i = +1$ e $y_i = -1$) siano separ
 ### Concetto intuitivo di Margine
 ![[Pasted image 20261019095518.png|316]]
 La minima distanza tra l’iperpiano di separazione e un pattern del training set è detta **MARGINE** $$\tau=2/||w|| \qquad \text{(margine totale)}$$
+> [!abstract] L’iperpiano ottimo secondo **SVM** è quello soddisfa i vincoli di separazione dei pattern e massimizza il margine $\tau$ (o alternativamente **minimizza** il suo inverso):
+$$\min_{w,b} \frac{1}{2} \Vert{}w\Vert{}^2 \quad \text{sotto il vincolo } y_i(w \cdot x_i + b) - 1 \ge 0$$
 
+I punti del Training Set che giacciono _esattamente_ sul margine ($D(x) = +1$ o $D(x) = -1$) prendono il nome di **Support Vectors**.
 ### Formulazione Matematica e Vettori di Supporto
 
 ### Formulazione Duale e Lagrangiana

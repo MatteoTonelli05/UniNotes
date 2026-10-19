@@ -110,12 +110,16 @@ $$y_i [w \cdot x_i + b] \ge 1 - \xi_i \quad \text{per } i = 1 \dots n$$
 ![[Pasted image 20261019105532.png|325]]
 ### Bilanciamento del Margine e Parametro C
 La nuova funzione obiettivo bilancia l'ampiezza del margine e le violazioni/errori:
-$$\min_{w, b, \xi} \frac{\Vert{}w\Vert{}^2}{2} + C \sum_{i=1}^{n} \xi_i$$
+$$\min_{\mathbf{w}, b, \xi} \underbrace{\frac{\Vert{}\mathbf{w}\Vert{}^2}{2}}_{\text{Massimizzare il margine}} + \underbrace{C \sum_{i=1}^{n} \xi_i}_{\text{Minimizzare la somma degli errori/scostamenti}}$$
 
-- **Iperparametro $C$**: regola l'importanza relativa degli errori di classificazione rispetto all'ampiezza del margine.
-  - $C$ elevato: penalizza fortemente gli errori $\Rightarrow$ margine più stretto, meno errori nel TS.
-  - $C$ basso: tollera più errori nel TS $\Rightarrow$ margine più ampio, migliore generalizzazione.
+> [!question] Cos'è l'**Iperparametro $C$**?
+> $C$ regola l'importanza relativa degli errori di classificazione rispetto all'ampiezza del margine.
+> - $C$ elevato: penalizza fortemente gli errori $\Rightarrow$ margine più stretto, meno errori nel TS.
+> - $C$ basso: tollera più errori nel TS $\Rightarrow$ margine più ampio, migliore generalizzazione.
 
+Se permettessimo alle variabili di Slack $\xi_i$ di crescere a piacere senza penalità, la SVM farebbe $\xi_i$ enormi per tutti i punti e metterebbe l'iperpiano a caso. Inserendo una penaliltà per gli errori si evita un abuso di slack.
+
+![[Pasted image 20261019110632.png]]
 #### Formulazione Duale con Slack Variables:
 $$Q(\alpha) = \sum_{i=1}^{n} \alpha_i - \frac{1}{2} \sum_{i, j=1}^{n} \alpha_i \alpha_j y_i y_j (x_i \cdot x_j)$$
 con vincoli:

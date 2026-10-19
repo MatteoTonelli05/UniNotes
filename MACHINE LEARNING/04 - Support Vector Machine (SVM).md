@@ -46,7 +46,11 @@ La minima distanza tra l’iperpiano di separazione e un pattern del training se
 > [!abstract] L’iperpiano ottimo secondo **SVM** è quello soddisfa i vincoli di separazione dei pattern e massimizza il margine $\tau$ (o alternativamente **minimizza** il suo inverso):
 $$\min_{w,b} \frac{1}{2} \Vert{}w\Vert{}^2 \quad \text{sotto il vincolo } y_i(w \cdot x_i + b) - 1 \ge 0$$
 
-I punti del Training Set che giacciono _esattamente_ sul margine ($D(x) = +1$ o $D(x) = -1$) prendono il nome di **Support Vectors**.
+#### Support Vectors
+
+> [!hint] I punti del Training Set che giacciono _esattamente_ sul margine ($D(x) = +1$ o $D(x) = -1$) prendono il nome di **Support Vectors**.
+>
+Mantenendo in memoria solo i Support Vectors possiamo dunque definire completamente la soluzione del problema, individuando il confine mediante i pattern vicini.
 ### Formulazione Duale e Lagrangiana
 
 

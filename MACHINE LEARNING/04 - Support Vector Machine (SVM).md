@@ -173,10 +173,10 @@ Per classificare il nuovo dato
 
 SVM è nativamente un classificatore binario. Per gestire $s$ classi si applicano le strategie:
 ### One-Against-All (One-vs-Rest)
-- Si addestrano $s$ classificatori SVM separati.
-- Per ciascuna classe $w_k$, si considerano i suoi elementi come $+1$ e quelli di tutte le altre classi come $-1$, ottenendo la funzione $D_k(x)$.
-- Classificazione di $x$:
-  $$k^* = \arg\max_{k=1 \dots s} \{D_k(x)\}$$
+
+Si addestrano $s$ classificatori SVM separati, in cui per ciascuna classe $w_k$, si considerano i suoi elementi come $+1$ e quelli di tutte le altre classi come $-1$, ottenendo la funzione $D_k(x)$
+
+Al termine del training, si assegna il pattern $𝐱$ alla classe $k^*$ per cui è massima la distanza dalla superficie decisionale:  $$k^* = \arg\max_{k=1 \dots s} \{D_k(x)\}$$
 ### One-Against-One (One-vs-One)
 - Si addestrano $\frac{s(s-1)}{2}$ classificatori binari (tutte le coppie di classi).
 - Ogni classificatore esprime un voto per la classe vincente.

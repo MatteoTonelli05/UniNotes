@@ -53,87 +53,232 @@ $$\min_{w,b} \frac{1}{2} \Vert{}w\Vert{}^2 \quad \text{sotto il vincolo } y_i(w 
 Mantenendo in memoria solo i Support Vectors possiamo dunque definire completamente la soluzione del problema, individuando il confine mediante i pattern vicini.
 ### Formulazione Duale e Lagrangiana
 
+> [!fail] Problema
+> Noi vogliamo **minimizzare** $\frac{1}{2}\Vert{}w\Vert{}^2$ (cioè minimizzare i pesi per massimizzare il margine).
+>
+> Ma abbiamo una montagna di **vincoli d'ineguaglianza**: $y_i(w \cdot x_i + b) \ge 1$ per ogni singolo punto $i=1 \dots n$.
 
+> [!hint] Tramite la riformulazione Duale e Lagrangiana trasformiamo i vincoli in un'unica equazione lineare
+
+#### Trasformazione Lagrangiana $\rightarrow$ Duale
+
+Per ogni vincolo (cioè per ogni dato del training set $i=1 \dots n$), introduciamo un numero positivo chiamato $\alpha_i \ge 0$ (moltiplicatore di Lagrange).
+
+Costruiamo la funzione **$Q(w, b, \alpha)$**:
+$$Q(w,b,\alpha) = \underbrace{\frac{1}{2} w \cdot w}_{\text{Obiettivo da minimizzare}} - \sum_{i=1}^{n} \alpha_i \underbrace{\Big( y_i [w \cdot x_i + b] - 1 \Big)}_{\text{Vincolo di separazione}}$$
+
+Per minimizzare rispetto a $w$ e $b$, facciamo le derivate parziali di $Q$ e le poniamo uguali a zero (Condizioni di Karush-Kuhn-Tucker - KKT).
+
+Da queste derivate otteniamo due relazioni fondamentali:
+
+1. **$w = \sum_{i=1}^{n} \alpha_i y_i x_i$**: Il vettore normale $w$ è semplicemente una combinazione lineare dei punti di addestramento pesati da $\alpha_i$ e dall'etichetta $y_i$!
+    
+2. **$\sum_{i=1}^{n} \alpha_i y_i = 0$**: La somma pesata degli $\alpha_i$ per le loro classi deve fare zero.
+    
+
+Sostituendo queste due espressioni dentro la funzione di Lagrange $Q(w,b,\alpha)$, **$w$ e $b$ scompaiono completamente** e otteniamo la **Formulazione Duale** $Q(\alpha)$ (Pag. 6):
+
+$$\max_{\alpha} Q(\alpha) = \sum_{i=1}^{n} \alpha_i - \frac{1}{2} \sum_{i=1}^{n} \sum_{j=1}^{n} \alpha_i \alpha_j y_i y_j (x_i \cdot x_j)$$
+
+con vincoli:
+
+$$\sum_{i=1}^{n} y_i \alpha_i = 0 \quad \text{e} \quad \alpha_i \ge 0 \quad \forall i=1 \dots n$$
 ### Vantaggi e Scalabilità
+
+#### Vantaggi
+1. La soluzione ora è definita da un numero ridotto di support vector ($n_{sv}$).
+2. L'errore medio sul test set è limitato superiormente dal rapporto $\frac{n_{sv}}{n}$.
+
+#### Scalabilità
+Ora il problema scala molto bene rispetto alla dimensionalità dello spazio $d$ grazie ai prodotti scalari. La complessità di training è quadratica rispetto al numero $n$ di pattern.
+
+![[Pasted image 20261019104942.png|513]]
+
+---
 
 ## SVM Lineare: Pattern non Separabili
 
 ### Variabili di Slack ($\xi$)
 
+>[!fail] Le classi possono non essere linearmente separabili
+ 
+In questo caso si rilassano i vincoli introducendo $n$ variabili di slack positive $\xi_i \ge 0$ :
+$$y_i [w \cdot x_i + b] \ge 1 - \xi_i \quad \text{per } i = 1 \dots n$$
+- $\xi_i = 0$: pattern separabile e corretto rispetto al margine.
+- $\xi_i > 0$: deviazione dal margine / pattern erroneamente classificato.
+
+![[Pasted image 20261019105532.png|325]]
 ### Bilanciamento del Margine e Parametro C
+La nuova funzione obiettivo bilancia l'ampiezza del margine e le violazioni/errori:
+$$\min_{w, b, \xi} \frac{\Vert{}w\Vert{}^2}{2} + C \sum_{i=1}^{n} \xi_i$$
+
+- **Iperparametro $C$**: regola l'importanza relativa degli errori di classificazione rispetto all'ampiezza del margine.
+  - $C$ elevato: penalizza fortemente gli errori $\Rightarrow$ margine più stretto, meno errori nel TS.
+  - $C$ basso: tollera più errori nel TS $\Rightarrow$ margine più ampio, migliore generalizzazione.
+
+#### Formulazione Duale con Slack Variables:
+$$Q(\alpha) = \sum_{i=1}^{n} \alpha_i - \frac{1}{2} \sum_{i, j=1}^{n} \alpha_i \alpha_j y_i y_j (x_i \cdot x_j)$$
+con vincoli:
+$$\sum_{i=1}^{n} y_i \alpha_i = 0 \quad \text{e} \quad 0 \le \alpha_i \le C \quad \forall i = 1 \dots n$$
+L'unica variazione rispetto al caso separabile è il limite superiore $C$ introdotto sui moltiplicatori $\alpha_i$.
+
+---
 
 ## SVM Non Lineare
 
-### Mapping Non Lineare
+### Mapping Non Lineare e Kernel Trick
+Per separare classi complesse in $\mathbb{R}^d$, si applica un mapping non lineare $\Phi$ verso uno spazio a più alta dimensione $\mathbb{R}^m$ ($m > d$):
+$$\Phi: \mathbb{R}^d \rightarrow \mathbb{R}^m, \quad \Phi(x) = [g_1(x), g_2(x), \dots, g_m(x)]$$
 
-### Kernel Trick e Teorema di Mercer
+In $\mathbb{R}^m$ i pattern mappati possono essere separati da un iperpiano lineare. Poiché i pattern nella formulazione duale compaiono unicamente tramite prodotto scalare $\Phi(x_i) \cdot \Phi(x_j)$, si utilizza una **Kernel function $K$**:
+$$K(x, x') = \Phi(x) \cdot \Phi(x')$$
 
-### Kernel Polinomiale
+> [!abstract] **Teorema di Mercer**: Se $K(x, x')$ è continua e simmetrica (soddisfa le condizioni di Mercer), garantisce l'esistenza di uno spazio ad alta dimensione in cui $K$ corrisponde al prodotto scalare delle funzioni mappate, permettendo di calcolarlo senza mai esplicitare $\Phi$ o operare direttamente in $\mathbb{R}^m$.
 
-### Kernel RBF (Radial Basis Function)
+---
 
-### Kernel Sigmoid
+### Funzioni Kernel Comuni
+
+1. **Polinomiale** (iperparametro: grado $q$):
+   $$K(x, x') = [(x \cdot x') + 1]^q$$
+
+2. **Radial Basis Function (RBF)** (iperparametro: ampiezza $\sigma$ o $\gamma$):
+   $$K(x, x') = \exp\left(-\frac{\Vert{}x - x'\Vert{}^2}{2\sigma^2}\right) = \exp\left(-\gamma \Vert{}x - x'\Vert{}^2\right)$$
+   *(Lo spazio mappato da RBF ha dimensione infinita $m = \infty$)*.
+
+3. **Sigmoide**:
+   $$K(x, x') = \tanh(\nu (x \cdot x') + a)$$
+
+#### Regola di classificazione non lineare:
+$$D(x) = \sum_{i=1}^{n} \alpha_i^* y_i K(x, x_i) + b^*$$
+
+---
 
 ## SVM: Estensione Multiclasse
 
-### One-Against-All
+SVM è nativamente un classificatore binario. Per gestire $s$ classi si applicano le strategie:
 
-### One-Against-One
+### One-Against-All (One-vs-Rest)
+- Si addestrano $s$ classificatori SVM separati.
+- Per ciascuna classe $w_k$, si considerano i suoi elementi come $+1$ e quelli di tutte le altre classi come $-1$, ottenendo la funzione $D_k(x)$.
+- Classificazione di $x$:
+  $$k^* = \arg\max_{k=1 \dots s} \{D_k(x)\}$$
+
+### One-Against-One (One-vs-One)
+- Si addestrano $\frac{s(s-1)}{2}$ classificatori binari (tutte le coppie di classi).
+- Ogni classificatore esprime un voto per la classe vincente.
+- Il pattern $x$ viene assegnato alla classe con il maggior numero di voti (Majority Vote).
+- Più accurato di One-Against-All ma computazionalmente più oneroso all'aumentare di $s$.
+
+---
 
 ## SVM in Pratica
 
-### Implementazione e Librerie (LIBSVM, LIBLINEAR, Scikit-Learn)
+### Implementazione e Librerie
+- **LIBSVM**: Implementazione standard. Utilizza internamente One-Against-One per multiclasse. In Scikit-Learn è usata via `sklearn.svm.SVC`.
+- **LIBLINEAR**: Ottimizzata per SVM lineare su grandi mole di dati/alte dimensioni (`sklearn.svm.LinearSVC`).
 
-### Guida alla Scelta (Lineare vs Non Lineare)
+### Guida alla Scelta:
+- **Alta dimensionalità ($d \ge 5000$)**: Usare **SVM Lineare** (i pattern sono già sparsi; tarare solo $C$).
+- **Bassa dimensionalità ($d \le 20$)**: Usare **SVM Non Lineare con Kernel RBF** (tarare $C$ e $\sigma / \gamma$).
+- **Media dimensionalità ($d \approx 200$)**: Provare entrambe le opzioni tramite Validation Set o Cross-Validation.
+
+---
 
 # Multi-Classificatori (Ensemble Methods)
 
 ## Principi Generali
 
-### Indipendenza e Diversità tra Classificatori
+Un ensemble combina le decisioni di più classificatori per migliorare la precisione globale.
+
+> [!warning] **Requisito Chiave**: La combinazione è efficace solo se i singoli classificatori sono **almeno parzialmente indipendenti** (non commettono gli stessi errori).
+
+### Strategie per ottenere la diversità:
+1. Feature diverse o diverse estrazioni di feature.
+2. Algoritmi di classificazione differenti.
+3. Addestramento dello stesso algoritmo su porzioni diverse di training set (**Bagging**).
+4. Addestramento sequenziale focalizzato sugli errori precedenti (**Boosting**).
+
+---
 
 ### Prestazioni Teoriche e Distribuzione Binomiale
+Se un ensemble è composto da $nc$ classificatori indipendenti con accuratezza $P > 0.5$, l'accuratezza totale tramite maggioranza si calcola con la distribuzione binomiale:
+$$P_{multi}(nc) = \sum_{m=k}^{nc} \binom{nc}{m} P^m (1 - P)^{nc-m}, \quad k = \frac{nc + 1}{2}$$
+
+---
 
 ## Fusione a Livello di Decisione
 
-### Majority Vote Rule
+Ogni classificatore $C_j$ restituisce solo l'etichetta della classe scelta.
 
-### Borda Count
+- **Majority Vote Rule**: Vince la classe che riceve più voti dai singoli classificatori:
+  $$t = \arg\max_{i=1 \dots s} \sum_{j=1}^{nc} \theta_{ij}, \quad \theta_{ij} = \begin{cases} 1 & \text{se } C_j \text{ vota classe } i \\ 0 & \text{altrimenti} \end{cases}$$
+- **Borda Count**: Ogni classificatore fornisce una graduatoria (ranking) delle classi. I punteggi ottenuti dai posizionamenti vengono sommati.
+
+---
 
 ## Fusione a Livello di Confidenza
 
-### Metodi Sum, Prod, Max e Min
+Ogni classificatore $C_j$ restituisce un vettore di confidenza/probabilità $conf_j = [conf_{j1}, \dots, conf_{js}]$.
 
-### Somma Pesata (Avgsum)
+Metodi di combinazione per la classe $i$:
+- **Somma (Sum)**: $\sum_{j=1}^{nc} conf_{ji}$ *(Spesso il metodo più robusto nella pratica)*.
+- **Prodotto (Prod)**: $\prod_{j=1}^{nc} conf_{ji}$ *(Probabilisticamente corretto solo sotto piena indipendenza; sensibile a confidenze nulle)*.
+- **Massimo (Max)**: $\max_{j=1 \dots nc} \{conf_{ji}\}$
+- **Minimo (Min)**: $\min_{j=1 \dots nc} \{conf_{ji}\}$ *(Si sceglie la classe il cui valore minimo tra tutti i classificatori sia il più alto)*.
+- **Somma Pesata (Avgsum)**: Pesata in base all'abilità $g_j$ del singolo classificatore:
+  $$\text{avgsum}_i = \sum_{j=1}^{nc} g_j \cdot conf_{ji}$$
+
+---
 
 # Algoritmi Ensemble Specifici
 
 ## Random Forest (Bagging)
 
-### Metodi di Bagging
+Random Forest (Breiman, 2001) fa parte delle tecniche di **Bootstrap Aggregating (Bagging)**.
 
-### Decision Tree Classifiers (CART)
+1. **Pattern Bagging**: Si estraggono $S_j$ campioni con re-imbussolamento dal TS (circa 2/3 del totale per ogni albero).
+2. **Feature Bagging**: Ad ogni nodo di ogni albero decisionale (CART), la scelta della feature migliore su cui effettuare lo split non viene fatta su tutte le $d$ feature, ma su un sottoinsieme casuale di dimensione $d' = \sqrt{d}$.
+3. **Classificatori base**: Alberi decisionali CART binarizzati.
 
-### Impurità: Indice Gini ed Entropia
+### Apprendimento di un albero CART:
+Lo split $(k, t_k)$ su feature $k$ e soglia $t_k$ viene scelto minimizzando l'impurità pesata dei figli:
+$$J(k, t_k) = \frac{m_{left}}{m} G_{left} + \frac{m_{right}}{m} G_{right}$$
 
-### Feature Bagging e Iperparametri
+Indici di impurità:
+- **Indice Gini** (default): $Gini = 1 - \sum_{i=1}^{s} p_i^2$
+- **Entropia**: $Entropy = -\sum_{i=1}^{s} p_i \log_2(p_i)$
 
-### Stima Out-Of-Bag (OOB)
+### Valutazione Out-Of-Bag (OOB):
+La stima delle prestazioni viene fatta sui campioni non inclusi nel campione bootstrap di ciascun albero, eliminando la necessità di un validation set separato.
+
+---
 
 ## AdaBoost (Boosting)
 
-### Principi del Boosting (Weak e Strong Classifiers)
+AdaBoost (Freund & Schapire, 1995) combina sequenzialmente classificatori deboli (*weak classifiers*) per crearne uno forte (*strong classifier*).
 
-### Assegnazione dei Pesi ai Pattern
+### Algoritmo:
+1. Inizializzazione pesi dei pattern: $w_i^1 = \frac{1}{n}$.
+2. Per $t = 1 \dots T$:
+   - Normalizza i pesi dei pattern $\sum w_i^t = 1$.
+   - Seleziona il weak classifier $h^t(x)$ che minimizza l'errore pesato:
+     $$\epsilon^t = \sum_{i=1}^{n} w_i^t \cdot \mathbb{I}(h^t(x_i) \ne y_i)$$
+   - Calcola il peso del classificatore $\alpha^t$:
+     $$\alpha^t = \frac{1}{2} \ln \left( \frac{1 - \epsilon^t}{\epsilon^t} \right)$$
+   - Aggiorna i pesi dei pattern per l'iterazione successiva:
+     $$w_i^{t+1} = w_i^t \cdot e^{-\alpha^t y_i h^t(x_i)}$$
+     *(Aumenta il peso dei pattern classificati erroneamente)*.
 
-### Selezione dei Classificatori e Peso Alpha
+3. **Classificatore Finale Strong**:
+   $$H(x) = \text{sign}\left( \sum_{t=1}^{T} \alpha^t h^t(x) \right)$$
 
-### Pseudocodice dell'Algoritmo
+### Applicazione Notevole: Viola & Jones Face Detector (2001)
+Utilizza AdaBoost applicato a funzioni Haar-like rectangle features ed una struttura a cascata per lo scarto rapido dei sotto-riquadri *non-face*.
 
-### Applicazione: Viola & Jones Face Detector
+---
 
 ## Gradient Boosting
 
-### Apprendimento sui Residuali di Errore
-
-### Implementazione e XGBoost
+A differenza di AdaBoost, i modelli deboli successivi vengono addestrati sequenzialmente per **stimare e correggere i residui di errore** commessi dai modelli precedenti.
+Un'implementazione ad alte prestazioni ampiamente diffusa è **XGBoost**.

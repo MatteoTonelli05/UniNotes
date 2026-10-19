@@ -173,6 +173,7 @@ o viceversa.
 >
 > **Induzione:** Se $\exists a\in \Sigma :\delta(p,a) \not\equiv \delta(q,a)$ allora $p\not\equiv q$.
 
+![[Pasted image 20261019180656.png]]
 ##### Esempio
 ![[Pasted image 20261014181505.png|648]]
 Inizio contrassegnando come distinte tutte le coppie di stati ***accettazione***/***non accettazione*** (*passo base*).
@@ -211,7 +212,10 @@ Per testare se $L=M$
 
 ![[Pasted image 20261015151150.png|568]]
 
-![[Pasted image 20261015151157.png|578]]
+ ![[Pasted image 20261015151157.png|578]]
+> [!question] Perchè sono equivalenti i due DFA?
+> Perchè nell'algoritmo *Riempi-Tabella* è risultato $A\equiv C$
+
 
 #### Minimizzazione di DFA
 > [!cite] Algoritmo

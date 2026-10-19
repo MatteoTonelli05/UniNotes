@@ -199,13 +199,13 @@ Ogni pattern $𝐱$ viene assegnato alla classe $k^*$ per cui, su ogni classific
 > [!example]
 > ![[Pasted image 20261019125602.png|402]]![[Pasted image 20261019125626.png|404]] ![[Pasted image 20261019132902.png|405]]
 
-# Multi-Classificatori (Ensemble Methods)
+## Multi-Classificatori (Ensemble Methods)
 
-## Principi Generali
+### Principi Generali
 
 > [!hint] I **Multi-Classificatori** (chiamati in inglese **Ensemble Methods**) 
 > Questa tecnica, invece di addestrare un unico "super-modello" e sperare che non sbagli, mette insieme **più classificatori** e si fondono le loro decisioni.
-### Strategie per ottenere la diversità
+#### Strategie per ottenere la diversità
 
 > [!question] Cos'è la diversità?
 > I singoli classificatori devono essere (almeno parzialmente) INDIPENDENTI tra loro, cioè NON devono commettere gli stessi errori nello stesso momento.
@@ -216,25 +216,20 @@ Strategie principali per ottenere la diversità:
 3. Addestramento dello stesso algoritmo su porzioni diverse di training set (**Bagging**).
 4. Addestramento di modelli in sequenza, in cui ciascuno si focalizza sugli errori del precedente (**Boosting**).
 
----
-### Prestazioni Teoriche e Distribuzione Binomiale
+#### Prestazioni Teoriche e Distribuzione Binomiale
 Se un ensemble è composto da $nc$ classificatori indipendenti con accuratezza $P > 0.5$, l'accuratezza totale tramite maggioranza si calcola con la distribuzione binomiale:
 $$P_{multi}(nc) = \sum_{m=k}^{nc} \binom{nc}{m} P^m (1 - P)^{nc-m}, \quad k = \frac{nc + 1}{2}$$
-
----
-
-## Fusione a Livello di Decisione
+### Fusione a Livello di Decisione
 
 Ogni classificatore $C_j$ restituisce solo l'etichetta della classe scelta, dopodichè la combinazione dei risultati può avvenire a due livelli:
 
-###
 - **Majority Vote Rule**: Vince la classe che riceve più voti dai singoli classificatori:
   $$t = \arg\max_{i=1 \dots s} \sum_{j=1}^{nc} \theta_{ij}, \quad \theta_{ij} = \begin{cases} 1 & \text{se } C_j \text{ vota classe } i \\ 0 & \text{altrimenti} \end{cases}$$
 - **Borda Count**: Ogni classificatore fornisce una graduatoria (ranking) delle classi. I punteggi ottenuti dai posizionamenti vengono sommati.
 
 ---
 
-## Fusione a Livello di Confidenza
+### Fusione a Livello di Confidenza
 
 Ogni classificatore $C_j$ restituisce un vettore di confidenza/probabilità $conf_j = [conf_{j1}, \dots, conf_{js}]$.
 
@@ -248,9 +243,9 @@ Metodi di combinazione per la classe $i$:
 
 ---
 
-# Algoritmi Ensemble Specifici
+## Algoritmi Ensemble Specifici
 
-## Random Forest (Bagging)
+### Random Forest (Bagging)
 
 Random Forest (Breiman, 2001) fa parte delle tecniche di **Bootstrap Aggregating (Bagging)**.
 

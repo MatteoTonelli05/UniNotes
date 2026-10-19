@@ -176,7 +176,7 @@ SVM è nativamente un classificatore binario. Per gestire $s$ classi si applican
 
 Si addestrano $s$ classificatori SVM separati, in cui per ciascuna classe $w_k$, si considerano i suoi elementi come $+1$ e quelli di tutte le altre classi come $-1$, ottenendo la funzione $D_k(x)$
 
-Al termine del training, si assegna il pattern $𝐱$ alla classe $k^*$ per cui è massima la distanza dalla superficie decisionale:  $$k^* = \arg\max_{k=1 \dots s} \{D_k(x)\}$$
+Ogni pattern $𝐱$ viene assegnato alla classe $k^*$ per cui, su ogni classificatore, è massima la confidenza (distanza dalla linea di separazione):  $$k^* = \arg\max_{k=1 \dots s} \{D_k(x)\}$$
 ### One-Against-One (One-vs-One)
 - Si addestrano $\frac{s(s-1)}{2}$ classificatori binari (tutte le coppie di classi).
 - Ogni classificatore esprime un voto per la classe vincente.
@@ -195,7 +195,7 @@ Al termine del training, si assegna il pattern $𝐱$ alla classe $k^*$ per cui 
 - **Alta dimensionalità ($d \ge 5000$)**: Usare **SVM Lineare** (i pattern sono già sparsi; tarare solo $C$).
 - **Bassa dimensionalità ($d \le 20$)**: Usare **SVM Non Lineare con Kernel RBF** (tarare $C$ e $\sigma / \gamma$).
 - **Media dimensionalità ($d \approx 200$)**: Provare entrambe le opzioni tramite Validation Set o Cross-Validation.
-
+![[Pasted image 20261019125602.png|402]]![[Pasted image 20261019125626.png|404]]
 ---
 
 # Multi-Classificatori (Ensemble Methods)

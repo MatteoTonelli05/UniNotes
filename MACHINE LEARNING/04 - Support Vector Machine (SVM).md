@@ -29,22 +29,19 @@ Definiamo così la distanza $r$ di un generico punto $x$ dall'iperpiano $$r = \f
 Per garantire che i punti delle due classi ($y_i = +1$ e $y_i = -1$) siano separati correttamente e stiano all'esterno del margine (con distanza minima di $1/\Vert{}w\Vert{}$), si impongono le condizioni:
 - $w \cdot x_i + b \ge +1$ se $y_i = +1$
 - $w \cdot x_i + b \le -1$ se $y_i = -1$
+### Concetto intuitivo di Margine
+![[Pasted image 20261019095518.png|316]]
+La minima distanza tra l’iperpiano di separazione e un pattern del training set è detta **MARGINE** $$\tau=2/||w|| \qquad \text{(margine totale)}$$
 
-### Iperpiano di Separazione e Parametri
+### Formulazione Matematica e Vettori di Supporto
 
-### Calcolo del Margine
-
-### Support Vectors
-
-### Formulazione Lagrangiana e Problema Duale
-
-### Condizioni KKT e Programmazione Quadratica
+### Formulazione Duale e Lagrangiana
 
 ### Vantaggi e Scalabilità
 
 ## SVM Lineare: Pattern non Separabili
 
-### Variabili di Slack
+### Variabili di Slack ($\xi$)
 
 ### Bilanciamento del Margine e Parametro C
 

@@ -240,16 +240,28 @@ Ogni classificatore $C_j$ restituisce solo l'etichetta della classe scelta, dopo
 - **Borda Count**: Ogni classificatore fornisce una graduatoria (ranking) delle classi. I punteggi ottenuti dai posizionamenti vengono sommati.
 #### Fusione a Livello di Confidenza
 
-Ogni classificatore $C_j$ restituisce un vettore di confidenza/probabilità $$conf_j = [conf_{j1}, \dots, conf_{js}]$$
+> [!abstract] Ogni classificatore $C_j$ restituisce un vettore di confidenza/probabilità
+> $$conf_j = [conf_{j1}, \dots, conf_{js}]$$
+>Dove $s$ è il numero di classi ed ciascun elemento $\text{conf}_{ji}$ indica il **grado di appartenenza** (o probabilità/score) del pattern alla classe $i$-esima secondo il classificatore $j$.
 
-Metodi di combinazione per la classe $i$:
-- **Somma (Sum)**: $\sum_{j=1}^{nc} conf_{ji}$ *(Spesso il metodo più robusto nella pratica)*.
-- **Prodotto (Prod)**: $\prod_{j=1}^{nc} conf_{ji}$ *(Probabilisticamente corretto solo sotto piena indipendenza; sensibile a confidenze nulle)*.
-- **Massimo (Max)**: $\max_{j=1 \dots nc} \{conf_{ji}\}$
-- **Minimo (Min)**: $\min_{j=1 \dots nc} \{conf_{ji}\}$ *(Si sceglie la classe il cui valore minimo tra tutti i classificatori sia il più alto)*.
-- **Somma Pesata (Avgsum)**: Pesata in base all'abilità $g_j$ del singolo classificatore:
-  $$\text{avgsum}_i = \sum_{j=1}^{nc} g_j \cdot conf_{ji}$$
+Per combinare questi vettori e prendere la decisione finale su quale sia la classe vincente $t$, si possono usare diversi operatori matematici:
+
+- **SOMMA ($\text{sum}$)**: Si sommano i valori di confidenza forniti da tutti i classificatori per ciascuna classe $i$. Si sceglie la classe che ottiene la somma massima.$$\text{sum}_i = \sum_{j=1}^{nc} \text{conf}_{ji} \quad \implies \quad t = \arg\max_{i=1\dots s} \{\text{sum}_i\}$$
+- **PRODOTTO ($\text{prod}$)**: Si moltiplicano le confidenze di tutti i classificatori per ciascuna classe $i$ e si sceglie la classe con il valore massimo.$$\text{prod}_i = \prod_{j=1}^{nc} \text{conf}_{ji} \quad \implies \quad t = \arg\max_{i=1\dots s} \{\text{prod}_i\}$$
+- **MASSIMO ($\text{max}$)**: Si individua la confidenza massima registrata per ciascuna classe tra tutti i classificatori e si sceglie la classe con il massimo assoluto.
+    
+- **MINIMO ($\text{min}$)**: Si individua la confidenza minima ottenuta per ciascuna classe e poi si seleziona il **massimo tra i minimi** ($\arg\max_i \{\text{min}_i\}$). Questo criterio (meno intuitivo) premia la classe che non ha ricevuto punteggi/confidenze eccessivamente basse da nessun classificatore.
+- **SOMMA PESATA (Avgsum)**Una variante molto efficace della somma consiste nel pesare il contributo di ciascun classificatore $C_j$ in base alla sua affidabilità o "grado di abilità" $g_j$:
+
+$$\text{avgsum}_i = \sum_{j=1}^{nc} g_j \cdot \text{conf}_{ji} \quad \implies \quad t = \arg\max_{i=1\dots s} \{\text{avgsum}_i\}$$
+
+> [!hint] **Determinate i pesi ($g_j$)** 
+> I gradi di abilità vengono tipicamente assegnati in modo **inversamente proporzionale all'errore di classificazione** del singolo classificatore sul training set (un esempio tipico di questa logica si trova nell'algoritmo _AdaBoost_).
+
 ![[Pasted image 20261019143944.png|321]]
+
+
+
 ---
 
 ## Algoritmi Ensemble Specifici
@@ -258,11 +270,15 @@ Metodi di combinazione per la classe $i$:
 
 Random Forest (Breiman, 2001) fa parte delle tecniche di **Bootstrap Aggregating (Bagging)**
 
+> [!question] Cos'è il Bagging ? (**Bootstrap Aggregating)
+> Se dai l'intero pacchetto di dati ad un solo modello, quel modello si farà un'idea rigida del problema. Nel Bagging, invece, prendi il tuo set di dati e ne estrai a caso dei sottoinsiemi (usando il "re-imbussolamento", cioè rimettendo dentro ogni volta i punti estratti). Di solito ogni sottoinsieme contiene circa due terzi dei dati originali. Addestri un modello diverso su ciascun sottoinsieme e poi fai votare tutti i modelli insieme.
+
 1. **Pattern Bagging**: Si estraggono $S_j$ campioni con re-imbussolamento dal TS (circa 2/3 del totale per ogni albero).
 2. **Feature Bagging**: Ad ogni nodo di ogni albero decisionale (CART), la scelta della feature migliore su cui effettuare lo split non viene fatta su tutte le $d$ feature, ma su un sottoinsieme casuale di dimensione $d' = \sqrt{d}$.
 3. **Classificatori base**: Alberi decisionali CART binarizzati.
 
-### Apprendimento di un albero CART:
+### Apprendimento di un albero CART
+![[Pasted image 20261019161940.png|488]]
 Lo split $(k, t_k)$ su feature $k$ e soglia $t_k$ viene scelto minimizzando l'impurità pesata dei figli:
 $$J(k, t_k) = \frac{m_{left}}{m} G_{left} + \frac{m_{right}}{m} G_{right}$$
 

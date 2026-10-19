@@ -203,10 +203,7 @@ Ogni pattern $𝐱$ viene assegnato alla classe $k^*$ per cui, su ogni classific
 
 ## Principi Generali
 
-Un ensemble combina le decisioni di più classificatori per migliorare la precisione globale.
-
-> [!warning] **Requisito Chiave**: La combinazione è efficace solo se i singoli classificatori sono **almeno parzialmente indipendenti** (non commettono gli stessi errori).
-
+> [!hint] I **Multi-Classificatori** (chiamati in inglese **Ensemble Methods**) si basano esattamente su questa idea: invece di addestrare un unico "super-modello" e sperare che non sbagli, si mettono insieme **più classificatori** e si fondono le loro decisioni.
 ### Strategie per ottenere la diversità:
 1. Feature diverse o diverse estrazioni di feature.
 2. Algoritmi di classificazione differenti.

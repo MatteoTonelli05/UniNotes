@@ -278,4 +278,4 @@ Random Forest (Breiman, 2001) fa parte delle tecniche di **Bootstrap Aggregating
 3. **Classificatori base**: Alberi decisionali CART binarizzati.
 
 
-==PAG.28==
+==Classificatori 2 -- PAG.28==

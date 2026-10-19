@@ -203,15 +203,20 @@ Ogni pattern $𝐱$ viene assegnato alla classe $k^*$ per cui, su ogni classific
 
 ## Principi Generali
 
-> [!hint] I **Multi-Classificatori** (chiamati in inglese **Ensemble Methods**) si basano esattamente su questa idea: invece di addestrare un unico "super-modello" e sperare che non sbagli, si mettono insieme **più classificatori** e si fondono le loro decisioni.
-### Strategie per ottenere la diversità:
+> [!hint] I **Multi-Classificatori** (chiamati in inglese **Ensemble Methods**) 
+> Questa tecnica, invece di addestrare un unico "super-modello" e sperare che non sbagli, mette insieme **più classificatori** e si fondono le loro decisioni.
+### Strategie per ottenere la diversità
+
+> [!question] Cos'è la diversità?
+> I singoli classificatori devono essere (almeno parzialmente) INDIPENDENTI tra loro, cioè NON devono commettere gli stessi errori nello stesso momento.
+
+Strategie principali per ottenere la diversità:
 1. Feature diverse o diverse estrazioni di feature.
-2. Algoritmi di classificazione differenti.
+2. Algoritmi di classificazione differenti (es. combinando una SVM, una Rete Neurale e un KNN).
 3. Addestramento dello stesso algoritmo su porzioni diverse di training set (**Bagging**).
-4. Addestramento sequenziale focalizzato sugli errori precedenti (**Boosting**).
+4. Addestramento di modelli in sequenza, in cui ciascuno si focalizza sugli errori del precedente (**Boosting**).
 
 ---
-
 ### Prestazioni Teoriche e Distribuzione Binomiale
 Se un ensemble è composto da $nc$ classificatori indipendenti con accuratezza $P > 0.5$, l'accuratezza totale tramite maggioranza si calcola con la distribuzione binomiale:
 $$P_{multi}(nc) = \sum_{m=k}^{nc} \binom{nc}{m} P^m (1 - P)^{nc-m}, \quad k = \frac{nc + 1}{2}$$

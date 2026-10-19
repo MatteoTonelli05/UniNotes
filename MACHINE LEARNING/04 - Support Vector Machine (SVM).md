@@ -219,19 +219,24 @@ Strategie principali per ottenere la diversità:
 #### Prestazioni Teoriche e Distribuzione Binomiale
 Se un ensemble è composto da $nc$ classificatori indipendenti con accuratezza $P > 0.5$, l'accuratezza totale tramite maggioranza si calcola con la distribuzione binomiale:
 $$P_{multi}(nc) = \sum_{m=k}^{nc} \binom{nc}{m} P^m (1 - P)^{nc-m}, \quad k = \frac{nc + 1}{2}$$
-### Fusione a Livello di Decisione
-
-Ogni classificatore $C_j$ restituisce solo l'etichetta della classe scelta, dopodichè la combinazione dei risultati può avvenire a due livelli:
-
-- **Majority Vote Rule**: Vince la classe che riceve più voti dai singoli classificatori:
-  $$t = \arg\max_{i=1 \dots s} \sum_{j=1}^{nc} \theta_{ij}, \quad \theta_{ij} = \begin{cases} 1 & \text{se } C_j \text{ vota classe } i \\ 0 & \text{altrimenti} \end{cases}$$
-- **Borda Count**: Ogni classificatore fornisce una graduatoria (ranking) delle classi. I punteggi ottenuti dai posizionamenti vengono sommati.
 
 ---
 
-### Fusione a Livello di Confidenza
+### Fusioni
 
-Ogni classificatore $C_j$ restituisce un vettore di confidenza/probabilità $conf_j = [conf_{j1}, \dots, conf_{js}]$.
+#### Fusione a Livello di Decisione
+
+Ogni classificatore $C_j$ restituisce solo l'etichetta della classe scelta, dopodichè la combinazione dei risultati può avvenire a due livelli:
+
+- **Majority Vote Rule**: Vince la classe che riceve più voti dai singoli classificatori
+  $$t = \arg\max_{i=1 \dots s} \sum_{j=1}^{nc} \theta_{ij}, \quad \theta_{ij} = \begin{cases} 1 & \text{se } C_j \text{ vota classe } i \\ 0 & \text{altrimenti} \end{cases}$$
+![[Pasted image 20261019144019.png|297]]
+
+
+- **Borda Count**: Ogni classificatore fornisce una graduatoria (ranking) delle classi. I punteggi ottenuti dai posizionamenti vengono sommati.
+#### Fusione a Livello di Confidenza
+
+Ogni classificatore $C_j$ restituisce un vettore di confidenza/probabilità $$conf_j = [conf_{j1}, \dots, conf_{js}]$$
 
 Metodi di combinazione per la classe $i$:
 - **Somma (Sum)**: $\sum_{j=1}^{nc} conf_{ji}$ *(Spesso il metodo più robusto nella pratica)*.
@@ -240,14 +245,14 @@ Metodi di combinazione per la classe $i$:
 - **Minimo (Min)**: $\min_{j=1 \dots nc} \{conf_{ji}\}$ *(Si sceglie la classe il cui valore minimo tra tutti i classificatori sia il più alto)*.
 - **Somma Pesata (Avgsum)**: Pesata in base all'abilità $g_j$ del singolo classificatore:
   $$\text{avgsum}_i = \sum_{j=1}^{nc} g_j \cdot conf_{ji}$$
-
+![[Pasted image 20261019143944.png|321]]
 ---
 
 ## Algoritmi Ensemble Specifici
 
 ### Random Forest (Bagging)
 
-Random Forest (Breiman, 2001) fa parte delle tecniche di **Bootstrap Aggregating (Bagging)**.
+Random Forest (Breiman, 2001) fa parte delle tecniche di **Bootstrap Aggregating (Bagging)**
 
 1. **Pattern Bagging**: Si estraggono $S_j$ campioni con re-imbussolamento dal TS (circa 2/3 del totale per ogni albero).
 2. **Feature Bagging**: Ad ogni nodo di ogni albero decisionale (CART), la scelta della feature migliore su cui effettuare lo split non viene fatta su tutte le $d$ feature, ma su un sottoinsieme casuale di dimensione $d' = \sqrt{d}$.

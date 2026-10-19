@@ -137,37 +137,46 @@ $$\Phi: \mathbb{R}^d \rightarrow \mathbb{R}^m, \quad \Phi(x) = [g_1(x), g_2(x), 
 In $\mathbb{R}^m$ i pattern mappati possono essere separati da un iperpiano lineare. Poiché i pattern nella formulazione duale compaiono unicamente tramite prodotto scalare $\Phi(x_i) \cdot \Phi(x_j)$, si utilizza una **Kernel function $K$**:
 $$K(x, x') = \Phi(x) \cdot \Phi(x')$$
 
-> [!abstract] **Teorema di Mercer**: Se $K(x, x')$ è continua e simmetrica (soddisfa le condizioni di Mercer), garantisce l'esistenza di uno spazio ad alta dimensione in cui $K$ corrisponde al prodotto scalare delle funzioni mappate, permettendo di calcolarlo senza mai esplicitare $\Phi$ o operare direttamente in $\mathbb{R}^m$.
+> [!hint] In parole semplici
+> Nel caso del duale, dei punti nello spazio ci interessa solo il prodotto scalare (ossia una misura di quanto due punti si somigliano tra loro)
+>
+>**Il kernel**, al posto di spostare i punti nello spazio "gigante" e fare i calcoli nello spazio più grande, **velocizza il calcolo sputando direttamente il prodotto scalare finale.** 
+
+> [!abstract] **Teorema di Mercer**
+> Se $K(x, x')$ è continua e simmetrica, garantisce l'esistenza di uno spazio ad alta dimensione in cui $K$ corrisponde al prodotto scalare delle funzioni mappate, permettendo di calcolarlo senza mai esplicitare $\Phi$ o operare direttamente in $\mathbb{R}^m$.
 
 ---
-
 ### Funzioni Kernel Comuni
 
-1. **Polinomiale** (iperparametro: grado $q$):
-   $$K(x, x') = [(x \cdot x') + 1]^q$$
-
-2. **Radial Basis Function (RBF)** (iperparametro: ampiezza $\sigma$ o $\gamma$):
-   $$K(x, x') = \exp\left(-\frac{\Vert{}x - x'\Vert{}^2}{2\sigma^2}\right) = \exp\left(-\gamma \Vert{}x - x'\Vert{}^2\right)$$
+1. **Polinomiale** (iperparametro: grado $q$):$$K(x, x') = [(x \cdot x') + 1]^q$$![[Pasted image 20261019113604.png]]
+2. **Radial Basis Function (RBF)** (iperparametro ampiezza $\sigma$ o $\gamma$):$$K(x, x') = \exp\left(-\frac{\Vert{}x - x'\Vert{}^2}{2\sigma^2}\right) = \exp\left(-\gamma \Vert{}x - x'\Vert{}^2\right)$$
    *(Lo spazio mappato da RBF ha dimensione infinita $m = \infty$)*.
+![[Pasted image 20261019113629.png]]
 
-3. **Sigmoide**:
-   $$K(x, x') = \tanh(\nu (x \cdot x') + a)$$
-
+3. **Sigmoide**:$$K(x, x') = \tanh(\nu (x \cdot x') + a)$$
 #### Regola di classificazione non lineare:
 $$D(x) = \sum_{i=1}^{n} \alpha_i^* y_i K(x, x_i) + b^*$$
+- **$x$**: È il nuovo dato da classificare 
+- **$x_i$**: Sono i dati di addestramento che la SVM ha tenuto in memoria. (Support Vector)
+- **$y_i$**: È la classe del Support Vector $x_i$ ($+1$ o $-1$).
+- **$\alpha_i^*$**: È il "peso" o l'importanza di quel Support Vector. 
+- **$K(x, x_i)$**: il kernel, che misura **quanto il nuovo dato $x$ sia "vicino" al Support Vector $x_i$**.
+- **$b^*$**: È l'intercetta (o il bias), ovvero una costante di offset che trasla la superficie decisionale per bilanciarla correttamente.
+
+Per classificare il nuovo dato
+- Se **$D(x) > 0$** $\rightarrow$ il punto $x$ viene assegnato alla **classe $+1$**.
+- Se **$D(x) < 0$** $\rightarrow$ il punto $x$ viene assegnato alla **classe $-1$**.
 
 ---
 
 ## SVM: Estensione Multiclasse
 
 SVM è nativamente un classificatore binario. Per gestire $s$ classi si applicano le strategie:
-
 ### One-Against-All (One-vs-Rest)
 - Si addestrano $s$ classificatori SVM separati.
 - Per ciascuna classe $w_k$, si considerano i suoi elementi come $+1$ e quelli di tutte le altre classi come $-1$, ottenendo la funzione $D_k(x)$.
 - Classificazione di $x$:
   $$k^* = \arg\max_{k=1 \dots s} \{D_k(x)\}$$
-
 ### One-Against-One (One-vs-One)
 - Si addestrano $\frac{s(s-1)}{2}$ classificatori binari (tutte le coppie di classi).
 - Ogni classificatore esprime un voto per la classe vincente.

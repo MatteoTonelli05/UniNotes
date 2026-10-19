@@ -30,15 +30,25 @@ Per garantire che i punti delle due classi ($y_i = +1$ e $y_i = -1$) siano separ
 - $w \cdot x_i + b \ge +1$ se $y_i = +1$
 - $w \cdot x_i + b \le -1$ se $y_i = -1$
 ### Concetto intuitivo di Margine
+
+> [!question] Che cos'è $D(x)$?
+> $D(x) = w \cdot x + b$ è la **funzione di decisione** (o funzione distanza) dell'SVM:
+>
+>- **$D(x) = 0$** rappresenta l'**iperpiano di separazione ottimo** (il confine di decisione vero e proprio). Tutti i punti che si trovano esattamente su questo piano hanno $D(x) = 0$.
+>- Se $D(x) > 0$, il punto $x$ si trova dal lato della classe positiva ($y_i = +1$).  
+>- Se $D(x) < 0$, il punto $x$ si trova dal lato della classe negativa ($y_i = -1$).
+
+> [!important] Non ci interessa solo separare le due classi, ma vogliamo farlo lasciando una **zona cuscinetto (il margine)** attorno all'iperpiano di separazione $D(x) = 0$.
+> Definiamo quindi $D(x) = +1$ è la retta/piano che delimiterà il confine del margine per la classe **positiva**.
+
 ![[Pasted image 20261019095518.png|316]]
 La minima distanza tra l’iperpiano di separazione e un pattern del training set è detta **MARGINE** $$\tau=2/||w|| \qquad \text{(margine totale)}$$
 > [!abstract] L’iperpiano ottimo secondo **SVM** è quello soddisfa i vincoli di separazione dei pattern e massimizza il margine $\tau$ (o alternativamente **minimizza** il suo inverso):
 $$\min_{w,b} \frac{1}{2} \Vert{}w\Vert{}^2 \quad \text{sotto il vincolo } y_i(w \cdot x_i + b) - 1 \ge 0$$
 
 I punti del Training Set che giacciono _esattamente_ sul margine ($D(x) = +1$ o $D(x) = -1$) prendono il nome di **Support Vectors**.
-### Formulazione Matematica e Vettori di Supporto
-
 ### Formulazione Duale e Lagrangiana
+
 
 ### Vantaggi e Scalabilità
 

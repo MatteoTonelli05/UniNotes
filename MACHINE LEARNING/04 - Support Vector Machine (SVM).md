@@ -220,8 +220,12 @@ Strategie principali per ottenere la diversità:
 Se un ensemble è composto da $nc$ classificatori indipendenti con accuratezza $P > 0.5$, l'accuratezza totale tramite maggioranza si calcola con la distribuzione binomiale:
 $$P_{multi}(nc) = \sum_{m=k}^{nc} \binom{nc}{m} P^m (1 - P)^{nc-m}, \quad k = \frac{nc + 1}{2}$$
 
----
+> [!quote] **è la formula che calcola la probabilità che una squadra di classificatori (l'ensemble) prenda la decisione giusta, basandosi sulla bravura del singolo e su quanti compongono la squadra**.
 
+![[Pasted image 20261019145735.png]]
+> [!fail] La formula è basata sull'**indipendenza (totale) dei classificatori**, cosa difficilmente ottenibile in pratica.
+
+---
 ### Fusioni
 
 #### Fusione a Livello di Decisione

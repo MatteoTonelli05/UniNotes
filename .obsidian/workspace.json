@@ -115,10 +115,31 @@
   "right": {
     "id": "994e93d0a7538110",
     "type": "split",
-    "children": [],
+    "children": [
+      {
+        "id": "9d5051370dbb5ae7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "073c1c54c0b2585e",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "MACHINE LEARNING/04 - Support Vector Machine (SVM).md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Struttura"
+            }
+          }
+        ]
+      }
+    ],
     "direction": "horizontal",
-    "width": 285.5,
-    "collapsed": true
+    "width": 285.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -132,7 +153,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "ca5eaa056c9a2b2f",
+  "active": "073c1c54c0b2585e",
   "lastOpenFiles": [
     "MACHINE LEARNING/Allegati/Pasted image 20261019132902.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261019125626.png",

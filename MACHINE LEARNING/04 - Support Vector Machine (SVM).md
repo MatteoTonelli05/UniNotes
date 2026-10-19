@@ -225,8 +225,9 @@ $$P_{multi}(nc) = \sum_{m=k}^{nc} \binom{nc}{m} P^m (1 - P)^{nc-m}, \quad k = \f
 
 ## Fusione a Livello di Decisione
 
-Ogni classificatore $C_j$ restituisce solo l'etichetta della classe scelta.
+Ogni classificatore $C_j$ restituisce solo l'etichetta della classe scelta, dopodichè la combinazione dei risultati può avvenire a due livelli:
 
+###
 - **Majority Vote Rule**: Vince la classe che riceve più voti dai singoli classificatori:
   $$t = \arg\max_{i=1 \dots s} \sum_{j=1}^{nc} \theta_{ij}, \quad \theta_{ij} = \begin{cases} 1 & \text{se } C_j \text{ vota classe } i \\ 0 & \text{altrimenti} \end{cases}$$
 - **Borda Count**: Ogni classificatore fornisce una graduatoria (ranking) delle classi. I punteggi ottenuti dai posizionamenti vengono sommati.

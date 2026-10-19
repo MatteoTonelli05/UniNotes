@@ -195,8 +195,9 @@ Ogni pattern $𝐱$ viene assegnato alla classe $k^*$ per cui, su ogni classific
 - **Alta dimensionalità ($d \ge 5000$)**: Usare **SVM Lineare** (i pattern sono già sparsi; tarare solo $C$).
 - **Bassa dimensionalità ($d \le 20$)**: Usare **SVM Non Lineare con Kernel RBF** (tarare $C$ e $\sigma / \gamma$).
 - **Media dimensionalità ($d \approx 200$)**: Provare entrambe le opzioni tramite Validation Set o Cross-Validation.
-![[Pasted image 20261019125602.png|402]]![[Pasted image 20261019125626.png|404]]
----
+
+> [!example]
+> ![[Pasted image 20261019125602.png|402]]![[Pasted image 20261019125626.png|404]] ![[Pasted image 20261019132902.png|405]]
 
 # Multi-Classificatori (Ensemble Methods)
 

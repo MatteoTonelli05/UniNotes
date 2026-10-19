@@ -277,45 +277,5 @@ Random Forest (Breiman, 2001) fa parte delle tecniche di **Bootstrap Aggregating
 2. **Feature Bagging**: Ad ogni nodo di ogni albero decisionale (CART), la scelta della feature migliore su cui effettuare lo split non viene fatta su tutte le $d$ feature, ma su un sottoinsieme casuale di dimensione $d' = \sqrt{d}$.
 3. **Classificatori base**: Alberi decisionali CART binarizzati.
 
-### Apprendimento di un albero CART
-![[Pasted image 20261019161940.png|488]]
-Lo split $(k, t_k)$ su feature $k$ e soglia $t_k$ viene scelto minimizzando l'impurità pesata dei figli:
-$$J(k, t_k) = \frac{m_{left}}{m} G_{left} + \frac{m_{right}}{m} G_{right}$$
 
-Indici di impurità:
-- **Indice Gini** (default): $Gini = 1 - \sum_{i=1}^{s} p_i^2$
-- **Entropia**: $Entropy = -\sum_{i=1}^{s} p_i \log_2(p_i)$
-
-### Valutazione Out-Of-Bag (OOB):
-La stima delle prestazioni viene fatta sui campioni non inclusi nel campione bootstrap di ciascun albero, eliminando la necessità di un validation set separato.
-
----
-
-## AdaBoost (Boosting)
-
-AdaBoost (Freund & Schapire, 1995) combina sequenzialmente classificatori deboli (*weak classifiers*) per crearne uno forte (*strong classifier*).
-
-### Algoritmo:
-1. Inizializzazione pesi dei pattern: $w_i^1 = \frac{1}{n}$.
-2. Per $t = 1 \dots T$:
-   - Normalizza i pesi dei pattern $\sum w_i^t = 1$.
-   - Seleziona il weak classifier $h^t(x)$ che minimizza l'errore pesato:
-     $$\epsilon^t = \sum_{i=1}^{n} w_i^t \cdot \mathbb{I}(h^t(x_i) \ne y_i)$$
-   - Calcola il peso del classificatore $\alpha^t$:
-     $$\alpha^t = \frac{1}{2} \ln \left( \frac{1 - \epsilon^t}{\epsilon^t} \right)$$
-   - Aggiorna i pesi dei pattern per l'iterazione successiva:
-     $$w_i^{t+1} = w_i^t \cdot e^{-\alpha^t y_i h^t(x_i)}$$
-     *(Aumenta il peso dei pattern classificati erroneamente)*.
-
-3. **Classificatore Finale Strong**:
-   $$H(x) = \text{sign}\left( \sum_{t=1}^{T} \alpha^t h^t(x) \right)$$
-
-### Applicazione Notevole: Viola & Jones Face Detector (2001)
-Utilizza AdaBoost applicato a funzioni Haar-like rectangle features ed una struttura a cascata per lo scarto rapido dei sotto-riquadri *non-face*.
-
----
-
-## Gradient Boosting
-
-A differenza di AdaBoost, i modelli deboli successivi vengono addestrati sequenzialmente per **stimare e correggere i residui di errore** commessi dai modelli precedenti.
-Un'implementazione ad alte prestazioni ampiamente diffusa è **XGBoost**.
+==PAG.28==

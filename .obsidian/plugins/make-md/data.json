@@ -38,12 +38,13 @@
   "vaultSelector": true,
   "deleteFileOption": "trash",
   "expandedSpaces": [
-    "/",
     "//LINGUAGGI FORMALI E SISTEMI COMPUTAZIONALI",
-    "//LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI",
     "//CONCURRENT SYSTEMS",
     "//SISTEMI INFORMATIVI",
-    "//MACHINE LEARNING"
+    "//MACHINE LEARNING",
+    "/",
+    "//LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI",
+    "//LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Tags",

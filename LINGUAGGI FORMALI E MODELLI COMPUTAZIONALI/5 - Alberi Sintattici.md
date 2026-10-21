@@ -53,7 +53,7 @@ Consideriamo la grammatica: $$E \rightarrow I \mid E+E \mid E*E \mid (E)$$
 > [!quote] Definizione non formale
 > Ciò che rende dannosa una grammatica è unicamente l'esistenza di **più alberi sintattici distinti** per la stessa stringa.
 
-Una CFG $G = (V, T, P, S)$ è **ambigua** se esiste almeno una stringa $w \in T^*$ che ammette **due o più alberi sintattici distinti**.
+> [!abstract] Una CFG $G = (V, T, P, S)$ è **AMBIGUA** se esiste almeno una stringa $w \in T^*$ che ammette **due o più alberi sintattici distinti**.
 
 Se ogni stringa generata dal linguaggio $L(G)$ ha un **unico** albero sintattico, la grammatica è detta **non-ambigua**.
 

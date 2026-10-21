@@ -13,12 +13,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/3 - Linguaggi Regolari.md",
+                "file": "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/4 - Linguaggi Liberi.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "3 - Linguaggi Regolari"
+              "title": "4 - Linguaggi Liberi"
+            }
+          },
+          {
+            "id": "a227e1d912f25886",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Temp.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Temp"
             }
           }
         ]
@@ -105,74 +119,12 @@
         "type": "tabs",
         "children": [
           {
-            "id": "d9a3937e83c74fcf",
-            "type": "leaf",
-            "state": {
-              "type": "backlink",
-              "state": {
-                "file": "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/3 - Linguaggi Regolari.md",
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              },
-              "icon": "links-coming-in",
-              "title": "Riferimenti"
-            }
-          },
-          {
-            "id": "2be0560e1d34641f",
-            "type": "leaf",
-            "state": {
-              "type": "outgoing-link",
-              "state": {
-                "file": "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/3 - Linguaggi Regolari.md",
-                "linksCollapsed": false,
-                "unlinkedCollapsed": true
-              },
-              "icon": "links-going-out",
-              "title": "Collegamenti in uscita"
-            }
-          },
-          {
-            "id": "0604f76a498eb632",
-            "type": "leaf",
-            "state": {
-              "type": "tag",
-              "state": {
-                "sortOrder": "frequency",
-                "useHierarchy": true,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-tags",
-              "title": "Etichette"
-            }
-          },
-          {
-            "id": "af085f1c0339ba86",
-            "type": "leaf",
-            "state": {
-              "type": "all-properties",
-              "state": {
-                "sortOrder": "frequency",
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-archive",
-              "title": "Tutte le proprietà"
-            }
-          },
-          {
             "id": "8483bda71575f084",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/3 - Linguaggi Regolari.md",
+                "file": "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/4 - Linguaggi Liberi.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -185,8 +137,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 285.5,
-    "collapsed": true
+    "width": 285.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -202,9 +153,11 @@
   },
   "active": "72adf5bb668be3c0",
   "lastOpenFiles": [
-    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261019180656.png",
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Temp.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/4 - Linguaggi Liberi.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/5 - Alberi Sintattici.md",
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/3 - Linguaggi Regolari.md",
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261019180656.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/1 - FA, DFA, NFA, E-NFA.md",
     "CONCURRENT SYSTEMS/ANALYSING - module 1.3.md",
     "CONCURRENT SYSTEMS/PetriNets - module 1.2.md",
@@ -218,13 +171,11 @@
     "MACHINE LEARNING/Allegati/Pasted image 20261019125626.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261019125602.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261019113629.png",
-    "MACHINE LEARNING/Allegati/Pasted image 20261019113604.png",
     "CONCURRENT SYSTEMS/Sintassi FSP - LTS - module 1.2.md",
     "CONCURRENT SYSTEMS/OVERVIEW - module 1.1.md",
     "MACHINE LEARNING/03 - Classificatore NN.md",
     "MACHINE LEARNING/02 - Training e Valutazione Prestazioni.md",
     "MACHINE LEARNING/MACHINE LEARNING.md",
-    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/3 - Linguaggi Regolari.md",
     "MACHINE LEARNING/02 - Tipi di Learning.md",
     "SISTEMI INFORMATIVI/Classificazione dei SI.md",
     "MACHINE LEARNING/01 - Introduzione.md",

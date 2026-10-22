@@ -79,3 +79,4 @@ dove:
 
 ### Descrizioni istantanee
 
+![[Pasted image 20261022111917.png]]

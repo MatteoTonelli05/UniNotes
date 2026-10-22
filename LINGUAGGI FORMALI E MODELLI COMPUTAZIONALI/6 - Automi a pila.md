@@ -79,4 +79,12 @@ dove:
 
 ### Descrizioni istantanee
 
+Per ragionare sulle computazioni dei PDA, usiamo delle descrizioni istantanee (ID) del PDA. Una ID è una tripla: $$(q, w, γ)$$
+dove $q$ è lo stato, $w$ l’input rimanente, e $γ$ il contenuto della pila.
 ![[Pasted image 20261022111917.png]]
+
+---
+Se dovessimo rappresentare TUTTI i tentativi di ricerca della metà dovremmo fare
+![[Pasted image 20261022114246.png|292]]
+
+---

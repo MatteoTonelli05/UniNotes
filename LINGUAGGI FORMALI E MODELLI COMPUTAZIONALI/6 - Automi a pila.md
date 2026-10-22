@@ -81,10 +81,61 @@ dove:
 
 Per ragionare sulle computazioni dei PDA, usiamo delle descrizioni istantanee (ID) del PDA. Una ID è una tripla: $$(q, w, γ)$$
 dove $q$ è lo stato, $w$ l’input rimanente, e $γ$ il contenuto della pila.
-![[Pasted image 20261022111917.png]]
+![[lcmc.png]]
 
 ---
 Se dovessimo rappresentare TUTTI i tentativi di ricerca della metà dovremmo fare
 ![[Pasted image 20261022114246.png|292]]
 
 ---
+## Modalità di Accettazione dei PDA e Trasformazioni
+
+Un Automa a Pila (PDA) $P = (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F)$ si dice che **riconosce** un linguaggio solo se rispetta uno di due criteri equivalenti: **stato finale** oppure **pila vuota**.
+### 1. Accettazione per Stato Finale
+
+Un PDA accetta una stringa $w \in \Sigma^*$ per **stato finale** se, partendo dalla configurazione iniziale $(q_0, w, Z_0)$, dopo aver consumato l'intero input $w$, si trova in uno **stato di accettazione** $q \in F$, indipendentemente dal contenuto della pila.
+
+#### Definizione Formale
+Il linguaggio accettato per stato finale è definito come:
+$$L(P) = \{ w \in \Sigma^* \mid (q_0, w, Z_0) \vdash^* (q, \epsilon, \alpha), \text{ con } q \in F \text{ e } \alpha \in \Gamma^* \}$$
+
+> [!info] **Nota** 
+> Il contenuto finale della pila ($\alpha$) è del tutto irrilevante ai fini dell'accettazione.
+### 2. Accettazione per Pila Vuota
+
+Un PDA accetta una stringa $w \in \Sigma^*$ per **pila vuota** se, partendo dalla configurazione iniziale $(q_0, w, Z_0)$, dopo aver consumato l'intero input $w$, la **pila diventa completamente vuota** ($\epsilon$), indipendentemente dallo stato in cui si trova l'automa.
+
+#### Definizione Formale
+Il linguaggio accettato per pila vuota è definito come:
+
+$$N(P) = \{ w \in \Sigma^* \mid (q_0, w, Z_0) \vdash^* (q, \epsilon, \epsilon), \text{ con } q \in Q \}$$
+
+> [!info] **Nota**
+>  In questo caso l'insieme degli stati finali $F$ non è necessario (può essere omesso dalla tupla del PDA o considerato vuoto).
+
+---
+
+> [!important] Equivalenza dei Modelli
+> I due metodi sono **computazionalmente equivalenti**: un linguaggio è generato da una CFG se e solo se è accettato da un PDA per pila vuota, se e solo se è accettato da un PDA per stato finale.
+
+---
+
+### Trasformazione: Da Pila Vuota a Stato Finale
+
+Dato un PDA $P_N$ che accetta un linguaggio $L$ per pila vuota ($L = N(P_N)$), è sempre possibile costruire un PDA $P_F$ che accetta lo stesso linguaggio $L$ ma per stato finale ($L = L(P_F)$).
+
+![[Pasted image 20261022120939.png]]
+### Costruzione Formale di $P_F$
+Si definisce $P_F$ aggiungendo due nuovi stati ($p_0$ e $p_f$) e un nuovo simbolo di fondo pila ($X_0$):
+
+$$P_F = (Q \cup \{p_0, p_f\}, \Sigma, \Gamma \cup \{X_0\}, \delta_F, p_0, X_0, \{p_f\})$$
+
+Dove la funzione di transizione $\delta_F$ comprende:
+1. **Inizializzazione:** $\delta_F(p_0, \epsilon, X_0) = \{(q_0, Z_0 X_0)\}$
+   * Pone il nuovo simbolo $X_0$ sotto il simbolo iniziale $Z_0$ e passa allo stato iniziale di $P_N$.
+2. **Simulazione:** Per ogni $q \in Q$, $a \in \Sigma \cup \{\epsilon\}$ e $Y \in \Gamma$:
+   $$\delta_F(q, a, Y) = \delta_N(q, a, Y)$$
+3. **Cattura del vuoto ed Accettazione:** Per ogni $q \in Q$:
+   $$(p_f, \epsilon) \in \delta_F(q, \epsilon, X_0)$$
+   * Se $P_N$ svuota tutta la sua pila ($\Gamma^*$), in cima rimane solo il simbolo speciale $X_0$. $P_F$ lo rileva e passa allo stato finale $p_f$.
+

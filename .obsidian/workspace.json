@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/6 - Automi a pila.md",
+                "file": "MACHINE LEARNING/04 - Random Forest.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "6 - Automi a pila"
+              "title": "04 - Random Forest"
             }
           }
         ]
@@ -94,8 +94,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "994e93d0a7538110",
@@ -203,6 +202,9 @@
   },
   "active": "800b86c0ea0448ce",
   "lastOpenFiles": [
+    "MACHINE LEARNING/04 - Support Vector Machine (SVM).md",
+    "MACHINE LEARNING/04 - Random Forest.md",
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/6 - Automi a pila.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261022120939.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/lcmc.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261022114246.png",
@@ -211,7 +213,6 @@
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261022104701.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab/Lab 21-10-2026.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab/Lab.md",
-    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/6 - Automi a pila.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261022100416.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/5 - Alberi Sintattici.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/4 - Linguaggi Liberi.md",
@@ -225,10 +226,8 @@
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/2 - Espressioni Regolari.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261019180656.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/1 - FA, DFA, NFA, E-NFA.md",
-    "MACHINE LEARNING/04 - Support Vector Machine (SVM).md",
     "MACHINE LEARNING/Allegati/Pasted image 20261019161940.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261019145735.png",
-    "MACHINE LEARNING/Allegati/Pasted image 20261019145531.png",
     "CONCURRENT SYSTEMS/OVERVIEW - module 1.1.md",
     "MACHINE LEARNING/03 - Classificatore NN.md",
     "MACHINE LEARNING/02 - Training e Valutazione Prestazioni.md",

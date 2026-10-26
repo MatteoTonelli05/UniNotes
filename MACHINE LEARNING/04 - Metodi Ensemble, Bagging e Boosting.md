@@ -11,7 +11,6 @@
     
 3. Le predizioni dei singoli classificatori vengono aggregate e fuse (ad esempio tramite _majority vote rule_ o somma delle confidenze).
     
-
 ### Decision Trees (CART)
 
 Nelle Random Forest i singoli classificatori deboli sono **Decision Tree Classifiers** (in particolare l'algoritmo **CART**).

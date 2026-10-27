@@ -11,23 +11,19 @@
 
 In Random Forest, il tipo di albero predefinito è il **CART** (_Classification and Regression Tree_), un albero binario in cui ogni nodo divide i dati confrontando una singola caratteristica (_feature_) con una soglia.
 ![[Pasted image 20261026174622.png|413]]
-- **Criterio di Split**: La coppia (feature $k$, soglia $t_k$) viene scelta in modo greedy cercando la massima purezza dei sottonodi, ovvero minimizzando la funzione di costo:
+#### Criterio di Split
+
+> [!abstract] Ad ogni nodo con $m$ campioni, l'algoritmo cerca la coppia **(feature $k$, soglia $t_k$)** che divide i dati nei due sottoinsiemi $m_{left}$ e $m_{right}$ più "puri" possibile.
+
+La coppia (feature $k$, soglia $t_k$) viene scelta in modo greedy cercando la massima purezza dei sottonodi, ovvero minimizzando la funzione di costo:
     
     $$J(k, t_k) = \frac{m_{\text{left}}}{m} G_{\text{left}} + \frac{m_{\text{right}}}{m} G_{\text{right}}$$
     
 - **Metriche di Impurità**:
-    
-    - **Indice di Gini** (impostazione predefinita per velocità di calcolo):
-        
-        $$\text{Gini} = 1 - \sum_{i=1}^{s} p_i^2$$
-        
-    - **Entropia**:
-        
-        $$\text{Entropy} = -\sum_{i=1}^{s} p_i \log_2(p_i)$$
-        
-- **Classificazione della foglia**: Raggiunta una foglia, l'assegnazione della classe avviene per maggioranza dei campioni presenti al suo interno.
-    
+$$\text{Gini} = 1 - \sum_{i=1}^{s} p_i^2 \qquad \qquad \text{Entropy} = -\sum_{i=1}^{s} p_i \log_2(p_i)$$
 
+> [!warning] Criteri di arresto
+> La crescita dell'albero si ferma quando si raggiunge la profondità massima impostata (`max_depth`) o quando l'impurità non può più essere ridotta (nodo puro).
 ### Caratteristiche specifiche di Random Forest
 
 - **Feature Bagging**: Ad ogni split di un nodo, la selezione della feature migliore viene effettuata non sull'insieme di tutte le $d$ variabili disponibili, ma su un sottoinsieme casuale di dimensione ridotta (valore tipico $d' = \sqrt{d}$). Ciò evita che alberi differenti scelgano ripetutamente le medesime feature dominanti, aumentando l'indipendenza strutturale degli alberi.

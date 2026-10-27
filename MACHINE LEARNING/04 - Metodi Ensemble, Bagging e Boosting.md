@@ -39,48 +39,29 @@ $$\text{Gini} = 1 - \sum_{i=1}^{s} p_i^2 \qquad \qquad \text{Entropy} = -\sum_{i
 - `max_depth`: Limite di profondità massima degli alberi. Ha un effetto regolarizzante e riduce il rischio di overfitting.
         
 
- **Stima Out-Of-Bag (OOB)**: Dato l'uso del bagging, la capacità di generalizzazione può essere validata tramite i pattern rimasti esclusi dai singoli campionamenti (senza dover riservare un validation set separato).   
-
+ > [!attention] **Stima Out-Of-Bag (OOB)**
+ > Dato l'uso del bagging, che per ogni albero usa circa i $\frac{2}{3}$ dei dati, questo può essere validato tramite i pattern rimasti esclusi dai singoli campionamenti (senza dover riservare un validation set separato). 
+ 
 # AdaBoost (Adaptive Boosting)
 
 Proposto da Freund e Schapire nel 1995, **AdaBoost** appartiene ai metodi di **Boosting**. Si basa sull'idea di combinare iterativamente un insieme di classificatori "deboli" (_weak classifiers_) per costruire un classificatore "forte" (_strong classifier_).
 
-### Differenze chiave rispetto al Bagging
-
-- L'addestramento non avviene in parallelo ma in modo **sequenziale**.
-    
-- Ad ogni iterazione viene modificato il peso associato a ciascun campione del training set: i pattern erroneamente classificati acquisiscono un peso maggiore per forzare il classificatore successivo a concentrarsi su di essi.
+![[Pasted image 20261027114504.png|555]]
+> [!question] Cosa cambia rispetto al Bagging?
+> L'addestramento non avviene in parallelo ma in modo **sequenziale**.
+> Ad ogni iterazione viene modificato il peso associato a ciascun campione del training set: i pattern erroneamente classificati acquisiscono un peso maggiore per forzare il classificatore successivo a concentrarsi su di essi.
     
 
 ### Formulazione Matematica e Algoritmo (Caso Binario)
 
-1. **Inizializzazione dei pesi**:
-    
-    $$w_i^1 = \frac{1}{n}, \quad i = 1 \dots n$$
-    
+1. **Inizializzazione dei pesi**:$$w_i^1 = \frac{1}{n}, \quad i = 1 \dots n$$
 2. **Ciclo di addestramento** (per $t = 1 \dots T$):
-    
     - Normalizzare i pesi affinché la somma valga 1.
-        
-    - Calcolare l'errore pesato $\epsilon_j$ per ciascun classificatore candidato $h_j^t(x)$:
-        
-        $$\epsilon_j = \sum_{i=1}^n w_i^t \cdot I(h_j^t(x_i) \neq y_i)$$
-        
+    - Calcolare l'errore pesato $\epsilon_j$ per ciascun classificatore candidato $h_j^t(x)$:        $$\epsilon_j = \sum_{i=1}^n w_i^t \cdot I(h_j^t(x_i) \neq y_i)$$
     - Selezionare il classificatore $h^t(\cdot)$ con errore minimo $\epsilon^t = \min \epsilon_j$.
-        
-    - Calcolare l'importanza/peso $\alpha^t$ da assegnare al classificatore selezionato:
-        
-        $$\alpha^t = \frac{1}{2} \ln \left( \frac{1 - \epsilon^t}{\epsilon^t} \right)$$
-        
-    - Aggiornare i pesi dei campioni per l'iterazione successiva:
-        
-        $$w_i^{t+1} = w_i^t \cdot e^{-\alpha^t y_i h^t(x_i)}$$
-        
-3. **Classificatore Finale Strong**:
-    
-    $$H(x) = \text{sign}\left( \sum_{t=1}^{T} \alpha^t h^t(x) \right)$$
-    
-
+    - Calcolare l'importanza/peso $\alpha^t$ da assegnare al classificatore selezionato:$$\alpha^t = \frac{1}{2} \ln \left( \frac{1 - \epsilon^t}{\epsilon^t} \right)$$
+    - Aggiornare i pesi dei campioni per l'iterazione successiva:$$w_i^{t+1} = w_i^t \cdot e^{-\alpha^t y_i h^t(x_i)}$$
+3. **Classificatore Finale Strong**:$$H(x) = \text{sign}\left( \sum_{t=1}^{T} \alpha^t h^t(x) \right)$$
 ### Comportamento dei pesi
 
 - **Peso del classificatore $\alpha^t$**: Se l'errore $\epsilon^t$ è pari a $0.5$ (equivalente al caso puramente casuale), $\alpha^t = 0$. Se l'errore si avvicina a 0, $\alpha^t$ cresce esponenzialmente in positivo. Se l'errore è $> 0.5$, $\alpha^t$ assume valore negativo.
@@ -90,18 +71,13 @@ Proposto da Freund e Schapire nel 1995, **AdaBoost** appartiene ai metodi di **B
 
 # Casi Applicativi: Viola & Jones Face Detector
 
-Metodologia per il rilevamento del volto in immagini basata su AdaBoost:
-
-- **Weak Classifiers**: Costituiti da semplici filtri rettangolari (_Haar features_, $\approx 160.000$ variazioni possibili) calcolabili rapidamente tramite l'immagine integrale.
+> [!hint] **Weak Classifiers**
+>  Costituiti da semplici filtri rettangolari (_Haar features_, $\approx 160.000$ variazioni possibili) calcolabili rapidamente tramite l'immagine integrale.
     
-- **Architettura a Cascata**: Sequenza di _strong classifier_ addestrati con AdaBoost. Un sottoinsieme di immagini viene scartato immediatamente non appena un livello individua un pattern _non-face_.
+**Architettura a Cascata**: Sequenza di _strong classifier_ addestrati con AdaBoost. Un sottoinsieme di immagini viene scartato immediatamente non appena un livello individua un pattern _non-face_.
+
+> [!example] I primi livelli della cascata impiegano filtri molto leggeri (ad esempio 2 soli weak classifier per eliminare circa il 50% dei falsi positivi iniziali), garantendo elevata efficienza complessiva.
     
-- I primi livelli della cascata impiegano filtri molto leggeri (ad esempio 2 soli weak classifier per eliminare circa il 50% dei falsi positivi iniziali), garantendo elevata efficienza complessiva.
-    
-
-# Gradient Boosting
-
-Tecnica di boosting alternativa ad AdaBoost:
-
->[!hint] Invece di incrementare il peso dei pattern difficili (_hard examples_), adatta iterativamente i nuovi modelli deboli sui **residui dell'errore** commessi dai modelli precedenti.
+>[!hint] **Gradient Boosting** - Tecnica di boosting alternativa ad AdaBoost
+>Invece di incrementare il peso dei pattern difficili (_hard examples_), adatta iterativamente i nuovi modelli deboli sui **residui dell'errore** commessi dai modelli precedenti.
     

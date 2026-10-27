@@ -7,9 +7,7 @@
 ## Simple linear regression
 
 Dato un training set con $n$ pattern $(x_1,y_1)\dots(x_n,y_n)$ si assume
-
 $$y_i = \alpha + \beta \cdot x_i + \varepsilon_i$$
-
 - $\varepsilon_i$ = errore di misura (incognito) del pattern $i$
 - $\alpha, \beta$ = parametri da determinare
 

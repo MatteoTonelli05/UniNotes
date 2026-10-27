@@ -1,0 +1,239 @@
+{
+  "main": {
+    "id": "c143ccd5a8e218c3",
+    "type": "split",
+    "children": [
+      {
+        "id": "ed6ee239b0732bfe",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "807a64fe0d837f53",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Filtri/Canny edge detector.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Canny edge detector"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "46175d5895db3208",
+    "type": "split",
+    "children": [
+      {
+        "id": "9c10cc16fc8126b3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7d73357eb7c074f8",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "e6d2a0adf0d7587c",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "c560750b5b96457e",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "cf413ce68f7fdf30",
+    "type": "split",
+    "children": [
+      {
+        "id": "eda663d17d527921",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "de22dfa14da1ece4",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "01. Introduzione.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for 01. Introduzione"
+            }
+          },
+          {
+            "id": "be9176359671c0bd",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "01. Introduzione.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from 01. Introduzione"
+            }
+          },
+          {
+            "id": "9bc2a8841befc626",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "9e08ff709aafcbe5",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "fc2521ad5f74585b",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "01. Introduzione.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of 01. Introduzione"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "807a64fe0d837f53",
+  "lastOpenFiles": [
+    "Filtri/Bordi.md",
+    "Filtri/Applicazione di filtri.md",
+    "Filtri/Applicazione dei filtri lineari.md",
+    "Filtri/Filtri.md",
+    "Filtri/Esempio di filtro non-lineare.md",
+    "Filtri/Derivate.md",
+    "Filtri/Derivata seconda.md",
+    "Filtri/Canny edge detector.md",
+    "Filtri/Gradiente.md",
+    "Riconoscimento/Estrazione di feature.md",
+    "Riconoscimento/Riconoscimento di immagini.md",
+    "Domande_ok.md",
+    "Calibrazione Camera/Calibrazione.md",
+    "Comandi_ok.md",
+    "Calibrazione Camera/Formazione immagini.md",
+    "Immagini/Fondamenti di OpenCv.md",
+    "Immagini/Trasformazioni affini.md",
+    "pasted_img/Pasted image 20260613201807.png",
+    "pasted_img/Pasted image 20260613200750.png",
+    "Immagini/Operazioni su singole Immagini.md",
+    "Ripassa - README.md",
+    "Rilevare il movimento/Rilevare il movimento.md",
+    "Analisi di immagini binarie/Immagini binarie.md",
+    "Numpy/Tipi di dato numpy.md",
+    "Numpy/ndarray.md",
+    "Numpy/Operazioni avanzate su array.md",
+    "Numpy/Operazioni di base.md",
+    "Numpy/Introduzione.md",
+    "pasted_img/Pasted image 20260408162134.png",
+    "pasted_img/Pasted image 20260408162104.png",
+    "pasted_img/Pasted image 20260408161817.png",
+    "pasted_img/Pasted image 20260408161429.png",
+    "pasted_img/Pasted image 20260408161356.png",
+    "pasted_img/Pasted image 20260408125326.png",
+    "pasted_img/Pasted image 20260408124952.png",
+    "pasted_img/Pasted image 20260408124933.png",
+    "Riconoscimento",
+    "Rilevare il movimento",
+    "Analisi di immagini binarie",
+    "Senza nome 1.canvas",
+    "Senza nome.canvas",
+    "Filtri",
+    "Calibrazione Camera",
+    "pasted_img",
+    "Numpy/img",
+    "img",
+    "Pasted image 20260312131725.png.~tmp",
+    "Immagini"
+  ]
+}

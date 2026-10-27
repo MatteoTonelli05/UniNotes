@@ -27,24 +27,26 @@ dove $\bar{x}, \bar{y}$ sono le medie.
 
 ## Multiple linear regression
 
-Generalizzazione a iperpiani ($\mathbf{x} \in \mathbb{R}^d$).
+> [!hint] Nella simple linear regression hai **una** variabile in ingresso $x$ e cerchi una retta. Nella multiple ne hai $d$ e cerchi un **iperpiano**. Il modello è
+>
+$$\hat{y} = \beta_1 x_1 + \beta_2 x_2 + \dots + \beta_d x_d + \beta_{d+1}$$
+
+Con $d=1$ è una retta, con $d=2$ un piano nello spazio $(x_1, x_2, y)$, con $d>2$ non si disegna più ma la logica resta identica. Il modello è lineare **nei parametri** $\beta_j$, ed è questo che conta.
+![[Pasted image 20261027140737.png|415]]
+
 
 - $\mathbf{X}$ è la matrice $n \times (d+1)$ con i pattern sulle righe e **una colonna di tutti 1 a destra** (serve per il termine noto).
 - $\mathbf{y}$ = vettore delle $y_i$ (uno scalare per pattern).
 - $\boldsymbol{\beta}$ = vettore dei $d+1$ parametri (l'ultimo è il termine noto).
-
+![[Pasted image 20261027141957.png]]
 Le relazioni diventano
-
 $$y_i = \sum_{j=1}^{d+1} x_{ij},\beta_j \quad \Longleftrightarrow \quad \mathbf{y} = \mathbf{X}\boldsymbol{\beta}$$
-
 Per $n > d+1$ il sistema è **sovradeterminato**.
 
 Funzione obiettivo (least square):
-
 $$| \mathbf{y} - \mathbf{X}\boldsymbol{\beta} |^2$$
 
 Equazioni normali e soluzione:
-
 $$(\mathbf{X}^t \mathbf{X}),\boldsymbol{\beta}^* = \mathbf{X}^t \mathbf{y} \quad\Rightarrow\quad \boldsymbol{\beta}^* = (\mathbf{X}^t\mathbf{X})^{-1}\mathbf{X}^t\mathbf{y}$$
 
 > [!note] Casi particolari
@@ -53,8 +55,6 @@ $$(\mathbf{X}^t \mathbf{X}),\boldsymbol{\beta}^* = \mathbf{X}^t \mathbf{y} \quad
 > - $n > d+1$: più equazioni che incognite, l'iperpiano **approssima** i punti.
 > - $\mathbf{X}^t\mathbf{X}$ deve essere a **rango massimo** per essere invertibile: problemi con punti collineari (colonne di $\mathbf{X}$ linearmente dipendenti).
 > - $\mathbf{X}^t\mathbf{X}$ è spesso **mal condizionata**, quindi l'inversione può essere numericamente instabile.
-
-![[Pasted image 20261027140737.png|415]]
 ### Soluzione stabile con SVD
 
 Si decompone $\mathbf{X} = \mathbf{U}\boldsymbol{\Gamma}\mathbf{V}^t$ dove:
@@ -70,7 +70,7 @@ $$\boldsymbol{\beta}^* = \mathbf{V},\boldsymbol{\Gamma}^{+},\mathbf{U}^t,\mathbf
 con $\boldsymbol{\Gamma}^+$ la **pseudoinversa** di $\boldsymbol{\Gamma}$: si ottiene invertendo gli elementi non nulli e trasponendo.
 ## Regressione vs geometrical fitting
 
-Domanda: i minimi quadrati sono un buon metodo per fittare nuvole di punti 2D/3D?
+> [!question] I minimi quadrati sono un buon metodo per fittare nuvole di punti 2D/3D?
 
 - La regressione least square minimizza le distanze **verticali** dall'iperpiano, non le distanze euclidee.
 - Motivo: variabile indipendente e dipendente **non hanno ruolo simmetrico**. Infatti, **scambiando le due variabili il risultato cambia**.

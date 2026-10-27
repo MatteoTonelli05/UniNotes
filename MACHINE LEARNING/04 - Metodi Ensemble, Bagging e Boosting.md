@@ -1,8 +1,6 @@
 # Random Forest e Metodi di Bagging
 
 > [!abstract] **Random Forest** fa parte dei metodi di **Bagging** (_Bootstrap Aggregating_).
-
-![[Pasted image 20261026174622.png|569]]
 ### Principi del Bagging
 
 1. **Bootstrap (Campionamento):** Si estraggono casualmente dal training set dei sottoinsiemi di dati $S_j$ con reinserimento (di solito circa i $2/3$ del totale dei dati originali).
@@ -12,7 +10,7 @@
 ### Decision Trees (CART)
 
 In Random Forest, il tipo di albero predefinito è il **CART** (_Classification and Regression Tree_), un albero binario in cui ogni nodo divide i dati confrontando una singola caratteristica (_feature_) con una soglia.
-    
+![[Pasted image 20261026174622.png|413]]
 - **Criterio di Split**: La coppia (feature $k$, soglia $t_k$) viene scelta in modo greedy cercando la massima purezza dei sottonodi, ovvero minimizzando la funzione di costo:
     
     $$J(k, t_k) = \frac{m_{\text{left}}}{m} G_{\text{left}} + \frac{m_{\text{right}}}{m} G_{\text{right}}$$

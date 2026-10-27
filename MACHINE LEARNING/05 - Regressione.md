@@ -71,44 +71,9 @@ con $\boldsymbol{\Gamma}^+$ la **pseudoinversa** di $\boldsymbol{\Gamma}$: si ot
 ## Regressione vs geometrical fitting
 
 > [!question] I minimi quadrati sono un buon metodo per fittare nuvole di punti 2D/3D?
+> No, perchè la regressione lineare (least square) minimizza le distanze verticali dall'iperpiano e non le distanze euclidee (ottenibile invece attraverso **PCA**)
 
-- La regressione least square minimizza le distanze **verticali** dall'iperpiano, non le distanze euclidee.
-- Motivo: variabile indipendente e dipendente **non hanno ruolo simmetrico**. Infatti, **scambiando le due variabili il risultato cambia**.
-- In una nuvola di punti geometrici le coordinate hanno lo stesso ruolo → conviene il fitting con [[PCA]], che minimizza le distanze euclidee.
-
-## Esempio: California housing
-
-- Dataset con 20640 pattern, ognuno un quartiere (gruppo di case).
-- Variabile indipendente (8-dim): `MedInc, HouseAge, AveRooms, AveBedrms, Population, AveOccup, Latitude, Longitude`.
-- Variabile dipendente: costo medio delle case nel quartiere (`Value`, 1 ≡ 100K$).
-- **Pandas** è utile per esplorare e manipolare dati tabellari.
-
-### Stima con multiple linear regression
-
-Split 80% / 20% con `train_test_split(..., test_size=0.2)`.
-
-Con scikit-learn:
-
-```python
-lin_reg = LinearRegression()
-lin_reg.fit(X_train, y_train)
-y_train_predicted = lin_reg.predict(X_train)
-rmse = np.sqrt(mean_squared_error(y_train, y_train_predicted))
-```
-
-Con implementazione esplicita ($\boldsymbol{\beta}^* = (\mathbf{X}^t\mathbf{X})^{-1}\mathbf{X}^t\mathbf{y}$):
-
-```python
-X_train_b = np.c_[np.ones((X_train.shape[0],1)), X_train]
-beta_star = np.linalg.inv(X_train_b.T.dot(X_train_b)).dot(X_train_b.T).dot(y_train)
-y_train_predicted = X_train_b.dot(beta_star)
-```
-
-Stesso risultato (ultimi decimali a parte):
-
-- Train RMSE: **0.7233**
-- Test RMSE: **0.7274** (≈ 72K$ di scostamento medio)
-
+![[Pasted image 20261027143702.png|462]]
 ## Accuratezza di predizione
 
 |Metrica|Formula|Note|
@@ -121,6 +86,7 @@ Stesso risultato (ultimi decimali a parte):
 
 > [!warning] MAE, MAPE e R² **non sono direttamente utilizzabili come loss** nel modello lineare least square. R² **non è valido per modelli non lineari**.
 
+> [!hint] 
 ## Variabile indipendente non lineare
 
 Si può continuare a usare la regressione lineare per approssimare **curve e superfici**: l'importante è che la funzione sia **lineare rispetto ai parametri**, non rispetto alla variabile indipendente. Gli elementi di $\mathbf{x}$ possono comparire elevati a potenza, combinati tra loro, come argomento di funzioni trascendenti, ecc.

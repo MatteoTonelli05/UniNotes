@@ -43,7 +43,8 @@
     "/",
     "//LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab",
     "//visione",
-    "//visione/visione/Filtri"
+    "//visione/visione/Filtri",
+    "//visione/visione/Immagini"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Tags",

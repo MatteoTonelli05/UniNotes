@@ -29,16 +29,17 @@ $$\text{Gini} = 1 - \sum_{i=1}^{s} p_i^2 \qquad \qquad \text{Entropy} = -\sum_{i
 > La crescita dell'albero si ferma quando si raggiunge la profondità massima impostata (`max_depth`) o quando l'impurità non può più essere ridotta (nodo puro).
 ### Caratteristiche specifiche di Random Forest
 
-- **Feature Bagging**: Ad ogni split di un nodo, la selezione della feature migliore viene effettuata non sull'insieme di tutte le $d$ variabili disponibili, ma su un sottoinsieme casuale di dimensione ridotta (valore tipico $d' = \sqrt{d}$). Ciò evita che alberi differenti scelgano ripetutamente le medesime feature dominanti, aumentando l'indipendenza strutturale degli alberi.
+> [!important] **Feature Bagging**
+> Ad ogni split di un nodo, la selezione della feature migliore viene effettuata non sull'insieme di tutte le $d$ variabili disponibili, ma su un sottoinsieme casuale di dimensione ridotta (valore tipico $d' = \sqrt{d}$). Ciò evita che alberi differenti scelgano ripetutamente le medesime feature dominanti, aumentando l'indipendenza strutturale degli alberi.
     
-- **Iperparametri chiave**:
+#### **Iperparametri chiave**:
     
-    - `n_estimators`: Numero di alberi da generare nella foresta (solitamente da diverse centinaia a migliaia). Incrementarlo non genera overfitting, al più aumenta l'impegno computazionale.
+- `n_estimators`: Numero di alberi da generare nella foresta (solitamente da diverse centinaia a migliaia). Incrementarlo non genera overfitting, al più aumenta l'impegno computazionale.
         
-    - `max_depth`: Limite di profondità massima degli alberi. Ha un effetto regolarizzante e riduce il rischio di overfitting.
+- `max_depth`: Limite di profondità massima degli alberi. Ha un effetto regolarizzante e riduce il rischio di overfitting.
         
-- **Stima Out-Of-Bag (OOB)**: Dato l'uso del bagging, la capacità di generalizzazione può essere validata tramite i pattern rimasti esclusi dai singoli campionamenti (senza dover riservare un validation set separato).
-    
+
+ **Stima Out-Of-Bag (OOB)**: Dato l'uso del bagging, la capacità di generalizzazione può essere validata tramite i pattern rimasti esclusi dai singoli campionamenti (senza dover riservare un validation set separato).   
 
 # AdaBoost (Adaptive Boosting)
 

@@ -21,9 +21,9 @@ $$\beta^* = \frac{\sum_i (x_i-\bar{x})(y_i-\bar{y})}{\sum_i (x_i-\bar{x})^2}, \q
 
 dove $\bar{x}, \bar{y}$ sono le medie.
 
-> [!warning] Condizione Servono almeno due punti con $x_i$ diverse, altrimenti il denominatore si annulla.
+> [!fail] Servono almeno due punti con $x_i$ diverse, altrimenti il denominatore si annulla.
 
-Esempio visto a lezione: predizione dell'altezza dal peso con scikit-learn.
+![[Pasted image 20261027134155.png|538]]
 
 ## Multiple linear regression
 

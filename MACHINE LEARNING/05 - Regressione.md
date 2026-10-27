@@ -8,12 +8,12 @@
 
 Dato un training set con $n$ pattern $(x_1,y_1)\dots(x_n,y_n)$ si assume
 $$y_i = \alpha + \beta \cdot x_i + \varepsilon_i$$
-- $\varepsilon_i$ = errore di misura (incognito) del pattern $i$
-- $\alpha, \beta$ = parametri da determinare
-
+- $\varepsilon_i$ $\rightarrow$ errore di misura (incognito) del pattern $i$
+- $\alpha, \beta$ $\rightarrow$ parametri da determinare
+![[Pasted image 20261027130813.png|389]]
 La soluzione **least square** è la retta $f(x) = \alpha + \beta x$ che minimizza la somma dei quadrati dei residui:
 
-$$\alpha^_, \beta^_ = \arg\min_{\alpha,\beta} \sum_{i=1}^{n} (f(x_i) - y_i)^2 = \sum_{i=1}^{n} \varepsilon_i^2$$
+$$\alpha^*, \beta^* = \arg\min_{\alpha,\beta} \sum_{i=1}^{n} (f(x_i) - y_i)^2 = \sum_{i=1}^{n} \varepsilon_i^2$$
 
 Si ottiene uguagliando a zero le derivate parziali rispetto a $\alpha,\beta$ (**equazioni normali**, 2 equazioni in 2 incognite):
 

@@ -5,17 +5,13 @@
 ![[Pasted image 20261026174622.png|569]]
 ### Principi del Bagging
 
-1. Si estraggono sottoinsiemi $S_j$ di pattern dal Training Set originale tramite campionamento con re-imbussolamento (generalmente $\sim 2/3$ del totale dei dati).
+1. **Bootstrap (Campionamento):** Si estraggono casualmente dal training set dei sottoinsiemi di dati $S_j$ con reinserimento (di solito circa i $2/3$ del totale dei dati originali).
     
-2. Si addestra in modo indipendente un classificatore $C_j$ su ciascun sottoinsieme $S_j$.
-    
-3. Le predizioni dei singoli classificatori vengono aggregate e fuse (ad esempio tramite _majority vote rule_ o somma delle confidenze).
+2. **Aggregating (Fusione):** Si addestra un singolo classificatore $C_j$ su ciascun sottoinsieme $S_j$ e infine si fondono le predizioni (ad esempio tramite _majority vote_ o somma).
     
 ### Decision Trees (CART)
 
-Nelle Random Forest i singoli classificatori deboli sono **Decision Tree Classifiers** (in particolare l'algoritmo **CART**).
-
-- **Partizionamento del nodo**: CART è un albero binario. Ad ogni nodo le istanze afferenti vengono divise tra i due nodi figli in base alla soglia impostata su una singola feature.
+In Random Forest, il tipo di albero predefinito è il **CART** (_Classification and Regression Tree_), un albero binario in cui ogni nodo divide i dati confrontando una singola caratteristica (_feature_) con una soglia.
     
 - **Criterio di Split**: La coppia (feature $k$, soglia $t_k$) viene scelta in modo greedy cercando la massima purezza dei sottonodi, ovvero minimizzando la funzione di costo:
     

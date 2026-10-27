@@ -18,7 +18,10 @@ In Random Forest, il tipo di albero predefinito è il **CART** (_Classification 
 La coppia (feature $k$, soglia $t_k$) viene scelta in modo greedy cercando la massima purezza dei sottonodi, ovvero minimizzando la funzione di costo:
     
     $$J(k, t_k) = \frac{m_{\text{left}}}{m} G_{\text{left}} + \frac{m_{\text{right}}}{m} G_{\text{right}}$$
-    
+> [!info] Dove:
+>- $G_{\text{left}}$ e $G_{\text{right}}$ sono l'impurità (es. Gini) dei due nuovi nodi creati.    
+>- $\frac{m_{\text{left}}}{m}$ e $\frac{m_{\text{right}}}{m}$ servono a dare più peso al nodo che contiene più elementi.
+
 - **Metriche di Impurità**:
 $$\text{Gini} = 1 - \sum_{i=1}^{s} p_i^2 \qquad \qquad \text{Entropy} = -\sum_{i=1}^{s} p_i \log_2(p_i)$$
 

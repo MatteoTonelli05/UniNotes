@@ -42,9 +42,9 @@
     "//SISTEMI INFORMATIVI",
     "/",
     "//LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab",
-    "//visione",
     "//visione/visione/Filtri",
-    "//visione/visione/Immagini"
+    "//visione/visione/Immagini",
+    "//MACHINE LEARNING"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Tags",

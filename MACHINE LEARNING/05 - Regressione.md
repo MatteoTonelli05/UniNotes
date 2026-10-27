@@ -90,56 +90,50 @@ con $\boldsymbol{\Gamma}^+$ la **pseudoinversa** di $\boldsymbol{\Gamma}$: si ot
 > La **loss** (funzione di perdita) è un numero che misura **quanto sbaglia il modello** su un dato.
 ## Variabile indipendente non lineare
 
-Si può continuare a usare la regressione lineare per approssimare **curve e superfici**: l'importante è che la funzione sia **lineare rispetto ai parametri**, non rispetto alla variabile indipendente. Gli elementi di $\mathbf{x}$ possono comparire elevati a potenza, combinati tra loro, come argomento di funzioni trascendenti, ecc.
+> [!hint] Si può continuare a usare la regressione lineare per approssimare **curve e superfici**
+> Puoi applicare qualsiasi trasformazione alle tue variabili d'ingresso $x$, finché la formula finale ha la forma:
+>
+>$$y = w_0 + w_1 \cdot f_1(x) + w_2 \cdot f_2(x) + \dots$$
 
-Esempio con $d=1$ e modello quadratico $y = \beta_1 x^2 + \beta_2 x + \beta_3$:
+![[Pasted image 20261027181115.png|502]]_$\qquad \qquad$ nell'esempio sopra possiamo dire che $x^2$ è $f_1(x)$, $x$ è $f_2(x)$ ecc._
 
-$$\mathbf{X} = \begin{bmatrix} x_1^2 & x_1 & 1 \ x_2^2 & x_2 & 1 \ \vdots & \vdots & \vdots \ x_n^2 & x_n & 1 \end{bmatrix}$$
+### Regressione non lineare con dipendenza nota
 
-## Regressione non lineare con dipendenza nota
-
-Se il modello è **non lineare nei parametri** non esiste soluzione least square in forma chiusa.
-
-Esempio (biologia, reazione enzimatica):
-
-$$y = \frac{\beta_1 x}{\beta_2 + x}$$
+> [!fail] Se il modello è **non lineare nei parametri** non esiste soluzione least square in forma chiusa.
 
 Se la dipendenza è nota si usa **ottimizzazione numerica** iterativa:
-
 - **Gradient Descent**: metodo del primo ordine, passi in direzione contraria al gradiente.
 - **Gauss-Newton**: il più noto e usato, metodo del secondo ordine (richiede una stima dell'Hessiana).
 
-## Regressori non lineari (dipendenza sconosciuta)
+### Regressori non lineari (dipendenza sconosciuta)
 
-Quando la dipendenza non è nota si prova e si valida prima il **modello lineare (baseline)**, poi modelli non lineari via via più complessi. Per diverse tecniche di classificazione esiste una variante per la regressione (tutte in scikit-learn):
+Quando la dipendenza non è nota si prova e si valida prima il **modello lineare (baseline)**, poi modelli non lineari via via più complessi. 
 
-- Support Vector Regressor (SVR)
-- Random Forest Regressor
-- Gradient Boosting Regressor Trees
-- anche le **reti neurali** con backpropagation risolvono bene problemi di regressione
+> [!question] Perchè si dovrebbero usare modelli non lineari?
+ > - Maggiore **flessibilità** (più gradi di libertà).
+ > - Controllo della **complessità** della soluzione (gradi di libertà, regolarizzazione, ecc.).
+> -  Possibilità di usare **loss alternative** a MSE (MAE, MAPE, ecc.).
 
-**Vantaggi dei modelli non lineari**
+#### Support Vector Regressor (SVR)
 
-- Maggiore **flessibilità** (più gradi di libertà).
-- Controllo della **complessità** della soluzione (gradi di libertà, regolarizzazione, ecc.).
-- Possibilità di usare **loss alternative** a MSE (MAE, MAPE, ecc.).
+> [!abstract] Rispetto alla classificazione, dove si volevano spingere i pattern delle due classi oltre al margine, qui si inverte la logica: vogliamo che nella fascia del margine ricada il maggior numero di pattern del training set.
 
-### Support Vector Regressor (SVR)
-
-- Logica **invertita** rispetto alla classificazione: lì si spingono i pattern oltre il margine, qui si vuole che **nella fascia del margine ricada il maggior numero di pattern** del training set.
+![[Pasted image 20261027182255.png]]
+**IPERPARAMETRI UTILI**
 - La larghezza della fascia è controllata da $\varepsilon$ (più piccolo → fascia più stretta).
-- L'approssimazione può essere **lineare** o **non lineare** (es. kernel RBF).
-- L'iperparametro $C$ e i regolarizzatori del kernel (caso non lineare) controllano l'**overfitting** e mantengono il regressore _smoothed_.
+- L'iperparametro $C$ e i regolarizzatori del kernel (in caso di approssimazione non lineare) controllano l'**overfitting** e mantengono il regressore _smoothed_.
 
-### Random Forest Regressor
+#### Random Forest Regressor
 
+
+![[Pasted image 20261027182753.png]]
 - Stessa logica della foresta (**doppio bagging** su feature e pattern), ma con alberi **CART usati come regressori**.
 - Ogni nodo (foglie comprese) predice la **media delle $y$** dei pattern che gli appartengono.
 - La regola di split (coppia feature, soglia) **minimizza l'MSE** delle $y$ nei due nodi figli.
 - Risultato: approssimazione **costante a tratti**, che può essere discontinua con salti repentini.
 - Principale regolarizzante: **massima profondità** degli alberi.
 
-### Gradient Boosting Regressor Trees
+#### Gradient Boosting Regressor Trees
 
 - Tecnica di **boosting**: aggiunge iterativamente nuovi regression tree addestrati sui **residuali** (differenza tra $y$ e le predizioni dei predecessori).
 - La predizione finale è la **somma dei contributi** dei singoli alberi: $h(x) = h_1(x) + h_2(x) + h_3(x) + \dots$

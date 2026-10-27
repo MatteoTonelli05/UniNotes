@@ -125,6 +125,11 @@ Quando la dipendenza non è nota si prova e si valida prima il **modello lineare
 
 #### Random Forest Regressor
 
+> [!abstract] Stessa logica della foresta ma utilizzando alberi **CART usati come regressori. Per far sì che gli alberi siano diversi tra loro e non commettano tutti gli stessi errori, applica due forme di casualità (_doppio bagging_):
+>
+>- **Sui dati/pattern (Bootstrap):** Ogni albero viene addestrato su un sottoinsieme casuale di dati estratti dal dataset originale.
+   > 
+>- **Sulle feature/variabili:** Ad ogni nodo dell'albero, la scelta del miglior taglio non avviene tra tutte le variabili disponibili, ma solo tra un sottoinsieme casuale di esse.
 
 ![[Pasted image 20261027182753.png]]
 - Stessa logica della foresta (**doppio bagging** su feature e pattern), ma con alberi **CART usati come regressori**.

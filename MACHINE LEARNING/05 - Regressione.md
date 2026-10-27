@@ -54,6 +54,7 @@ $$(\mathbf{X}^t \mathbf{X}),\boldsymbol{\beta}^* = \mathbf{X}^t \mathbf{y} \quad
 > - $\mathbf{X}^t\mathbf{X}$ deve essere a **rango massimo** per essere invertibile: problemi con punti collineari (colonne di $\mathbf{X}$ linearmente dipendenti).
 > - $\mathbf{X}^t\mathbf{X}$ è spesso **mal condizionata**, quindi l'inversione può essere numericamente instabile.
 
+![[Pasted image 20261027140737.png|415]]
 ### Soluzione stabile con SVD
 
 Si decompone $\mathbf{X} = \mathbf{U}\boldsymbol{\Gamma}\mathbf{V}^t$ dove:
@@ -67,11 +68,6 @@ Si dimostra che
 $$\boldsymbol{\beta}^* = \mathbf{V},\boldsymbol{\Gamma}^{+},\mathbf{U}^t,\mathbf{y}$$
 
 con $\boldsymbol{\Gamma}^+$ la **pseudoinversa** di $\boldsymbol{\Gamma}$: si ottiene invertendo gli elementi non nulli e trasponendo.
-
-## Curiosità storica
-
-Il metodo dei minimi quadrati fu pubblicato da **Legendre** nel 1805 (per prevedere la posizione di una cometa). **Gauss** quattro anni dopo sostenne di usarlo dal 1795 ma di averlo ritenuto troppo banale per scriverne. Legendre rispose con un addendum anonimo sull'appropriazione del metodo.
-
 ## Regressione vs geometrical fitting
 
 Domanda: i minimi quadrati sono un buon metodo per fittare nuvole di punti 2D/3D?

@@ -109,8 +109,5 @@ Metodologia per il rilevamento del volto in immagini basata su AdaBoost:
 
 Tecnica di boosting alternativa ad AdaBoost:
 
-- Invece di incrementare il peso dei pattern difficili (_hard examples_), adatta iterativamente i nuovi modelli deboli sui **residui dell'errore** commessi dai modelli precedenti.
+>[!hint] Invece di incrementare il peso dei pattern difficili (_hard examples_), adatta iterativamente i nuovi modelli deboli sui **residui dell'errore** commessi dai modelli precedenti.
     
-- Ampiamente impiegato sia per compiti di classificazione sia di regressione.
-    
-- **XGBoost**: Implementazione ottimizzata ad alte prestazioni integrate con gli standard della libreria scikit-learn (`fit` / `predict`).

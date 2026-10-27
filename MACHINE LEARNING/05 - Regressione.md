@@ -152,19 +152,6 @@ Quando la dipendenza non è nota si prova e si valida prima il **modello lineare
 > - Training fino a **10 volte più veloce** della versione classica.
 > - Include un **termine regolarizzante sulla loss** per controllare meglio l'overfitting.
 > - In molte challenge Kaggle su **dati tabulari** ha ottenuto le prestazioni migliori.
-
-### Prezzi case: modelli non lineari
-
-|Modello|Train RMSE|Test RMSE|
-|---|---|---|
-|Regressione lineare|0.7233|0.7274|
-|Random Forest (`n_estimators=30`)|0.1970|0.5080|
-|Rete neurale (2 hidden da 100 ReLU + output, Gradient Descent)|0.4647|0.5198|
-
-- Il modello lineare era **troppo semplice**.
-- Random Forest: forte gap train/test (**overfitting** visibile), ma test migliore del lineare.
-- Rete neurale: sembra che non si possa fare molto meglio di ~0.51 su questo problema.
-
 ## Quantile regression
 
 - Il modello lineare ai minimi quadrati stima la **media condizionata**: errori positivi e negativi pesano uguale.

@@ -86,7 +86,8 @@ con $\boldsymbol{\Gamma}^+$ la **pseudoinversa** di $\boldsymbol{\Gamma}$: si ot
 
 > [!warning] MAE, MAPE e R² **non sono direttamente utilizzabili come loss** nel modello lineare least square. R² **non è valido per modelli non lineari**.
 
-> [!hint] 
+> [!hint] Ricorda
+> La **loss** (funzione di perdita) è un numero che misura **quanto sbaglia il modello** su un dato.
 ## Variabile indipendente non lineare
 
 Si può continuare a usare la regressione lineare per approssimare **curve e superfici**: l'importante è che la funzione sia **lineare rispetto ai parametri**, non rispetto alla variabile indipendente. Gli elementi di $\mathbf{x}$ possono comparire elevati a potenza, combinati tra loro, come argomento di funzioni trascendenti, ecc.

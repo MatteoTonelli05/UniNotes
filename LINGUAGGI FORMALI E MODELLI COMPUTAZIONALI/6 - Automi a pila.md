@@ -58,8 +58,6 @@ _la notazione indica `A , B / C ` in cui_
 ---
 ## Definizione formale di PDA
 
-# Definizione formale di PDA
-
 Un PDA è una tupla di 7 elementi:
 
 $$P = (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F)$$

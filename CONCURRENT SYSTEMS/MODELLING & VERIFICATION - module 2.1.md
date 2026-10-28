@@ -1,8 +1,6 @@
 # Programmazione concorrente: concetti fondamentali
 
-## Concorrente, parallelo, distribuito
-
-Tre termini che spesso vengono confusi, ma che stanno a livelli diversi.
+## Differenza tra Concorrente, parallelo, distribuito
 
 |                        | **CONCORRENTE**                                                         | **PARALLELO**                                                                       | **DISTRIBUITO**                    |
 | ---------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ---------------------------------- |
@@ -11,11 +9,12 @@ Tre termini che spesso vengono confusi, ma che stanno a livelli diversi.
 | **Focus**              | Organizzazione del programma                                            | Prestazioni                                                                         | Comunicazione tra nodi             |
 | **Memoria condivisa?** | Dipende dal modello                                                     | Tipicamente sì                                                                      | No                                 |
 
-> [!tip] Chiarimento Un programma concorrente può girare anche su **un solo processore**: le attività si alternano (interleaving) e dall'esterno sembrano simultanee. Il parallelismo richiede invece hardware con più unità di calcolo realmente attive nello stesso istante.
+> [!tip] Un programma **concorrente** può girare anche su **un solo processore**
+>  le attività si alternano (interleaving) e dall'esterno sembrano simultanee. Il parallelismo richiede invece hardware con più unità di calcolo realmente attive nello stesso istante.
 
+> [!question] Che rapporto c'è tra concorrenza e parallelismo?
+>
 ### Concorrenza ≠ parallelismo
-
-L'idea chiave (resa celebre da Rob Pike a proposito di Go) è che:
 
 - il mondo reale è fatto di **agenti che interagiscono** (utenti, sensori, servizi, dispositivi...). I paradigmi puramente sequenziali faticano a modellarlo in modo naturale;
 - la **concorrenza** è la _composizione di computazioni che si eseguono in modo indipendente_: è un modo di **strutturare** il software, un modello di costruzione, facile da comprendere e su cui ragionare;

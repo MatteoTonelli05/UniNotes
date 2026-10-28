@@ -132,7 +132,6 @@ Quando la dipendenza non è nota si prova e si valida prima il **modello lineare
 >- **Sulle feature/variabili:** Ad ogni nodo dell'albero, la scelta del miglior taglio non avviene tra tutte le variabili disponibili, ma solo tra un sottoinsieme casuale di esse.
 
 ![[Pasted image 20261027182753.png]]
-- Stessa logica della foresta (**doppio bagging** su feature e pattern), ma con alberi **CART usati come regressori**.
 - Ogni nodo (foglie comprese) predice la **media delle $y$** dei pattern che gli appartengono.
 - La regola di split (coppia feature, soglia) **minimizza l'MSE** delle $y$ nei due nodi figli.
 - Risultato: approssimazione **costante a tratti**, che può essere discontinua con salti repentini.

@@ -13,7 +13,7 @@
 >  le attività si alternano (interleaving) e dall'esterno sembrano simultanee. Il parallelismo richiede invece hardware con più unità di calcolo realmente attive nello stesso istante.
 
 > [!question] Che rapporto c'è tra concorrenza e parallelismo?
->
+> la concorrenza **non è** parallelismo, ma lo **rende possibile**: un programma ben strutturato in parti indipendenti può poi essere eseguito in parallelo se l'hardware lo permette.
 ### Concorrenza ≠ parallelismo
 
 - il mondo reale è fatto di **agenti che interagiscono** (utenti, sensori, servizi, dispositivi...). I paradigmi puramente sequenziali faticano a modellarlo in modo naturale;

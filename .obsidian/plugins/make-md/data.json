@@ -44,8 +44,10 @@
     "//LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab",
     "//visione/visione/Filtri",
     "//visione/visione/Immagini",
-    "//LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI",
-    "//MACHINE LEARNING"
+    "//MACHINE LEARNING",
+    "//visione",
+    "//visione/visione/Analisi di immagini binarie",
+    "//CONCURRENT SYSTEMS"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Tags",

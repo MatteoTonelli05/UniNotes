@@ -4,39 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "ea183773514fffe0",
+        "id": "7265d78a1f02b860",
         "type": "tabs",
         "children": [
           {
-            "id": "800b86c0ea0448ce",
+            "id": "52be27eca40f23c5",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab/Lab 21-10-2026.md",
+                "file": "CONCURRENT SYSTEMS/MODELLING & VERIFICATION - module 2.1.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Lab 21-10-2026"
-            }
-          },
-          {
-            "id": "f85d49dab019ed07",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab/Lab 28-10-2026.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Lab 28-10-2026"
+              "title": "MODELLING & VERIFICATION - module 2.1"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -215,9 +200,15 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "f85d49dab019ed07",
+  "active": "52be27eca40f23c5",
   "lastOpenFiles": [
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/6 - Automi a pila.md",
+    "CONCURRENT SYSTEMS/MODELLING & VERIFICATION - module 2.1.md",
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261028165820.png",
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261028165450.png",
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261028165350.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab/Lab 21-10-2026.md",
+    "visione/Analisi di immagini binarie/Immagini binarie.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab/Lab 28-10-2026.md",
     "MACHINE LEARNING/MACHINE LEARNING.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab/Allegati/Pasted image 20261028155109.png",
@@ -226,11 +217,7 @@
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab/Allegati/Pasted image 20261028144647.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab/Allegati/Pasted image 20261028134255.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab/Allegati/Pasted image 20261028134230.png",
-    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/6 - Automi a pila.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab/Allegati/Pasted image 20261028133114.png",
-    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab/Allegati/Pasted image 20261028124235.png",
-    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab/Allegati/Pasted image 20261028124233.png",
-    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab/Allegati/Pasted image 20261028123951.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab/Allegati",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI.md",
     "MACHINE LEARNING/05 - Regressione.md",
@@ -241,7 +228,6 @@
     "visione/Immagini/Operazioni su più immagini.md",
     "visione/Immagini/Trasformazioni geometriche.md",
     "visione/Immagini/Operazioni su singole Immagini.md",
-    "visione/Analisi di immagini binarie/Immagini binarie.md",
     "visione/Filtri/Canny edge detector.md",
     "visione/Filtri/Bordi.md",
     "visione/Filtri/Applicazione dei filtri lineari.md",

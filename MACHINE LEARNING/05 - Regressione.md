@@ -125,17 +125,13 @@ Quando la dipendenza non è nota si prova e si valida prima il **modello lineare
 
 #### Random Forest Regressor
 
-> [!abstract] Stessa logica della foresta ma utilizzando alberi **CART usati come regressori. Per far sì che gli alberi siano diversi tra loro e non commettano tutti gli stessi errori, applica due forme di casualità (_doppio bagging_):
->
->- **Sui dati/pattern (Bootstrap):** Ogni albero viene addestrato su un sottoinsieme casuale di dati estratti dal dataset originale.
-   > 
->- **Sulle feature/variabili:** Ad ogni nodo dell'albero, la scelta del miglior taglio non avviene tra tutte le variabili disponibili, ma solo tra un sottoinsieme casuale di esse.
+> [!abstract] L'addestramento della foresta si basa su un **doppio meccanismo di casualità (doppio bagging)** per de-correlare gli alberi:
+>1. **Bagging sui Pattern (Sottoinsieme di Dati):** Ogni albero viene addestrato su un campione *bootstrap* (estratto casualmente con reinserimento) dal dataset originale. 
+>2. **Bagging sulle Feature (Sottoinsieme di Variabili):** Ad ogni nodo di ogni albero, la scelta della miglior suddivisione (*split*) viene effettuata selezionando casualmente un **sottoinsieme ridotto di feature**, anziché valutarle tutte.
 
 ![[Pasted image 20261027182753.png]]
-- Ogni nodo (foglie comprese) predice la **media delle $y$** dei pattern che gli appartengono.
-- La regola di split (coppia feature, soglia) **minimizza l'MSE** delle $y$ nei due nodi figli.
-- Risultato: approssimazione **costante a tratti**, che può essere discontinua con salti repentini.
-- Principale regolarizzante: **massima profondità** degli alberi.
+**IPERPARAMETRI UTILI**
+- La **massima profondità degli alberi** (`max_depth`), ovvero quante scelte decisionali comprende ciascuno di essi
 
 #### Gradient Boosting Regressor Trees
 

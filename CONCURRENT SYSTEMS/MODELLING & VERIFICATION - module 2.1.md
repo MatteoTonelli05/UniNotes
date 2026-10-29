@@ -167,15 +167,19 @@ Interazioni **né attese né volute**.
 > [!attention] Sono errori dipendenti dal tempo
 > I più noti sono gli **heisenbug**, ovvero bug che cambiano o spariscono quando si cerca di osservarli (ad esempio col debugger, che altera i tempi di esecuzione)
 
+### Race Condition
+
 **Race condition (o race hazard, o semplicemente race)**: situazione in cui due o più processi **accedono e aggiornano concorrentemente risorse condivise**, e il risultato dell'aggiornamento **dipende dall'ordine specifico** con cui avvengono gli accessi.
 
 > [!example] Esempio classico Due thread eseguono `contatore++` su una variabile condivisa. L'operazione è in realtà composta da tre passi: **leggi**, **incrementa**, **scrivi**. Se i passi si intrecciano, entrambi leggono lo stesso valore e uno dei due incrementi va perso.
 
-Le interferenze sono legate a due tipi di errori di programmazione:
+### Interferenze
 
+Le interferenze sono legate a due tipi di errori di programmazione:
 - **cattiva gestione di interazioni attese** (ad esempio una sincronizzazione sbagliata);
 - **presenza di interazioni spurie non previste** dal problema.
 
+---
 ## Situazioni critiche
 
 Errori e interferenze possono portare l'intero sistema in situazioni critiche.

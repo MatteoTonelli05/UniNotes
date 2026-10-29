@@ -34,25 +34,20 @@ Esistono tre grandi famiglie di approcci per la gestione della concorrenza:
 
 ## Perché programmare in modo concorrente
 
-Ci sono due motivazioni principali, una **prestazionale** e una **progettuale**.
-
-### Motivazione 1: prestazioni
+### 1. Prestazioni
 
 Due benefici distinti:
 
 - **Throughput**: più lavoro svolto per unità di tempo, sfruttando hardware parallelo.
 - **Reattività (responsiveness)**: ottimizzare l'interazione tra attività di CPU e di I/O. Mentre un'attività aspetta il disco o la rete, la CPU può fare altro (e un'interfaccia non si "congela").
-
 #### Speedup
 
 Misura quantitativa delle prestazioni:
-
 $$S = \frac{T_1}{T_N}$$
-
 - $T_1$ = tempo dell'algoritmo **sequenziale**
 - $T_N$ = tempo dell'algoritmo **parallelo** con $N$ processori
-- Se $S = 4$ con 4 processori significa che ci metto un quarto del tempo.
 
+ > [!info] Se $S = 4$ con 4 processori significa che ci metto un quarto del tempo.
 #### Legge di Amdahl
 
 Dà il **massimo speedup** ottenibile parallelizzando un sistema:
@@ -63,7 +58,7 @@ $$S = \frac{1}{(1-P) + \frac{P}{N}}$$
 - $(1-P)$ = parte che **non** può esserlo (resta sequenziale)
 - $N$ = numero di processori
 
-**Come leggerla:** l'aggiunta di processori accelera solo la parte $P$; la parte $(1-P)$ rimane sempre uguale e diventa il vero limite.
+> [!hint] l'aggiunta di processori accelera solo la parte $P$; la parte $(1-P)$ rimane sempre uguale e diventa il vero limite.
 
 Per $N \to \infty$ il termine $P/N$ tende a 0, quindi:
 

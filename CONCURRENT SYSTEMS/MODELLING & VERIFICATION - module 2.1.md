@@ -113,9 +113,6 @@ Costringe a **ripensare**:
 > [!question] Cosa significa che il flusso di controllo è **logico**?
 > Poichè dice quali istruzioni vanno eseguite e in quale ordine, ma non chi lo esegue (livello fisico)
 
-È una sequenza di istruzioni che operano insieme come gruppo: un'**unità di lavoro (task)**.
-È un concetto **astratto e generale**: non coincide necessariamente con i processi del sistema operativo.
-
 ### **Proprietà fondamentali**
 
 - **Indipendenza dalla velocità (speed independence)**: i processi sono completamente **asincroni** fra loro. Non si può fare **nessuna assunzione** sulla loro velocità relativa.

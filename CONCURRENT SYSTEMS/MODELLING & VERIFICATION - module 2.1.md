@@ -91,7 +91,7 @@ In un sistema multiprocessore a memoria condivisa, tutti i processori accedono a
  
  > [!attention] Ma più cache significano più copie degli stessi dati: servono **protocolli di coerenza della cache** (cache coherency), sempre più complessi, per garantire che tutti i processori vedano valori consistenti.
 
-### 2. Progettazione e astrazione
+### 2. Astrazione
 
 > [!quote] La concorrenza non serve solo ad andare più veloci: è uno **strumento di progettazione**.
 

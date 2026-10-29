@@ -17,23 +17,20 @@
 
 ## Paradigmi di concorrenza
 
-Esistono tre grandi famiglie di approcci.
+Esistono tre grandi famiglie di approcci per la gestione della concorrenza:
 
-**Programmazione multi-thread**
+1. **Programmazione multi-thread**
+	- Stato **condiviso** tra le attività.
+	- Servono meccanismi di **sincronizzazione** per usarlo correttamente: semafori, monitor.
 
-- Stato **condiviso** tra le attività.
-- Servono meccanismi di **sincronizzazione** per usarlo correttamente: semafori, monitor.
+2. **Programmazione basata su messaggi**
+	- **Nessuno stato condiviso**.
+	- Le attività interagiscono solo **scambiandosi messaggi**.
+	- Può essere **asincrona** (il mittente non aspetta) o **sincrona** (il mittente aspetta, tipo appuntamento).
 
-**Programmazione basata su messaggi**
-
-- **Nessuno stato condiviso**.
-- Le attività interagiscono solo **scambiandosi messaggi**.
-- Può essere **asincrona** (il mittente non aspetta) o **sincrona** (il mittente aspetta, tipo appuntamento).
-
-**Programmazione guidata dagli eventi**
-
-- Il flusso del programma è **determinato dagli eventi**: azioni dell'utente (click, tasti), sensori, messaggi provenienti da altri thread, processi o applicazioni.
-- Tipico delle interfacce grafiche e dei sistemi reattivi.
+3. **Programmazione guidata dagli eventi**
+	- Il flusso del programma è **determinato dagli eventi**: azioni dell'utente (click, tasti), sensori, messaggi provenienti da altri thread, processi o applicazioni.
+	- Tipico delle interfacce grafiche e dei sistemi reattivi.
 
 ## Perché programmare in modo concorrente
 

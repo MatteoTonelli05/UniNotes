@@ -132,15 +132,11 @@ Qualsiasi programma concorrente non banale ha più processi che **devono interag
 
 ### Cooperazione
 
-Interazioni **attese e volute**, che fanno parte della **semantica** del programma. Due forme:
-
-**Comunicazione**
-
+Interazioni **attese e volute**, che fanno parte della **semantica** del programma. La cooperazione può avvenire in due modalità:
+##### **1. Comunicazione**
 - Realizza un **flusso di informazione** tra processi, di solito tramite **messaggi**.
 - Richiede supporti specifici per lo scambio di messaggi.
-
-**Sincronizzazione**
-
+##### **2. Sincronizzazione**
 - Definisce **relazioni temporali** o dipendenze tra processi e tra azioni di processi distinti ("questa azione deve avvenire dopo quella").
 - Richiede supporti specifici per lo scambio di **segnali temporali**.
 

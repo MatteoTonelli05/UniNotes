@@ -106,19 +106,22 @@ Costringe a **ripensare**:
 > Perchè spesso è il modo **più naturale** di descrivere il problema, anche su una macchina con un solo processore dove non si guadagna nulla in velocità
 ## Il processo come unità di base
 
-**Processo** ≈ un programma sequenziale in esecuzione.
+> [!abstract] Un **Processo** è in pratica un programma sequenziale in esecuzione.
 
-- È l'unità di base di un sistema concorrente, con un **singolo flusso di controllo** (thread of control).
-- Il flusso di controllo è **logico**, non necessariamente fisico.
-- È una sequenza di istruzioni che operano insieme come gruppo: un'**unità di lavoro (task)**.
-- È un concetto **astratto e generale**: non coincide necessariamente con i processi del sistema operativo.
+È **l'unità di base** di un sistema concorrente, con un **singolo flusso di controllo** (thread of control).
 
-**Due proprietà fondamentali**
+> [!question] Cosa significa che il flusso di controllo è **logico**?
+> Poichè dice quali istruzioni vanno eseguite e in quale ordine, ma non chi lo esegue (livello fisico)
+
+È una sequenza di istruzioni che operano insieme come gruppo: un'**unità di lavoro (task)**.
+È un concetto **astratto e generale**: non coincide necessariamente con i processi del sistema operativo.
+
+### **Proprietà fondamentali**
 
 - **Indipendenza dalla velocità (speed independence)**: i processi sono completamente **asincroni** fra loro. Non si può fare **nessuna assunzione** sulla loro velocità relativa.
 - **Non-determinismo**: come conseguenza, l'ordine in cui le azioni dei vari processi si intrecciano può cambiare da un'esecuzione all'altra.
 
-> [!tip] Chiarimento Per questo "ha funzionato quando l'ho provato" non dimostra nulla: la stessa esecuzione può andare diversamente la volta dopo. La correttezza deve valere per **tutti** gli interleaving possibili.
+> [!attention] La correttezza deve valere per **tutti** gli interleaving possibili.
 
 ## L'interazione tra processi
 

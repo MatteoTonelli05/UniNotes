@@ -132,7 +132,8 @@ Qualsiasi programma concorrente non banale ha più processi che **devono interag
 
 ### Cooperazione
 
-Interazioni **attese e volute**, che fanno parte della **semantica** del programma. La cooperazione può avvenire in due modalità:
+Interazioni **attese e volute**, che fanno parte della **semantica** del programma. 
+La cooperazione può avvenire in DUE MODALITÀ:
 ##### **1. Comunicazione**
 - Realizza un **flusso di informazione** tra processi, di solito tramite **messaggi**.
 - Richiede supporti specifici per lo scambio di messaggi.
@@ -142,10 +143,11 @@ Interazioni **attese e volute**, che fanno parte della **semantica** del program
 
 ### Competizione (contesa)
 
-Interazioni **attese e necessarie, ma non volute**: nascono dal fatto che più processi vogliono usare le **stesse risorse condivise**. Due classi di problemi:
+Interazioni **attese e necessarie, ma non volute**: nascono dal fatto che più processi vogliono usare le **stesse risorse condivise**.
+Individuiamo così 2 CLASSI DI PROBLEMI:
 
-- **Mutua esclusione**: regolare l'accesso a risorse condivise da parte di processi distinti.
-- **Sezioni critiche**: regolare l'esecuzione concorrente di **blocchi di azioni** da parte di processi distinti (in modo che un solo processo alla volta li esegua).
+1. **Mutua esclusione**: regolare l'accesso a risorse condivise da parte di processi distinti.
+2. **Sezioni critiche**: regolare l'esecuzione concorrente di **blocchi di azioni** da parte di processi distinti (in modo che un solo processo alla volta li esegua).
 
 ### Sincronizzazione vs mutua esclusione
 

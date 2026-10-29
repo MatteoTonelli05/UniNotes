@@ -64,20 +64,14 @@ Per $N \to \infty$ il termine $P/N$ tende a 0, quindi:
 
 $$S_{max} = \frac{1}{1-P}$$
 
-|Parte parallelizzabile P|Speedup massimo|
-|---|---|
-|50%|2|
-|75%|4|
-|90%|10|
-|95%|20|
 
 > [!example] Esempio Se il 90% del lavoro è parallelizzabile, anche con un milione di processori non andrò mai più veloce di **10 volte**. Il restante 10% sequenziale fa da tappo.
+> 
+> ![[Pasted image 20261029150903.png]]
 
-**Osservazioni importanti**
-
-- Il caso teorico ideale è $P = 1$: **speedup lineare** ($S = N$).
-- Esistono casi particolari di speedup **super-lineare** ($S > N$), ad esempio quando i dati suddivisi tra più processori stanno meglio nelle cache.
-- Le parti sequenziali hanno un **impatto forte** sulle prestazioni, ma spesso sono **necessarie per la correttezza** (ad esempio per garantire accessi ordinati a dati condivisi). C'è quindi un compromesso tra velocità e correttezza.
+> [!abstract] Osservazioni
+>- Il caso teorico ideale è $P = 1$: **speedup lineare** ($S = N$).
+>- Esistono casi particolari di speedup **super-lineare** ($S > N$), ad esempio quando i dati suddivisi tra più processori stanno meglio nelle cache.
 
 #### Efficienza
 
@@ -85,27 +79,31 @@ Misura **normalizzata** di quanto bene viene usato ogni processore:
 
 $$E = \frac{S}{N}$$
 
-- $E = 1$: tutti i processori lavorano a **piena capacità** (caso ideale).
-- Nella pratica $E < 1$, perché ci sono parti sequenziali, costi di sincronizzazione, attese ecc.
+> [!fail] $E = 1$: tutti i processori lavorano a **piena capacità** (caso ideale).
+> Nella pratica $E < 1$, perché ci sono parti sequenziali, costi di sincronizzazione, attese ecc.
 
-#### Un nuovo collo di bottiglia: la memoria
+#### Il problema del collo di bottiglia: la memoria
 
+![[Pasted image 20261029151508.png|508]]
 In un sistema multiprocessore a memoria condivisa, tutti i processori accedono alla stessa memoria tramite un **bus**.
-
 - Il bus è un **potenziale collo di bottiglia**: una sola operazione di memoria alla volta.
 - Per questo le **cache** (L1 per istruzioni e dati, L2) sono fondamentali: riducono gli accessi alla memoria principale.
-- Ma più cache significano più copie degli stessi dati: servono **protocolli di coerenza della cache** (cache coherency), sempre più complessi, per garantire che tutti i processori vedano valori consistenti.
+ 
+ > [!attention] Ma più cache significano più copie degli stessi dati: servono **protocolli di coerenza della cache** (cache coherency), sempre più complessi, per garantire che tutti i processori vedano valori consistenti.
 
-### Motivazione 2: progettazione e astrazione
+### 2. Progettazione e astrazione
 
-La concorrenza non serve solo ad andare più veloci: è uno **strumento di progettazione**.
+> [!quote] La concorrenza non serve solo ad andare più veloci: è uno **strumento di progettazione**.
 
-- Programmi che interagiscono con l'ambiente, controllano più attività e gestiscono più eventi hanno bisogno di un **livello di astrazione adeguato**; gli **oggetti** della programmazione a oggetti da soli **non bastano**.
-- Costringe a **ripensare**:
+
+Programmi che interagiscono con l'ambiente, controllano più attività e gestiscono più eventi hanno bisogno di un **livello di astrazione adeguato**; gli **oggetti** della programmazione a oggetti da soli **non bastano**.
+
+Costringe a **ripensare**:
     - il modo in cui si risolvono i problemi (algoritmi e strutture dati di base);
     - il modo in cui si progettano i sistemi (nuovo livello di astrazione, diverso tipo di decomposizione, modularizzazione, incapsulamento).
-- Tocca tutto lo spettro dell'ingegneria del software: **modellazione, progettazione, implementazione, verifica, testing**.
 
+> [!question] Quindi in che modo l'astrazione è un pro di usare sistemi concorrenti?
+> Perchè spesso è il modo **più naturale** di descrivere il problema, anche su una macchina con un solo processore dove non si guadagna nulla in velocità
 ## Il processo come unità di base
 
 **Processo** ≈ un programma sequenziale in esecuzione.

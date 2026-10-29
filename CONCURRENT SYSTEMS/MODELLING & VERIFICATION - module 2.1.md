@@ -159,52 +159,13 @@ Sono concetti **diversi, anche se collegati**. Pensare che "sincronizzazione = m
 | **Esempi**                  | Un'azione deve avvenire prima di un'altra (precedenza); azioni contemporanee; stessa velocità relativa | Un solo processo alla volta tocca un dato     |
 | **Servono dati condivisi?** | No, non necessariamente                                                                                | Sì: senza dati condivisi non ha senso         |
 
-**Relazioni tra i due**
-
-- La mutua esclusione richiede tipicamente una **sincronizzazione implicita**: un processo viene _bloccato_ finché un altro non ha finito.
-- La sincronizzazione **non richiede** né dati condivisi né mutua esclusione.
-
-> [!example] Esempi per distinguere
-> 
-> - _Sincronizzazione senza mutua esclusione_: un processo "consumatore" deve aspettare che un "produttore" abbia finito di preparare un risultato (precedenza), anche se comunicano via messaggi e non condividono memoria.
-> - _Mutua esclusione_: due processi che incrementano lo stesso contatore devono farlo uno alla volta.
-
-## Un esempio che mostra la difficoltà: il latte di Alice e Bob
-
-Alice e Bob vivono insieme (senza cellulari). Chi trova il frigo senza latte deve comprarlo.
-
-**Problema.** Alice torna, guarda nel frigo: niente latte, va a comprarlo. Mentre è via, torna Bob, guarda nel frigo: niente latte, va a comprarlo. Risultato: **due cartoni di latte**.
-
-Quello che si vuole garantire è:
-
-1. **Sicurezza**: una sola persona compra il latte quando manca.
-2. **Vivacità**: qualcuno compra **sempre** il latte quando manca.
-
-**Primo tentativo: il biglietto sul frigo.**
-
-```text
-if (no note) then
-  if (no milk) then
-    leave note
-    buy milk
-    remove note
-  fi
-fi
-```
-
-Regola: se non c'è il latte e non c'è un biglietto, lascio un biglietto, compro il latte, lo metto in frigo e tolgo il biglietto.
-
-**Perché non funziona (sempre).** Alice controlla: nessun biglietto. Poi viene interrotta (va in bagno). Bob arriva, vede nessun biglietto, vede niente latte, lascia il biglietto e va a comprare il latte. Alice torna, **riprende dal punto in cui era** (aveva già verificato "nessun biglietto"), non ricontrolla, vede niente latte, lascia il biglietto e compra anche lei il latte. Doppio acquisto di nuovo.
-
-> [!warning] La lezione Il problema è che **controllo** e **azione** non sono atomici: tra "verifico che non c'è il biglietto" e "lascio il biglietto" un altro può intervenire. È esattamente il meccanismo di una **race condition**. Controlli del tipo _check-then-act_ senza protezione sono una fonte classica di errori.
-
+> [!info] La mutua esclusione richiede tipicamente una **sincronizzazione implicita**: un processo viene _bloccato_ finché un altro non ha finito.
 ## Interferenze e race condition
 
 Interazioni **né attese né volute**.
 
-- Producono effetti negativi **solo quando i rapporti tra le velocità dei processi assumono certi valori** → sono **errori dipendenti dal tempo**.
-- Sono l'"incubo" della programmazione concorrente: difficili da riprodurre e da trovare.
-- Famigerati gli **heisenbug**: bug che **cambiano o spariscono quando si cerca di osservarli** (ad esempio col debugger, che altera i tempi di esecuzione).
+> [!attention] Sono errori dipendenti dal tempo
+> I più noti sono gli **heisenbug**, ovvero bug che cambiano o spariscono quando si cerca di osservarli (ad esempio col debugger, che altera i tempi di esecuzione)
 
 **Race condition (o race hazard, o semplicemente race)**: situazione in cui due o più processi **accedono e aggiornano concorrentemente risorse condivise**, e il risultato dell'aggiornamento **dipende dall'ordine specifico** con cui avvengono gli accessi.
 

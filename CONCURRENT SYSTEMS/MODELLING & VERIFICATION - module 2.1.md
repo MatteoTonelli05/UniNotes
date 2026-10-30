@@ -185,7 +185,7 @@ Errori e interferenze possono portare l'intero sistema in situazioni critiche.
 
 ### Deadlock
 
-(In passato chiamato anche _deadly embrace_, "abbraccio mortale", da Dijkstra.)
+*(In passato chiamato anche **deadly embrace**, "abbraccio mortale", da Dijkstra.)*
 
 - Due o più processi sono **in attesa l'uno dell'altro** e quindi **nessuno termina mai**.
 - Riguarda tipicamente il rilascio di una risorsa bloccata (lock), la ricezione di un segnale temporale o di un messaggio.
@@ -271,7 +271,7 @@ Esempi principali:
 - programmazione **multi-thread in Java**;
 - **libreria Pthread** per C/C++ su sistemi POSIX.
 
-## Oltre i thread: lo scenario ricco
+## Approcci alternativi ai Thread
 
 I thread non sono l'unico modo, e spesso non sono il più comodo. Altri approcci:
 
@@ -283,16 +283,3 @@ I thread non sono l'unico modo, e spesso non sono il più comodo. Altri approcci
 |**Scambio di messaggi sincrono**|Processi che comunicano con messaggi in modo sincrono (rendez-vous)|
 |**Programmazione reattiva**|Flussi di dati ed eventi come astrazione centrale (es. Functional Reactive Programming, Reactive Extensions / Rx)|
 |**Calcolo parallelo**|Programmazione **GPGPU** (calcolo generico su GPU); architetture e parallelismo per i **Big Data** (es. Lambda Architecture)|
-
-## Riepilogo veloce
-
-- **Concorrenza** = struttura/organizzazione; **parallelismo** = esecuzione/prestazioni; **distribuzione** = rete, niente memoria condivisa.
-- Si usa la concorrenza per **prestazioni** (throughput, reattività) e per **progettazione** (modellare sistemi reali con attività indipendenti).
-- **Amdahl**: $S = 1/((1-P)+P/N)$; la parte sequenziale limita lo speedup massimo a $1/(1-P)$. **Efficienza** $E = S/N$.
-- I **processi** sono asincroni e **non deterministici**: nessuna assunzione sulle velocità.
-- Interazioni: **cooperazione** (comunicazione + sincronizzazione), **competizione** (mutua esclusione + sezioni critiche), **interferenze** (race condition, bug dipendenti dal tempo).
-- **Sincronizzazione ≠ mutua esclusione**.
-- Problemi critici: **deadlock** (più processi bloccati a vicenda), **starvation** (un processo attende all'infinito), **livelock** (si muovono ma non progrediscono).
-- Una **macchina concorrente** offre multiprogrammazione, sincronizzazione/comunicazione e controllo degli accessi, con modello a **memoria condivisa** o a **scambio di messaggi**.
-- I **linguaggi** possono essere sequenziali + librerie, nativi per la concorrenza o ibridi.
-- Oltre ai thread: task, asincrono, attori, messaggi sincroni, reattivo, calcolo parallelo.

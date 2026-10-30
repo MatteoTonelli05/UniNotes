@@ -218,10 +218,9 @@ Errori e interferenze possono portare l'intero sistema in situazioni critiche.
 
 ## Linguaggi e macchine concorrenti
 
-Per scrivere ed eseguire programmi concorrenti servono due cose:
-
-- **Linguaggio di programmazione concorrente**: permette di scrivere un programma come insieme di istruzioni da eseguire concorrentemente.
-- **Macchina concorrente**: una macchina (anche **astratta**) progettata per eseguire più processi sequenziali, sfruttando più processori (**fisici o virtuali**).
+> [!question] Cosa serve per scrivere ed eseguire programmi concorrenti?
+> - **Linguaggio di programmazione concorrente**: permette di scrivere un programma come insieme di istruzioni da eseguire concorrentemente.
+> - **Macchina concorrente**: una macchina (anche **astratta**) progettata per eseguire più processi sequenziali, sfruttando più processori (**fisici o virtuali**).
 
 ### Cosa fornisce una macchina concorrente
 

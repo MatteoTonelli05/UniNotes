@@ -191,19 +191,24 @@ Errori e interferenze possono portare l'intero sistema in situazioni critiche.
 - Riguarda tipicamente il rilascio di una risorsa bloccata (lock), la ricezione di un segnale temporale o di un messaggio.
 - Coinvolge **più processi**.
 
-> [!example] Esempio Il processo A prende il lock 1 e poi chiede il lock 2; il processo B prende il lock 2 e poi chiede il lock 1. Ognuno tiene ciò che serve all'altro e aspetta ciò che l'altro tiene: **stallo**.
+> [!example] Filosofi a cena
+> A prende il lock 1 e poi chiede il lock 2; il processo B prende il lock 2 e poi chiede il lock 1. Ognuno tiene ciò che serve all'altro e aspetta ciò che l'altro tiene: **stallo**.
+>
+>![[Pasted image 20261030134814.png]]
 
 ### Starvation (o iniquità, unfairness)
 
 - Un processo resta **bloccato in un'attesa infinita**.
 - In particolare la _starvation di risorse_: al processo viene negato perennemente l'accesso a ciò che gli serve.
 - Coinvolge **un singolo processo**; gli altri possono continuare a lavorare.
-
+![[Pasted image 20261030134751.png]]
 ### Livelock
 
 - Simile al deadlock, ma gli **stati dei processi cambiano continuamente** l'uno rispetto all'altro, **senza che nessuno progredisca**.
 
-> [!tip] Chiarimento Nel deadlock i processi sono **fermi** (bloccati). Nel livelock sono **attivi ma inconcludenti**, come due persone in un corridoio che si spostano entrambe dallo stesso lato ripetutamente per lasciarsi passare.
+> [!tip] Chiarimento 
+> Nel deadlock i processi sono **fermi** (bloccati). Nel livelock sono **attivi ma inconcludenti**, come due persone in un corridoio che si spostano entrambe dallo stesso lato ripetutamente per lasciarsi passare.
+
 
 |**Concetto**|**Deadlock**|**Starvation**|**Livelock**|
 |---|---|---|---|

@@ -162,22 +162,21 @@ Sono concetti **diversi, anche se collegati**. Pensare che "sincronizzazione = m
 > [!info] La mutua esclusione richiede tipicamente una **sincronizzazione implicita**: un processo viene _bloccato_ finché un altro non ha finito.
 ## Interferenze e race condition
 
-Interazioni **né attese né volute**.
+> [!abstract] Un'interferenza è una qualsiasi interazione tra processi che non era prevista e non è voluta. 
+
+Le interferenze sono legate a due tipi di errori di programmazione:
+- **cattiva gestione di interazioni attese** (ad esempio una sincronizzazione sbagliata);
+- **presenza di interazioni spurie non previste** dal problema.
 
 > [!attention] Sono errori dipendenti dal tempo
 > I più noti sono gli **heisenbug**, ovvero bug che cambiano o spariscono quando si cerca di osservarli (ad esempio col debugger, che altera i tempi di esecuzione)
 
 ### Race Condition
 
-**Race condition (o race hazard, o semplicemente race)**: situazione in cui due o più processi **accedono e aggiornano concorrentemente risorse condivise**, e il risultato dell'aggiornamento **dipende dall'ordine specifico** con cui avvengono gli accessi.
+**Race condition (o race hazard)**: tipo di interferenza in cui due o più processi **accedono e aggiornano concorrentemente risorse condivise**, e il risultato dell'aggiornamento **dipende dall'ordine specifico** con cui avvengono gli accessi.
 
-> [!example] Esempio classico Due thread eseguono `contatore++` su una variabile condivisa. L'operazione è in realtà composta da tre passi: **leggi**, **incrementa**, **scrivi**. Se i passi si intrecciano, entrambi leggono lo stesso valore e uno dei due incrementi va perso.
-
-### Interferenze
-
-Le interferenze sono legate a due tipi di errori di programmazione:
-- **cattiva gestione di interazioni attese** (ad esempio una sincronizzazione sbagliata);
-- **presenza di interazioni spurie non previste** dal problema.
+> [!example] Due thread eseguono `contatore++` su una variabile condivisa. 
+> L'operazione è in realtà composta da tre passi: **leggi**, **incrementa**, **scrivi**. Se i passi si intrecciano, entrambi leggono lo stesso valore e uno dei due incrementi va perso.
 
 ---
 ## Situazioni critiche

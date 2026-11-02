@@ -155,12 +155,12 @@ class Intervallo {
 }
 ```
 
-Per questi si distinguono due tipi di stato:
+Per questi si **distinguono DUE tipi di stato**:
 
-|Stato|A chi interessa|Esempio (lista)|
-|---|---|---|
-|**Interno**|A chi **definisce** l'oggetto (chi scrive la classe)|Puntatori dei nodi, contatore `size`, ecc.|
-|**Esterno**|A chi **usa** l'oggetto|"La lista contiene [a, b, c]"|
+|                   | A chi interessa                                      | Esempio (lista)                            |
+| ----------------- | ---------------------------------------------------- | ------------------------------------------ |
+| **Stato Interno** | A chi **definisce** l'oggetto (chi scrive la classe) | Puntatori dei nodi, contatore `size`, ecc. |
+| **Stato Esterno** | A chi **usa** l'oggetto                              | "La lista contiene [a, b, c]"              |
 
 La corrispondenza tra stati interni ed esterni è **parziale**:
 

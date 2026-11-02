@@ -223,7 +223,8 @@ Il compito è **progettare il pre- e il post-protocollo** in modo che valgano ce
 > - **Assenza di starvation** è una garanzia a livello di **singolo processo**: "chi vuole entrare, prima o poi entra".
 > > [!info] **La seconda è più forte: se vale l'assenza di starvation vale anche l'assenza di deadlock, non viceversa.**
 
-**Un'asimmetria importante: la NCS non deve progredire.** Si assume che la **CS termini sempre** (altrimenti nessuno potrebbe mai entrare dopo), ma la **NCS può non terminare**: un processo può rimanere per sempre nella sezione non critica (ad esempio perché ha finito il suo lavoro o è andato in crash). Un buon protocollo **non può dipendere** dal fatto che l'altro processo ne esca.
+> [!attention] Si assume che la **CS termini sempre** (altrimenti nessuno potrebbe mai entrare dopo)
+> ma la **NCS può non terminare**: un processo può rimanere per sempre nella sezione non critica (ad esempio perché ha finito il suo lavoro o è andato in crash). Un buon protocollo **non può dipendere** dal fatto che l'altro processo ne esca.
 
 ### Algoritmi o meccanismi?
 

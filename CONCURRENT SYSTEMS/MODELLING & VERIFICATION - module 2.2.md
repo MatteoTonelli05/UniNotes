@@ -24,19 +24,20 @@ L'approccio di fondo è basato su 3 concetti fondamentali:
 > [!abstract] Il paradigma di programmazione considerato per ora è il **multi-threading con memoria condivisa**: i processi interagiscono tramite variabili condivise.
 ### 1. Modellazione con FSP
 
-Con FSP esiste **una sola astrazione**: il _processo_. Quindi si modella con processi **tutto**:
+Con FSP esiste **una sola astrazione**: il _processo_. Quindi si modella con processi **TUTTO**:
 
 - l'esecuzione di un **programma sequenziale** → un processo;
 - l'esecuzione di un **programma concorrente** → la **composizione parallela** di processi;
-- le **variabili condivise** (memoria condivisa) → anch'esse **processi**, che offrono azioni di lettura e scrittura con cui gli altri processi si sincronizzano.
+- le **variabili condivise** (memoria condivisa) → **processi**, che offrono azioni di lettura e scrittura con cui gli altri processi si sincronizzano.
 
 ![[Pasted image 20261102112128.png|286]]
 
-> [!tip] Chiarimento Pensare a una variabile condivisa come a un processo sembra strano, ma è naturale: una variabile è qualcosa che _sta in uno stato_ (il suo valore) e _accetta azioni_ (`read`, `write`) che ne cambiano lo stato. È un piccolo automa a stati finiti.
+> [!hint] Pensare a una variabile condivisa come a un processo 
+> Una variabile è qualcosa che _sta in uno stato_ (il suo valore) e _accetta azioni_ (`read`, `write`) che ne cambiano lo stato. È un piccolo automa a stati finiti.
 
 ### 2. Modellazione con diagrammi di stato
 
-È l'approccio usato per tutto il resto della pagina. L'esecuzione di un programma concorrente si rappresenta con **stati** e **transizioni**.
+L'esecuzione di un programma concorrente si rappresenta con **stati** e **transizioni**.
 
 **Stato.** È una tupla che contiene:
 

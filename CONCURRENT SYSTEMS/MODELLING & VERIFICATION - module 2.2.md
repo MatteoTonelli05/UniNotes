@@ -383,29 +383,12 @@ Per più di due processi si usa un'idea diversa, quella dei **biglietti numerati
 - Aspetta finché il numero **servito** (`next`) è uguale al proprio biglietto.
 - Uscendo, incrementa `next`, **chiamando il biglietto successivo**.
 
-**Proprietà.** Poiché i biglietti sono serviti in ordine, l'accesso è **FIFO** (_first come, first served_): niente starvation, attesa limitata.
+> [!prop] **Proprietà** 
+> Poiché i biglietti sono serviti in ordine, l'accesso è **FIFO** (_first come, first served_): niente starvation, attesa limitata.
 
-**Difetti.**
-
-- Le variabili `num` e `next` crescono **sempre**: prima o poi possono andare in **overflow aritmetico** (si può mitigare con aritmetica modulare).
-- Il passo `p2` (prendi il biglietto **e** incrementa) deve essere **atomico**: gli angoli `< ... >` indicano un'istruzione atomica composta, che richiede un supporto della macchina (come _fetch-and-add_).
-
-> [!note] Nota Il vero algoritmo _bakery_ di Lamport evita proprio questa istruzione atomica, usando un array di flag e il calcolo del massimo; quella riportata qui è la versione a ticket, più semplice ma che assume il supporto atomico.
-
-### Tabella riassuntiva dei tentativi
-
-|Tentativo|Idea|Mutua esclusione|Assenza di deadlock|Assenza di starvation|Problema|
-|---|---|---|---|---|---|
-|**Primo** (`turn`)|Testimone che si passa|✅|✅|❌|Se un processo resta in NCS l'altro si blocca; alternanza forzata|
-|**Secondo** (`want`, controlla poi annuncia)|Annuncio l'intenzione|❌|—|—|Controllo e annuncio non atomici: entrano in due|
-|**Terzo** (`want`, annuncia poi controlla)|Annuncio prima di controllare|✅|❌|—|Entrambi annunciano e aspettano per sempre|
-|**Quarto** (rinuncia)|Se c'è contesa, cedo|✅|✅ (se lo scheduler aiuta)|❌|Livelock con esecuzione in lockstep|
-|**Dekker**|Terzo/quarto + `turn` per rompere la simmetria|✅|✅|✅|Lungo e delicato|
-|**Peterson**|Come Dekker, in forma compatta|✅|✅|✅|Solo 2 processi; sensibile al riordino della memoria|
-|**Ticket**|Numeri progressivi|✅|✅|✅ (FIFO)|Overflow; serve un passo atomico|
-
----
-
+> [!attention] **Difetti.**
+>- Le variabili `num` e `next` crescono **sempre**: prima o poi possono andare in **overflow aritmetico** (si può mitigare con aritmetica modulare).
+>- Il passo `p2` (prendi il biglietto **e** incrementa) deve essere **atomico**: gli angoli `< ... >` indicano un'istruzione atomica composta, che richiede un supporto della macchina (come _fetch-and-add_).
 ## Istruzioni atomiche composte
 
 ### Perché servono
@@ -659,82 +642,3 @@ Se trova un errore, JPF riporta **l'intera esecuzione** che lo provoca (i passi 
 
 ---
 
-## Quadro d'insieme
-
-```text
-Programma concorrente
-        │
-        ▼
-   Modello (interleaving di istruzioni atomiche)
-        │      ├── FSP: tutto è un processo
-        │      └── Diagramma di stato: <puntatori, variabili>
-        ▼
-   Proprietà (LTL): mutua esclusione, assenza di deadlock/starvation
-        │
-        ▼
-   Verifica
-        ├── a mano: costruire il diagramma e cercare stati/cicli "cattivi"
-        └── automatica: model checker (SPIN, TLC, JPF) → verdetto o controesempio
-```
-
----
-
-## Riepilogo veloce
-
-- Un **modello** descrive un programma a un livello di astrazione adeguato; quelli **formali** permettono di ragionare su tutte le esecuzioni.
-- L'esecuzione concorrente si modella come **intreccio arbitrario** di istruzioni **atomiche**; uno **stato** è la tupla (puntatori di controllo, valori delle variabili); uno **scenario** è un cammino nel diagramma; un **ciclo** è una computazione infinita.
-- Il numero di scenari esplode: $\frac{(\sum m_i)!}{\prod m_i!}$. Per questo si lavora sugli **stati**, non sugli scenari.
-- **Atomicità**: `n := n+1` non è atomico (leggi-modifica-scrivi). Con due processi, 4 scenari su 6 perdono un incremento. Anche i dati composti (liste, classi) passano per **stati interni inconsistenti**: servono mutua esclusione sulle operazioni.
-- **Sezione critica**: pre-protocollo, CS, post-protocollo. Proprietà: **mutua esclusione**, **assenza di deadlock**, **assenza di starvation**, **progresso della CS** (la NCS può non progredire).
-- Le proprietà si scrivono in **LTL**: $\Box \neg(p_{CS} \wedge q_{CS})$ per la mutua esclusione, $\Box(\text{attesa} \rightarrow \Diamond \text{CS})$ per l'assenza di starvation.
-- Tentativi: `turn` (starvation) → `want` controlla poi annuncia (**viola** la mutua esclusione) → `want` annuncia poi controlla (blocco) → `want` con rinuncia (livelock) → **Dekker** (combina `turn` e rinuncia) e **Peterson** (versione compatta). Per **N processi**: ticket/bakery.
-- Con istruzioni atomiche composte (**test-and-set**, exchange, fetch-and-add, compare-and-swap) il problema si semplifica: nascono i **lock**, in Java il blocco `synchronized`.
-- **Model checking**: esplorazione esaustiva automatica degli stati con controesempio. Strumenti: **SPIN/PROMELA**, **TLA+/PlusCal (TLC)**, **JPF**.
-
----
-
-## Glossario
-
-|Termine|Significato|
-|---|---|
-|Istruzione atomica|Istruzione eseguita in modo indivisibile, senza intreccio|
-|Interleaving|Intreccio delle istruzioni atomiche dei vari processi|
-|Stato|Tupla: puntatori di controllo dei processi + valori delle variabili|
-|Scenario|Cammino nel diagramma di stato da quello iniziale; un'esecuzione possibile|
-|Race condition|Esito che dipende dall'ordine di accesso a dati condivisi|
-|Sezione critica (CS)|Parte di codice che accede a risorse condivise e va eseguita in mutua esclusione|
-|NCS|Parte di codice non critica; può non terminare|
-|Pre/post-protocollo|Codice di ingresso/uscita attorno alla CS|
-|Busy-wait (spin)|Attesa che controlla ripetutamente una condizione consumando CPU|
-|Starvation|Un processo attende indefinitamente pur essendo ripetutamente possibile servirlo|
-|Livelock|Processi che cambiano stato continuamente senza progredire|
-|Invariante|Proprietà vera in tutti gli stati raggiungibili|
-|LTL|Logica temporale lineare; operatori $\Box$ (sempre), $\Diamond$ (prima o poi)|
-|Model checker|Strumento che verifica esaustivamente proprietà su un modello a stati finiti|
-|Controesempio|Traccia di esecuzione che mostra una violazione di una proprietà|
-|test-and-set|Istruzione atomica: leggi il vecchio valore e imposta a 1|
-|Lock|Meccanismo con `acquire`/`release` per garantire la mutua esclusione|
-
----
-
-## Domande di autoverifica
-
-> [!question]- Quanti scenari ha un sistema con 2 processi da 4 azioni ciascuno? $\binom{8}{4} = 70$.
-
-> [!question]- Perché `contatore++` può dare risultati sbagliati con due thread? Perché si scompone in lettura, incremento, scrittura. Se i due thread leggono lo stesso valore prima che uno scriva, un incremento va perso. Con 2 processi e incremento non atomico, 4 scenari su 6 danno risultato 1 invece di 2.
-
-> [!question]- Quali proprietà deve avere una soluzione al problema della sezione critica? Mutua esclusione, assenza di deadlock, assenza di starvation individuale e progresso della CS (la NCS invece non è tenuta a progredire).
-
-> [!question]- Qual è la differenza tra assenza di deadlock e assenza di starvation? La prima è a livello di sistema ("se qualcuno vuole entrare, qualcuno entra"), la seconda a livello di singolo processo ("chi vuole entrare, prima o poi entra"). La seconda implica la prima.
-
-> [!question]- Perché il primo tentativo (`turn`) soffre di starvation? Perché un processo può restare per sempre nella NCS senza passare il turno: l'altro, che attende `turn` al suo valore, resta bloccato per sempre.
-
-> [!question]- Perché il secondo tentativo viola la mutua esclusione? Il controllo ("l'altro non vuole entrare") e l'annuncio ("io voglio entrare") non sono atomici: entrambi i processi possono passare il controllo prima che uno dei due annunci, ed entrare insieme nella CS.
-
-> [!question]- Come risolve il problema l'algoritmo di Dekker? Mantiene l'annuncio con `want` (come nei tentativi precedenti) e usa `turn` **solo in caso di contesa**, per decidere chi insiste e chi cede. Così rompe la simmetria che causava il livelock e non blocca nessuno se l'altro è fermo nella NCS.
-
-> [!question]- In che modo test-and-set permette di risolvere la sezione critica per N processi? Legge il vecchio valore del lock e lo imposta a 1 in modo atomico: un solo processo può leggere 0 e quindi entrare; gli altri leggono 1 e riprovano.
-
-> [!question]- Cosa garantisce `synchronized (lock)` in Java e cosa no? Garantisce che i blocchi protetti dallo **stesso** lock non si intreccino tra loro. Non protegge codice non sincronizzato né blocchi su lock diversi.
-
-> [!question]- Qual è il vantaggio del model checking rispetto al testing? È **esaustivo**: esplora tutti gli intrecci possibili (non solo quelli che capita di eseguire) e, se trova un errore, fornisce la traccia esatta per riprodurlo. Il limite è l'esplosione degli stati.

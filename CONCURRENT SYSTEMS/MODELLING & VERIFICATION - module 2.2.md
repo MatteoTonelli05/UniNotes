@@ -411,8 +411,8 @@ Le istruzioni composte più comuni:
 
 - `lock = 0` significa **libero**, `lock = 1` **occupato**.
 - `test_and_set` legge il valore **vecchio** in `was_locked` e mette `lock` a 1, in modo atomico.
-- Se `was_locked = 0`: ho trovato il lock libero e **l'ho preso io** (ora è 1) → entro.
-- Se `was_locked = 1`: era già occupato (e lo è ancora, ho solo riscritto 1) → riprovo (**attesa attiva**, _spin_).
+	- Se `was_locked = 0`: ho trovato il lock libero e **l'ho preso io** (ora è 1) → entro.
+	- Se `was_locked = 1`: era già occupato (e lo è ancora, ho solo riscritto 1) → riprovo (**attesa attiva**, _spin_).
 - Uscendo, `lock := 0` lo libera.
 
 **Perché la mutua esclusione vale.** Due processi non possono leggere entrambi "0": la lettura e l'impostazione a 1 sono indivisibili, quindi **uno solo** vede 0.

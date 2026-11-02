@@ -225,13 +225,12 @@ Il compito è **progettare il pre- e il post-protocollo** in modo che valgano ce
 
 > [!attention] Si assume che la **CS termini sempre** (altrimenti nessuno potrebbe mai entrare dopo)
 > ma la **NCS può non terminare**: un processo può rimanere per sempre nella sezione non critica (ad esempio perché ha finito il suo lavoro o è andato in crash). Un buon protocollo **non può dipendere** dal fatto che l'altro processo ne esca.
-### Il caso con due processi
-
-![[Pasted image 20261102152421.png|505]]
+### Esempio con due processi
+![[Pasted image 20261102152421.png|505]]![[Pasted image 20261102153051.png|512]]
+> [!info] `await turn = 1` significa “resta qui finché `turn` non vale 1”.
+> È una notazione indipendente dall'implementazione; la si può realizzare (in modo inefficiente) con un'**attesa attiva** (_busy-wait_): un ciclo che non fa nulla finché la condizione è falsa.
 
 Assunzione: i protocolli possono usare variabili locali o globali, ma **nessuna variabile usata nella CS o nella NCS viene usata nei protocolli** (così CS/NCS non interferiscono con i protocolli).
-
-Nei listati si usa l'istruzione `await condizione`: significa "**aspetta finché la condizione diventa vera**". È una notazione indipendente dall'implementazione; la si può realizzare (in modo inefficiente) con un'**attesa attiva** (_busy-wait_): un ciclo che non fa nulla finché la condizione è falsa.
 
 ---
 

@@ -376,10 +376,9 @@ Fonde i due `await` in uno solo** con condizione composta.
 
 ### Algoritmo del ticket (per N processi)
 
-Per più di due processi si usa un'idea diversa, quella dei **biglietti numerati** (come al banco della salumeria). Nel materiale è indicato come variante dell'algoritmo _bakery_.
+Per più di due processi si usa un'idea diversa, quella dei **biglietti numerati** (come al banco della salumeria).
 ![[Pasted image 20261102163038.png|539]]
 **Come funziona.**
-
 - Per entrare, ogni processo **prende un biglietto** (`turn[i]`) e incrementa il distributore (`num`).
 - Aspetta finché il numero **servito** (`next`) è uguale al proprio biglietto.
 - Uscendo, incrementa `next`, **chiamando il biglietto successivo**.

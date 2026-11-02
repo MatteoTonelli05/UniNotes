@@ -490,40 +490,21 @@ Esempio: l'algoritmo di Dekker in PROMELA (lato `p`; `q` è simmetrico).
 |`init { atomic { run p(); run q() } }`|Avvia i due processi in modo atomico|
 |`printf`|Stampa (utile per tracciare l'esecuzione)|
 
-> [!example] Come si verifica la mutua esclusione in Promela (aggiunta) 
+> [!example] Come si verifica la mutua esclusione in Promela  
 > Un modo comune è usare un contatore e un'asserzione, si dichiara `byte critical = 0;`, e nella CS di ogni processo si scrive `critical++; assert(critical == 1); critical--;`. Se esiste un intreccio in cui due processi sono nella CS, SPIN trova la violazione dell'`assert` e mostra la traccia. Si lancia con `spin -run modello.pml`.
 
-### TLA+ e PlusCal
+### 2. TLA+ e PlusCal
 
-**TLA** (_Temporal Logic of Actions_) è un linguaggio formale di specifica introdotto da **Leslie Lamport**, basato su **matematica discreta semplice** (teoria degli insiemi e predicati). L'ultima versione è **TLA+**. Si usa per specificare e verificare sistemi complessi del mondo reale: un esempio noto è l'uso nei servizi cloud di **Amazon Web Services**.
+**TLA** (_Temporal Logic of Actions_) è un linguaggio formale basato su **matematica discreta semplice** (teoria degli insiemi e predicati). 
 
 **Cosa descrive una specifica TLA+.** L'insieme di tutti i **comportamenti leciti** (tracce di esecuzione) di un sistema. Così si può mostrare che un progetto del sistema ("**il come**") realizza correttamente le proprietà desiderate ("**il cosa**").
 
 **TLC** è il model checker di TLA+: prende una specifica e controlla **esaustivamente** le proprietà su **tutte** le possibili tracce.
 
 **PlusCal** (prima chiamato +CAL) è un **linguaggio per algoritmi** basato su TLA+: sta agli algoritmi come un linguaggio di programmazione sta ai programmi. Un algoritmo PlusCal viene **tradotto** in una specifica TLA+ che si controlla con TLC.
-
-Esempio: l'algoritmo di Peterson in PlusCal.
-
-```text
---algorithm Peterson {
-  variables flag = [i \in {0,1} |-> FALSE], turn = 0;
-
-  process (proc \in {0,1}) {
-    a0:  while (TRUE) {
-    a1:    flag[self] := TRUE;
-    a2:    turn := Not(self);
-    a3a:   if (flag[Not(self)]) { goto a3b } else { goto cs };
-    a3b:   if (turn = Not(self)) { goto a3a } else { goto cs };
-    cs:    skip;                     \* sezione critica
-    a4:    flag[self] := FALSE;
-    }
-  }
-}
-```
+![[Pasted image 20261102183007.png]]
 
 **Come leggerlo.**
-
 - Un'**azione atomica** va **da un'etichetta alla successiva**: tutto ciò che sta tra due etichette è un passo indivisibile. Le etichette sono quindi i "punti di intreccio" possibili.
 - `flag[i]` è l'equivalente di `wantp`/`wantq` (un array indicizzato dall'id del processo); `self` è l'id del processo corrente e `Not(self)` l'id dell'altro.
 - `a3a` e `a3b` implementano `await !wantq || turn = ...` come una coppia di controlli con salti (`goto`).
@@ -536,12 +517,11 @@ dove $pc$ è il "program counter" di ciascun processo. TLC esplora l'algoritmo (
 
 > [!tip] Quando il model checking non basta Per algoritmi con moltissimi (o infiniti) stati raggiungibili, TLC non riesce più a esplorare tutto: la correttezza va allora **dimostrata deduttivamente** (ad esempio trovando un **invariante induttivo**: vero nello stato iniziale e preservato da ogni transizione). TLC resta comunque molto utile per scovare errori **prima** di investire nello sforzo della dimostrazione.
 
-### Java PathFinder (JPF)
+### 3. Java PathFinder (JPF)
 
 **JPF** è un model checker specializzato nella **verifica di programmi Java**, sviluppato dalla **NASA** per software critico, ed è un progetto **open source**.
 
 **Come funziona.** JPF è una **JVM speciale** che esegue il programma **lungo tutti i possibili scenari** (cammini di esecuzione), cioè esplora tutti gli intrecci dei thread. Controlla la presenza di **violazioni di proprietà**, come:
-
 - **deadlock**;
 - **eccezioni non catturate**;
 - violazioni di asserzioni.

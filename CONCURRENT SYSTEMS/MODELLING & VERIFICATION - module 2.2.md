@@ -439,27 +439,13 @@ test-and-set(x, r):
 ### Atomicità in Java: `synchronized`
 
 In Java il lock è disponibile come **blocco `synchronized`** su un **oggetto lock condiviso**:
-
-```java
-// thread A
-synchronized (lock) {
-    statementA();
-    statementB();
-}
-
-// thread B
-synchronized (lock) {
-    statementC();
-    statementD();
-}
-```
-
+![[Pasted image 20261102174614.png]]
 Poiché entrambi i blocchi sono protetti **dallo stesso oggetto `lock`**, la sequenza `a, b` e la sequenza `c, d` vengono eseguite **senza intreccio tra le due sequenze**: non possono esistere scenari come `a c b d` o `c a d b`. Sono possibili solo `a b c d` oppure `c d a b`.
 
 > [!warning] Cose da tenere presenti
 > 
-> - Serve **lo stesso oggetto lock** nei due blocchi: se i due thread sincronizzano su oggetti diversi, **non c'è nessuna esclusione reciproca**.
-> - Il blocco garantisce che nessun **altro blocco sullo stesso lock** si intrecci, ma il codice **non protetto** può comunque girare in qualsiasi momento (e il thread può essere sospeso dallo scheduler _dentro_ il blocco: gli altri semplicemente non possono entrarvi).
+> - Serve **lo stesso oggetto lock** nei due blocchi
+> - Il blocco garantisce che nessun **altro blocco sullo stesso lock** si intrecci, ma il codice **non protetto** può comunque girare in qualsiasi momento (e il thread può essere sospeso dallo scheduler _dentro_ il blocco).
 > - Il lock viene rilasciato automaticamente all'uscita dal blocco, anche in caso di eccezione.
 > - Usare più lock annidati apre la strada al **deadlock** (ordine di acquisizione diverso tra thread).
 

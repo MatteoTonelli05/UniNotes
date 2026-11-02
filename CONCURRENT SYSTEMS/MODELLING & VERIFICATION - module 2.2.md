@@ -1,21 +1,16 @@
-
-## Perché servono i modelli
-
+> [!question] Cosa sono i modelli?
 Un **modello** è una descrizione rigorosa della struttura e del comportamento di un programma (o sistema) a un **livello di astrazione adeguato**: include le informazioni rilevanti e **ignora** quelle che non lo sono.
 
 Esistono due grandi famiglie di modelli, con scopi diversi:
-
-|Tipo|A cosa serve|Esempi|
-|---|---|---|
-|**Diagrammatici**|Progettazione: capire e comunicare la struttura|Diagrammi UML, schemi di architettura|
-|**Formali**|Analisi e **verifica**: ragionare in modo matematico sul comportamento|Diagrammi di stato, FSP, LTL, PlusCal, Promela|
+1. **DIAGRAMMATICI:** utili a progettare e comunicare la struttura *(es. UML )*
+2. **FORMALI:** ragionare in modo matematico sul comportamento *(es. FSP, LTL, PlusCal)*
 
 Per i programmi concorrenti i modelli servono in particolare per:
-
 - **progettare**: descrivere struttura e comportamento _senza_ i dettagli di basso livello dell'implementazione concreta;
 - **verificare**: poter ragionare sul comportamento **dinamico**, cioè su _tutte_ le esecuzioni possibili.
 
-> [!tip] Perché la verifica è particolarmente importante qui Nei programmi concorrenti i testi non bastano: il non-determinismo fa sì che un test possa passare mille volte e fallire alla millesima e una. Servono tecniche che ragionino su **tutti gli intrecci possibili**, non solo su quelli che capita di osservare. Un modello formale permette proprio questo.
+> [!attention] Perché la verifica è particolarmente importante 
+> Nei programmi concorrenti i test non bastano: il non-determinismo fa sì che un test possa passare mille volte e fallire alla millesima e una. Servono tecniche che ragionino su **tutti gli intrecci possibili**.
 
 ---
 

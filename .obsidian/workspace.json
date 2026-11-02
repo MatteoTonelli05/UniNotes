@@ -20,21 +20,8 @@
               "icon": "lucide-file",
               "title": "MODELLING & VERIFICATION - module 2.1"
             }
-          },
-          {
-            "id": "9866c89756d43c8a",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.14.5"
-              },
-              "icon": "lucide-book-up",
-              "title": "Note di rilascio 1.14.5"
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -124,6 +111,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "CONCURRENT SYSTEMS/MODELLING & VERIFICATION - module 2.1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -142,6 +130,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "CONCURRENT SYSTEMS/MODELLING & VERIFICATION - module 2.1.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -184,6 +173,7 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "CONCURRENT SYSTEMS/MODELLING & VERIFICATION - module 2.1.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -211,7 +201,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "9866c89756d43c8a",
+  "active": "52be27eca40f23c5",
   "lastOpenFiles": [
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261030134814.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261030134751.png",

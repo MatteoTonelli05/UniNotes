@@ -227,11 +227,11 @@ Errori e interferenze possono portare l'intero sistema in situazioni critiche.
 1. Supporto all'esecuzione di programmi concorrenti, realizzando computazioni concorrenti.
 2. **Tanti processori virtuali quanti sono i processi** della computazione.
 3. Meccanismi di base per:
-    - **multiprogrammazione**;
-    - **sincronizzazione e comunicazione**;
-    - **controllo degli accessi alle risorse**.
+    - **multiprogrammazione**
+    - **sincronizzazione e comunicazione**
+    - **controllo degli accessi alle risorse**
 
-> [!hint] 
+> [!hint]  
 ### Meccanismi di base
 
 **Multiprogrammazione**

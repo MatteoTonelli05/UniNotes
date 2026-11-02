@@ -258,7 +258,7 @@ I linguaggi permettono di scrivere programmi come **insiemi di processi sequenzi
 - **specificare la concorrenza**: creazione di più processi;
 - **specificare l'interazione tra processi**: sincronizzazione, comunicazione, mutua esclusione.
 
-### Tre approcci di progettazione dei linguaggi
+##### Tre approcci di progettazione dei linguaggi
 
 |Approccio|Idea|Esempi|
 |---|---|---|
@@ -268,18 +268,13 @@ I linguaggi permettono di scrivere programmi come **insiemi di processi sequenzi
 
 ## La concorrenza nei linguaggi mainstream
 
-La maggior parte dei linguaggi diffusi, sia procedurali (C) sia a oggetti (Java), offre la creazione ed esecuzione di processi **tramite librerie**, senza estendere il linguaggio. Per Java questo è solo in parte vero, perché ha un supporto nativo per la concorrenza.
-
 ### Thread
 
 - Il **thread** è l'implementazione concreta della nozione astratta di processo.
 - Detti anche **processi leggeri** (lightweight), in contrapposizione ai **processi pesanti** (heavyweight) del sistema operativo.
-- Attenzione a non confondere: nei sistemi operativi un **processo** è un programma in esecuzione che può avere **uno o più flussi di controllo (thread)**.
 
-Esempi principali:
-
-- programmazione **multi-thread in Java**;
-- **libreria Pthread** per C/C++ su sistemi POSIX.
+> [!fail] Attenzione a non confondere
+> Nei sistemi operativi un **processo** è un programma in esecuzione che può avere **uno o più flussi di controllo (thread)**.
 
 ## Approcci alternativi ai Thread
 

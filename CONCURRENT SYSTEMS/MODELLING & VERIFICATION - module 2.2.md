@@ -406,49 +406,36 @@ Le istruzioni composte più comuni:
 | **fetch-and-add**$(x, k)$                              | restituisce il valore di $x$ e lo incrementa di $k$                                             |
 | **compare-and-swap**$(x, \text{atteso}, \text{nuovo})$ | se $x$ vale `atteso`, lo sostituisce con `nuovo` e segnala il successo; altrimenti non fa nulla |
 ### Sezione critica con test-and-set
+
+> [!abstract] Il test-and-set è un’istruzione che **legge e scrive una variabile in un unico passo indivisibile**.
+
 ![[Pasted image 20261102171037.png]]
 **Come funziona.**
+```
+test-and-set(x, r):
+    < r := x ;  x := 1 >
+```
+1. **legge** il valore attuale di `x` e lo copia in `r` (il _vecchio_ valore);
+2. **imposta** `x` a 1, **sempre**, qualunque cosa ci fosse prima.
+##### **Pro e Contro**
 
-- `lock = 0` significa **libero**, `lock = 1` **occupato**.
-- `test_and_set` legge il valore **vecchio** in `was_locked` e mette `lock` a 1, in modo atomico.
-	- Se `was_locked = 0`: ho trovato il lock libero e **l'ho preso io** (ora è 1) → entro.
-	- Se `was_locked = 1`: era già occupato (e lo è ancora, ho solo riscritto 1) → riprovo (**attesa attiva**, _spin_).
-- Uscendo, `lock := 0` lo libera.
+**Pro:**
+- Funziona per **N processi**
 
-**Perché la mutua esclusione vale.** Due processi non possono leggere entrambi "0": la lettura e l'impostazione a 1 sono indivisibili, quindi **uno solo** vede 0.
-
-**Pregi e limiti.**
-
-- ✅ Funziona per **N processi**, non solo per 2, ed è molto più corto dei protocolli algoritmici.
-- ⚠️ L'attesa attiva **spreca CPU**.
-- ⚠️ Non garantisce da sola l'assenza di starvation: nulla stabilisce chi vince quando più processi "provano" insieme.
+ **Contro:**
+- L'attesa attiva **spreca CPU**.
+- Non garantisce da sola l'assenza di starvation, nulla stabilisce chi vince quando più processi "provano" insieme.
 
 ---
-
 ## I lock
 
-Con le istruzioni atomiche composte si realizza facilmente un meccanismo di base: il **lock**.
+> [!abstract] Lock
+>Un lock offre due operazioni (entrambe atomiche):
+>- **`acquire`**: prendi il lock (se è già preso, aspetta);
+>- **`release`**: rilascia il lock.
 
-Un lock offre due operazioni (entrambe atomiche):
-
-- **`acquire`**: prendi il lock (se è già preso, aspetta);
-- **`release`**: rilascia il lock.
-
-```text
-lock sharedlock
-
-p:                                q:
-loop forever                      loop forever
-  p1: NCS                           q1: NCS
-  p2: acquire(sharedlock)           q2: acquire(sharedlock)
-  p3: CS                            q3: CS
-  p4: release(sharedlock)           q4: release(sharedlock)
-```
-
-Il pre-protocollo diventa una sola chiamata (`acquire`) e il post-protocollo un'altra (`release`): **protegge** il codice della sezione critica con una soluzione semplice al problema.
-
-> [!info] Come si realizza un lock Un lock può essere implementato con una **spin-lock** (attesa attiva su test-and-set, come sopra) oppure, nei sistemi operativi e nelle JVM, facendo **sospendere** il thread che non ottiene il lock (attesa bloccante) per non sprecare CPU.
-
+![[Pasted image 20261102173734.png|519]]
+*Il pre-protocollo diventa una sola chiamata `acquire` e il post-protocollo un'altra `release`*
 ### Atomicità in Java: `synchronized`
 
 In Java il lock è disponibile come **blocco `synchronized`** su un **oggetto lock condiviso**:
@@ -476,12 +463,7 @@ Poiché entrambi i blocchi sono protetti **dallo stesso oggetto `lock`**, la seq
 > - Il lock viene rilasciato automaticamente all'uscita dal blocco, anche in caso di eccezione.
 > - Usare più lock annidati apre la strada al **deadlock** (ordine di acquisizione diverso tra thread).
 
-### Oltre i lock
-
-I lock risolvono la mutua esclusione ma non coprono tutto (ad esempio la **sincronizzazione**: aspettare che una condizione diventi vera senza attesa attiva). Per questo esistono meccanismi più ricchi, come **semafori** e **monitor**, trattati nel modulo successivo.
-
 ---
-
 ## Model checking di programmi concorrenti
 
 ### L'idea

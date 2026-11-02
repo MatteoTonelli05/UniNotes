@@ -165,9 +165,15 @@ Per questi si **distinguono DUE tipi di stato**:
 La corrispondenza tra stati interni ed esterni è **parziale**:
 
 - esistono stati interni **senza** un corrispondente stato esterno;
-- gli stati interni che hanno un corrispondente esterno si dicono **consistenti**.
+- gli stati interni che hanno un corrispondente esterno si dicono **CONSISTENTI**.
 
-> [!example] Esempio con una lista concatenata Inserire un elemento richiede più passi: creare il nodo, collegarlo alla lista, aggiornare `size`. Dopo aver collegato il nodo ma **prima** di aver aggiornato `size`, lo stato interno è **inconsistente** (la lista ha 4 nodi ma `size` dice 3). Non corrisponde a nessuna lista "vera" vista da fuori.
+> [!example] Esempio con una lista concatenata 
+> Inserire un elemento richiede più passi: 
+> 1. creare il nodo
+> 2. collegarlo alla lista
+> 3. aggiornare `size`
+> 
+> Dopo aver collegato il nodo ma **prima** di aver aggiornato `size`, lo stato interno è **inconsistente** (la lista ha 4 nodi ma `size` dice 3). 
 
 ### Perché è un problema solo nella concorrenza
 

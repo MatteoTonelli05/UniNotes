@@ -180,75 +180,48 @@ La corrispondenza tra stati interni ed esterni è **parziale**:
 - **Programmazione sequenziale:** nessun problema, grazie all'_information hiding_. Chi usa la lista chiama un metodo e riprende il controllo solo a operazione finita: **non vede mai** gli stati intermedi inconsistenti.
 - **Programmazione concorrente:** un altro processo può **accedere all'oggetto mentre è a metà operazione** e trovarlo in stato inconsistente.
 
-> [!warning] Conclusione Servono meccanismi che garantiscano che i processi lavorino su oggetti dati **sempre in stati consistenti**: in pratica, rendere le operazioni sull'oggetto **atomiche** rispetto agli altri processi, cioè in **mutua esclusione** (con lock, `synchronized`, monitor...).
+> [!warning] Soluzione 
+> Servono meccanismi che garantiscano che i processi lavorino su oggetti dati **sempre in stati consistenti**: in pratica, rendere le operazioni sull'oggetto **atomiche** rispetto agli altri processi, cioè in **mutua esclusione** (con lock, `synchronized`, monitor...).
 
 ---
-
 ## Processi ciclici e cicli nel diagramma
 
 Due processi che ciclano su una condizione, con `n` inizialmente a 1:
 
-```text
-integer n := 1
-p:  p1: while (n < 1)           q:  q1: while (n >= 0)
-    p2:     n := n + 1               q2:     n := n - 1
-```
-
+![[Pasted image 20261102144250.png]]
 - `p1` è il **controllo** della condizione, `p2` è il **corpo** del ciclo (idem per `q1`, `q2`).
 - Il diagramma di stato ha stati $\langle p, q, n \rangle$ e contiene **cicli**.
 
-### Domande tipiche e relative risposte
+![[Pasted image 20261102144341.png|250]]
 
-**Un scenario in cui il ciclo di `p` viene eseguito esattamente una volta.** `q1, q2` (n diventa 0) → `p1` (0 < 1, vero) → `p2` (n torna 1) → `p1` (1 < 1, falso: `p` esce). Il corpo di `p` è stato eseguito una sola volta.
-
-**Esattamente tre volte.** Si ripete per tre volte la coppia "`q` decrementa, poi `p` incrementa", e poi `p` controlla e trova la condizione falsa: `q1 q2 | p1 p2 | q1 q2 | p1 p2 | q1 q2 | p1 p2 | p1` (a questo punto `n = 1` e `p` esce). L'idea: perché `p` entri nel corpo serve `n < 1`, quindi `q` deve abbassare `n` tra un giro di `p` e il successivo.
-
-**Entrambi i cicli infiniti.** Si alternano senza fine: `q1 q2 p1 p2 q1 q2 p1 p2 ...` `q` porta `n` da 1 a 0 (la sua condizione `n >= 0` resta vera), `p` lo riporta a 1 (la sua condizione `n < 1` era vera con `n = 0`). È un **ciclo** nel diagramma di stato.
-
-> [!tip] Cosa insegna questo esempio Un grafo **finito** può rappresentare computazioni **infinite**: basta un ciclo. Per questo le proprietà di _vivacità_ (qualcosa di buono prima o poi accade) si studiano cercando **cicli** nel diagramma in cui il "qualcosa di buono" non avviene mai.
+> [!info] Si noti come un grafo **finito** può rappresentare computazioni **infinite**: basta un ciclo. 
+> Per questo le proprietà di _vivacità_ (qualcosa di buono prima o poi accade) si studiano cercando **cicli** nel diagramma in cui il "qualcosa di buono" non avviene mai.
 
 ---
-
 ## Il problema della sezione critica
 
 ### Definizione
-
-Introdotto da **Dijkstra** nel 1965, è uno dei problemi più importanti e più studiati della programmazione concorrente, nell'ambito della **competizione** tra processi.
 
 Si hanno $N$ processi, ciascuno dei quali esegue **in un ciclo infinito** una sequenza di istruzioni divisibile in due parti:
 
 - **sezione critica (CS, _critical section_)**: istruzioni che accedono a **oggetti condivisi**;
 - **sezione non critica (NCS, _non-critical section_)**: tutto il resto.
-
-Schema di ogni processo:
-
-```text
-P[i]:
-loop forever
-    <non-critical section>
-    entry protocol  (pre-protocollo)
-    <critical section>
-    exit protocol   (post-protocollo)
-```
-
+![[Pasted image 20261102144520.png|497]]
 Il compito è **progettare il pre- e il post-protocollo** in modo che valgano certe proprietà.
-
-> [!info] A cosa serve il modello Il problema rappresenta un sistema che svolge calcoli complessi ma ogni tanto deve accedere a dati o risorse (ad esempio hardware) **condivisi** con altri processi. Esempio concreto: un chiosco di check-in in aeroporto che esegue molto lavoro locale ma, per registrare un passeggero, deve accedere a un **database centrale** condiviso con tutti gli altri chioschi.
-
 ### Le proprietà richieste
 
-|Proprietà|Significato|
-|---|---|
-|**Mutua esclusione**|Le istruzioni delle sezioni critiche di due o più processi **non** devono essere intrecciate: al più un processo alla volta è in CS|
-|**Assenza di deadlock**|Se alcuni processi cercano di entrare nella loro CS, **almeno uno** ci riesce prima o poi|
-|**Assenza di starvation individuale**|Se un **qualsiasi** processo cerca di entrare nella CS, **prima o poi ci riesce** (_bounded waiting_: nella forma più forte, c'è un limite al numero di volte in cui gli altri possono passargli avanti)|
-|**Progresso della CS**|Una volta che un processo inizia la sua CS, la **deve finire**|
+| Proprietà                             | Significato                                                                                                                                                                                              |
+| ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Mutua esclusione**                  | Le istruzioni delle sezioni critiche di due o più processi **non** devono essere intrecciate: al più un processo alla volta è in CS                                                                      |
+| **Assenza di deadlock**               | Se alcuni processi cercano di entrare nella loro CS, **almeno uno** ci riesce prima o poi                                                                                                                |
+| **Assenza di starvation individuale** | Se un **qualsiasi** processo cerca di entrare nella CS, **prima o poi ci riesce** (_bounded waiting_: nella forma più forte, c'è un limite al numero di volte in cui gli altri possono passargli avanti) |
+| **Progresso della CS**                | Una volta che un processo inizia la sua CS, la **deve finire**                                                                                                                                           |
 
 > [!tip] Differenza tra le due proprietà di vivacità
 > 
 > - **Assenza di deadlock** è una garanzia a livello di **sistema**: "se qualcuno vuole entrare, qualcuno entrerà". Ma potrebbe sempre entrare lo stesso processo, lasciando un altro fuori per sempre.
 > - **Assenza di starvation** è una garanzia a livello di **singolo processo**: "chi vuole entrare, prima o poi entra".
-> - La seconda è più forte: se vale l'assenza di starvation vale anche l'assenza di deadlock, non viceversa.
+> > [!info] **La seconda è più forte: se vale l'assenza di starvation vale anche l'assenza di deadlock, non viceversa.**
 
 **Un'asimmetria importante: la NCS non deve progredire.** Si assume che la **CS termini sempre** (altrimenti nessuno potrebbe mai entrare dopo), ma la **NCS può non terminare**: un processo può rimanere per sempre nella sezione non critica (ad esempio perché ha finito il suo lavoro o è andato in crash). Un buon protocollo **non può dipendere** dal fatto che l'altro processo ne esca.
 

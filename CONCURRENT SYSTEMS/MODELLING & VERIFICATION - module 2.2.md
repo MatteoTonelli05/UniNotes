@@ -225,27 +225,9 @@ Il compito è **progettare il pre- e il post-protocollo** in modo che valgano ce
 
 > [!attention] Si assume che la **CS termini sempre** (altrimenti nessuno potrebbe mai entrare dopo)
 > ma la **NCS può non terminare**: un processo può rimanere per sempre nella sezione non critica (ad esempio perché ha finito il suo lavoro o è andato in crash). Un buon protocollo **non può dipendere** dal fatto che l'altro processo ne esca.
-
-### Algoritmi o meccanismi?
-
-Il problema si risolve facilmente con **meccanismi** forniti dalla macchina concorrente (semafori, lock). Qui invece ci si concentra su soluzioni **puramente algoritmiche**:
-
-- senza meccanismi di alto livello;
-- usando **solo istruzioni atomiche elementari**: lettura (_load_) e scrittura (_store_) di variabili condivise.
-
-È un esercizio fondamentale perché mostra **perché** quei meccanismi servono e quanto sia sottile farne a meno.
-
 ### Il caso con due processi
 
-Si studia prima il problema per due processi, `p` e `q`, che condividono alcune variabili globali:
-
-```text
-loop forever
-    non-critical section
-    pre-protocol
-    critical section
-    post-protocol
-```
+![[Pasted image 20261102152421.png|505]]
 
 Assunzione: i protocolli possono usare variabili locali o globali, ma **nessuna variabile usata nella CS o nella NCS viene usata nei protocolli** (così CS/NCS non interferiscono con i protocolli).
 

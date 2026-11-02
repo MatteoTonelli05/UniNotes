@@ -63,7 +63,7 @@ Definiamo **scenario** (esecuzione possibile), un **cammino orientato** nel graf
 
 ---
 
-## Esempi di diagrammi di stato
+##sempi di diagrammi di stato
 
 ### Esempio con variabile condivisa
 

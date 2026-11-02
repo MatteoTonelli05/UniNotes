@@ -74,7 +74,7 @@ Due processi, ciascuno con una sola istruzione, una variabile condivisa `n` e va
 ![[Pasted image 20261102114720.png|481]]
 ### Esempio con due processi che stampano
 ![[Pasted image 20261102114838.png]]
-Qui non ci sono variabili: lo stato è $\langle p, q \rangle$. 
+Qui non ci sono variabili: lo stato è $\langle p, q \rangle$, ovvero le azioni che posso fare. 
 ![[Pasted image 20261102114954.png]]
 In ogni scenario `p1` precede sempre `p2` e `q1` precede sempre `q2`: **l'ordine interno di ciascun processo è sempre rispettato**, cambia solo come le due sequenze si "mescolano".
 
@@ -90,53 +90,11 @@ Con $n$ processi, dove il processo $i$ ha $m_i$ azioni **indipendenti** tra loro
 
 $$ns = \frac{\left(\sum_{i=1}^{n} m_i\right)!}{\prod_{i=1}^{n} (m_i!)}$$
 
-(È il coefficiente multinomiale: gli ordinamenti di tutte le azioni, divisi per gli ordinamenti interni che non contano perché ciascun processo mantiene il proprio ordine.)
+*(È il coefficiente multinomiale: gli ordinamenti di tutte le azioni, divisi per gli ordinamenti interni che non contano perché ciascun processo mantiene il proprio ordine.)*
 
-**Verifica sui casi visti:**
-
-- 2 processi da 3 azioni: $\frac{6!}{3!,3!} = 20$ ✔
-- 3 processi da 2 azioni: $\frac{6!}{2!,2!,2!} = 90$ ✔
-
-### Tabella: 2 processi
-
-|Azioni per processo|Scenari|
-|---|---|
-|1|2|
-|2|6|
-|3|20|
-|4|70|
-|5|252|
-|6|924|
-|7|3432|
-|8|12870|
-
-> [!note] Nota Per 8 azioni il valore corretto è $\binom{16}{8} = 12870$ (in alcune versioni del materiale compare per errore 12820).
-
-### Tabella: 3 processi
-
-|Azioni per processo|Scenari|
-|---|---|
-|1|6|
-|2|90|
-|3|1680|
-|4|34650|
-
-### Ordini di grandezza (più processi, più azioni)
-
-|azioni $m_i$ \ processi $n$|2|3|4|5|6|
-|---|---|---|---|---|---|
-|**2**|6|90|2520|113400|$\approx 2^{22.8}$|
-|**3**|20|1680|$\approx 2^{18.4}$|$\approx 2^{27.3}$|$\approx 2^{36.9}$|
-|**4**|70|34650|$\approx 2^{25.9}$|$\approx 2^{38.1}$|$\approx 2^{51.5}$|
-|**5**|252|$\approx 2^{19.5}$|$\approx 2^{33.4}$|$\approx 2^{49.1}$|$\approx 2^{66.2}$|
-|**6**|924|$\approx 2^{24.0}$|$\approx 2^{41.0}$|$\approx 2^{60.2}$|$\approx 2^{81.1}$|
-
-> [!warning] Conseguenza pratica Il numero di scenari cresce in modo **esplosivo**. È impossibile controllare a mano (o provando) tutte le esecuzioni di un programma anche piccolo. Per questo non si ragiona sugli scenari uno per uno, ma si costruisce il **diagramma di stato**, che è molto più compatto.
-
-> [!tip] Scenari vs stati: perché il diagramma conviene Nei casi senza dipendenze il numero di **stati** cresce solo come il prodotto $\prod (m_i + 1)$ (ad esempio $3 \times 3 = 9$ stati per due processi da due azioni), mentre gli scenari crescono come un fattoriale. Verificare una proprietà guardando gli **stati raggiungibili** e le **transizioni** è quindi molto più economico che enumerare i cammini. Resta comunque un limite: con molti processi anche gli stati esplodono (_state explosion_), problema che si ritrova nel model checking.
+> [!tip] Verificare una proprietà guardando gli **stati raggiungibili** e le **transizioni** è quindi molto più economico che enumerare i cammini. Resta comunque un limite: con molti processi anche gli stati esplodono (_state explosion_), problema che si ritrova nel model checking.
 
 ---
-
 ## L'importanza di essere atomici
 
 ### Incremento atomico vs non atomico

@@ -15,17 +15,14 @@ Esistono due grandi famiglie di modelli, con scopi diversi:
 ---
 ## Come si modella un programma concorrente
 
-L'approccio di fondo è **basato sull'interleaving**:
+L'approccio di fondo è basato su 3 concetti fondamentali:
+1. **ISTRUZIONI ATOMICHE**, ogni processo è una sequenza di istruzioni indivisibili
+2. **ARBITRARY INTERLEAVING**, l'esecuzione concorrente comporta che, a ogni passo, _uno_ dei processi pronti esegue _una_ istruzione atomica
+3. **SPEED INDEPENDENCE**, vale l'**indipendenza dalla velocità**
 
-- ogni processo è una sequenza di **istruzioni atomiche** (indivisibili);
-- l'esecuzione concorrente è un **intreccio arbitrario** (_arbitrary interleaving_) delle istruzioni dei vari processi: a ogni passo _uno_ dei processi pronti esegue _una_ istruzione atomica;
-- vale l'**indipendenza dalla velocità** (_speed independence_): non si assume nulla sulle velocità relative, quindi **ogni** intreccio è possibile.
 
-Il paradigma di programmazione considerato è il **multi-threading con memoria condivisa**: i processi interagiscono tramite variabili condivise. (Semafori e monitor, i meccanismi di sincronizzazione di alto livello, vengono dopo.)
-
-Qui si vedono due modi di costruire il modello.
-
-### Modellazione con FSP
+> [!abstract] Il paradigma di programmazione considerato per ora è il **multi-threading con memoria condivisa**: i processi interagiscono tramite variabili condivise.
+### 1. Modellazione con FSP
 
 FSP (_Finite State Processes_) è il linguaggio di specifica già incontrato nella prima parte del corso. Con FSP esiste **una sola astrazione**: il _processo_. Quindi si modella con processi **tutto**:
 
@@ -35,7 +32,7 @@ FSP (_Finite State Processes_) è il linguaggio di specifica già incontrato nel
 
 > [!tip] Chiarimento Pensare a una variabile condivisa come a un processo sembra strano, ma è naturale: una variabile è qualcosa che _sta in uno stato_ (il suo valore) e _accetta azioni_ (`read`, `write`) che ne cambiano lo stato. È un piccolo automa a stati finiti.
 
-### Modellazione con diagrammi di stato
+### 2. Modellazione con diagrammi di stato
 
 È l'approccio usato per tutto il resto della pagina. L'esecuzione di un programma concorrente si rappresenta con **stati** e **transizioni**.
 

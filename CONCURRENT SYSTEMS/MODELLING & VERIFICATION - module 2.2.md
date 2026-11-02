@@ -130,14 +130,30 @@ p3: store n, R1      // riscrivi in n
 La nozione di "atomico" non vale solo per le istruzioni, ma anche per i **dati**.
 ### Oggetto dati atomico
 
-Un oggetto dati è **atomico** se il numero dei suoi possibili stati coincide con il numero dei valori che può assumere, e le operazioni cambiano _atomicamente_ quello stato. Ad esempio, un intero a 32 bit.
+> [!abstract] Un oggetto dati è **atomico** se il numero dei suoi possibili stati coincide con il numero dei valori che può assumere, e le operazioni cambiano _atomicamente_ quello stato. 
 
-- I **tipi primitivi** dei linguaggi concorrenti sono tipicamente atomici...
-- ...ma **non sempre**: in Java, `double` e `long` (64 bit) **non** sono garantiti atomici in lettura/scrittura se non dichiarati `volatile`, perché potrebbero essere scritti in due metà da 32 bit.
+***Esempio**: un `boolean`. Ha 2 stati possibili (vero, falso) e 2 valori possibili (vero, falso): corrispondono uno a uno. Scrivere un valore lo porta da uno stato all’altro in un colpo solo.*
+
+
+
+>[!warning] _I **tipi primitivi** dei linguaggi concorrenti sono tipicamente atomici_
+>In Java `double` e `long` (64 bit) **non** sono garantiti atomici se non dichiarati `volatile`: la specifica ammette che una scrittura venga eseguita come **due scritture da 32 bit**. Un altro thread potrebbe leggere una “metà vecchia, metà nuova”, cioè un numero che nessuno ha mai scritto. È un caso di dato primitivo non atomico.
 
 ### Tipi di dati astratti (ADT)
 
-Gli oggetti composti da più dati più semplici (classi nei linguaggi a oggetti, `struct` in C) sono tipicamente **non atomici**.
+Una classe, una `struct`, un array, una lista sono fatti da **più pezzi** (campi, nodi, puntatori). Modificarli richiede **più istruzioni**, e tra un’istruzione e la successiva l’oggetto è “a metà”.
+
+```java
+class Intervallo {
+    int min;   // invariante: min <= max
+    int max;
+
+    void imposta(int a, int b) {   // si assume a <= b
+        min = a;     // passo 1
+        max = b;     // passo 2
+    }
+}
+```
 
 Per questi si distinguono due tipi di stato:
 

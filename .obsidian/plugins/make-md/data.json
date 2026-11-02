@@ -47,7 +47,8 @@
     "//MACHINE LEARNING",
     "//visione",
     "//visione/visione/Analisi di immagini binarie",
-    "//CONCURRENT SYSTEMS"
+    "//CONCURRENT SYSTEMS",
+    "//LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Tags",

@@ -226,14 +226,13 @@ Il compito è **progettare il pre- e il post-protocollo** in modo che valgano ce
 > [!attention] Si assume che la **CS termini sempre** (altrimenti nessuno potrebbe mai entrare dopo)
 > ma la **NCS può non terminare**: un processo può rimanere per sempre nella sezione non critica (ad esempio perché ha finito il suo lavoro o è andato in crash). Un buon protocollo **non può dipendere** dal fatto che l'altro processo ne esca.
 ### Esempio con due processi
-![[Pasted image 20261102152421.png|505]]![[Pasted image 20261102153051.png|512]]
+
+Usiamo una variabile condivisa per sincronizzare due processi $p$ e $q$
+![[Pasted image 20261102153051.png|512]]
 > [!info] `await turn = 1` significa “resta qui finché `turn` non vale 1”.
 > È una notazione indipendente dall'implementazione; la si può realizzare (in modo inefficiente) con un'**attesa attiva** (_busy-wait_): un ciclo che non fa nulla finché la condizione è falsa.
 
-Assunzione: i protocolli possono usare variabili locali o globali, ma **nessuna variabile usata nella CS o nella NCS viene usata nei protocolli** (così CS/NCS non interferiscono con i protocolli).
-
 ---
-
 ## Come si verifica la correttezza: LTL e diagrammi di stato
 
 ### Costruire il diagramma
@@ -247,18 +246,19 @@ Per dimostrare che una soluzione è corretta si costruisce il suo diagramma di s
 
 La **logica temporale lineare (LTL)** permette di scrivere le proprietà in modo preciso. Due operatori bastano qui:
 
-|Simbolo|Si legge|Significato|
-|---|---|---|
-|$\Box \varphi$|"sempre $\varphi$"|$\varphi$ vale in **ogni** stato dell'esecuzione|
-|$\Diamond \varphi$|"prima o poi $\varphi$"|$\varphi$ vale in **qualche** stato futuro|
+| Simbolo                | Si legge                | Significato                                      |
+| ---------------------- | ----------------------- | ------------------------------------------------ |
+| $\small{\Box} \varphi$ | "sempre $\varphi$"      | $\varphi$ vale in **ogni** stato dell'esecuzione |
+| $\diamond \varphi$     | "prima o poi $\varphi$" | $\varphi$ vale in **qualche** stato futuro       |
 
-Con $p_3$ che indica "il processo `p` è all'istruzione 3" (nella CS), vale:
+> [!info] **Mutua esclusione:** $\Box \neg (p_3 \wedge q_3)$ 
+> sempre: non è vero che `p` e `q` sono entrambi nella CS."
 
-- **Mutua esclusione:** $\Box \neg (p_3 \wedge q_3)$ "Sempre: non è vero che `p` e `q` sono entrambi nella CS."
-- **Assenza di starvation:** $\Box (p_2 \rightarrow \Diamond p_3)$ e $\Box (q_2 \rightarrow \Diamond q_3)$ "Sempre: se `p` è nel pre-protocollo (in attesa), allora prima o poi arriva nella CS." (E lo stesso per `q`.)
+ > [!info] **Assenza di starvation:** $\Box (p_2 \rightarrow \Diamond p_3)$ e $\Box (q_2 \rightarrow \Diamond q_3)$ 
+ > "Sempre: se `p` è nel pre-protocollo (in attesa), allora prima o poi arriva nella CS." (E lo stesso per `q`)
 
-> [!tip] Una formula di vivacità si legge così "$\Box(A \rightarrow \Diamond B)$" = "ogni volta che accade $A$, prima o poi accade $B$". È il modello tipico di tutte le proprietà "qualcosa di buono prima o poi succede".
-
+> [!tip] **Formula di vivacità:** "$\Box(A \rightarrow \Diamond B)$" 
+>"Ogni volta che accade $A$, prima o poi accade $B$". È il modello tipico di tutte le proprietà "qualcosa di buono prima o poi succede".
 ### Ridurre il numero di stati
 
 Per studiare la correttezza del protocollo si può **abbreviare** il programma senza cambiarne la semantica rilevante:
@@ -268,193 +268,95 @@ Per studiare la correttezza del protocollo si può **abbreviare** il programma s
 
 Il diagramma risultante è molto più piccolo (ad esempio da 16 stati a 4 nel primo tentativo qui sotto).
 
-> [!warning] Attenzione a cosa si perde Togliere la NCS dal modello non significa che la NCS "non può essere infinita": significa solo che nel modello ridotto non la si vede. Quando si analizza la starvation bisogna ricordarsi che **il processo potrebbe fermarsi per sempre nella NCS** (si ragiona quindi anche sul programma completo).
+![[Pasted image 20261102160250.png]]
+
+> [!warning] Togliere la NCS dal modello non significa che la NCS "non può essere infinita": significa solo che nel modello ridotto non la si vede. 
+> Quando si analizza la starvation bisogna ricordarsi che **il processo potrebbe fermarsi per sempre nella NCS** (si ragiona quindi anche sul programma completo).
 
 ---
-
 ## Cinque tentativi verso la soluzione
 
 La sezione critica per due processi si risolve con un percorso a tappe. Ogni tentativo sembra ragionevole ma ha un difetto: studiarli uno per uno mostra **quali proprietà sono difficili da ottenere insieme** e come si arriva agli algoritmi giusti.
 
 ### Primo tentativo: la variabile `turn`
-
-```text
-integer turn := 1
-
-p:                               q:
-loop forever                     loop forever
-  p1: non-critical section         q1: non-critical section
-  p2: await turn = 1               q2: await turn = 2
-  p3: critical section             q3: critical section
-  p4: turn := 2                    q4: turn := 1
-```
-
-**Idea:** `turn` indica di chi è il **turno**. `p` entra solo se `turn = 1`, e uscendo passa il turno a `q`, e viceversa. Si può paragonare a un **testimone** (_baton_) che passa da una mano all'altra: solo chi ce l'ha può entrare.
-
-**Stati.** $\langle p_i, q_j, turn \rangle$. Il diagramma completo ha **16 stati**.
+![[Pasted image 20261102160638.png|561]]
+> [!info] **Idea:** 
+> `turn` indica di chi è il **turno**. `p` entra solo se `turn = 1`, e uscendo passa il turno a `q`, e viceversa. 
 
 **Versione abbreviata** (rimosse CS e NCS):
-
-```text
-p:  p1: await turn = 1     q:  q1: await turn = 2
-    p2: turn := 2              q2: turn := 1
-```
+![[Pasted image 20261102160929.png|593]]
 
 Il diagramma ha solo **4 stati**, disposti in un ciclo:
 
 $$\langle p1,q1,1\rangle \xrightarrow{p1} \langle p2,q1,1\rangle \xrightarrow{p2} \langle p1,q1,2\rangle \xrightarrow{q1} \langle p1,q2,2\rangle \xrightarrow{q2} \langle p1,q1,1\rangle$$
 
-**Verifica delle proprietà:**
-
-|Proprietà|Esito|Perché|
-|---|---|---|
-|Mutua esclusione|✅ Vale|Non è mai raggiungibile uno stato $\langle p2, q2, _ \rangle$ (versione abbreviata)|
-|Assenza di deadlock|✅ Vale|Se qualcuno è in `await`, prima o poi il turno gli viene passato e uno dei due entra|
-|Assenza di starvation|❌ **Non vale**|Vedi sotto|
-
-**Perché c'è starvation.** Si supponga che `p` entri in CS, passi il turno a `q` (`turn := 2`), poi torni nella sua NCS e **ci rimanga per sempre** (la NCS non ha l'obbligo di progredire). `q` può entrare una volta, riporta `turn := 1` e riparte, ma al giro successivo aspetta `turn = 2`: **solo `p` può impostarlo** e `p` non lo farà mai. Quindi `q` resta bloccato per sempre in attesa.
-
-> [!warning] Il difetto di fondo `turn` è una **risorsa-permesso** che si può tenere indefinitamente: se il processo che ne è il titolare si ferma nella NCS (o muore), l'altro non entra mai. Entrambi i processi leggono e scrivono **una sola variabile globale**: se uno "muore", l'altro è bloccato. In più impone una **stretta alternanza** (p, q, p, q...) anche quando uno dei due non ha alcun interesse a entrare.
-
+> [!fail] C'è starvation
+> Si supponga che `p` entri in CS, passi il turno a `q` (`turn := 2`), poi torni nella sua NCS e **ci rimanga per sempre** (la NCS non ha l'obbligo di progredire). `q` può entrare una volta, riporta `turn := 1` e riparte, ma al giro successivo aspetta `turn = 2`: **solo `p` può impostarlo** e `p` non lo farà mai. Quindi `q` resta bloccato per sempre in attesa.
 ### Secondo tentativo: le variabili `want`
 
 Per risolvere il problema si rende **esplicita e osservabile** l'intenzione di ciascun processo di entrare, con una variabile booleana per processo.
+![[Pasted image 20261102161314.png|578]]
 
-```text
-boolean wantp := false
-boolean wantq := false
-
-p:                                 q:
-loop forever                       loop forever
-  p1: non-critical section           q1: non-critical section
-  p2: await wantq = false            q2: await wantp = false
-  p3: wantp := true                  q3: wantq := true
-  p4: critical section               q4: critical section
-  p5: wantp := false                 q5: wantq := false
-```
-
-**Idea:** "prima di entrare guardo se l'altro vuole entrare; se non vuole, annuncio che voglio entrare ed entro".
+> [!abstract] **Idea** 
+> prima di entrare guardo se l'altro vuole entrare; se non vuole, annuncio che voglio entrare ed entro.
 
 **Proprietà in LTL (versione completa):**
-
 - Mutua esclusione: $\Box \neg (p_4 \wedge q_4)$
 - Assenza di starvation: $\Box ((p_2 \rightarrow \Diamond p_4) \wedge (q_2 \rightarrow \Diamond q_4))$
 
 **Versione abbreviata:**
-
-```text
-p:  p1: await wantq = false     q:  q1: await wantp = false
-    p2: wantp := true               q2: wantq := true
-    p3: wantp := false              q3: wantq := false
-```
+![[Pasted image 20261102161423.png|574]]
 
 (Tra `p2` e `p3` il processo è nella CS.) La mutua esclusione diventa $\Box \neg (p_3 \wedge q_3)$.
 
-**Verifica: ❌ la mutua esclusione NON vale.** Con il diagramma di stato si trova lo stato **raggiungibile** $\langle p3, q3, \text{true}, \text{true} \rangle$, cioè entrambi nella CS. Scenario:
-
-|Passo|Cosa succede|Stato|
-|---|---|---|
-|1|`p` esegue `await wantq = false`: `wantq` è falso, passa|`p` è a `p2`|
-|2|`q` esegue `await wantp = false`: `wantp` è ancora falso, passa|`q` è a `q2`|
-|3|`p` esegue `wantp := true`|`p` entra in CS|
-|4|`q` esegue `wantq := true`|`q` entra in CS|
-
-**Perché.** Il **controllo** ("l'altro non vuole") e l'**annuncio** ("io voglio") sono due istruzioni separate: tra le due si può inserire l'altro processo. Il protocollo non è atomico. È la stessa struttura _check-then-act_ dell'esempio del latte.
-
+> [!fail] **La mutua esclusione NON vale.**
+>  Con il diagramma di stato si trova lo stato **raggiungibile** $\langle p3, q3, \text{true}, \text{true} \rangle$, cioè entrambi nella CS. Scenario:
+>  
+>| Passo | Cosa succede                                                    | Stato           |
+>| ----- | --------------------------------------------------------------- | --------------- |
+>| 1     | `p` esegue `await wantq = false`: `wantq` è falso, passa        | `p` è a `p2`    |
+>| 2     | `q` esegue `await wantp = false`: `wantp` è ancora falso, passa | `q` è a `q2`    |
+>| 3     | `p` esegue `wantp := true`                                      | `p` entra in CS |
+>| 4     | `q` esegue `wantq := true`                                      | `q` entra in CS |
 ### Terzo tentativo: annunciare prima di controllare
 
-Si risolve il problema precedente **spostando l'assegnazione prima dell'attesa**: prima dichiaro che voglio entrare, poi controllo.
+> [!abstract] Idea
+> Si risolve il problema precedente **spostando l'assegnazione prima dell'attesa**: prima dichiaro che voglio entrare, poi controllo.
 
-```text
-boolean wantp := false
-boolean wantq := false
+![[Pasted image 20261102161955.png|573]]
 
-p:                                 q:
-loop forever                       loop forever
-  p1: non-critical section           q1: non-critical section
-  p2: wantp := true                  q2: wantq := true
-  p3: await !wantq                   q3: await !wantp
-  p4: critical section               q4: critical section
-  p5: wantp := false                 q5: wantq := false
-```
+> [!fail] **Si può bloccare tutto** 
+> Scenario: p2 (wantp = true), q2 (wantq = true). Ora p aspetta !wantq e q aspetta !wantp, entrambi vogliono entrare, ma nessuno ce la farà mai.
 
-**Verifica:**
-
-- ✅ **Mutua esclusione.** Se `p` è alla CS ha `wantp = true` e ha visto `wantq = false` dopo averlo annunciato; `q` non può quindi passare.
-- ❌ **Si può bloccare tutto.** Scenario: `p2` (wantp = true), `q2` (wantq = true). Ora `p` aspetta `!wantq` e `q` aspetta `!wantp`: **entrambi vogliono entrare, nessuno ce la farà mai**.
-
-> [!note] Deadlock o livelock? Il materiale del corso chiama questa situazione _livelock_, perché i processi in `await` stanno facendo **attesa attiva** (consumano CPU controllando una condizione). Nella terminologia di Ben-Ari, e a rigore, è un **deadlock**: nessuno dei due può più cambiare lo stato da solo (ognuno aspetta una condizione che solo l'altro può cambiare). Quello che conta è la conclusione: **entrambi tentano di entrare e nessuno ci riuscirà mai**, quindi la proprietà di assenza di deadlock è violata.
-
+> [!question] Deadlock o livelock? 
+> Il materiale del corso chiama questa situazione _livelock_, perché i processi in `await` stanno facendo **attesa attiva** (consumano CPU controllando una condizione). 
+> 
+> Nella terminologia di Ben-Ari, e a rigore, è un **deadlock**: nessuno dei due può più cambiare lo stato da solo.
 ### Quarto tentativo: rinunciare all'intenzione
 
 Il blocco nasce dal fatto che entrambi **insistono**. Il passo successivo è chiedere a un processo di **rinunciare** alla sua intenzione quando scopre che c'è contesa.
+![[Pasted image 20261102162253.png|558]]
+> [!abstract] **Idea**
+> Se vedo che l'altro vuole entrare, ritiro la mia intenzione (`wantp := false`) e riprovo (`wantp := true`), dando all'altro la possibilità di passare.
 
-```text
-boolean wantp := false
-boolean wantq := false
+> [!fail] Scenario di livelock 
+> I due processi procedono **in perfetto sincronismo**, passo dopo passo: entrambi annunciano, entrambi vedono la contesa, entrambi rinunciano, entrambi riannunciano, e così via all'infinito. 
 
-p:                                 q:
-loop forever                       loop forever
-  p1: non-critical section           q1: non-critical section
-  p2: wantp := true                  q2: wantq := true
-  p3: while wantq                    q3: while wantp
-  p4:   wantp := false               q4:   wantq := false
-  p5:   wantp := true                q5:   wantq := true
-  p6: critical section               q6: critical section
-  p7: wantp := false                 q7: wantq := false
-```
-
-**Idea:** se vedo che l'altro vuole entrare, ritiro la mia intenzione (`wantp := false`) e riprovo (`wantp := true`), dando all'altro la possibilità di passare.
-
-**Verifica:** ✅ mutua esclusione, ✅ non si blocca completamente, ma ❌ **può verificarsi un livelock**.
-
-> [!example] Scenario di livelock I due processi procedono **in perfetto sincronismo**, passo dopo passo: entrambi annunciano, entrambi vedono la contesa, entrambi rinunciano, entrambi riannunciano, e così via all'infinito. Cambiano continuamente stato ma **nessuno entra mai**. Basta che lo scheduler sia "sfortunato" nell'alternare i due: è esattamente la situazione dei due pedoni nel corridoio che si spostano insieme dallo stesso lato.
-
-È una situazione **improbabile** ma **possibile**, e un programma concorrente deve essere corretto per **tutti** gli intrecci, non solo per quelli probabili.
-
+## Soluzione Corretta
 ### Algoritmo di Dekker
 
-La soluzione arriva da un'idea semplice: il quarto tentativo ha il difetto della **simmetria** (i due processi si comportano allo stesso modo e quindi possono ripetere la stessa mossa all'infinito). Serve qualcosa che **rompa la simmetria** quando c'è contesa: la variabile `turn` del primo tentativo, usata però in modo diverso.
+La soluzione arriva da un'idea semplice: il quarto tentativo ha il difetto della **simmetria** (i due processi si comportano allo stesso modo e quindi possono ripetere la stessa mossa all'infinito). Serve qualcosa che **rompa la simmetria** quando c'è contesa.
 
-> [!info] L'idea chiave `turn` non decide **chi può entrare**, ma **chi ha il diritto di insistere** quando c'è contesa. È trovata per la prima volta dal matematico olandese **T. J. Dekker** nel 1965. L'algoritmo è la **combinazione del primo e del quarto tentativo**.
+> [!info] Idea
+> Si inserisce la variabile `turn` del primo tentativo; questa non decide **chi può entrare**, ma **chi ha il diritto di insistere** quando c'è contesa..
 
-```text
-boolean wantp := false
-boolean wantq := false
-integer turn := 1
-
-p:                                  q:
-loop forever                        loop forever
-  p1:  non-critical section           q1:  non-critical section
-  p2:  wantp := true                  q2:  wantq := true
-  p3:  while wantq                    q3:  while wantp
-  p4:    if turn = 2                  q4:    if turn = 1
-  p5:      wantp := false             q5:      wantq := false
-  p6:      await turn = 1             q6:      await turn = 2
-  p7:      wantp := true              q7:      wantq := true
-  p8:  critical section               q8:  critical section
-  p9:  turn := 2                      q9:  turn := 1
-  p10: wantp := false                 q10: wantq := false
-```
-
-**Come funziona (lato `p`).**
-
-1. `p2`: annuncio che voglio entrare.
-2. `p3`: se l'altro **non** vuole entrare (`wantq` falso), esco subito dal `while` ed entro. Nessuna contesa → `turn` è irrilevante. Questo risolve il difetto del primo tentativo (bloccarsi se l'altro è fermo nella NCS).
-3. Se c'è **contesa** (`wantq` vero), guardo di chi è il turno:
-    - se `turn = 1` (tocca a me): **insisto**, resto nel `while` finché `q` ritira la sua intenzione;
-    - se `turn = 2` (tocca a lui): **cedo**: ritiro la mia intenzione (`p5`), aspetto che il turno torni a me (`p6`), poi riannuncio (`p7`) e riprovo.
-4. `p8`: sezione critica.
-5. `p9`: passo il turno all'altro. `p10`: ritiro l'intenzione.
-
+![[Pasted image 20261102162538.png|581]]
 **Perché funziona.**
-
 - **Mutua esclusione:** `p` entra solo se vede `wantq = false`, avendo già `wantp = true`.
 - **Niente livelock:** quando c'è contesa uno dei due ha il turno e **insiste**, l'altro **cede**: la simmetria è rotta.
 - **Niente starvation:** uscendo dalla CS ciascuno passa il turno all'altro, e `turn` non può restare "bloccato" nell'altro perché serve solo in caso di contesa.
 
 **Proprietà in LTL:**
-
 - Mutua esclusione: $\Box \neg (p_8 \wedge q_8)$
 - Assenza di starvation: $\Box ((p_2 \rightarrow \Diamond p_8) \wedge (q_2 \rightarrow \Diamond q_8))$
 
@@ -462,57 +364,20 @@ loop forever                        loop forever
 
 ### Algoritmo di Peterson
 
-Altre soluzioni sono state proposte nel tempo per migliorare quella di Dekker (**Peterson 1981**, Manna-Pnueli, Doran-Thomas). Quella di **Peterson** è la più concisa: **fonde i due `await` in uno solo** con condizione composta.
-
-```text
-boolean wantp := false
-boolean wantq := false
-integer turn := 1
-
-p:                                  q:
-loop forever                        loop forever
-  p1: NCS                             q1: NCS
-  p2: wantp := true                   q2: wantq := true
-  p3: turn := 2                       q3: turn := 1
-  p4: await !wantq || turn = 1        q4: await !wantp || turn = 2
-  p5: CS                              q5: CS
-  p6: wantp := false                  q6: wantq := false
-```
-
+Fonde i due `await` in uno solo** con condizione composta.
+![[Pasted image 20261102162837.png|575]]
 **Come leggerlo (lato `p`).**
-
 - `p2`: "io voglio entrare".
 - `p3`: "**ma ti lascio il turno**" (`turn := 2` significa "tocca a `q`"). È un gesto di cortesia.
 - `p4`: "aspetto finché **o** tu non vuoi entrare, **o** il turno è tornato a me".
 
-**Perché funziona.** Se **solo `p`** vuole entrare, `wantq` è falso e passa subito. Se **entrambi** vogliono entrare, entrambi scrivono `turn`: vince la **scrittura più recente**, quindi chi ha scritto **per ultimo** ha ceduto il turno all'altro e deve aspettare, mentre l'altro passa. Il "cedere" è fatto in modo che **uno solo** dei due resti in attesa.
-
-|Situazione|Cosa accade|
-|---|---|
-|Solo `p` vuole entrare|`wantq = false` → `p` entra subito|
-|Entrambi vogliono entrare|L'ultimo a scrivere `turn` cede; l'altro entra|
-|Uscita|Chi esce abbassa il suo `want` → l'altro può passare|
-
-> [!warning] Una precisazione importante sulle macchine reali Dekker e Peterson sono corretti con **memoria sequenzialmente consistente** (le scritture sono viste dagli altri processi nell'ordine in cui avvengono). I processori moderni e i compilatori **riordinano** letture e scritture per ottimizzare: su hardware reale questi algoritmi, scritti ingenuamente, **possono non funzionare** senza barriere di memoria (in Java, variabili `volatile`). Sono algoritmi di valore didattico e teorico; in pratica si usano i lock del linguaggio.
+> [!warning] Le macchine reali di Dekker e Peterson sono corretti con **memoria sequenzialmente consistente**
+> I processori moderni e i compilatori **riordinano** letture e scritture per ottimizzare: su hardware reale questi algoritmi, scritti ingenuamente, **possono non funzionare** senza barriere di memoria (in Java, variabili `volatile`). Sono algoritmi di valore didattico e teorico; in pratica si usano i lock del linguaggio.
 
 ### Algoritmo del ticket (per N processi)
 
 Per più di due processi si usa un'idea diversa, quella dei **biglietti numerati** (come al banco della salumeria). Nel materiale è indicato come variante dell'algoritmo _bakery_.
-
-```text
-int num := 1         // prossimo numero da distribuire
-int next := 1        // numero attualmente servito
-turn[1..n] := [0,0,0,...]    // numero in mano a ciascun processo
-
-p[i]:
-loop forever
-  p1: NCS
-  p2: < turn[i] := num; num := num + 1 >     // prendi il biglietto (atomico)
-  p3: await turn[i] = next                   // aspetta il tuo turno
-  p4: CS
-  p5: next := next + 1                       // chiama il prossimo
-```
-
+![[Pasted image 20261102163038.png|539]]
 **Come funziona.**
 
 - Per entrare, ogni processo **prende un biglietto** (`turn[i]`) e incrementa il distributore (`num`).

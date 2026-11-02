@@ -399,31 +399,14 @@ La notazione per specificare l'atomicità è mettere le istruzioni tra **parente
 
 Le istruzioni composte più comuni:
 
-|Istruzione|Cosa fa (atomicamente)|
-|---|---|
-|**test-and-set**$(x, r)$|$\langle r := x;\ x := 1 \rangle$: leggi il vecchio valore di $x$ in $r$ e imposta $x$ a 1|
-|**exchange**$(a, b)$|scambia i valori di $a$ e $b$|
-|**fetch-and-add**$(x, k)$|restituisce il valore di $x$ e lo incrementa di $k$|
-|**compare-and-swap**$(x, \text{atteso}, \text{nuovo})$|se $x$ vale `atteso`, lo sostituisce con `nuovo` e segnala il successo; altrimenti non fa nulla|
-
-> [!tip] Perché sono utili In tutte e quattro **leggere e modificare** una variabile condivisa avviene in un **unico passo indivisibile**. È proprio la separazione tra "leggi" e "scrivi" che crea le race condition (come nell'incremento non atomico): queste istruzioni la eliminano.
-
+| Istruzione                                             | Cosa fa (atomicamente)                                                                          |
+| ------------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| **test-and-set**$(x, r)$                               | $\langle r := x;\ x := 1 \rangle$: leggi il vecchio valore di $x$ in $r$ e imposta $x$ a 1      |
+| **exchange**$(a, b)$                                   | scambia i valori di $a$ e $b$                                                                   |
+| **fetch-and-add**$(x, k)$                              | restituisce il valore di $x$ e lo incrementa di $k$                                             |
+| **compare-and-swap**$(x, \text{atteso}, \text{nuovo})$ | se $x$ vale `atteso`, lo sostituisce con `nuovo` e segnala il successo; altrimenti non fa nulla |
 ### Sezione critica con test-and-set
-
-```text
-integer lock := 0
-
-p:                                       q:
-integer was_locked                       integer was_locked
-loop forever                             loop forever
-  p1: NCS                                  q1: NCS
-      repeat                                   repeat
-  p2:   test_and_set(lock, was_locked)     q2:   test_and_set(lock, was_locked)
-  p3: until was_locked = 0                 q3: until was_locked = 0
-  p4: CS                                   q4: CS
-  p5: lock := 0                            q5: lock := 0
-```
-
+![[Pasted image 20261102171037.png]]
 **Come funziona.**
 
 - `lock = 0` significa **libero**, `lock = 1` **occupato**.

@@ -244,7 +244,7 @@ Errori e interferenze possono portare l'intero sistema in situazioni critiche.
 
 > [!attention] Lo scheduler decide chi gira, su quale processore e per quanto tempo. È lui che produce gli intrecci (interleaving) di cui si parlava a proposito del non-determinismo: essendo fuori dal controllo del programmatore, è anche il motivo per cui non si può assumere nulla sulle velocità relative.
 ##### **Sincronizzazione e comunicazione** 
-_dipendono dal **modello architetturale** della macchina.
+_dipendono dal **modello architetturale** della macchina._
 
 |Modello|Memoria|Interazione|Esempio|
 |---|---|---|---|

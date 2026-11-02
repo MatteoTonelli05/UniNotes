@@ -224,22 +224,27 @@ Errori e interferenze possono portare l'intero sistema in situazioni critiche.
 
 ### Cosa fornisce una macchina concorrente
 
-1. Supporto all'esecuzione di programmi concorrenti, realizzando computazioni concorrenti.
+1. Supporto all'esecuzione di programmi concorrenti
 2. **Tanti processori virtuali quanti sono i processi** della computazione.
 3. Meccanismi di base per:
     - **multiprogrammazione**
     - **sincronizzazione e comunicazione**
     - **controllo degli accessi alle risorse**
 
-> [!hint]  
+> [!hint] Un processore virtuale per ogni processo.
+> Se il programma ha 50 processi, la macchina offre l’illusione di avere 50 processori, uno per processo. Ogni processo si comporta come se fosse l’unico, e tocca alla macchina mappare questi 50 processori virtuali sui processori fisici disponibili
 ### Meccanismi di base
 
-**Multiprogrammazione**
+##### **Multiprogrammazione**
 
-- Creare nuovi **processori virtuali**.
-- Assegnare i **processori fisici** della macchina sottostante ai processori virtuali, tramite **algoritmi di scheduling**.
+È l’insieme dei meccanismi che servono a due cose:
 
-**Sincronizzazione e comunicazione**: dipendono dal **modello architetturale** della macchina.
+1. **creare** nuovi processori virtuali (cioè nuovi processi), e gestirne la vita;
+2. **assegnare** i processori fisici della macchina sottostante ai processori virtuali, usando **algoritmi di scheduling**.
+
+> [!attention] Lo scheduler decide chi gira, su quale processore e per quanto tempo. È lui che produce gli intrecci (interleaving) di cui si parlava a proposito del non-determinismo: essendo fuori dal controllo del programmatore, è anche il motivo per cui non si può assumere nulla sulle velocità relative.
+##### **Sincronizzazione e comunicazione** 
+_dipendono dal **modello architetturale** della macchina.
 
 |Modello|Memoria|Interazione|Esempio|
 |---|---|---|---|

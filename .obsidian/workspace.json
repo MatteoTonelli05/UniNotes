@@ -20,8 +20,21 @@
               "icon": "lucide-file",
               "title": "MODELLING & VERIFICATION - module 2.1"
             }
+          },
+          {
+            "id": "9866c89756d43c8a",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.14.5"
+              },
+              "icon": "lucide-book-up",
+              "title": "Note di rilascio 1.14.5"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -80,7 +93,7 @@
             }
           },
           {
-            "id": "fcce11cd4713c24e",
+            "id": "60eb62c762f7b003",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
@@ -100,7 +113,88 @@
   "right": {
     "id": "994e93d0a7538110",
     "type": "split",
-    "children": [],
+    "children": [
+      {
+        "id": "8fa97224aa911d3f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c9c1cd5e056d914c",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Riferimenti"
+            }
+          },
+          {
+            "id": "79a3a1f40969020f",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Collegamenti in uscita"
+            }
+          },
+          {
+            "id": "9db425457dc849aa",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Etichette"
+            }
+          },
+          {
+            "id": "18694afb7858e616",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Tutte le proprietà"
+            }
+          },
+          {
+            "id": "bb07144b3483070b",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Struttura"
+            }
+          }
+        ]
+      }
+    ],
     "direction": "horizontal",
     "width": 285.5,
     "collapsed": true
@@ -117,7 +211,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "52be27eca40f23c5",
+  "active": "9866c89756d43c8a",
   "lastOpenFiles": [
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261030134814.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261030134751.png",

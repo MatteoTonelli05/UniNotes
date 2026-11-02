@@ -452,62 +452,30 @@ Poiché entrambi i blocchi sono protetti **dallo stesso oggetto `lock`**, la seq
 ---
 ## Model checking di programmi concorrenti
 
-### L'idea
+> [!attention] Costruire a mano il diagramma di stato e controllare le proprietà funziona per programmi minuscoli.
 
-Costruire a mano il diagramma di stato e controllare le proprietà funziona per programmi minuscoli. Per programmi veri si automatizza con un **model checker**: uno strumento che prende un **modello** del programma e una **proprietà** (di solito scritta in LTL) ed esplora **in modo esaustivo** tutti gli stati raggiungibili, per dire se la proprietà vale.
+> [!abstract] Idea
+>Per programmi veri si automatizza con un **model checker**: uno strumento che prende un **modello** del programma e una **proprietà** (di solito scritta in LTL) ed esplora **in modo esaustivo** tutti gli stati raggiungibili, per dire se la proprietà vale.
 
 Il quadro di lavoro include:
-
 1. un **linguaggio per definire il modello** del programma concorrente;
 2. il **model checker**, che legge il modello e lo analizza;
 3. (di solito) un linguaggio per **specificare le proprietà**, ad esempio LTL.
 
 Se la proprietà è violata, il model checker restituisce un **controesempio**: l'esecuzione concreta (sequenza di passi) che porta alla violazione, preziosissima per capire e correggere il bug.
 
-||Vantaggi|Limiti|
-|---|---|---|
-|Model checking|Automatico, **esaustivo** (non "a campione"), fornisce il controesempio|**Esplosione degli stati**: il modello deve avere un numero di stati gestibile|
+Gli strumenti principali visti: 
+- **SPIN/PROMELA**
+- **TLA+/PlusCal**
+- **Java PathFinder (JPF)**
+### 1. SPIN e PROMELA
 
-Gli strumenti principali visti: **SPIN/PROMELA**, **TLA+/PlusCal**, **Java PathFinder (JPF)**.
-
-### SPIN e PROMELA
-
-- **SPIN** è un model checker molto diffuso sia nella ricerca accademica sia nello sviluppo software industriale. È **estremamente efficiente** e viene usato per modellare e progettare sistemi concorrenti e distribuiti in generale.
+- **SPIN** è un model checker **estremamente efficiente** e viene usato per modellare e progettare sistemi concorrenti e distribuiti in generale.
 - **PROMELA** è il **linguaggio** con cui si scrivono i modelli per SPIN: ha un numero limitato di costrutti pensati per costruire modelli di sistemi concorrenti.
 
 Esempio: l'algoritmo di Dekker in PROMELA (lato `p`; `q` è simmetrico).
 
-```promela
-bool wantp = false, wantq = false;
-byte turn = 1;
-
-proctype p() {
-    do ::
-        wantp = true;
-        do :: !wantq -> break;
-           :: else ->
-                if :: (turn == 1)
-                   :: (turn == 2) ->
-                        wantp = false;
-                        (turn == 1);
-                        wantp = true
-                fi
-        od;
-        printf("LOG: p in CS\n");
-        turn = 2;
-        wantp = false
-    od
-}
-
-proctype q() { /* simile */ }
-
-init {
-    atomic {
-        run p();
-        run q()
-    }
-}
-```
+![[Pasted image 20261102181622.png]]
 
 **Come leggerlo.**
 
@@ -522,7 +490,8 @@ init {
 |`init { atomic { run p(); run q() } }`|Avvia i due processi in modo atomico|
 |`printf`|Stampa (utile per tracciare l'esecuzione)|
 
-> [!example] Come si verifica la mutua esclusione in Promela (aggiunta) Un modo comune è usare un contatore e un'asserzione: si dichiara `byte critical = 0;`, e nella CS di ogni processo si scrive `critical++; assert(critical == 1); critical--;`. Se esiste un intreccio in cui due processi sono nella CS, SPIN trova la violazione dell'`assert` e mostra la traccia. Si lancia con `spin -run modello.pml`.
+> [!example] Come si verifica la mutua esclusione in Promela (aggiunta) 
+> Un modo comune è usare un contatore e un'asserzione, si dichiara `byte critical = 0;`, e nella CS di ogni processo si scrive `critical++; assert(critical == 1); critical--;`. Se esiste un intreccio in cui due processi sono nella CS, SPIN trova la violazione dell'`assert` e mostra la traccia. Si lancia con `spin -run modello.pml`.
 
 ### TLA+ e PlusCal
 

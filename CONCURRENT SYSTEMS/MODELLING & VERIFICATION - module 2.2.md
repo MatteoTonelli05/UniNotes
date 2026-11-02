@@ -92,56 +92,21 @@ $$ns = \frac{\left(\sum_{i=1}^{n} m_i\right)!}{\prod_{i=1}^{n} (m_i!)}$$
 
 *(È il coefficiente multinomiale: gli ordinamenti di tutte le azioni, divisi per gli ordinamenti interni che non contano perché ciascun processo mantiene il proprio ordine.)*
 
-> [!tip] Verificare una proprietà guardando gli **stati raggiungibili** e le **transizioni** è quindi molto più economico che enumerare i cammini. Resta comunque un limite: con molti processi anche gli stati esplodono (_state explosion_), problema che si ritrova nel model checking.
+> [!tip] Verificare una proprietà guardando gli **stati raggiungibili** e le **transizioni** è quindi molto più economico che enumerare i cammini.
 
 ---
 ## L'importanza di essere atomici
 
 ### Incremento atomico vs non atomico
 
-Due processi incrementano la stessa variabile condivisa `n` (inizialmente 0).
-
-**Caso 1: incremento atomico**
-
-```text
-integer n := 0
-p:  p1: n := n + 1        q:  q1: n := n + 1
-```
-
-Un'unica istruzione atomica per processo → il risultato finale è **sempre 2**.
-
-**Caso 2: incremento non atomico**
-
-```text
-integer n := 0
-p:  integer tmp                  q:  integer tmp
-    p1: tmp := n                     q1: tmp := n
-    p2: n := tmp + 1                 q2: n := tmp + 1
-```
-
-Qui l'incremento è spezzato in due passi: **leggi** in una variabile locale `tmp`, poi **scrivi** `tmp + 1`. Tra i due passi un altro processo può intervenire.
-
-Stato = $\langle p, q, n, tmp_p, tmp_q \rangle$. Il diagramma ha **12 stati**.
-
-Dei **6 scenari** possibili:
-
-|Scenario|Cosa succede|`n` finale|
-|---|---|---|
-|p1 p2 q1 q2|p legge 0, scrive 1; q legge 1, scrive 2|**2**|
-|q1 q2 p1 p2|q legge 0, scrive 1; p legge 1, scrive 2|**2**|
-|p1 q1 p2 q2|entrambi leggono 0; p scrive 1; q scrive 1|**1**|
-|p1 q1 q2 p2|entrambi leggono 0; q scrive 1; p scrive 1|**1**|
-|q1 p1 p2 q2|entrambi leggono 0; p scrive 1; q scrive 1|**1**|
-|q1 p1 q2 p2|entrambi leggono 0; q scrive 1; p scrive 1|**1**|
-
-Solo **2 scenari su 6** danno il risultato corretto (2): negli altri 4 un incremento va **perso** (_lost update_). È una **race condition** nella sua forma più pura.
+![[Pasted image 20261102123120.png]]![[Pasted image 20261102123140.png]]
+> [!fail] Solo **2 scenari su 6** danno il risultato corretto: negli altri 4 un incremento va **perso** (_lost update_). È una **race condition** nella sua forma più pura.
 
 ### Anche `n := n + 1` non è atomico a livello macchina
 
 Anche se nel codice sorgente `n := n + 1` sembra una sola istruzione, il processore la esegue in più passi. A seconda dell'architettura:
 
 **Macchina a stack**
-
 ```text
 p1: push n       // metti n sullo stack
 p2: push #1      // metti la costante 1
@@ -150,7 +115,6 @@ p4: pop n        // scrivi il risultato in n
 ```
 
 **Macchina a registri**
-
 ```text
 p1: load R1, n       // leggi n nel registro
 p2: add R1, #1       // incrementa il registro
@@ -159,9 +123,8 @@ p3: store n, R1      // riscrivi in n
 
 (Il processo `q` esegue le stesse istruzioni.) Quindi l'intreccio dei passi di basso livello produce gli stessi problemi del caso non atomico di sopra.
 
-> [!warning] Lezione fondamentale Non ci si può fidare del "colpo d'occhio" sul codice ad alto livello. **Atomico** è solo ciò che l'hardware o il linguaggio _garantiscono_ essere indivisibile. In Java, ad esempio, `contatore++` non è atomico; lo è invece `AtomicInteger.incrementAndGet()`.
-
-> [!note] Nota Nel materiale originale la riga `add R1,#n` è un refuso: l'operando giusto è la costante `#1`.
+> [!warning] **Atomico** è solo ciò che l'hardware o il linguaggio _garantiscono_ essere indivisibile. 
+> In Java, ad esempio, `contatore++` non è atomico; lo è invece `AtomicInteger.incrementAndGet()`.
 
 ---
 

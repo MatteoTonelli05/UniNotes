@@ -38,18 +38,22 @@ Con FSP esiste **una sola astrazione**: il _processo_. Quindi si modella con pro
 ### 2. Modellazione con diagrammi di stato
 
 L'esecuzione di un programma concorrente si rappresenta con **stati** e **transizioni**.
-
-**Stato.** È una tupla che contiene:
-
+##### **Stato** 
+È una tupla che contiene:
 - per **ogni processo**, un elemento che è un'**etichetta** (la prossima istruzione da eseguire, cioè il suo "puntatore di controllo");
 - per **ogni variabile** (globale o locale), un **valore** del tipo corrispondente.
 
-**Transizione.** C'è una transizione da $s_1$ a $s_2$ se eseguire un'istruzione in $s_1$ porta in $s_2$. L'istruzione eseguita deve essere una di quelle puntate da un puntatore di controllo in $s_1$ (cioè la prossima istruzione di uno dei processi).
+##### **Transizione.** 
+C'è una transizione da $s_1$ a $s_2$ se eseguire un'istruzione in $s_1$ porta in $s_2$. 
 
-**Diagramma di stato.** È il grafo di **tutti gli stati raggiungibili** dallo stato iniziale.
+L'istruzione eseguita deve essere una di quelle puntate da un puntatore di controllo in $s_1$ (cioè la prossima istruzione di uno dei processi).
 
-- uno **scenario** (esecuzione possibile) è un **cammino orientato** nel grafo a partire dallo stato iniziale;
-- un **ciclo** nel grafo rappresenta la possibilità di una **computazione infinita** in un grafo finito.
+##### **Diagramma di stato.** 
+È il grafo di **tutti gli stati raggiungibili** dallo stato iniziale.
+
+Definiamo **scenario** (esecuzione possibile), un **cammino orientato** nel grafo a partire dallo stato iniziale.
+
+> [!fail] Un **ciclo** nel grafo rappresenta la possibilità di una **computazione infinita** in un grafo finito.
 
 > [!info] Convenzioni di lettura
 > 
@@ -59,76 +63,25 @@ L'esecuzione di un programma concorrente si rappresenta con **stati** e **transi
 
 ---
 
-## Primi esempi di diagrammi di stato
+## Esempi di diagrammi di stato
 
 ### Esempio con variabile condivisa
 
 Due processi, ciascuno con una sola istruzione, una variabile condivisa `n` e variabili locali `k1`, `k2`:
-
-```text
-integer n := 0
-
-p:  integer k1 := 1          q:  integer k2 := 2
-    p1: n := k1                  q1: n := k2
-```
-
+![[Pasted image 20261102114624.png]]
 - Ogni riga etichettata è **un'istruzione atomica**.
 - Le variabili locali (`k1`, `k2`) sono **private** del processo; `n` è **condivisa**.
-
-Stato = $\langle p, q, n, k_1, k_2 \rangle$. Stato iniziale: $\langle p1, q1, 0, 1, 2 \rangle$.
-
-```text
-                 <p1,q1,0,1,2>
-                  /          \
-              p1 /            \ q1
-                v              v
-        <end,q1,1,1,2>     <p1,end,2,1,2>
-                |                  |
-             q1 |                  | p1
-                v                  v
-        <end,end,2,1,2>     <end,end,1,1,2>
-```
-
-- **5 stati, 2 scenari**.
-- Scenario `p1, q1` → `n` finisce a **2** (l'ultimo che scrive vince).
-- Scenario `q1, p1` → `n` finisce a **1**.
-
-> [!example] Che cosa si impara Lo stesso programma, con gli stessi input, può dare **risultati finali diversi** a seconda dell'ordine. È il non-determinismo in forma minima.
-
+![[Pasted image 20261102114720.png|481]]
 ### Esempio con due processi che stampano
-
-```text
-p:  p1: print("p1")      q:  q1: print("q1")
-    p2: print("p2")          q2: print("q2")
-```
-
-Qui non ci sono variabili: lo stato è $\langle p, q \rangle$. Il diagramma ha forma di **rombo** con **9 stati** ($3 \times 3$: ciascun processo può essere a `1`, a `2` o terminato).
-
-I **6 scenari** possibili (le sequenze di stampa) sono:
-
-|#|Scenario|
-|---|---|
-|1|p1 p2 q1 q2|
-|2|p1 q1 p2 q2|
-|3|p1 q1 q2 p2|
-|4|q1 q2 p1 p2|
-|5|q1 p1 q2 p2|
-|6|q1 p1 p2 q2|
-
+![[Pasted image 20261102114838.png]]
+Qui non ci sono variabili: lo stato è $\langle p, q \rangle$. 
+![[Pasted image 20261102114954.png]]
 In ogni scenario `p1` precede sempre `p2` e `q1` precede sempre `q2`: **l'ordine interno di ciascun processo è sempre rispettato**, cambia solo come le due sequenze si "mescolano".
 
-### Con tre azioni per processo
-
-Con `p1,p2,p3` e `q1,q2,q3` gli scenari diventano **20**.
-
-> [!tip] Come contarli senza elencarli Una sequenza di 6 passi si ottiene scegliendo **in quali 3 posizioni** (su 6) mettere le azioni di `p`; le altre 3 vanno a `q`. Quindi il numero è $\binom{6}{3} = 20$. Per $m$ azioni per processo: $\binom{2m}{m}$.
-
-### Tre processi
-
-Con tre processi `p`, `q`, `r`, ciascuno con due azioni, gli scenari diventano **90**.
+> [!hint] Se avessimo 2 processi con 3 azioni ciascuno
+> Una sequenza di 6 passi si ottiene scegliendo **in quali 3 posizioni** (su 6) mettere le azioni di `p`; le altre 3 vanno a `q`. Quindi il numero è $\binom{6}{3} = 20$. Per $m$ azioni per processo: $\binom{2m}{m}$.
 
 ---
-
 ## L'esplosione degli scenari
 
 ### Formula generale

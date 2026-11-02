@@ -102,7 +102,7 @@ $$ns = \frac{\left(\sum_{i=1}^{n} m_i\right)!}{\prod_{i=1}^{n} (m_i!)}$$
 ![[Pasted image 20261102123120.png]]![[Pasted image 20261102123140.png]]
 > [!fail] Solo **2 scenari su 6** danno il risultato corretto: negli altri 4 un incremento va **perso** (_lost update_). È una **race condition** nella sua forma più pura.
 
-### Anche `n := n + 1` non è atomico a livello macchina
+### Non-atomicità a livello macchina
 
 Anche se nel codice sorgente `n := n + 1` sembra una sola istruzione, il processore la esegue in più passi. A seconda dell'architettura:
 
@@ -121,17 +121,13 @@ p2: add R1, #1       // incrementa il registro
 p3: store n, R1      // riscrivi in n
 ```
 
-(Il processo `q` esegue le stesse istruzioni.) Quindi l'intreccio dei passi di basso livello produce gli stessi problemi del caso non atomico di sopra.
-
 > [!warning] **Atomico** è solo ciò che l'hardware o il linguaggio _garantiscono_ essere indivisibile. 
 > In Java, ad esempio, `contatore++` non è atomico; lo è invece `AtomicInteger.incrementAndGet()`.
 
 ---
-
 ## Strutture dati non atomiche
 
 La nozione di "atomico" non vale solo per le istruzioni, ma anche per i **dati**.
-
 ### Oggetto dati atomico
 
 Un oggetto dati è **atomico** se il numero dei suoi possibili stati coincide con il numero dei valori che può assumere, e le operazioni cambiano _atomicamente_ quello stato. Ad esempio, un intero a 32 bit.

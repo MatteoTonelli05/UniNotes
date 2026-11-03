@@ -1,32 +1,9 @@
-## Perché servono meccanismi di alto livello
-
-Gli algoritmi del modulo precedente (Dekker, Peterson, ticket) girano su una **macchina "nuda"**: usano solo istruzioni macchina elementari. Funzionano, ma:
-
-- sono **di livello troppo basso** per essere usati in modo **efficiente** e **affidabile** (lunghi, delicati, facili da sbagliare);
-- ogni nuovo problema di sincronizzazione richiederebbe di inventare un nuovo algoritmo.
-
-La soluzione è introdurre **meccanismi e astrazioni di base per il coordinamento dei processi**, forniti direttamente dalla macchina concorrente e usati dai linguaggi concorrenti. I due principali:
-
-|Meccanismo|Livello|Idea|
-|---|---|---|
-|**Semaforo**|Basso (primitiva)|Contatore con operazioni che bloccano e sbloccano processi|
-|**Monitor**|Alto (astrazione)|Dato astratto che incapsula stato, operazioni **e** politica di sincronizzazione|
-
----
-
 ## Semafori
-
-### Idea generale
-
-Introdotti da **Dijkstra nel 1968**, i semafori sono un costrutto molto semplice ma potente, di uso generale, che permette di risolvere **quasi ogni problema** di mutua esclusione e sincronizzazione.
-
-L'analogia è quella del **semaforo stradale**: blocca e sblocca l'esecuzione dei processi (il movimento delle auto) secondo necessità. È un **tipo di dato primitivo** fornito dalla macchina concorrente.
 
 ### Il tipo di dato
 
 Un semaforo `S` è un tipo composto con **due campi**:
-
-- `S.V`: un **intero** $\geq 0$ (il "valore", il contatore);
+- `S.V`: un **intero** $\geq 0$ (il "valore" o contatore);
 - `S.L`: un **insieme di processi** (gli identificatori dei processi bloccati sul semaforo).
 
 Si inizializza con un valore $k \geq 0$ per `S.V` e con l'insieme vuoto per `S.L`:
@@ -37,10 +14,10 @@ semaphore S = (k, {})
 
 Offre **due operazioni atomiche**:
 
-|Operazione|Altro nome|Origine del nome|
-|---|---|---|
-|`wait(S)`|**P(S)**|Dall'olandese di Dijkstra|
-|`signal(S)`|**V(S)**|Dall'olandese di Dijkstra|
+| Operazione  | Altro nome |
+| ----------- | ---------- |
+| `wait(S)`   | **P(S)**   |
+| `signal(S)` | **V(S)**   |
 
 ### L'operazione `wait`
 

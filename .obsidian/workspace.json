@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "MACHINE LEARNING/05 - Regressione.md",
+                "file": "CONCURRENT SYSTEMS/module 2.3 - semafori, monitor e problemi classici.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "05 - Regressione"
+              "title": "module 2.3 - semafori, monitor e problemi classici"
             }
           }
         ]
@@ -200,7 +200,15 @@
   },
   "active": "6c50a5ddbb537f8f",
   "lastOpenFiles": [
-    "CONCURRENT SYSTEMS/MODELLING & VERIFICATION - module 2.2.md",
+    "CONCURRENT SYSTEMS/module 2.1 - MODELLING & VERIFICATION .md",
+    "CONCURRENT SYSTEMS/module 1.3 - ANALYSING.md",
+    "CONCURRENT SYSTEMS/module 1.2 - Sintassi FSP - LTS .md",
+    "CONCURRENT SYSTEMS/module 1.2 - PetriNets.md",
+    "CONCURRENT SYSTEMS/module 2.2 - MODELLING & VERIFICATION.md",
+    "CONCURRENT SYSTEMS/module 2.3 - semafori, monitor e problemi classici.md",
+    "CONCURRENT SYSTEMS/module 1.2 - MODELLING.md",
+    "CONCURRENT SYSTEMS/module 1.1 - OVERVIEW.md",
+    "MACHINE LEARNING/05 - Regressione.md",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261102183007.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261102181622.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261102174614.png",
@@ -212,14 +220,12 @@
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261102162253.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261102161955.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab/Lab 28-10-2026.md",
-    "CONCURRENT SYSTEMS/MODELLING & VERIFICATION - module 2.1.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/6 - Automi a pila.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab/Lab 21-10-2026.md",
     "visione/Analisi di immagini binarie/Immagini binarie.md",
     "MACHINE LEARNING/MACHINE LEARNING.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab/Allegati",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI.md",
-    "MACHINE LEARNING/05 - Regressione.md",
     "visione/Filtri/Derivate.md",
     "visione/Numpy/Introduzione.md",
     "visione/Immagini/Istogramma.md",
@@ -231,15 +237,10 @@
     "visione/Filtri/Bordi.md",
     "visione/Filtri/Applicazione dei filtri lineari.md",
     "visione/Immagini/Trasformazioni affini.md",
-    "visione/Immagini/Fondamenti di OpenCv.md",
     "visione/Immagini",
-    "visione/Analisi di immagini binarie/Morfologia Matematica.md",
     "visione/Analisi di immagini binarie",
     "visione/pasted_img",
-    "visione/Rilevare il movimento/Rilevare il movimento.md",
     "visione/Rilevare il movimento",
-    "visione/Intro-Python/Variabili.md",
-    "visione/Intro-Python/Operatori.md",
     "visione/Intro-Python",
     "visione/Numpy",
     "visione/Riconoscimento",

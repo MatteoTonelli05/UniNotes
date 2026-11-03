@@ -13,24 +13,11 @@ semaphore S = (k, {})
 ```
 
 Offre **due operazioni atomiche**:
-
-| Operazione  | Altro nome |
-| ----------- | ---------- |
-| `wait(S)`   | **P(S)**   |
-| `signal(S)` | **V(S)**   |
+- `wait(S)` o `P(S)`
+- `signal(S)` o `V(S)`
 
 ### L'operazione `wait`
-
-```text
-wait(S) =
-< if (S.V > 0)
-      S.V ← S.V - 1
-  else
-      S.L ← S.L + {p}
-      p.state ← blocked >
-```
-
-(`p` è il processo che sta eseguendo la `wait`.)
+![[Pasted image 20261103172305.png|338]]_(`p` è il processo che sta eseguendo la `wait`.)_
 
 **In parole:**
 

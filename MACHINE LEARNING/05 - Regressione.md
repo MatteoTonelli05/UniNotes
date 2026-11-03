@@ -151,7 +151,7 @@ Quando la dipendenza non è nota si prova e si valida prima il **modello lineare
 - Il modello lineare ai minimi quadrati stima la **media condizionata**: errori positivi e negativi pesano uguale.
 - Se si vuole **pesare diversamente** sovrastime e sottostime (es. una sottostima ha conseguenze più gravi) si usa la **regressione ai quantili/percentili**.
     - Percentile **50%** → si passa da media a **mediana** (metà dei punti sopra la retta, metà sotto).
-    - Percentile **p** → la retta lascia il $p%$ dei punti sotto e il $(1-p)%$ sopra.
+    - Percentile **p** → la retta lascia il $p$ dei punti sotto e il $(1-p)$ sopra.
 - Si usa una **loss MAE con penalità diversa** per predizioni in eccesso e in difetto.
 - Con modello lineare serve ottimizzazione numerica; esiste però un algoritmo iterativo che richiama la **regressione lineare pesata** (Quantile Linear Regression, estensione di scikit-learn).
 - Si può fare anche con **modelli non lineari** (alberi, deep learning).

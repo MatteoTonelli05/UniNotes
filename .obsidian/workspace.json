@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "5fd549c34d606b39",
+        "id": "687ee9032ef0b87b",
         "type": "tabs",
         "children": [
           {
-            "id": "7865675b82da8f7a",
+            "id": "6c50a5ddbb537f8f",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "MACHINE LEARNING/05 - Regressione.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "Nuova scheda"
+              "title": "05 - Regressione"
             }
           }
         ]
@@ -76,7 +80,7 @@
             }
           },
           {
-            "id": "60eb62c762f7b003",
+            "id": "f537c63a36fe62f7",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
@@ -194,7 +198,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "7865675b82da8f7a",
+  "active": "6c50a5ddbb537f8f",
   "lastOpenFiles": [
     "CONCURRENT SYSTEMS/MODELLING & VERIFICATION - module 2.2.md",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261102183007.png",

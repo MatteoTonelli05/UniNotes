@@ -76,13 +76,13 @@ con $\boldsymbol{\Gamma}^+$ la **pseudoinversa** di $\boldsymbol{\Gamma}$: si ot
 ![[Pasted image 20261027143702.png|462]]
 ## Accuratezza di predizione
 
-|Metrica|Formula|Note|
-|---|---|---|
-|**MSE**|$\frac{1}{N}\sum (pred_i - true_i)^2$|È il criterio implicito nel least square|
-|**RMSE**|$\sqrt{MSE}$|Indicatore usato finora|
-|**MAE**|$\frac{1}{N}\sum \lvert pred_i - true_i \rvert$|Più robusta agli outlier, mantiene l'unità di misura|
-|**MAPE**|$\frac{1}{N}\sum \left\lvert \frac{pred_i - true_i}{true_i} \right\rvert$|Variante del MAE: penalità in base allo scostamento percentuale|
-|**R²**|coefficiente di determinazione|Valori tra 0 e 1, misura quanto il modello lineare spiega la varianza della dipendente|
+| Metrica  | Formula                                                                   | Note                                                                                   |
+| -------- | ------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| **MSE**  | $\frac{1}{N}\sum (pred_i - true_i)^2$                                     | È il criterio implicito nel least square                                               |
+| **RMSE** | $\sqrt{MSE}$                                                              | Indicatore usato finora                                                                |
+| **MAE**  | $\frac{1}{N}\sum \lvert pred_i - true_i \rvert$                           | Più robusta agli outlier, mantiene l'unità di misura                                   |
+| **MAPE** | $\frac{1}{N}\sum \left\lvert \frac{pred_i - true_i}{true_i} \right\rvert$ | Variante del MAE: penalità in base allo scostamento percentuale                        |
+| **R²**   | coefficiente di determinazione                                            | Valori tra 0 e 1, misura quanto il modello lineare spiega la varianza della dipendente |
 
 > [!warning] MAE, MAPE e R² **non sono direttamente utilizzabili come loss** nel modello lineare least square. R² **non è valido per modelli non lineari**.
 

@@ -80,46 +80,19 @@ Le operazioni sono comunque **atomiche** (nessun intreccio tra l'`await` e il de
 ![[Pasted image 20261104110342.png|442]]
 
 - `S = (1, {})`: il permesso è **uno solo**.
-- Il pre-protocollo è `wait(S)` (prendi il permesso), il post-protocollo è `signal(S)` (restituiscilo).
+- Il pre-protocollo è `wait(S)`, il post-protocollo è `signal(S)`.
 - Chi arriva per secondo trova `S.V = 0` e **si blocca** finché il primo esce.
 
 ### Dimostrazione di correttezza
 
 Come sempre, si costruisce il **diagramma di stato ridotto** (tolte CS e NCS):
-
-```text
-binary semaphore S ← (1, {})
-
-p                        q
-loop forever             loop forever
-  p1: wait(S)              q1: wait(S)
-  p2: signal(S)            q2: signal(S)
-```
-
+![[Pasted image 20261104114920.png|478]]
 Qui, quando un processo è a `p2` (o `q2`) significa che è **nella CS**.
 
 ### Diagramma di stato con stati bloccati
 
-Cambia qualcosa rispetto ai diagrammi precedenti: lo stato include **tutto il semaforo**, cioè la coppia `{S.V, S.L}`, e c'è un nuovo tipo di stato: quello in cui un processo è **bloccato**, indicato con `p1B` / `q1B` ("`p` è bloccato sulla `wait` di `p1`").
-
 Stato = $\langle p, q, {S.V, S.L} \rangle$. Gli stati raggiungibili sono **5** (più simmetrie):
-
-```text
-                  <p1, q1, {1, {}}>
-                   /               \
-                p1/                 \q1
-                 v                   v
-      <p2, q1, {0, {}}>        <p1, q2, {0, {}}>
-        |           \              /          |
-       q1|         p2 \          / q2         |p1
-        v             (torna a <p1,q1,{1,{}}>)  v
- <p2, q1B, {0, {Q}}>                <p1B, q2, {0, {P}}>
-        |                                      |
-       p2 (signal sblocca Q)             q2 (signal sblocca P)
-        v                                      v
-   <p1, q2, {0, {}}>                    <p2, q1, {0, {}}>
-```
-
+![[Pasted image 20261104115038.png|464]]
 **Lettura passo per passo:**
 
 1. Stato iniziale: entrambi pronti, `S.V = 1`.

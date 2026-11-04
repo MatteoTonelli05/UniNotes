@@ -65,27 +65,19 @@ Semafori **senza** `S.L`: non c'è coda di bloccati, i processi aspettano contro
 ![[Pasted image 20261104105245.png]]
 Le operazioni sono comunque **atomiche** (nessun intreccio tra l'`await` e il decremento).
 
-- ❌ **Si perde l'assenza di starvation:** con semafori busy-wait non si può assumere che un processo entri nella CS, nemmeno nella soluzione a 2 processi (nulla stabilisce chi "vince" quando il valore torna positivo).
-- ✅ **Quando hanno senso:** in un sistema **multiprocessore** in cui il processo in attesa ha **un processore tutto per sé** e non spreca CPU che servirebbe ad altro; oppure con **poca contesa**, così l'attesa è breve.
+> [!fail] **Si perde l'assenza di starvation** 
+> Con semafori busy-wait non si può assumere che un processo entri nella CS, nemmeno nella soluzione a 2 processi (nulla stabilisce chi "vince" quando il valore torna positivo).
+
+
+> [!question] Perchè si usa? 
+> In un sistema **multiprocessore** in cui il processo in attesa ha **un processore tutto per sé** e non spreca CPU che servirebbe ad altro; oppure con **poca contesa**, così l'attesa è breve.
 
 ---
 
 ## Sezione critica con i semafori
 
 ### Due processi
-
-Con un semaforo usato come **lock**, il problema diventa banale (rispetto agli algoritmi del modulo precedente):
-
-```text
-binary semaphore S ← (1, {})
-
-P                              Q
-loop forever                   loop forever
-  p1: NCS                        q1: NCS
-  p2: wait(S)                    q2: wait(S)
-  p3: CS                         q3: CS
-  p4: signal(S)                  q4: signal(S)
-```
+![[Pasted image 20261104110342.png|442]]
 
 - `S = (1, {})`: il permesso è **uno solo**.
 - Il pre-protocollo è `wait(S)` (prendi il permesso), il post-protocollo è `signal(S)` (restituiscilo).

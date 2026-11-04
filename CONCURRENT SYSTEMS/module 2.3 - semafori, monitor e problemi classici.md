@@ -117,31 +117,12 @@ Per la sincronizzazione si usano i **semafori ad evento**: inizializzati a `(0, 
 - Chi deve **aspettare** un evento fa `wait`: se l'evento non c'è ancora, si blocca.
 - Chi **produce** l'evento fa `signal`.
 
-### Esempio: merge sort concorrente
-
-Si ordinano le due metà di un array in parallelo e poi si fondono. La fusione deve avvenire **solo dopo** che entrambe le metà sono ordinate.
-
-```text
-binary semaphore S1 ← (0, {})
-binary semaphore S2 ← (0, {})
-integer array A
-
-sort1                      sort2                      merge
-p1: sort 1st half of A     q1: sort 2nd half of A     r1: wait(S1)
-p2: signal(S1)             q2: signal(S2)             r2: wait(S2)
-                                                      r3: merge halves of A
-```
-
-**Come funziona:**
-
-- `merge` aspetta due "eventi": prima `S1`, poi `S2`;
-- `sort1` fa `signal(S1)` quando ha finito la sua metà, `sort2` fa `signal(S2)`;
-- solo quando **entrambi** i segnali sono arrivati `merge` supera `r1` e `r2` e fonde.
-
-> [!tip] Perché l'ordine non conta Se `sort2` finisce **prima** di `sort1`, `S2` passa a 1 (il segnale **viene ricordato**). `merge` bloccato su `S1` non lo vede ancora, ma quando `S1` arriva supera `r1` e poi trova `S2 = 1` e passa subito. È la proprietà "il semaforo conta e ricorda" già notata.
+> [!example] Esempio merge sort concorrente
+> Si sortano le due metà e si fondono
+>
+>![[Pasted image 20261104134927.png|581]]
 
 ---
-
 ## Il problema produttore-consumatore
 
 ### Il problema

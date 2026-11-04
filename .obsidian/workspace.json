@@ -80,7 +80,7 @@
             }
           },
           {
-            "id": "28af00a002f54f62",
+            "id": "652ef14a6c00710a",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
@@ -106,11 +106,27 @@
         "type": "tabs",
         "children": [
           {
-            "id": "c9c1cd5e056d914c",
+            "id": "bb07144b3483070b",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "CONCURRENT SYSTEMS/module 2.3 - semafori, monitor e problemi classici.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Struttura"
+            }
+          },
+          {
+            "id": "86b5ee3499ab49ae",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
+                "file": "CONCURRENT SYSTEMS/module 2.3 - semafori, monitor e problemi classici.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -124,11 +140,12 @@
             }
           },
           {
-            "id": "79a3a1f40969020f",
+            "id": "ec773f612aaf1a6f",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "CONCURRENT SYSTEMS/module 2.3 - semafori, monitor e problemi classici.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -137,7 +154,7 @@
             }
           },
           {
-            "id": "9db425457dc849aa",
+            "id": "2c976be472093ca1",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -152,7 +169,7 @@
             }
           },
           {
-            "id": "18694afb7858e616",
+            "id": "0b8c9ebddab2a80b",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -164,27 +181,12 @@
               "icon": "lucide-archive",
               "title": "Tutte le proprietà"
             }
-          },
-          {
-            "id": "bb07144b3483070b",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "followCursor": false,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-list",
-              "title": "Struttura"
-            }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 285.5,
-    "collapsed": true
+    "width": 285.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -198,8 +200,9 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "6c50a5ddbb537f8f",
+  "active": "bb07144b3483070b",
   "lastOpenFiles": [
+    "CONCURRENT SYSTEMS/Allegati/Pasted image 20261104134927.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261104132119.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261104115038.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261104114920.png",
@@ -219,7 +222,6 @@
     "CONCURRENT SYSTEMS/module 1.1 - OVERVIEW.md",
     "MACHINE LEARNING/05 - Regressione.md",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261102183007.png",
-    "CONCURRENT SYSTEMS/Allegati/Pasted image 20261102181622.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab/Lab 28-10-2026.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/6 - Automi a pila.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab/Lab 21-10-2026.md",

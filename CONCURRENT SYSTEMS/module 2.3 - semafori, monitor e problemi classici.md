@@ -282,40 +282,23 @@ Con questi due vincoli la soluzione con semafori è **impossibile**.
 
 ## Monitor
 
-### Cos'è un monitor
-
 > [!info] Definizione 
-> Un **monitor** è un'**astrazione dati per la programmazione concorrente** che **incapsula** la **politica di sincronizzazione e mutua esclusione** per accedervi: **stato + operazioni + politica di concorrenza**.
+> Un **monitor** è un'**astrazione dati per la programmazione concorrente** che **incapsula** la **politica di sincronizzazione e mutua esclusione** per accedervi: 
+> 
+> **stato + operazioni + politica di concorrenza**
 
-È come un **modulo** più **meccanismi di base per garantire la correttezza** quando il modulo è usato da più processi in concorrenza.
-
-**Due generalizzazioni** utili per capirlo:
-
-- **Del kernel dei sistemi operativi.** Nei SO le sezioni critiche (ad esempio l'allocazione di memoria) sono **centralizzate** in un programma privilegiato, il **kernel**: i programmi applicativi **richiedono servizi** al kernel, che gira in una modalità hardware tale da non poter essere disturbato. I monitor sono **versioni decentralizzate** del kernel monolitico.
-- **Della nozione di oggetto** nella programmazione a oggetti: classi che incapsulano **dati + operazioni + politica di sincronizzazione/mutua esclusione**.
+> [!example] **Generalizzazioni** utili per capirlo
+> **Del kernel dei sistemi operativi.** Nei SO le sezioni critiche (ad esempio l'allocazione di memoria) sono **centralizzate** in un programma privilegiato, il **kernel**: i programmi applicativi **richiedono servizi** al kernel, che gira in una modalità hardware tale da non poter essere disturbato. I monitor sono **versioni decentralizzate** del kernel monolitico.
 
 ### Struttura di un monitor
 
-```text
-monitor MonitorName {
-
-    declaration of permanent variables
-
-    initialization statements
-
-    procedures (or entries)
-
-}
-```
-
-(La sintassi varia da linguaggio a linguaggio.)
-
+![[Pasted image 20261104165301.png|394]]
 **Proprietà:**
 
-- Il monitor è un'**istanza di un tipo di dato astratto**: all'esterno sono visibili **solo i nomi delle procedure** (l'**interfaccia**). Sono le **uniche porte** attraverso il "muro" definito dalla dichiarazione del monitor.
-- Le procedure si chiamano con `call MonitorName.OpName(params)` (spesso scritto semplicemente `MonitorName.OpName(params)`).
-- Le istruzioni dentro il monitor **non possono accedere a variabili dichiarate fuori** dal monitor.
-- Le **variabili permanenti** sono inizializzate **prima** che venga chiamata qualsiasi procedura.
+1. Il monitor è un'**istanza di un tipo di dato astratto**: all'esterno sono visibili **solo i nomi delle procedure** (l'**interfaccia**). Sono le **uniche porte** attraverso il "muro" definito dalla dichiarazione del monitor.
+2. Le procedure si chiamano con `call MonitorName.OpName(params)` o `MonitorName.OpName(params)`
+3. Le istruzioni dentro il monitor **non possono accedere a variabili dichiarate fuori** dal monitor.
+4. Le **variabili permanenti** sono inizializzate **prima** che venga chiamata qualsiasi procedura.
 
 ### Mutua esclusione implicita
 
@@ -327,21 +310,10 @@ La mutua esclusione è **intrinseca**, non la scrive il programmatore:
 
 > [!example] Contatore thread-safe
 > 
-> ```text
-> monitor Counter {
->     int count;
 > 
->     procedure inc() {
->         count := count + 1
->     }
-> 
->     procedure getValue(): int {
->         return count;
->     }
-> }
-> ```
 > 
 > L'incremento (non atomico a livello macchina, come visto) è **sicuro** perché due `inc()` non possono mai essere attive insieme. Nessun `wait`/`signal` da scrivere.
+
 
 **Osservazioni:**
 

@@ -229,52 +229,15 @@ Funziona perché rende **impossibile la dipendenza circolare** ("wait-for"), che
 ### Invarianti richiesti
 ![[Pasted image 20261104151839.png]]
 **Lettura:** non ci sono mai due scrittori attivi insieme; e **lettori e scrittori non sono mai attivi insieme**.
-
-### Prima soluzione: troppo restrittiva
-
-Un solo semaforo come lock:
-
-```text
-binary semaphore rw ← (1, {})
-DataBase dbase
-
-reader                             writer
-loop forever                       loop forever
-  p1: wait(rw)                       q1: wait(rw)
-  p2: Item el ← read(dbase)          q2: Item el ← create_record
-  p3: signal(rw)                     q3: write(dbase, el)
-                                     q4: signal(rw)
-```
-
-È **corretta** (rispetta gli invarianti) ma **troppo vincolata**: ogni lettore e ogni scrittore ha accesso esclusivo, quindi **anche i lettori vengono serializzati**, perdendo il parallelismo che si poteva avere.
-
 ### Soluzione con lettori concorrenti
 
-Idea: **solo il primo lettore** blocca gli scrittori; **l'ultimo lettore** li sblocca. I lettori in mezzo entrano senza fare `wait(rw)`. Serve un contatore dei lettori, `nr`, e un mutex `mutexR` per proteggerlo (è una variabile condivisa tra i lettori).
+> [!hint] Idea
+> **Solo il primo lettore** blocca gli scrittori; **l'ultimo lettore** li sblocca. 
+> I lettori in mezzo entrano senza fare `wait(rw)`.
 
-```text
-binary semaphore mutexR ← (1, {})
-int nr ← 0
-binary semaphore rw ← (1, {})
-DataBase dbase
-
-reader                             writer
-loop forever                       loop forever
-  p1:  wait(mutexR)                  q1: wait(rw)
-  p2:  if (nr == 0)                  q2: Item el ← create_record
-  p3:      wait(rw)                  q3: write(dbase, el)
-  p4:  nr ← nr + 1                   q4: signal(rw)
-  p5:  signal(mutexR)
-  p6:  Item el ← read(dbase)
-  p7:  wait(mutexR)
-  p8:  nr ← nr - 1
-  p9:  if (nr == 0)
-  p10:     signal(rw)
-  p11: signal(mutexR)
-```
+![[Pasted image 20261104152755.png]]
 
 **Come funziona.**
-
 - `rw` è il lock "stanza": o c'è uno scrittore, o ci sono lettori (uno o più).
 - Il **primo lettore** (`nr == 0`) fa `wait(rw)`: se c'è uno scrittore, si blocca; altrimenti prende `rw` **a nome di tutti i lettori**.
 - I lettori successivi **non** toccano `rw`: incrementano `nr` ed entrano.

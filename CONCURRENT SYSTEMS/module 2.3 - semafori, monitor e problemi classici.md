@@ -7,50 +7,32 @@ Un semaforo `S` è un tipo composto con **due campi**:
 - `S.L`: un **insieme di processi** (gli identificatori dei processi bloccati sul semaforo).
 
 Si inizializza con un valore $k \geq 0$ per `S.V` e con l'insieme vuoto per `S.L`:
-
 ```text
 semaphore S = (k, {})
 ```
 
-Offre **due operazioni atomiche**:
+Offre **due operazioni atomiche** (*spiegate dopo*):
 - `wait(S)` o `P(S)`
 - `signal(S)` o `V(S)`
 
 ### L'operazione `wait`
 ![[Pasted image 20261103172305.png|338]]_(`p` è il processo che sta eseguendo la `wait`.)_
 
-**In parole:**
-
-- se `S.V > 0` (il semaforo è **verde**): lo si **decrementa** e il processo prosegue;
-- altrimenti, se `S.V = 0` (il semaforo è **rosso**): il processo viene **bloccato** sul semaforo (messo in `S.L`).
+> [!example] **In parole:**
+>- se `S.V > 0` (il semaforo è **verde**): lo si **decrementa** e il processo prosegue;
+>- altrimenti, se `S.V = 0`: il processo viene **bloccato** sul semaforo (aggiunto nella lista `S.L`).
 
 ### L'operazione `signal`
 
-```text
-signal(S) =
-< if (S.L = {})
-      S.V ← S.V + 1
-  else
-      let q ← arbitrary element of S.L
-      S.L ← S.L - {q}
-      q.state ← ready >
-```
+![[Pasted image 20261104093408.png|507]]
+> [!example] **In parole:**
+>- se **nessun processo** è in attesa: si **incrementa** il valore;
+>- altrimenti si **sceglie un processo bloccato** e lo si **sblocca**.
 
-**In parole:**
-
-- se **nessun processo** è in attesa: si **incrementa** il valore;
-- altrimenti si **sceglie un processo bloccato** e lo si **sblocca**.
-
-> [!tip] Chiarimenti importanti
-> 
-> - **Entrambe le operazioni sono atomiche**: nessun intreccio tra le istruzioni interne.
-> - Nel caso "qualcuno è in attesa", `signal` **non incrementa** `S.V`: il "permesso" viene **consegnato direttamente** al processo sbloccato, che lo consuma subito. È un dettaglio che serve per ragionare correttamente.
-> - Un processo bloccato in `wait` **non è** considerato aver completato la `wait`: finché è bloccato la `wait` "non è finita".
-> - A differenza di un semplice flag, il semaforo **conta e ricorda**: se si fa `signal` quando nessuno aspetta, il segnale **non va perso** (incrementa `S.V`), e un `wait` successivo lo troverà.
-
+> [!tip] **Entrambe le operazioni sono atomiche**: nessun intreccio tra le istruzioni interne.
 ### L'invariante del semaforo
 
-Sia $k$ il valore iniziale, $#signal(S)$ il numero di `signal(S)` eseguite e $#wait(S)$ il numero di `wait(S)` **completate** (non quelle in cui il processo è ancora bloccato). Allora **in ogni stato** vale:
+Sia $k$ il valore iniziale, $\#signal(S)$ il numero di `signal(S)` eseguite e $\#wait(S)$ il numero di `wait(S)` **completate** (non quelle in cui il processo è ancora bloccato). Allora **in ogni stato** vale:
 
 $$S.V \geq 0 \qquad\text{e}\qquad S.V = k + #signal(S) - #wait(S)$$
 

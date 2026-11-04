@@ -76,59 +76,41 @@ Le operazioni sono comunque **atomiche** (nessun intreccio tra l'`await` e il de
 
 ## Sezione critica con i semafori
 
-### Due processi
+### Per due processi
+
+Analizziamo due processi che usano un semaforo `S = (1, {})` come lock attorno alla sezione critica.
 ![[Pasted image 20261104110342.png|442]]
 
 - `S = (1, {})`: il permesso è **uno solo**.
 - Il pre-protocollo è `wait(S)`, il post-protocollo è `signal(S)`.
 - Chi arriva per secondo trova `S.V = 0` e **si blocca** finché il primo esce.
 
-### Dimostrazione di correttezza
+##### 1. Riduciamo il diagramma
 
 Come sempre, si costruisce il **diagramma di stato ridotto** (tolte CS e NCS):
 ![[Pasted image 20261104114920.png|478]]
 Qui, quando un processo è a `p2` (o `q2`) significa che è **nella CS**.
 
-### Diagramma di stato con stati bloccati
+##### 2. Diagramma di stato con stati bloccati
 
-Stato = $\langle p, q, {S.V, S.L} \rangle$. Gli stati raggiungibili sono **5** (più simmetrie):
+Lo stato è una tupla $\langle p, q, \{S.V, S.L\} \rangle$:
+- la riga di `p`;
+- la riga di `q`;
+- **tutto il semaforo**: il valore `S.V` e l’insieme `S.L` dei processi bloccati
 ![[Pasted image 20261104115038.png|464]]
-**Lettura passo per passo:**
+> [!example] **Lettura passo per passo:**
+>1. Stato iniziale: entrambi pronti, `S.V = 1`.
+>2. `p` esegue `wait`: `S.V` scende a 0, `p` è nella CS (`p2`). Simmetricamente se parte `q`.
+>3. Da $\langle p2, q1, {0,{}} \rangle$ le strade sono due: `p` esce (`signal`), `S.V` torna a 1; oppure `q` tenta `wait` e **si blocca** → $\langle p2, q1B, {0,{Q}} \rangle$.
+>4. Da lì l'unica mossa è `p2` (`p` fa `signal`): poiché `Q` è in attesa, **non** si incrementa `S.V` ma si **sblocca `Q`**, che ora è nella CS → $\langle p1, q2, {0, {}} \rangle$.
 
-1. Stato iniziale: entrambi pronti, `S.V = 1`.
-2. `p` esegue `wait`: `S.V` scende a 0, `p` è nella CS (`p2`). Simmetricamente se parte `q`.
-3. Da $\langle p2, q1, {0,{}} \rangle$ le strade sono due: `p` esce (`signal`), `S.V` torna a 1; oppure `q` tenta `wait` e **si blocca** → $\langle p2, q1B, {0,{Q}} \rangle$.
-4. Da lì l'unica mossa è `p2` (`p` fa `signal`): poiché `Q` è in attesa, **non** si incrementa `S.V` ma si **sblocca `Q`**, che ora è nella CS → $\langle p1, q2, {0, {}} \rangle$.
+**PROPRIETÀ DIMOSTRATE**
+- Mutua esclusione $\rightarrow$ Poichè non esiste lo stato   $\langle p2, q2, ... \rangle$
+- Assenza di deadlock $\rightarrow$ Da ogni stato esce almeno una freccia (chi è bloccato viene sbloccato da chi è in CS)
+- Assenza di starvation $\rightarrow$ Quando `Q` è bloccato e `P` esce, `Q` è l'**unico** candidato e viene sbloccato
 
-**Verifica delle proprietà:**
-
-|Proprietà|Esito|Come si vede nel diagramma|
-|---|---|---|
-|Mutua esclusione|✅|Non esiste lo stato $\langle p2, q2, _ \rangle$|
-|Assenza di deadlock|✅|Da ogni stato esce almeno una freccia (chi è bloccato viene sbloccato da chi è in CS)|
-|Assenza di starvation|✅ (con 2 processi)|Quando `Q` è bloccato e `P` esce, `Q` è l'**unico** candidato e viene sbloccato|
-
-### N processi
-
-Lo **stesso codice** funziona per $N$ processi:
-
-```text
-binary semaphore S ← (1, {})
-
-Any process
-loop forever
-  p1: NCS
-  p2: wait(S)
-  p3: CS
-  p4: signal(S)
-```
-
-La mutua esclusione e l'assenza di deadlock valgono ancora. Ma con $N \geq 3$ e un semaforo **debole**, **non** vale più l'assenza di starvation: `signal` sceglie un bloccato **arbitrario**, quindi un processo sfortunato può essere sempre scavalcato dagli altri.
-
-> [!tip] Chiarimento Con 2 processi il semaforo debole basta perché c'è **un solo candidato** da sbloccare. Con 3 o più la scelta arbitraria apre alla starvation. Se invece il semaforo è **forte** (coda FIFO), la starvation è impossibile per qualsiasi $N$.
-
----
-
+> [!fail] Con N processi l'assenza di starvation non c'è più
+> `signal` sceglie un bloccato **arbitrario**, quindi un processo sfortunato può essere sempre scavalcato dagli altri.
 ## Sincronizzazione con i semafori
 
 I semafori non servono solo alla mutua esclusione: risolvono anche i **problemi di ordine di esecuzione** ("questa azione deve avvenire dopo quella"). Si usano i **semafori ad evento**: inizializzati a `(0, {})`, servono a **inviare/ricevere un segnale temporale**.

@@ -125,59 +125,27 @@ Per la sincronizzazione si usano i **semafori ad evento**: inizializzati a `(0, 
 ---
 ## Il problema produttore-consumatore
 
-### Il problema
-
-È l'esempio tipico di problema di **ordine di esecuzione** (e di comunicazione). Due tipi di processi:
-
+Due tipi di processi:
 - **produttori**: creano un dato (`produce`) e lo inviano;
 - **consumatori**: ricevuto un dato, lo elaborano (`consume`).
-
-È un **pattern onnipresente** in informatica:
-
-|Produttore|Consumatore|
-|---|---|
-|Linea di comunicazione|Browser web|
-|Browser web|Linea di comunicazione|
-|Tastiera|Sistema operativo|
-|Elaboratore di testi|Stampante|
-|Programma di gioco|Schermo|
-
 ### Comunicazione sincrona o asincrona
 
-Quando un dato passa da un processo all'altro, la comunicazione può essere:
+> [!hint] Tipi di comunicazione
+> Quando un dato passa da un processo all'altro, la comunicazione può essere:
+>- **sincrona**: non avviene finché **entrambi** (produttore e consumatore) sono pronti;
+>- **asincrona**: il **canale ha una capacità** di memorizzazione (un _buffer_), quindi produttore e consumatore non devono incontrarsi.
 
-- **sincrona**: non avviene finché **entrambi** (produttore e consumatore) sono pronti;
-- **asincrona**: il **canale ha una capacità** di memorizzazione (un _buffer_), quindi produttore e consumatore non devono incontrarsi.
-
-L'asincrona è molto utile:
-
-- **disaccoppiamento temporale** tra i partecipanti;
-- l'insieme dei processi può essere **dinamico**/aperto;
-- si adatta a produttori e consumatori con **velocità diverse**.
-
-Il costo: serve un **buffer**, cioè una **struttura dati condivisa con stato modificabile**, scritta dai produttori e letta dai consumatori.
-
+> [!attention] L'asincrona è molto utile, ma serve un **buffer**, cioè una **struttura dati condivisa con stato modificabile**, scritta dai produttori e letta dai consumatori.
 ### Buffer infinito
 
-Con un buffer illimitato c'è **un'unica interazione** da sincronizzare: il consumatore **non deve prelevare da un buffer vuoto**. (Il produttore può sempre aggiungere.)
-
-```text
-UnboundedQueue<Item> buffer ← empty queue
-semaphore availItems ← (0, {})
-
-producer                           consumer
-loop forever                       loop forever
-  p1: Item el ← produce              q1: wait(availItems)
-  p2: append(buffer, el)             q2: Item el ← take(buffer)
-  p3: signal(availItems)             q3: consume(el)
-```
-
-**Come funziona.** `availItems` è un **semaforo di risorse** che **conta quanti elementi ci sono nel buffer**:
+Con un buffer illimitato c'è **un'unica interazione** da sincronizzare: il consumatore **non deve prelevare da un buffer vuoto**. 
+![[Pasted image 20261104135609.png|537]]
+> [!info] `availItems` è un **semaforo di risorse** che **conta quanti elementi ci sono nel buffer**:
 
 - il produttore, dopo aver inserito, fa `signal` (un elemento in più);
 - il consumatore, prima di prelevare, fa `wait`: se il buffer è vuoto (`availItems = 0`) **si blocca** finché arriva un elemento.
 
-**Invariante:** `availItems.V = #buffer` (valore del semaforo = numero di elementi nel buffer).
+**INVARIANTE:** `availItems.V = #buffer` (valore del semaforo = numero di elementi nel buffer).
 
 > [!note] Precisazioni
 > 
@@ -186,64 +154,18 @@ loop forever                       loop forever
 
 ### Buffer limitato
 
-Ora c'è anche una **seconda interazione**: il produttore **non deve aggiungere a un buffer pieno**. Servono quindi **due semafori**, uno per ogni "vincolo":
-
-```text
-BoundedQueue<Item> buffer ← empty queue
-semaphore availItems  ← (0, {})     // elementi presenti
-semaphore availPlaces ← (N, {})     // posti liberi
-
-producer                           consumer
-loop forever                       loop forever
-  p1: Item el ← produce              q1: wait(availItems)
-  p2: wait(availPlaces)              q2: Item el ← take(buffer)
-  p3: append(buffer, el)             q3: signal(availPlaces)
-  p4: signal(availItems)             q4: consume(el)
-```
-
-I due semafori sono detti **semafori divisi** (_split semaphores_): insieme rappresentano un'unica risorsa vista da due lati.
-
-||`availItems`|`availPlaces`|
-|---|---|---|
-|Significato|Elementi nel buffer|Posti liberi nel buffer|
-|Parte da|0|$N$|
-|Blocca|Il **consumatore** (se vuoto)|Il **produttore** (se pieno)|
-|Somma|`availItems.V + availPlaces.V = N` (a regime)||
-
+Avendo il buffer limitato il produttore **NON deve aggiungere a un buffer pieno**. Servono quindi **due semafori**, uno per ogni "vincolo":
+![[Pasted image 20261104135954.png|522]]
+> [!info] I due semafori sono detti **semafori divisi** (_split semaphores_): insieme rappresentano un'unica risorsa vista da due lati.
 ### Più produttori e più consumatori
 
-Se la struttura dati non è atomica (come un buffer qualsiasi), **due produttori** o **due consumatori** potrebbero manipolarla insieme e corromperla. Serve un **mutex** per la **mutua esclusione** sull'accesso al buffer, **oltre** ai semafori di sincronizzazione.
-
-```text
-BoundedQueue<Item> buffer ← empty queue
-semaphore availItems  ← (0, {})
-semaphore availPlaces ← (N, {})
-binary semaphore mutex ← (1, {})
-
-producer                           consumer
-loop forever                       loop forever
-  p1: Item el ← produce              q1: wait(availItems)
-  p2: wait(availPlaces)              q2: wait(mutex)
-  p3: wait(mutex)                    q3: Item el ← take(buffer)
-  p4: append(buffer, el)             q4: signal(mutex)
-  p5: signal(mutex)                  q5: signal(availPlaces)
-  p6: signal(availItems)             q6: consume(el)
-```
-
+Se la struttura dati non è atomica, **due produttori** o **due consumatori** potrebbero manipolarla insieme e corromperla. Serve un **mutex** per la **mutua esclusione** sull'accesso al buffer, **oltre** ai semafori di sincronizzazione.
+![[Pasted image 20261104140505.png|575]]
 > [!warning] L'ordine delle `wait` è fondamentale Si fa **prima** la `wait` sul semaforo contatore (`availPlaces` / `availItems`) e **poi** quella sul mutex. Se si invertisse (prendere il mutex e poi aspettare), si creerebbe un **deadlock**: un consumatore che ha preso il mutex e aspetta un elemento in un buffer vuoto **blocca anche i produttori**, che non riescono a entrare per inserirne uno. Nessuno può sbloccare nessuno.
 > 
 > Regola pratica: **mai tenere un lock mentre si aspetta una condizione** che solo altri, entrando nella stessa sezione, possono rendere vera.
 
-**Riassunto dei ruoli:**
-
-|Semaforo|Tipo|Scopo|
-|---|---|---|
-|`availItems`|Contatore (risorse)|Sincronizzazione: il consumatore aspetta gli elementi|
-|`availPlaces`|Contatore (risorse)|Sincronizzazione: il produttore aspetta i posti liberi|
-|`mutex`|Binario|Mutua esclusione sulla struttura dati|
-
 ---
-
 ## Il problema dei filosofi a cena
 
 ### Origine e descrizione

@@ -745,22 +745,6 @@ waitC(cond) =                   signalC(cond) =
 > [!tip] Perché non c'è il problema di un `signal` arrivato "troppo presto" In `waitC` c'è un piccolo intervallo tra `signal(mutex)` e `wait(condsem)`: un `signalC` potrebbe arrivare proprio lì. Non è un problema, perché il **semaforo ricorda** il `signal`: quando il processo arriva a `wait(condsem)` lo trova già a 1 e prosegue senza bloccarsi. È un'applicazione concreta di "il semaforo conta e ricorda".
 
 ---
-
-## Costruire componenti riutilizzabili con i monitor
-
-Con i monitor si realizzano **componenti di sincronizzazione/coordinamento riutilizzabili**:
-
-|Componente|A cosa serve|
-|---|---|
-|**Latch**|Blocca i processi finché un certo numero di eventi si è verificato; poi li lascia passare (una volta sola)|
-|**Barriera**|Punto in cui tutti i processi di un gruppo devono arrivare prima che qualcuno possa proseguire|
-|**Rendez-vous**|Incontro tra due processi: nessuno prosegue finché entrambi sono arrivati|
-|**Message box**|Scambio di messaggi tramite una casella|
-|**Blackboard**|Lavagna condivisa dove i processi scrivono e leggono informazioni|
-|**Servizi di eventi**|Notifica di eventi a chi si è registrato|
-
----
-
 ## I monitor in Java (aggiunta utile)
 
 Java incorpora i monitor in modo **parziale**: ogni oggetto ha un lock intrinseco e **una sola coda di attesa**.

@@ -169,91 +169,32 @@ Se la struttura dati non è atomica, **due produttori** o **due consumatori** po
 | `mutex`       | Binario             | Mutua esclusione sulla struttura dati                  |
 
 ---
-
 ## Il problema dei filosofi a cena
 
-### Origine e descrizione
-
-Classico problema della programmazione concorrente. Nasce da una domanda d'esame di **Dijkstra nel 1971** su un problema di sincronizzazione in cui **cinque computer** si contendevano **cinque unità a nastro** condivise; fu poi raccontato come "filosofi a cena" da **Tony Hoare**. Oggi è un modo divertente e semplice-ma-impegnativo per **confrontare formalismi** di scrittura e dimostrazione di programmi concorrenti.
-
-**La storia.**
-
-- Una comunità isolata di **cinque filosofi** che fanno solo due cose: **pensare** e **mangiare**.
-- Mangiano insieme a un tavolo con **5 piatti** e **5 forchette** (una tra ogni coppia di piatti).
-- Al centro c'è una ciotola di spaghetti sempre piena.
-- Gli spaghetti sono così intricati che per mangiare servono **due forchette**.
-- Ogni filosofo può prendere la forchetta a **sinistra** e quella a **destra**, ma **una alla volta**.
-
-### Cosa si chiede
-
-Ogni filosofo esegue:
-
-```text
-Philosopher
-loop forever
-  p1: think
-  p2: <pre-protocol>
-  p3: eat
-  p4: <post-protocol>
-```
+![[Pasted image 20261104143800.png|387]]![[Pasted image 20261104143558.png|385]]
 
 Si devono progettare i protocolli perché valgano:
-
-- un filosofo mangia **solo se ha due forchette**;
+- un filosofo mangia **solo se ha due bacchette**;
 - **mutua esclusione**: nessuna forchetta è in mano a due filosofi contemporaneamente;
 - **assenza di deadlock**;
 - **assenza di starvation**;
 - **comportamento efficiente in assenza di contesa** (se i vicini non mangiano, non devo aspettare).
 
-> [!tip] Numerazione Filosofo $i$ ($i = 0, \dots, 4$), forchette $0..4$. Il filosofo $i$ usa la forchetta $i$ (la sua **sinistra**) e la forchetta $(i+1) \bmod N$ (la sua **destra**). Quindi ogni forchetta è contesa da **due vicini**.
-
-### Primo tentativo: una forchetta alla volta
-
-Ogni forchetta è un **semaforo binario**: `wait` = prendere la forchetta, `signal` = posarla.
-
-```text
-semaphore array[0..4] fork ← [1,1,1,1,1]
-
-loop forever
-  p1: think
-  p2: wait(fork[i])
-  p3: wait(fork[(i+1) % N])
-  p4: eat
-  p5: signal(fork[i])
-  p6: signal(fork[(i+1) % N])
-```
-
-- ✅ **Mutua esclusione:** nessuna forchetta è mai in mano a due filosofi (è garantita dal semaforo).
-- ❌ **Va in deadlock.**
-
-**Scenario di deadlock.** Tutti i filosofi, in un intreccio sfortunato, **prendono la forchetta di sinistra**: ora ognuno ha **una** forchetta e aspetta quella di destra, che è la sinistra del vicino e quindi è **già in mano a qualcuno che a sua volta aspetta**. Nessuno mangia mai e nessuno posa nulla.
-
-```text
-F0 ←─ Fil0 ─→ F1 ←─ Fil1 ─→ F2 ←─ Fil2 ─→ F3 ←─ Fil3 ─→ F4 ←─ Fil4 ─→ F0
-  (ognuno tiene la sua sinistra e aspetta la destra, tenuta dal vicino)
-```
-
 ---
-
 ## Il deadlock in dettaglio
 
-### Definizione
+> [!abstract] Definizione
+>Situazione in cui due o più azioni (processi) in competizione **aspettano che l'altra finisca**, quindi **nessuna finisce mai**.
 
-Situazione in cui due o più azioni (processi) in competizione **aspettano che l'altra finisca**, quindi **nessuna finisce mai**.
-
-### Le condizioni di Coffman (1971)
+### Le condizioni di Coffman
 
 Un deadlock **può verificarsi solo se tutte e quattro** le condizioni sono vere insieme:
+1. **Mutua esclusione** $\rightarrow$ Una risorsa non può essere usata da più di un processo alla volta
+2. **Hold and wait** $\rightarrow$ Un processo che già tiene delle risorse può **chiederne altre
+3. **No preemption** $\rightarrow$ Una risorsa **non può essere tolta** a chi la tiene; la rilascia solo lui
+4. **Attesa circolare** $\rightarrow$ Esiste una **catena circolare** di processi, ciascuno in attesa di una risorsa tenuta dal successivo
 
-|Condizione|Significato|Nei filosofi|
-|---|---|---|
-|**Mutua esclusione**|Una risorsa non può essere usata da più di un processo alla volta|Una forchetta alla volta in una mano|
-|**Hold and wait**|Un processo che già tiene delle risorse può **chiederne altre**|Tengo la sinistra e chiedo la destra|
-|**No preemption**|Una risorsa **non può essere tolta** a chi la tiene; la rilascia solo lui|Nessuno può strappare la forchetta al vicino|
-|**Attesa circolare**|Esiste una **catena circolare** di processi, ciascuno in attesa di una risorsa tenuta dal successivo|La catena Fil0 → Fil1 → ... → Fil4 → Fil0|
-
-> [!tip] Come usarle Per **evitare** un deadlock basta garantire che **una sola** di queste condizioni sia sempre falsa. La più semplice da rompere, di solito, è l'**attesa circolare**.
-
+> [!hint] Per **evitare** un deadlock basta garantire che **una sola** di queste condizioni sia sempre falsa. 
 ### Deadlock con i lock
 
 Succede quando **più thread aspettano per sempre** a causa di una **dipendenza ciclica** tra lock. Il caso più semplice: il thread A tiene il lock `L` e cerca di prendere `M`, mentre il thread B tiene `M` e cerca di prendere `L`. Entrambi aspettano per sempre: è il già citato **abbraccio mortale** (_deadly embrace_).

@@ -282,6 +282,8 @@ Con questi due vincoli la soluzione con semafori è **impossibile**.
 
 ## Monitor
 
+> [!fail] Ogni processo deve ricordarsi di fare `wait` e `signal` nel punto giusto e nell’ordine giusto, basta una `wait` dimenticata per mandare tutto in vacca.
+
 > [!info] Definizione 
 > Un **monitor** è un'**astrazione dati per la programmazione concorrente** che **incapsula** la **politica di sincronizzazione e mutua esclusione** per accedervi: 
 > 

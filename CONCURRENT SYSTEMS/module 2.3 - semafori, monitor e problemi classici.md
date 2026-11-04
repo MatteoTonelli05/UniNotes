@@ -169,18 +169,6 @@ Se la struttura dati non è atomica, **due produttori** o **due consumatori** po
 | `mutex`       | Binario             | Mutua esclusione sulla struttura dati                  |
 
 ---
-## Il problema dei filosofi a cena
-
-![[Pasted image 20261104143800.png|387]]![[Pasted image 20261104143558.png|385]]
-
-Si devono progettare i protocolli perché valgano:
-- un filosofo mangia **solo se ha due bacchette**;
-- **mutua esclusione**: nessuna forchetta è in mano a due filosofi contemporaneamente;
-- **assenza di deadlock**;
-- **assenza di starvation**;
-- **comportamento efficiente in assenza di contesa** (se i vicini non mangiano, non devo aspettare).
-
----
 ## Il deadlock in dettaglio
 
 > [!abstract] Definizione
@@ -206,6 +194,17 @@ Alcuni sistemi **non evitano** i deadlock ma li **rilevano e li risolvono**:
 - **Database:** sono progettati per rilevare e uscire dai deadlock. Le transazioni acquisiscono molti lock fino al commit, quindi non è raro che due si blocchino a vicenda. Si costruisce il **grafo delle attese** ("chi aspetta chi"), si cercano i **cicli**; se si trova un ciclo si sceglie una **vittima** e se ne **annulla** la transazione.
 - **JVM:** **nessun meccanismo automatico** di rilevazione e recupero. Se i thread vanno in deadlock "è finita": al massimo si arresta l'applicazione. Esiste solo un supporto per la **diagnosi post-mortem** (ad esempio i _thread dump_, che indicano quali thread sono bloccati su quali lock).
 
+---
+## Il problema dei filosofi a cena
+
+![[Pasted image 20261104143800.png|387]]![[Pasted image 20261104143558.png|385]]
+
+Si devono progettare i protocolli perché valgano:
+- un filosofo mangia **solo se ha due bacchette**;
+- **mutua esclusione**: nessuna forchetta è in mano a due filosofi contemporaneamente;
+- **assenza di deadlock**;
+- **assenza di starvation**;
+- **comportamento efficiente in assenza di contesa** (se i vicini non mangiano, non devo aspettare).
 ### Filosofi: prima soluzione, i biglietti
 
 Per garantire la vivacità si **limita il numero di filosofi** che possono competere insieme (cioè "entrare nella sala"), con **$N-1$ biglietti** per $N$ filosofi:

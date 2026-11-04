@@ -46,10 +46,9 @@ $$S.V \geq 0 \qquad\text{e}\qquad S.V = k + \#signal(S) - \#wait(S)$$
 | **Generale** (o **counting**, o **di risorse**) | Qualsiasi valore $\geq 0$ | Contare **risorse** disponibili (posti liberi, elementi nel buffer...) |
 | **Ad evento** (_event semaphore_)               | Inizializzato a **0**     | **Usato per la sincronizzazione**: segnalano "è successo X"            |
 
-### Tipi di semafori (per definizione)
+### Tipi di semafori 
 
-Esistono definizioni diverse del tipo semaforo. Le differenze riguardano **le proprietà di vivacità** (liveness: chi viene sbloccato, chi rischia starvation) e **non** le proprietà di sicurezza (safety), che derivano dagli invarianti.
-
+Le differenze riguardano **le proprietà di vivacità** (liveness) e **non** le proprietà di sicurezza (safety), che derivano dagli invarianti.
 #### Semafori deboli e forti
 
 - **Debole** (_weak_): `S.L` è un **insieme**. `signal` sceglie un processo **arbitrario**. Nulla garantisce che un processo bloccato venga prima o poi scelto.

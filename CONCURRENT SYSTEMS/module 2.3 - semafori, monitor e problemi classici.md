@@ -113,8 +113,7 @@ Lo stato è una tupla $\langle p, q, \{S.V, S.L\} \rangle$:
 > `signal` sceglie un bloccato **arbitrario**, quindi un processo sfortunato può essere sempre scavalcato dagli altri.
 ## Sincronizzazione con i semafori
 
-I semafori non servono solo alla mutua esclusione: risolvono anche i **problemi di ordine di esecuzione** ("questa azione deve avvenire dopo quella"). Si usano i **semafori ad evento**: inizializzati a `(0, {})`, servono a **inviare/ricevere un segnale temporale**.
-
+Per la sincronizzazione si usano i **semafori ad evento**: inizializzati a `(0, {})`, servono a **inviare/ricevere un segnale temporale**.
 - Chi deve **aspettare** un evento fa `wait`: se l'evento non c'è ancora, si blocca.
 - Chi **produce** l'evento fa `signal`.
 

@@ -36,10 +36,8 @@ Sia $k$ il valore iniziale, $\#signal(S)$ il numero di `signal(S)` eseguite e $\
 
 $$S.V \geq 0 \qquad\text{e}\qquad S.V = k + \#signal(S) - \#wait(S)$$
 
-**Lettura:** il valore del semaforo è sempre "quanti permessi c'erano all'inizio, più quelli restituiti, meno quelli presi". Non può mai andare sotto zero perché chi non trova permessi **si blocca** invece di decrementare.
-
-> [!example] Verifica con un caso $k=1$. Un processo fa `wait` (completata): $V = 1 + 0 - 1 = 0$. Un secondo fa `wait`: si blocca, quindi la `wait` **non** è completata e $V$ resta 0. Il primo fa `signal`: sblocca il secondo, che completa la sua `wait`; ora $#signal = 1$, $#wait = 2$, quindi $V = 1 + 1 - 2 = 0$. ✔
-
+> [!quote] **Lettura:** 
+> il valore del semaforo è sempre "quanti permessi c'erano all'inizio, più quelli restituiti, meno quelli presi". Non può mai andare sotto zero perché chi non trova permessi **si blocca** invece di decrementare.
 ### Tipi di semafori (per uso)
 
 |Tipo|Valori di `S.V`|Uso tipico|

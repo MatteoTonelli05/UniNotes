@@ -40,11 +40,11 @@ $$S.V \geq 0 \qquad\text{e}\qquad S.V = k + \#signal(S) - \#wait(S)$$
 > il valore del semaforo è sempre "quanti permessi c'erano all'inizio, più quelli restituiti, meno quelli presi". Non può mai andare sotto zero perché chi non trova permessi **si blocca** invece di decrementare.
 ### Tipi di semafori (per uso)
 
-|Tipo|Valori di `S.V`|Uso tipico|
-|---|---|---|
-|**Binario** (o **mutex**)|Solo 0 e 1|**Mutua esclusione** (da qui il nome _mutex_)|
-|**Generale** (o **counting**, o **di risorse**)|Qualsiasi valore $\geq 0$|Contare **risorse** disponibili (posti liberi, elementi nel buffer...)|
-|**Ad evento** (_event semaphore_)|Inizializzato a **0**|**Sincronizzazione**: segnalare "è successo X"|
+| Tipo                                            | Valori di `S.V`           | Uso tipico                                                             |
+| ----------------------------------------------- | ------------------------- | ---------------------------------------------------------------------- |
+| **Binario** (o **mutex**)                       | Solo 0 e 1                | **Mutua esclusione** (da qui il nome _mutex_)                          |
+| **Generale** (o **counting**, o **di risorse**) | Qualsiasi valore $\geq 0$ | Contare **risorse** disponibili (posti liberi, elementi nel buffer...) |
+| **Ad evento** (_event semaphore_)               | Inizializzato a **0**     | **Usato per la sincronizzazione**: segnalano "è successo X"            |
 
 ### Tipi di semafori (per definizione)
 

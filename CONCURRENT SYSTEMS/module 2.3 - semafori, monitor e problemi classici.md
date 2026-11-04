@@ -239,33 +239,27 @@ Funziona perché rende **impossibile la dipendenza circolare** ("wait-for"), che
 
 **Come funziona.**
 - `mutexR` evita che due lettori modifichino `nr` insieme (race condition sul contatore).
-- `rw` è il lock "stanza": o c'è uno scrittore, o ci sono lettori (uno o più).
+- `rw` è il lock che regola che ci sia o uno scrittore, o uno o più lettori.
 - Il **primo lettore** (`nr == 0`) fa `wait(rw)`: se c'è uno scrittore, si blocca; altrimenti prende `rw` **a nome di tutti i lettori**.
 - I lettori successivi **non** toccano `rw`: incrementano `nr` ed entrano.
 - L'**ultimo lettore** che esce (`nr` torna a 0) fa `signal(rw)` e permette agli scrittori di entrare.
 
-> [!warning] Starvation degli scrittori Questa soluzione dà **priorità ai lettori**: finché c'è sempre almeno un lettore attivo, `nr` non scende mai a 0 e quindi **lo scrittore non entra mai**. Se i lettori arrivano continuamente, gli scrittori sono in **starvation**. Esistono varianti che danno priorità agli scrittori o che garantiscono equità (ad esempio con una coda comune), a costo di una maggiore complessità.
+> [!warning] Priorità ai lettori 
+>  Se i lettori arrivano continuamente, gli scrittori sono in **starvation**. 
+>
+>  Esistono varianti che danno priorità agli scrittori o che garantiscono equità (ad esempio con una coda comune), a costo di una maggiore complessità.
 
 ---
 
-## Altri problemi classici
+## Il problema dei fumatori di sigarette
 
-|Problema|Origine|
-|---|---|
-|**Barbiere** (_Barber Shop_, "barbiere addormentato")|Dijkstra|
-|**Fumatori di sigarette** (_Cigarette Smokers_)|Patil, 1971|
-|**Babbo Natale** (_The Santa Claus problem_)|Bansal, 2006|
+### Il problema
 
-> [!info] Babbo Natale in breve Babbo Natale dorme finché non lo sveglia il ritorno di **tutte le renne** oppure di un **gruppo di elfi** con un problema: serve sincronizzare gruppi con priorità diverse.
-
-### I fumatori di sigarette
-
-Proposto da **S. Patil nel 1971** per indagare i **limiti dei semafori**.
-
-**Enunciato.** Quattro persone: 3 **fumatori** e 1 **agente** (arbitro). Per fare e fumare una sigaretta servono **tre ingredienti**: carta, tabacco, fiammiferi. Ogni fumatore ha una **scorta infinita** di **uno** solo degli ingredienti (uno la carta, uno il tabacco, uno i fiammiferi); l'agente ha scorte infinite di **tutti e tre**.
+> [!quote] Enunciato
+> Quattro persone: 3 **fumatori** e 1 **agente** (arbitro). 
+> Per fare e fumare una sigaretta servono **tre ingredienti**: carta, tabacco, fiammiferi. Ogni fumatore ha una **scorta infinita** di **uno** solo degli ingredienti (uno la carta, uno il tabacco, uno i fiammiferi); l'agente ha scorte infinite di **tutti e tre**.
 
 Il ciclo è questo:
-
 1. l'agente mette sul tavolo **due ingredienti** (a caso);
 2. il fumatore che possiede **l'ingrediente mancante** li prende, si fa la sigaretta, la fuma e **avvisa l'agente**;
 3. l'agente ne mette altri due, e così via.
@@ -276,43 +270,22 @@ Il compito è **scrivere un programma che sincronizzi l'agente e i fumatori**.
 
 Patil sosteneva che le primitive a semaforo di Dijkstra fossero **limitate**: usava questo problema per dire che **non si può risolvere con i semafori**. Ma poneva **vincoli molto forti**:
 
-- il codice dell'agente è **fisso e non modificabile**:
-
-```text
-shared S: array[1..3] of binary semaphores, initially all 0
-       agent: binary semaphore, initially 1
-local i, j: range over [1,2,3]
-
-loop
-  set i and j (at random) to two different values from [1,2,3]
-  wait(agent)
-  signal(S[i])
-  signal(S[j])
-end_loop
-```
-
 - la soluzione **non può usare istruzioni condizionali** né **array di semafori**.
-
+- il codice dell'agente è **fisso e non modificabile**:
+![[Pasted image 20261104155411.png]]
 Con questi due vincoli la soluzione con semafori è **impossibile**.
 
-> [!tip] Perché è difficile (e come si aggira) L'ostacolo è che il semaforo `S[tabacco]` può essere atteso da **più fumatori** (quello con la carta e quello con i fiammiferi). Se l'agente mette tabacco e carta, il fumatore giusto è quello con i fiammiferi, ma **l'altro fumatore potrebbe "rubare" un ingrediente** (ad esempio il tabacco) e il fumatore giusto resta con la carta soltanto: **deadlock**. Non essendoci istruzioni condizionali per decidere "è il mio turno?" il problema sembra irrisolvibile. Se si **rimuovono i vincoli** (ad esempio si introducono dei processi ausiliari che guardano gli ingredienti e svegliano **solo** il fumatore giusto, o si usano condizionali) il problema **diventa risolvibile** con i semafori. La lezione: la limitatezza dipendeva dai vincoli, non dai semafori in sé.
+> [!tip] Perché è difficile? 
+> L'ostacolo è che il semaforo `S[tabacco]` può essere atteso da **più fumatori** (quello con la carta e quello con i fiammiferi), non avendo istruzioni condizionali per decidere di chi è il turno. Se l'agente mette tabacco e carta, il fumatore giusto è quello con i fiammiferi, ma **l'altro fumatore potrebbe "rubare" un ingrediente** (ad esempio il tabacco) e il fumatore giusto resta con la carta soltanto: **deadlock**. 
 
 ---
 
-## Oltre i semafori: i monitor
-
-### Perché cambiare
-
-I semafori sono potenti ma **di bassissimo livello**:
-
-- i programmi sono **soggetti a errori** (una `wait` dimenticata, un `signal` di troppo, ordini sbagliati);
-- sono **difficili da usare** in programmi concorrenti complessi (la logica di sincronizzazione è **sparsa** nel codice dei processi).
-
-Si cercano quindi costrutti di **livello più alto**: i **monitor**, introdotti da **Brinch Hansen (1973)** e generalizzati da **Hoare (1974)**.
+## Monitor
 
 ### Cos'è un monitor
 
-> [!info] Definizione Un **monitor** è un'**astrazione dati per la programmazione concorrente** che **incapsula** la **politica di sincronizzazione e mutua esclusione** per accedervi: **stato + operazioni + politica di concorrenza**.
+> [!info] Definizione 
+> Un **monitor** è un'**astrazione dati per la programmazione concorrente** che **incapsula** la **politica di sincronizzazione e mutua esclusione** per accedervi: **stato + operazioni + politica di concorrenza**.
 
 È come un **modulo** più **meccanismi di base per garantire la correttezza** quando il modulo è usato da più processi in concorrenza.
 

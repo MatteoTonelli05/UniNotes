@@ -161,11 +161,15 @@ Avendo il buffer limitato il produttore **NON deve aggiungere a un buffer pieno*
 
 Se la struttura dati non è atomica, **due produttori** o **due consumatori** potrebbero manipolarla insieme e corromperla. Serve un **mutex** per la **mutua esclusione** sull'accesso al buffer, **oltre** ai semafori di sincronizzazione.
 ![[Pasted image 20261104140505.png|575]]
-> [!warning] L'ordine delle `wait` è fondamentale Si fa **prima** la `wait` sul semaforo contatore (`availPlaces` / `availItems`) e **poi** quella sul mutex. Se si invertisse (prendere il mutex e poi aspettare), si creerebbe un **deadlock**: un consumatore che ha preso il mutex e aspetta un elemento in un buffer vuoto **blocca anche i produttori**, che non riescono a entrare per inserirne uno. Nessuno può sbloccare nessuno.
-> 
-> Regola pratica: **mai tenere un lock mentre si aspetta una condizione** che solo altri, entrando nella stessa sezione, possono rendere vera.
+
+| Semaforo      | Tipo                | Scopo                                                  |
+| ------------- | ------------------- | ------------------------------------------------------ |
+| `availItems`  | Contatore (risorse) | Sincronizzazione: il consumatore aspetta gli elementi  |
+| `availPlaces` | Contatore (risorse) | Sincronizzazione: il produttore aspetta i posti liberi |
+| `mutex`       | Binario             | Mutua esclusione sulla struttura dati                  |
 
 ---
+
 ## Il problema dei filosofi a cena
 
 ### Origine e descrizione

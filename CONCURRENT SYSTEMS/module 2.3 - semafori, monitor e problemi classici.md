@@ -53,15 +53,7 @@ Le differenze riguardano **le proprietà di vivacità** (liveness) e **non** le 
 
 - **Debole** (_weak_): `S.L` è un **insieme**. `signal` sceglie un processo **arbitrario**. Nulla garantisce che un processo bloccato venga prima o poi scelto.
 - **Forte** (_strong_): `S.L` è una **coda** (FIFO). `signal` sblocca il processo **in testa**.
-
-```text
-wait(S) =                          signal(S) =
-< if (S.V > 0)                     < if (S.L = empty_queue)
-      S.V ← S.V - 1                      S.V ← S.V + 1
-  else                               else
-      append(S.L, p)                     let q ← take(S.L)
-      p.state ← blocked >                q.state ← ready >
-```
+![[Pasted image 20261104104245.png]]
 
 **Proprietà chiave:** con un semaforo **forte** la **starvation è impossibile**, per qualsiasi numero $N$ di processi (chi è in coda prima o poi arriva in testa).
 

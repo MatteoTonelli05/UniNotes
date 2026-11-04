@@ -20,7 +20,7 @@ Offre **due operazioni atomiche** (*spiegate dopo*):
 
 > [!example] **In parole:**
 >- se `S.V > 0` (il semaforo è **verde**): lo si **decrementa** e il processo prosegue;
->- altrimenti, se `S.V = 0`: il processo viene **bloccato** sul semaforo (aggiunto nella lista `S.L`).
+>- altrimenti, se `S.V = 0`: il processo viene **bloccato** sul semaforo (aggiunto nell'insieme `S.L`).
 
 ### L'operazione `signal`
 
@@ -52,32 +52,21 @@ Le differenze riguardano **le proprietà di vivacità** (liveness) e **non** le 
 #### Semafori deboli e forti
 
 - **Debole** (_weak_): `S.L` è un **insieme**. `signal` sceglie un processo **arbitrario**. Nulla garantisce che un processo bloccato venga prima o poi scelto.
+
 - **Forte** (_strong_): `S.L` è una **coda** (FIFO). `signal` sblocca il processo **in testa**.
 ![[Pasted image 20261104104245.png]]
 
-**Proprietà chiave:** con un semaforo **forte** la **starvation è impossibile**, per qualsiasi numero $N$ di processi (chi è in coda prima o poi arriva in testa).
+> [!info] **Proprietà chiave** 
+> Con un semaforo **forte** la **starvation è impossibile**, per qualsiasi numero $N$ di processi 
 
 #### Semafori ad attesa attiva (busy-wait)
 
 Semafori **senza** `S.L`: non c'è coda di bloccati, i processi aspettano controllando in continuazione.
-
-```text
-wait(S) =                          signal(S) =
-< await (S.V > 0)                  < S.V ← S.V + 1 >
-  S.V ← S.V - 1 >
-```
-
+![[Pasted image 20261104105245.png]]
 Le operazioni sono comunque **atomiche** (nessun intreccio tra l'`await` e il decremento).
 
 - ❌ **Si perde l'assenza di starvation:** con semafori busy-wait non si può assumere che un processo entri nella CS, nemmeno nella soluzione a 2 processi (nulla stabilisce chi "vince" quando il valore torna positivo).
 - ✅ **Quando hanno senso:** in un sistema **multiprocessore** in cui il processo in attesa ha **un processore tutto per sé** e non spreca CPU che servirebbe ad altro; oppure con **poca contesa**, così l'attesa è breve.
-
-### A cosa servono i semafori
-
-Sono **mattoni di basso livello** con cui si risolve quasi ogni problema di interazione tra processi in architetture a memoria condivisa. Si usano per:
-
-- **mutua esclusione**: problema della sezione critica, realizzazione di lock;
-- **sincronizzazione**: segnalazione con semafori ad evento, barriere, ordinamento di azioni.
 
 ---
 

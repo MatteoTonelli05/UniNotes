@@ -34,7 +34,7 @@ Offre **due operazioni atomiche** (*spiegate dopo*):
 
 Sia $k$ il valore iniziale, $\#signal(S)$ il numero di `signal(S)` eseguite e $\#wait(S)$ il numero di `wait(S)` **completate** (non quelle in cui il processo è ancora bloccato). Allora **in ogni stato** vale:
 
-$$S.V \geq 0 \qquad\text{e}\qquad S.V = k + #signal(S) - #wait(S)$$
+$$S.V \geq 0 \qquad\text{e}\qquad S.V = k + \#signal(S) - \#wait(S)$$
 
 **Lettura:** il valore del semaforo è sempre "quanti permessi c'erano all'inizio, più quelli restituiti, meno quelli presi". Non può mai andare sotto zero perché chi non trova permessi **si blocca** invece di decrementare.
 

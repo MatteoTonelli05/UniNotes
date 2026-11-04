@@ -238,11 +238,11 @@ Funziona perché rende **impossibile la dipendenza circolare** ("wait-for"), che
 ![[Pasted image 20261104152755.png]]
 
 **Come funziona.**
+- `mutexR` evita che due lettori modifichino `nr` insieme (race condition sul contatore).
 - `rw` è il lock "stanza": o c'è uno scrittore, o ci sono lettori (uno o più).
 - Il **primo lettore** (`nr == 0`) fa `wait(rw)`: se c'è uno scrittore, si blocca; altrimenti prende `rw` **a nome di tutti i lettori**.
 - I lettori successivi **non** toccano `rw`: incrementano `nr` ed entrano.
 - L'**ultimo lettore** che esce (`nr` torna a 0) fa `signal(rw)` e permette agli scrittori di entrare.
-- `mutexR` evita che due lettori modifichino `nr` insieme (race condition sul contatore).
 
 > [!warning] Starvation degli scrittori Questa soluzione dà **priorità ai lettori**: finché c'è sempre almeno un lettore attivo, `nr` non scende mai a 0 e quindi **lo scrittore non entra mai**. Se i lettori arrivano continuamente, gli scrittori sono in **starvation**. Esistono varianti che danno priorità agli scrittori o che garantiscono equità (ad esempio con una coda comune), a costo di una maggiore complessità.
 

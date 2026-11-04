@@ -176,23 +176,20 @@ Se la struttura dati non è atomica, **due produttori** o **due consumatori** po
 
 ### Le condizioni di Coffman
 
-Un deadlock **può verificarsi solo se tutte e quattro** le condizioni sono vere insieme:
-1. **Mutua esclusione** $\rightarrow$ Una risorsa non può essere usata da più di un processo alla volta
-2. **Hold and wait** $\rightarrow$ Un processo che già tiene delle risorse può **chiederne altre
-3. **No preemption** $\rightarrow$ Una risorsa **non può essere tolta** a chi la tiene; la rilascia solo lui
-4. **Attesa circolare** $\rightarrow$ Esiste una **catena circolare** di processi, ciascuno in attesa di una risorsa tenuta dal successivo
+> [!important] Un deadlock **può verificarsi solo se tutte e quattro** le condizioni sono vere insieme:
+>1. **Mutua esclusione** $\rightarrow$ Una risorsa non può essere usata da più di un processo alla volta
+>2. **Hold and wait** $\rightarrow$ Un processo che già tiene delle risorse può **chiederne altre
+>3. **No preemption** $\rightarrow$ Una risorsa **non può essere tolta** a chi la tiene; la rilascia solo lui
+>4. **Attesa circolare** $\rightarrow$ Esiste una **catena circolare** di processi, ciascuno in attesa di una risorsa tenuta dal successivo
 
 > [!hint] Per **evitare** un deadlock basta garantire che **una sola** di queste condizioni sia sempre falsa. 
-### Deadlock con i lock
-
-Succede quando **più thread aspettano per sempre** a causa di una **dipendenza ciclica** tra lock. Il caso più semplice: il thread A tiene il lock `L` e cerca di prendere `M`, mentre il thread B tiene `M` e cerca di prendere `L`. Entrambi aspettano per sempre: è il già citato **abbraccio mortale** (_deadly embrace_).
-
 ### Rilevazione e recupero
 
 Alcuni sistemi **non evitano** i deadlock ma li **rilevano e li risolvono**:
 
-- **Database:** sono progettati per rilevare e uscire dai deadlock. Le transazioni acquisiscono molti lock fino al commit, quindi non è raro che due si blocchino a vicenda. Si costruisce il **grafo delle attese** ("chi aspetta chi"), si cercano i **cicli**; se si trova un ciclo si sceglie una **vittima** e se ne **annulla** la transazione.
-- **JVM:** **nessun meccanismo automatico** di rilevazione e recupero. Se i thread vanno in deadlock "è finita": al massimo si arresta l'applicazione. Esiste solo un supporto per la **diagnosi post-mortem** (ad esempio i _thread dump_, che indicano quali thread sono bloccati su quali lock).
+- **Database:** quando si rileva un deadlock si costruisce il **grafo delle attese** ("chi aspetta chi"), si cercano i **cicli**; se si trova un ciclo si sceglie una **vittima** e se ne **annulla** la transazione.
+	
+- **JVM:** Se i thread vanno in deadlock al massimo si arresta l'applicazione e si fa partire la diagnosi post-mortem. 
 
 ---
 ## Il problema dei filosofi a cena
@@ -205,64 +202,19 @@ Si devono progettare i protocolli perché valgano:
 - **assenza di deadlock**;
 - **assenza di starvation**;
 - **comportamento efficiente in assenza di contesa** (se i vicini non mangiano, non devo aspettare).
-### Filosofi: prima soluzione, i biglietti
+### Soluzione
 
-Per garantire la vivacità si **limita il numero di filosofi** che possono competere insieme (cioè "entrare nella sala"), con **$N-1$ biglietti** per $N$ filosofi:
+> [!hint] Se tutti prendono contemporaneamente la forchetta alla loro sinistra si va in deadlock, basta quindi **rompere la simmetria** e fare in modo che l'ultimo prenda prima quella alla sua destra.
 
-```text
-semaphore array[0..4] fork ← [1,1,1,1,1]
-semaphore ticket ← (4, {})
-
-loop forever
-  p1: think
-  p2: wait(ticket)
-  p3: wait(fork[i])
-  p4: wait(fork[(i+1) % N])
-  p5: eat
-  p6: signal(fork[i])
-  p7: signal(fork[(i+1) % N])
-  p8: signal(ticket)
-```
-
-**Perché non c'è deadlock.** Al più **4 filosofi** sono "in gioco" e quindi almeno **uno è fuori**. Tra i quattro in gioco c'è sempre almeno un filosofo il cui **vicino di destra è quello fuori**: la forchetta tra i due è contesa solo da lui (il vicino di destra non la può avere, perché non ha il biglietto). Quel filosofo la prende, mangia, e poi rilascia tutto: la **catena circolare non può chiudersi**. Si rompe la condizione di attesa circolare.
-
-> [!note] Starvation Per garantire anche l'assenza di starvation i semafori devono essere **forti** (FIFO): altrimenti un filosofo potrebbe essere scavalcato all'infinito.
-
-### Filosofi: seconda soluzione, rompere la catena
-
-Basta che **l'ultimo filosofo** prenda **prima la destra e poi la sinistra**. Questo **spezza la catena di attesa**: ora non possono più essere tutti in attesa della forchetta di destra.
-
-Osservazione: dato l'**ordine totale** sugli identificatori delle forchette ($0 < 1 < \dots < 4$), l'ultimo filosofo (il 4, con forchette 4 e 0) prendeva le forchette **in ordine opposto** agli altri (prima la 4 e poi la 0). La soluzione consiste nel prendere **sempre le forchette nello stesso ordine**: prima quella con indice minore, poi quella con indice maggiore.
-
-```text
-semaphore array[0..4] fork ← [1,1,1,1,1]
-
-integer first  = min(i, (i+1) % N)
-integer second = max(i, (i+1) % N)
-
-loop forever
-  p1: think
-  p2: wait(fork[first])
-  p3: wait(fork[second])
-  p4: eat
-  p5: signal(fork[first])
-  p6: signal(fork[second])
-```
-
-Per $i = 0..3$: `first = i`, `second = i+1`. Per $i = 4$: `first = 0`, `second = 4`.
-
-**Perché funziona.** Ogni processo acquisisce le risorse in **ordine crescente di indice**: chi tiene la forchetta $k$ aspetta solo forchette con indice **maggiore** di $k$. Una **catena circolare** richiederebbe a un certo punto di aspettare un indice **minore** di quello tenuto, cosa che non accade mai: **è impossibile avere attesa circolare**.
-
+![[Pasted image 20261104151018.png|396]]
 ### Regola generale per evitare il deadlock
 
 Quando $N$ processi condividono e acquisiscono **più lock**:
 
 1. assegna un **ordine totale** ai lock;
-2. acquisisci i lock **sempre in quell'ordine**.
+2. tutti i processi dovranno acquisire i lock **sempre in quell'ordine**.
 
 Funziona perché rende **impossibile la dipendenza circolare** ("wait-for"), che è una condizione necessaria del deadlock.
-
-> [!example] In Java Se due metodi devono prendere i lock `a` e `b`, entrambi devono prenderli nello stesso ordine (ad esempio sempre `a` e poi `b`). Un metodo che prende `a` poi `b` e uno che prende `b` poi `a` possono andare in deadlock.
 
 ---
 
@@ -270,21 +222,12 @@ Funziona perché rende **impossibile la dipendenza circolare** ("wait-for"), che
 
 ### Il problema
 
-Proposto da **Courtois, Heymans e Parnas (1971)**. È simile alla mutua esclusione (più processi competono per accedere a una sezione critica), ma i processi sono divisi in **due classi**:
+È simile alla mutua esclusione (più processi competono per accedere a una sezione critica), ma i processi sono divisi in **due classi**:
 
-|Classe|Deve escludere|
-|---|---|
-|**Lettori** (_readers_)|Gli **scrittori**, ma **non** gli altri lettori|
-|**Scrittori** (_writers_)|**Tutti**: sia i lettori sia gli altri scrittori|
-
-È un'astrazione dell'**accesso a un database** (o a qualsiasi risorsa condivisa): non c'è pericolo se più processi **leggono** insieme; **scrivere/modificare** dev'essere fatto in **mutua esclusione** per mantenere i dati consistenti.
-
+1. **LETTORI** $\rightarrow$ possono leggere la risorsa anche in più di uno, ma mentre leggono nessuno può scrivere
+2. **SCRITTORI** $\rightarrow$ possono scrivere uno alla volta, mentre uno scrive nessun altro può leggere o scrivere.
 ### Invarianti richiesti
-
-Con $nR$ = numero di lettori attivi e $nW$ = numero di scrittori attivi:
-
-$$nR \geq 0 \qquad nW = 0 ;\vee; nW = 1 \qquad (nR > 0 \rightarrow nW = 0) ;\wedge; (nW = 1 \rightarrow nR = 0)$$
-
+![[Pasted image 20261104151839.png]]
 **Lettura:** non ci sono mai due scrittori attivi insieme; e **lettori e scrittori non sono mai attivi insieme**.
 
 ### Prima soluzione: troppo restrittiva

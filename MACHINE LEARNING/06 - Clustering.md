@@ -16,26 +16,20 @@ Con $n$ pattern e $s$ cluster (noto), il numero di partizioni è dell'ordine di:
 
 $$\frac{s^n}{s!}$$
 
-(approssimazione del **numero di Stirling di seconda specie**).
+(approssimazione del **numero di Stirling di seconda specie**, ovvero il **numero di modi in cui è possibile suddividere un insieme di \(n\) oggetti distinguibili in \(k\) sottoinsiemi disgiunti e non vuoti**).
 
 
 > [!example] Esempio con $n=4$, $s=2$ 
 > $2^3-1=7$ soluzioni 
 > $(A)(BCD)$, $(B)(ACD)$, $(C)(ABD)$, $(D)(ABC)$, $(AB)(CD)$, $(AC)(BD)$, $(AD)(BC)$
 
-> [!tip] Perché $2^{n-1}-1$? Ogni pattern può stare in uno di 2 gruppi → $2^n$ assegnazioni. Scambiare i nomi dei due gruppi dà la stessa partizione → $2^n/2=2^{n-1}$. Si toglie il caso "tutti in un gruppo solo" (un cluster vuoto) → $-1$.
-
+> [!important] Se $s$ non è noto, il numero di soluzioni è dato dal numero di **Bell** 
 ### Criteri vs algoritmi
 
 > [!important] Distinzione fondamentale
 > 
 > - **Criterio** = _cosa_ vogliamo ottenere (una funzione che dice quanto è buona una partizione).
 > - **Algoritmo** = _come_ cerchiamo una soluzione che ottimizzi il criterio.
-
-La maggior parte dei criteri nasce da due osservazioni:
-
-1. I pattern **dentro** lo stesso cluster devono essere più **simili** tra loro che con pattern di altri cluster.
-2. I cluster sono **nuvole di punti ad alta densità** separate da zone a densità più bassa.
 
 ### Criterio: minimizzazione delle distanze dai centroidi
 

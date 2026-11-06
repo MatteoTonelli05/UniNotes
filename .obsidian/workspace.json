@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CONCURRENT SYSTEMS/module 2.3 - semafori, monitor e problemi classici.md",
+                "file": "MACHINE LEARNING/06 - .md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "module 2.3 - semafori, monitor e problemi classici"
+              "title": "06 -"
             }
           }
         ]
@@ -94,8 +94,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 413.5,
-    "collapsed": true
+    "width": 413.5
   },
   "right": {
     "id": "994e93d0a7538110",
@@ -111,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CONCURRENT SYSTEMS/module 2.3 - semafori, monitor e problemi classici.md",
+                "file": "MACHINE LEARNING/06 - .md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -130,7 +129,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "CONCURRENT SYSTEMS/module 2.3 - semafori, monitor e problemi classici.md",
+                "file": "MACHINE LEARNING/06 - .md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -173,7 +172,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "CONCURRENT SYSTEMS/module 2.3 - semafori, monitor e problemi classici.md",
+                "file": "MACHINE LEARNING/06 - .md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -203,6 +202,9 @@
   },
   "active": "6c50a5ddbb537f8f",
   "lastOpenFiles": [
+    "MACHINE LEARNING/05 - Regressione.md",
+    "MACHINE LEARNING/06 - .md",
+    "CONCURRENT SYSTEMS/module 2.3 - semafori, monitor e problemi classici.md",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261104165745.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261104165742.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261104165734.png",
@@ -213,16 +215,13 @@
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261104151018.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261104143800.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261104143558.png",
-    "CONCURRENT SYSTEMS/Allegati/Pasted image 20261104140505.png",
     "CONCURRENT SYSTEMS/module 2.1 - MODELLING & VERIFICATION .md",
     "CONCURRENT SYSTEMS/module 1.3 - ANALYSING.md",
     "CONCURRENT SYSTEMS/module 1.2 - Sintassi FSP - LTS .md",
     "CONCURRENT SYSTEMS/module 1.2 - PetriNets.md",
     "CONCURRENT SYSTEMS/module 2.2 - MODELLING & VERIFICATION.md",
-    "CONCURRENT SYSTEMS/module 2.3 - semafori, monitor e problemi classici.md",
     "CONCURRENT SYSTEMS/module 1.2 - MODELLING.md",
     "CONCURRENT SYSTEMS/module 1.1 - OVERVIEW.md",
-    "MACHINE LEARNING/05 - Regressione.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab/Lab 28-10-2026.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/6 - Automi a pila.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab/Lab 21-10-2026.md",

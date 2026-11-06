@@ -4,11 +4,12 @@
 
 > [!abstract] Definizione
 > Il **clustering** è una tecnica di **apprendimento automatico non supervisionato** (_unsupervised machine learning_) che serve a raggruppare un insieme di dati non etichettati in gruppi omogenei, chiamati **cluster**.
+>
+![[Pasted image 20261106164506.png|334]]
+> _Un **pattern** = un punto (vettore) $\mathbf{x}$ nello spazio multidimensionale._
 
-
-- Il problema è **NP-hard**: la ricerca esaustiva della soluzione ottima è fattibile solo con pochissimi pattern.
-- Un **pattern** = un punto (vettore) $\mathbf{x}$ nello spazio multidimensionale.
-
+> [!attention] Il problema è **NP-hard** 
+> La ricerca esaustiva della soluzione ottima è fattibile **solo** con pochissimi pattern.
 ### Quante soluzioni possibili?
 
 Con $n$ pattern e $s$ cluster (noto), il numero di partizioni è dell'ordine di:
@@ -17,11 +18,10 @@ $$\frac{s^n}{s!}$$
 
 (approssimazione del **numero di Stirling di seconda specie**).
 
-- Esempio: $n=100$, $s=5$ → circa $10^{67}$ soluzioni. Impossibile enumerarle.
-- Se $s$ **non è noto**: si usa il **numero di Bell** = somma dei numeri di Stirling per $s=1\dots n$.
-- Caso $s=2$: le soluzioni sono $2^{n-1}-1$.
 
-> [!example] Esempio con $n=4$, $s=2$ → $2^3-1=7$ soluzioni $(A)(BCD)$, $(B)(ACD)$, $(C)(ABD)$, $(D)(ABC)$, $(AB)(CD)$, $(AC)(BD)$, $(AD)(BC)$
+> [!example] Esempio con $n=4$, $s=2$ 
+> $2^3-1=7$ soluzioni 
+> $(A)(BCD)$, $(B)(ACD)$, $(C)(ABD)$, $(D)(ABC)$, $(AB)(CD)$, $(AC)(BD)$, $(AD)(BC)$
 
 > [!tip] Perché $2^{n-1}-1$? Ogni pattern può stare in uno di 2 gruppi → $2^n$ assegnazioni. Scambiare i nomi dei due gruppi dà la stessa partizione → $2^n/2=2^{n-1}$. Si toglie il caso "tutti in un gruppo solo" (un cluster vuoto) → $-1$.
 

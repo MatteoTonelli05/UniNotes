@@ -80,7 +80,7 @@
             }
           },
           {
-            "id": "a77ba36a3a56a5d0",
+            "id": "bb9cb5b0d5e3758e",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
@@ -203,6 +203,7 @@
   },
   "active": "6c50a5ddbb537f8f",
   "lastOpenFiles": [
+    "MACHINE LEARNING/Allegati/Pasted image 20261106164506.png",
     "MACHINE LEARNING/05 - Regressione.md",
     "MACHINE LEARNING/06 - Clustering.md",
     "CONCURRENT SYSTEMS/module 2.3 - semafori, monitor e problemi classici.md",
@@ -239,7 +240,6 @@
     "visione/Immagini/Operazioni su singole Immagini.md",
     "visione/Filtri/Canny edge detector.md",
     "visione/Filtri/Bordi.md",
-    "visione/Filtri/Applicazione dei filtri lineari.md",
     "visione/Immagini",
     "visione/Analisi di immagini binarie",
     "visione/pasted_img",

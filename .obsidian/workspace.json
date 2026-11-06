@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "MACHINE LEARNING/06 - .md",
+                "file": "MACHINE LEARNING/06 - Clustering.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "06 -"
+              "title": "06 - Clustering"
             }
           }
         ]
@@ -94,7 +94,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 413.5
+    "width": 413.5,
+    "collapsed": true
   },
   "right": {
     "id": "994e93d0a7538110",
@@ -110,7 +111,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MACHINE LEARNING/06 - .md",
+                "file": "MACHINE LEARNING/06 - Clustering.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -129,7 +130,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "MACHINE LEARNING/06 - .md",
+                "file": "MACHINE LEARNING/06 - Clustering.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -172,7 +173,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "MACHINE LEARNING/06 - .md",
+                "file": "MACHINE LEARNING/06 - Clustering.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -203,7 +204,7 @@
   "active": "6c50a5ddbb537f8f",
   "lastOpenFiles": [
     "MACHINE LEARNING/05 - Regressione.md",
-    "MACHINE LEARNING/06 - .md",
+    "MACHINE LEARNING/06 - Clustering.md",
     "CONCURRENT SYSTEMS/module 2.3 - semafori, monitor e problemi classici.md",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261104165745.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261104165742.png",

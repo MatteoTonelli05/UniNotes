@@ -111,15 +111,15 @@ dove $f_s(\mathbf{x},C_i)$ misura la distanza tra $\mathbf{x}$ e il suo cluster.
 > Non serve fissare $s$ in anticipo: il numero di cluster si sceglie _dopo_, decidendo dove tagliare l'albero.
 
 ---
-## K-means
+## K-means (o C-means)
 
-(detto anche **C-means**)
-
-> [!abstract] Idea Ripeti due passi: **assegna** ogni punto al centroide più vicino, poi **ricalcola** ogni centroide come media dei suoi punti. Fermati quando non cambia più nulla.
-
+> [!abstract] Idea
+> Ripeti due passi:
+> 1. **assegna** ogni punto al centroide più vicino,
+> 2. **ricalcola** ogni centroide come media dei suoi punti. 
+> 
 ### Caratteristiche
 
-- Semplicissimo da capire e da implementare → spesso **la prima scelta**.
 - Minimizza **implicitamente** $J_e$ (distanze dai centroidi).
 - **Input**: numero di cluster $s$ + soluzione iniziale (centroidi iniziali).
 - Ottimizzazione **iterativa e locale** → può fermarsi in un **ottimo locale**.
@@ -127,8 +127,6 @@ dove $f_s(\mathbf{x},C_i)$ misura la distanza tra $\mathbf{x}$ e il suo cluster.
 - Forma dei cluster:
     - distanza **euclidea** → cluster **iper-sferici**
     - distanza di **Mahalanobis** → cluster **iper-ellissoidali**
-
-> [!warning] Nota terminologica La slide parla di "massimi locali", ma qui si **minimizza** $J_e$, quindi in realtà si parla di **minimi locali** (la slide successiva infatti dice "minimi locali").
 
 ### Algoritmo
 

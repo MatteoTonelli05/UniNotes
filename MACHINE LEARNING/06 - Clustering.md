@@ -86,20 +86,18 @@ dove $f_s(\mathbf{x},C_i)$ misura la distanza tra $\mathbf{x}$ e il suo cluster.
 
 - **Hard (esclusivo)**: ogni pattern appartiene a **un solo** cluster.
 - **Soft (fuzzy)**: ogni pattern ha un **grado di appartenenza** (es. tra 0 e 1) a ciascun cluster.
-    - Più efficace con pattern vicini al **bordo** tra cluster e con **outlier**.
-    - Si può tornare a un'assegnazione hard scegliendo, per ogni pattern, il cluster con appartenenza **massima**.
+
+> [!hint] Si può passare da soft ad hard scegliendo, per ogni pattern, il cluster con appartenenza **massima**.
 
 ---
-
 ## Clustering gerarchico
 
-Simile alla **tassonomia biologica**: si passa da famiglie molto ampie a famiglie sempre più ristrette.
-
-**Approccio agglomerativo (bottom-up)**
+**APPROCCIO AGGLOMERATIVO (bottom-up)**
 
 1. Si parte con ogni pattern come cluster a sé.
 2. Ad ogni livello si aggregano (pattern-pattern, pattern-cluster o cluster-cluster) gli elementi **meno distanti**, rispetto a una soglia che dipende dal livello.
 3. Il risultato è un **dendrogramma** (albero). Tagliando l'albero a un certo livello si ottiene il numero di cluster $k$ desiderato.
+![[Pasted image 20261106172506.png|418]]
 
 **Come si misura la distanza tra due cluster** (la vera differenza tra le varianti):
 
@@ -109,12 +107,10 @@ Simile alla **tassonomia biologica**: si passa da famiglie molto ampie a famigli
 |**Average link**|media delle distanze tra tutte le coppie|Compromesso|
 |**Complete link**|massima tra due pattern|Cluster compatti|
 
-> [!tip] Lettura del dendrogramma L'asse verticale (_similarity scale_) indica a che livello due elementi si fondono. Fusioni "in basso" (alta similarità) = elementi molto vicini; fusioni "in alto" = gruppi molto diversi tra loro. Nell'esempio con $x_1\dots x_8$ la riga $k=1$ è un solo cluster, $k=8$ sono tutti singoli.
-
-> [!note] Vantaggio Non serve fissare $s$ in anticipo: il numero di cluster si sceglie _dopo_, decidendo dove tagliare l'albero.
+> [!hint] Vantaggio 
+> Non serve fissare $s$ in anticipo: il numero di cluster si sceglie _dopo_, decidendo dove tagliare l'albero.
 
 ---
-
 ## K-means
 
 (detto anche **C-means**)

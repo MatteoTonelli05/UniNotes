@@ -35,10 +35,13 @@ $$\frac{s^n}{s!}$$
 
 $$J_e=\sum_{i=1}^{s}\sum_{\mathbf{x}\in C_i}|\mathbf{x}-\bar{\mathbf{x}}_i|^2,\qquad \bar{\mathbf{x}}_i=\frac{1}{n_i}\sum_{\mathbf{x}\in C_i}\mathbf{x}$$
 
-- $C_i$ = $i$-esimo cluster, $n_i$ = numero di pattern in $C_i$, $\bar{\mathbf{x}}_i$ = suo centroide (baricentro, media).
-- In pratica: somma dei **quadrati delle distanze** dei punti dal centroide del proprio cluster (detta anche _SSE_ o _inertia_).
-- ✅ Buono per cluster a **simmetria radiale** (circolari/sferici).
-- ❌ Penalizza **forme allungate** e **cluster innestati** (es. un anello con un altro cluster dentro).
+- $C_i$ = $i$-esimo cluster, 
+- $n_i$ = numero di pattern in $C_i$, 
+- $\bar{\mathbf{x}}_i$ = suo centroide (baricentro, media).
+
+In pratica: somma dei **quadrati delle distanze** dei punti dal centroide del proprio cluster (detta anche _SSE_ o _inertia_).
+
+> [!hint] Buono per cluster a **simmetria radiale** (circolari/sferici).
 
 ### Criterio: minimizzazione delle distanze intra-classe
 
@@ -46,23 +49,39 @@ $$J_e=\sum_{i=1}^{s} n_i\cdot\bar{s}_i,\qquad \bar{s}_i=\frac{1}{n_i}\sum_{\math
 
 dove $f_s(\mathbf{x},C_i)$ misura la distanza tra $\mathbf{x}$ e il suo cluster. Due scelte tipiche:
 
-|Scelta di $f_s$|Formula|Effetto|
-|---|---|---|
-|**Media** delle distanze|$\frac{1}{n_i}\sum_{\mathbf{x}'\in C_i}\|\mathbf{x}-\mathbf{x}'\|^2$|Simile al criterio dei centroidi|
-|**Minimo** (vicino più vicino)|$\min_{\mathbf{x}'\in C_i,\ \mathbf{x}'\neq\mathbf{x}}\|\mathbf{x}-\mathbf{x}'\|^2$|**Non penalizza cluster allungati**|
-
-> [!tip] Intuizione sul minimo Con il minimo basta **un solo vicino** nello stesso cluster perché $f_s$ sia piccola: i punti si "agganciano a catena". Per questo riconosce forme allungate. Nell'esempio con $s=2$ della slide, il criterio della media produce i due cerchi tratteggiati (taglio "verticale"), il criterio del minimo produce i due gruppi rosso e blu (le due nuvole allungate).
+| Scelta di $f_s$                | Formula                                                                             | Effetto                             |
+| ------------------------------ | ----------------------------------------------------------------------------------- | ----------------------------------- |
+| **Media** delle distanze       | $\frac{1}{n_i}\sum_{\mathbf{x}'\in C_i}\|\mathbf{x}-\mathbf{x}'\|^2$                | Simile al criterio dei centroidi    |
+| **Minimo** (vicino più vicino) | $\min_{\mathbf{x}'\in C_i,\ \mathbf{x}'\neq\mathbf{x}}\|\mathbf{x}-\mathbf{x}'\|^2$ | **Non penalizza cluster allungati** |
+![[Pasted image 20261106171015.png|410]]_il criterio della distanza dal centroide produrrebbe i due cerchi trattgeggiati_
 
 ---
 
 ## Famiglie di algoritmi
 
-|Famiglia|Idea|Esempi|
-|---|---|---|
-|**Gerarchico**|Aggrega pattern "bottom-up" in base a una distanza → albero (dendrogramma)|single / average / complete link|
-|**Basato su centroidi**|Euristiche iterative che minimizzano la distanza dai centroidi|[[#K-means]], [[#Fuzzy K-means]], [[#Expectation-Maximization con Gaussian Mixture\|EM / Gaussian Mixture]]|
-|**Basato sulla densità**|Cluster = regioni connesse ad alta densità|**DBSCAN**|
+##### **1. Gerarchico**
 
+  >[!abstract] Idea
+  >Aggrega i pattern "bottom-up" in base a una distanza e produce un albero (dendrogramma).
+  
+  > [!example] Esempi
+  >  single / average / complete link.
+
+##### **2. Basato su centroidi**
+  
+  > [!abstract] Idea
+  > euristiche iterative che minimizzano la distanza dei pattern dai centroidi.
+  
+  > [!example] Esempi
+  > K-means, Fuzzy K-means, Expectation-Maximization con Gaussian Mixture|EM / Gaussian Mixture.
+
+##### **3. Basato sulla densità**
+  
+> [!abstract] Idea
+> i cluster sono regioni connesse ad alta densità.
+
+> [!example] Esempio
+> **DBSCAN**.
 ### Hard vs soft
 
 - **Hard (esclusivo)**: ogni pattern appartiene a **un solo** cluster.

@@ -313,14 +313,16 @@ Il monitor è un’**istanza di un tipo di dato astratto**:
 
 ### Sincronizzazione: le variabili condizione
 
-La mutua esclusione implicita non basta: spesso un processo deve **aspettare che lo stato del monitor soddisfi una condizione** ("il buffer non è pieno"). Per questo i monitor offrono un **supporto esplicito di sincronizzazione** tramite le **variabili condizione** (_condition variables_):
+> [!example] Un **buffer** (una mensola con un numero limitato di posti) tra produttori e consumatori. 
+> L’operazione `take` ha senso solo se **c’è almeno un elemento**. Cosa fa un consumatore se la mensola è vuota?
+> Aspettare dentro il monitor è molto inefficiente
 
-- usate **dentro il monitor** dal programmatore per **ritardare** un processo che non può proseguire in sicurezza finché lo stato non soddisfa una **condizione booleana**;
-- usate anche per **risvegliare** un processo in attesa quando la condizione diventa vera.
+Le variabili condizione sono **tipi di dato primitivi** che si usano **dentro i monitor** per **sospendere** (`wait`) e **riprendere** (`signal`) processi.
 
-Sono **tipi di dato primitivi** per sospendere (`wait`) e riprendere (`signal`) processi dentro un monitor, rappresentando **condizioni (eventi) sullo stato del monitor** che aspettano di essere soddisfatte e che lo diventano.
+- Una variabile condizione rappresenta **una condizione (un evento) sullo stato del monitor** che aspetta di diventare vera: “il buffer non è vuoto”, “il valore è stato scritto”, “la risorsa è libera”.
+- **Ogni variabile condizione ha una coda FIFO** di processi bloccati su di essa.
 
-**Due operazioni atomiche**, `waitC` e `signalC` (talvolta scritte semplicemente `wait` e `signal`). **Ogni variabile condizione ha una coda FIFO** di processi bloccati.
+Le operazioni sono due, **atomiche**, chiamate `waitC` e `signalC` (a volte scritte solo `wait` e `signal`; la `C` finale serve a distinguerle da quelle dei semafori).
 ![[Pasted image 20261109155833.png]]![[Pasted image 20261109155810.png|410]]
 
 > [!warning] `waitC` rilascia il lock del monitor È **essenziale**: se un processo che fa `waitC` **continuasse a tenere** il lock del monitor mentre dorme, nessun altro potrebbe entrare nel monitor per rendere vera la condizione (e quindi svegliarlo). Sarebbe un deadlock. Per questo c'è un **legame esplicito** tra la variabile condizione e il monitor che la contiene: la `waitC` **rilascia automaticamente** il monitor.

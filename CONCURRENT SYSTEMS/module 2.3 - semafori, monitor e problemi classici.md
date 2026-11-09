@@ -288,40 +288,28 @@ Con questi due vincoli la soluzione con semafori è **impossibile**.
 > Un **monitor** è un'**astrazione dati per la programmazione concorrente** che **incapsula** la **politica di sincronizzazione e mutua esclusione** per accedervi: 
 > 
 > **stato + operazioni + politica di concorrenza**
+> > [!quote] Invece di dire ai processi come proteggere un dato, si mette il dato dentro una “scatola” che si protegge da sola.
 
 > [!example] **Generalizzazioni** utili per capirlo
 > **Del kernel dei sistemi operativi.** Nei SO le sezioni critiche (ad esempio l'allocazione di memoria) sono **centralizzate** in un programma privilegiato, il **kernel**: i programmi applicativi **richiedono servizi** al kernel, che gira in una modalità hardware tale da non poter essere disturbato. I monitor sono **versioni decentralizzate** del kernel monolitico.
 
 ### Struttura di un monitor
-
 ![[Pasted image 20261104165301.png|394]]
-**Proprietà:**
+- **Variabili permanenti:** lo stato. “Permanenti” perché durano per tutta la vita del monitor, non solo durante una chiamata.
+- **Inizializzazione:** il codice che prepara lo stato iniziale. Viene eseguito **prima** che qualsiasi procedura sia chiamata.
+- **Procedure (o _entries_):** le operazioni che i processi possono invocare.
 
-1. Il monitor è un'**istanza di un tipo di dato astratto**: all'esterno sono visibili **solo i nomi delle procedure** (l'**interfaccia**). Sono le **uniche porte** attraverso il "muro" definito dalla dichiarazione del monitor.
-2. Le procedure si chiamano con `call MonitorName.OpName(params)` o `MonitorName.OpName(params)`
-3. Le istruzioni dentro il monitor **non possono accedere a variabili dichiarate fuori** dal monitor.
-4. Le **variabili permanenti** sono inizializzate **prima** che venga chiamata qualsiasi procedura.
+### Proprietà
 
-### Mutua esclusione implicita
+Il monitor è un’**istanza di un tipo di dato astratto**:
 
-La mutua esclusione è **intrinseca**, non la scrive il programmatore:
+- **Dall’esterno si vedono solo i nomi delle procedure, e rappresentano l’_interfaccia_. 
+- Le chiamate sono fatte tramite `call MonitorName.OpName(params)`, o semplicemente `MonitorName.OpName(params)`.
+- **Il codice dentro il monitor non può toccare variabili dichiarate fuori.**
 
-- una procedura è **attiva** se qualche processo sta eseguendo un'istruzione al suo interno;
-- **al più una** procedura del monitor può essere attiva alla volta (un solo processo "dentro" il monitor);
-- i processi che trovano il monitor **occupato** vengono **sospesi**.
+> [!important] La **mutua esclusione** è **intrinseca**, non la scrive il programmatore, al più un processo può accedere al monitor, se lo trova occupato viene inserito in coda.
 
-> [!example] Contatore thread-safe
-> 
-> 
-> 
-> L'incremento (non atomico a livello macchina, come visto) è **sicuro** perché due `inc()` non possono mai essere attive insieme. Nessun `wait`/`signal` da scrivere.
-
-
-**Osservazioni:**
-
-- Se le operazioni **dello stesso monitor** sono chiamate da più processi, l'implementazione garantisce che siano eseguite **in mutua esclusione**, cioè **atomicamente l'una rispetto all'altra**.
-- Se invece si chiamano operazioni di **monitor diversi**, le esecuzioni **possono intrecciarsi**.
-- Non c'è una **coda esplicita** associata all'ingresso del monitor: il rischio di **starvation** esiste (nulla garantisce l'ordine con cui entrano i processi in attesa).
+> [!fail] Non c'è una **coda esplicita** associata all'ingresso del monitor: il rischio di **starvation** esiste (nulla garantisce l'ordine con cui entrano i processi in attesa).
 
 ### Sincronizzazione: le variabili condizione
 

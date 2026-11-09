@@ -94,8 +94,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 413.5,
-    "collapsed": true
+    "width": 413.5
   },
   "right": {
     "id": "994e93d0a7538110",
@@ -203,6 +202,8 @@
   },
   "active": "6c50a5ddbb537f8f",
   "lastOpenFiles": [
+    "MACHINE LEARNING/Allegati/Pasted image 20261109134227.png",
+    "MACHINE LEARNING/Allegati/Pasted image 20261109133350.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261109124932.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261109124439.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261106172506.png",
@@ -215,8 +216,6 @@
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261104165742.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261104165734.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261104165301.png",
-    "CONCURRENT SYSTEMS/Allegati/Pasted image 20261104155411.png",
-    "CONCURRENT SYSTEMS/Allegati/Pasted image 20261104152755.png",
     "CONCURRENT SYSTEMS/module 2.1 - MODELLING & VERIFICATION .md",
     "CONCURRENT SYSTEMS/module 1.3 - ANALYSING.md",
     "CONCURRENT SYSTEMS/module 1.2 - Sintassi FSP - LTS .md",

@@ -140,39 +140,35 @@ Eseguire l'algoritmo **più volte** con soluzioni iniziali diverse e tenere la m
 - prodotte da un altro euristico
 - prodotte da un metodo evoluzionistico (**algoritmo genetico**)
 
-> [!tip] Extra utile (non nelle slide) **K-means++** è la tecnica di inizializzazione standard (e il default di scikit-learn): sceglie i centroidi iniziali sparsi tra loro, con probabilità proporzionale alla distanza dai centroidi già scelti.
+> [!tip] **K-means++** 
+> è la tecnica di inizializzazione standard (e il default di scikit-learn): 
+> sceglie i centroidi iniziali sparsi tra loro, con probabilità proporzionale alla distanza dai centroidi già scelti.
 
 ---
-
 ## K-means validazione e scelta di s
 
-**Problema**: quanti cluster scegliere? (_clustering validation_)
+>[!abstract] La **clustering validation** è la scelta del numero di cluster
 
-### Perché $J_e$ da solo non basta
-
-$J_e$ **diminuisce sempre** all'aumentare di $s$. Per $s=n$ (ogni punto è un cluster) si ha $J_e=0$: soluzione "perfetta" ma inutile.
-
+> [!question] Perché $J_e$ da solo non basta
+$J_e$ **diminuisce sempre** all'aumentare di $s$. 
+Per $s=n$ (ogni punto è un cluster) si ha $J_e=0$: soluzione "perfetta" ma inutile.
 Serve quindi un criterio che bilanci **bontà** e **complessità**.
 
 ### Soluzione 1: penalizzazione
 
 $$J_e^{*}=J_e+\text{penalty}\cdot s$$
 
-Il problema si sposta sulla scelta di _penalty_ (non risolve davvero).
+> [!fail] Il problema si sposta sulla scelta di _penalty_ (non risolve davvero).
 
 ### Soluzione 2: metodo del gomito (elbow)
 
-Si traccia $J_e$ al variare di $s$ e si cerca il punto di **flessione**, dove il calo **rallenta di colpo**.
-
-- Se i dati hanno raggruppamenti evidenti, scegliendo il giusto $s$ si vede una discontinuità nel grafico.
-- Nell'esempio della slide: per $s=4$ il calo rallenta molto → la curva sembra un braccio e $s=4$ è il **gomito**.
+Un modo più efficace per determinare il numero ottimale di cluster è quello di analizzare la **discontinuità nel grafico**, cercando i punti di inflessione, ovvero dove il calo **rallenta di colpo**.
+![[Pasted image 20261109133350.png]]
 
 ### Soluzione 3: silhouette score
 
 Più oggettivo, ma adatto a cluster **sferici** (come quelli di K-means).
-
 $$\text{Silhouette coefficient}=\frac{b-a}{\max(a,b)}$$
-
 - $a$ = distanza **media intra-cluster** del pattern (da tutti gli altri punti del suo cluster)
 - $b$ = distanza media dai pattern del **cluster più vicino** (escluso il proprio)
 
@@ -184,16 +180,15 @@ $$\text{Silhouette coefficient}=\frac{b-a}{\max(a,b)}$$
 > - vicino a **0**: il punto è al confine tra due cluster
 > - **negativo**: probabilmente è nel cluster sbagliato
 
-- In scikit-learn: `silhouette_score()`
 - Pesante computazionalmente su grandi dataset (servono le distanze tra tutte le coppie).
 - Il **silhouette diagram** (vedi Géron) mostra graficamente i coefficienti, cluster per cluster, ed è utile per la validazione.
-
+![[Pasted image 20261109134227.png]]
 ---
 
 ## Fuzzy K-means
 
-Variante **soft**: ogni pattern appartiene a **tutti** i cluster con una certa probabilità/grado.
-
+> [!abstract] Variante **soft**
+> ogni pattern appartiene a **tutti** i cluster con una certa probabilità/grado.
 ### Criterio da ottimizzare
 
 $$J_{fuz}=\sum_{i=1}^{s}\sum_{j=1}^{n}\big[P(C_i|\mathbf{x}_j,\Theta)\big]^m\cdot|\mathbf{x}_j-\boldsymbol{\theta}_i|^2$$
@@ -389,41 +384,3 @@ do {
 > - EM converge solo a un **ottimo locale** del likelihood, quindi conviene rilanciarlo con inizializzazioni diverse (spesso inizializzato con K-means).
 > - Per scegliere $s$ con le gaussian mixture si usano criteri come **BIC** e **AIC**.
 > - Una GMM con covarianze sferiche uguali e assegnazione hard equivale a K-means.
-
----
-
-## Confronto finale
-
-||**K-means**|**Fuzzy K-means**|**EM (Gaussian Mixture)**|
-|---|---|---|---|
-|Assegnazione|hard|soft|soft (probabilità)|
-|Cosa stima|centroidi|centroidi|medie + covarianze + pesi|
-|Forma dei cluster|sferica (euclidea)|sferica|**ellissoidale**|
-|Criterio|$J_e$|$J_{fuz}$|**log-likelihood**|
-|Parametro chiave|$s$|$s$, $m$|$s$|
-|Velocità|molto veloce|media|più lento (molte iterazioni)|
-|Rischio|minimi locali|$s$ sbagliato → cattive soluzioni|minimi locali, problemi numerici|
-|Ottimizzazione|locale/iterativa|locale/iterativa|locale/iterativa|
-
-> [!summary] Punti chiave da ricordare
-> 
-> - **Criterio ≠ algoritmo.**
-> - Il numero di partizioni cresce in modo **esplosivo** ($\approx s^n/s!$) → servono euristiche.
-> - **K-means**: assegna → ricalcola medie; semplice, ma sferico, locale, richiede $s$.
-> - Scelta di $s$: **elbow** su $J_e$, oppure **silhouette** (da massimizzare). $J_e$ da solo scende sempre.
-> - **Fuzzy**: appartenenze graduali con parametro $m$ ($m=2$ tipico).
-> - **EM/GMM**: variabile nascosta + Bayes; alterna E (appartenenze) e M (parametri); cluster ellissoidali.
-> - **Gerarchico**: dendrogramma; single link = catene, complete link = compatti, average = via di mezzo.
-> - **DBSCAN** per cluster basati sulla densità.
-
-## Domande tipiche da ripasso
-
-- [ ] Differenza tra criterio e algoritmo di clustering?
-- [ ] Perché il problema è NP-hard? Quante soluzioni ci sono con $s=2$?
-- [ ] Quali sono single, average e complete link?
-- [ ] Scrivi l'algoritmo di K-means. Perché può non trovare l'ottimo globale?
-- [ ] Perché non si può scegliere $s$ minimizzando $J_e$? Come si risolve (elbow, silhouette)?
-- [ ] Come cambia fuzzy K-means rispetto a K-means? Che cosa fa $m$?
-- [ ] Perché nell'EM la sommatoria dentro il logaritmo è un problema? Come lo aggira la variabile nascosta?
-- [ ] Interpreta le Eq. (1)-(4) dell'EM.
-- [ ] Quando preferire EM a K-means?

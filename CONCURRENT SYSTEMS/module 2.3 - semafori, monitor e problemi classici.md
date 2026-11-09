@@ -336,7 +336,8 @@ Una cella che contiene un valore: chi legge (`get`) **aspetta** che qualcuno abb
 - `set` imposta il valore, segna `available` e **risveglia** un lettore in attesa.
 - `get`, se il valore non c'è ancora, **si sospende** sulla condizione `isAvail` (rilasciando il monitor) e, una volta risvegliato, restituisce il valore.
 
-**Differenza con i semafori:** il `signalC` **non ricorda** il segnale. Se nessuno sta aspettando, **non ha effetto**. Per questo serve la variabile `available`, che **tiene memoria** del fatto che il valore è stato scritto (così un `get` che arriva _dopo_ il `set` non si blocca).
+> [!abstract] **Differenza con i semafori** 
+> il `signalC` **non ricorda** il segnale. Se nessuno sta aspettando, **non ha effetto**. Per questo serve la variabile `available`, che **tiene memoria** del fatto che il valore è stato scritto (così un `get` che arriva _dopo_ il `set` non si blocca).
 
 ### Altre primitive
 

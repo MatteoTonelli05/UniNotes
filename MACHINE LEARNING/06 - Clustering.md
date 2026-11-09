@@ -121,36 +121,17 @@ dove $f_s(\mathbf{x},C_i)$ misura la distanza tra $\mathbf{x}$ e il suo cluster.
 ### Caratteristiche
 
 - Minimizza **implicitamente** $J_e$ (distanze dai centroidi).
-- **Input**: numero di cluster $s$ + soluzione iniziale (centroidi iniziali).
-- Ottimizzazione **iterativa e locale** → può fermarsi in un **ottimo locale**.
-- Converge di solito in **pochi passi** (< 10 nell'esempio).
-- Forma dei cluster:
-    - distanza **euclidea** → cluster **iper-sferici**
-    - distanza di **Mahalanobis** → cluster **iper-ellissoidali**
+- **Input**: numero di cluster $s$ + centroidi iniziali.
+- Converge di solito in **pochi passi** (< 10 nell'esempio), può però capitare in un ottimo locale.
+- Conviene normalizzare i dati per non creare forme non riconoscibili
 
+> [!hint] La forma dei cluster dipende dalla metrica scelta:
+> - distanza **euclidea** → cluster **iper-sferici**
+> - distanza di **Mahalanobis** → cluster **iper-ellissoidali**
 ### Algoritmo
-
-```
-Inizializza n, s
-Scegli a caso s pattern come centroidi iniziali
-do {
-    assegna ogni pattern al cluster il cui centroide è più vicino
-    ricalcola i centroidi come media dei pattern di ciascun cluster
-} while (i cluster sono cambiati  &  iterazione < max)
-```
-
+![[Pasted image 20261109124439.png|571]]
 Termina quando i centroidi sono stabili, cioè le partizioni non cambiano più.
-
-> [!example] Esempio della slide ($n=86$, $s=3$) Dalla soluzione iniziale (centroidi molto vicini tra loro al centro) i centroidi si "allargano" iterazione dopo iterazione, finché alla 7ª iterazione si ha **convergenza** con tre gruppi distinti.
-
-### Limitazioni
-
-- Non riconosce cluster **non sferici** (allungati, a forma irregolare, innestati): nelle slide, 3 classi in 8 iterazioni e 11 classi in 31 iterazioni producono suddivisioni "tagliate male" proprio perché i gruppi reali non sono sferici.
-- Richiede di **conoscere $s$**.
-- Dipende dall'**inizializzazione**.
-- Sensibile agli **outlier** (la media viene trascinata).
-- Dipende dalla **scala** delle feature → conviene normalizzare.
-
+![[Pasted image 20261109124932.png|411]]
 ### Come ridurre il rischio di minimi locali
 
 Eseguire l'algoritmo **più volte** con soluzioni iniziali diverse e tenere la migliore (quella con $J_e$ minore). Le iniziali possono essere:

@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "MACHINE LEARNING/06 - Clustering.md",
+                "file": "MACHINE LEARNING/07 - Riduzione della dimensionalità.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "06 - Clustering"
+              "title": "07 - Riduzione della dimensionalità"
             }
           }
         ]
@@ -94,96 +94,13 @@
       }
     ],
     "direction": "horizontal",
-    "width": 413.5
+    "width": 413.5,
+    "collapsed": true
   },
   "right": {
     "id": "994e93d0a7538110",
     "type": "split",
-    "children": [
-      {
-        "id": "cd78ef630f083331",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "e0b45b8e2f03c6ae",
-            "type": "leaf",
-            "state": {
-              "type": "backlink",
-              "state": {
-                "file": "MACHINE LEARNING/06 - Clustering.md",
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              },
-              "icon": "links-coming-in",
-              "title": "Riferimenti"
-            }
-          },
-          {
-            "id": "ead8413b54c8621c",
-            "type": "leaf",
-            "state": {
-              "type": "outgoing-link",
-              "state": {
-                "file": "MACHINE LEARNING/06 - Clustering.md",
-                "linksCollapsed": false,
-                "unlinkedCollapsed": true
-              },
-              "icon": "links-going-out",
-              "title": "Collegamenti in uscita"
-            }
-          },
-          {
-            "id": "54f176cedfd26ac6",
-            "type": "leaf",
-            "state": {
-              "type": "tag",
-              "state": {
-                "sortOrder": "frequency",
-                "useHierarchy": true,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-tags",
-              "title": "Etichette"
-            }
-          },
-          {
-            "id": "4dad1b3c2a3d7551",
-            "type": "leaf",
-            "state": {
-              "type": "all-properties",
-              "state": {
-                "sortOrder": "frequency",
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-archive",
-              "title": "Tutte le proprietà"
-            }
-          },
-          {
-            "id": "085590156e83abdf",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "MACHINE LEARNING/06 - Clustering.md",
-                "followCursor": false,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-list",
-              "title": "Struttura"
-            }
-          }
-        ]
-      }
-    ],
+    "children": [],
     "direction": "horizontal",
     "width": 285.5,
     "collapsed": true
@@ -202,6 +119,10 @@
   },
   "active": "6c50a5ddbb537f8f",
   "lastOpenFiles": [
+    "MACHINE LEARNING/Allegati/Pasted image 20261109140938.png",
+    "MACHINE LEARNING/06 - Clustering.md",
+    "MACHINE LEARNING/07 - Riduzione della dimensionalità.md",
+    "MACHINE LEARNING/05 - Regressione.md",
     "MACHINE LEARNING/Allegati/Pasted image 20261109134227.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261109133350.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261109124932.png",
@@ -209,13 +130,10 @@
     "MACHINE LEARNING/Allegati/Pasted image 20261106172506.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261106171015.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261106164506.png",
-    "MACHINE LEARNING/05 - Regressione.md",
-    "MACHINE LEARNING/06 - Clustering.md",
     "CONCURRENT SYSTEMS/module 2.3 - semafori, monitor e problemi classici.md",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261104165745.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261104165742.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261104165734.png",
-    "CONCURRENT SYSTEMS/Allegati/Pasted image 20261104165301.png",
     "CONCURRENT SYSTEMS/module 2.1 - MODELLING & VERIFICATION .md",
     "CONCURRENT SYSTEMS/module 1.3 - ANALYSING.md",
     "CONCURRENT SYSTEMS/module 1.2 - Sintassi FSP - LTS .md",
@@ -238,7 +156,6 @@
     "visione/Immagini/Trasformazioni geometriche.md",
     "visione/Immagini/Operazioni su singole Immagini.md",
     "visione/Filtri/Canny edge detector.md",
-    "visione/Filtri/Bordi.md",
     "visione/Immagini",
     "visione/Analisi di immagini binarie",
     "visione/pasted_img",

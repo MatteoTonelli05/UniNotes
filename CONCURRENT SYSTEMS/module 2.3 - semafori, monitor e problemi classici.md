@@ -321,18 +321,7 @@ La mutua esclusione implicita non basta: spesso un processo deve **aspettare che
 Sono **tipi di dato primitivi** per sospendere (`wait`) e riprendere (`signal`) processi dentro un monitor, rappresentando **condizioni (eventi) sullo stato del monitor** che aspettano di essere soddisfatte e che lo diventano.
 
 **Due operazioni atomiche**, `waitC` e `signalC` (talvolta scritte semplicemente `wait` e `signal`). **Ogni variabile condizione ha una coda FIFO** di processi bloccati.
-
-```text
-waitC(cond) =
-< append p to cond.queue
-  p.state := blocked
-  monitor.lock := release >
-
-signalC(cond) =
-< if cond.queue != empty
-      q := remove head of cond.queue
-      q.state := ready >
-```
+![[Pasted image 20261109155833.png]]![[Pasted image 20261109155810.png|410]]
 
 > [!warning] `waitC` rilascia il lock del monitor È **essenziale**: se un processo che fa `waitC` **continuasse a tenere** il lock del monitor mentre dorme, nessun altro potrebbe entrare nel monitor per rendere vera la condizione (e quindi svegliarlo). Sarebbe un deadlock. Per questo c'è un **legame esplicito** tra la variabile condizione e il monitor che la contiene: la `waitC` **rilascia automaticamente** il monitor.
 
@@ -340,25 +329,7 @@ signalC(cond) =
 
 Una cella che contiene un valore: chi legge (`get`) **aspetta** che qualcuno abbia scritto (`set`).
 
-```text
-monitor SynchCell {
-    int value;
-    boolean available := false;
-    cond isAvail;
-
-    procedure set(int v) {
-        value := v
-        available := true
-        signalC(isAvail)
-    }
-
-    procedure get(): int {
-        if (!available)
-            waitC(isAvail)
-        return value
-    }
-}
-```
+![[Pasted image 20261109155904.png|236]]
 
 - `set` imposta il valore, segna `available` e **risveglia** un lettore in attesa.
 - `get`, se il valore non c'è ancora, **si sospende** sulla condizione `isAvail` (rilasciando il monitor) e, una volta risvegliato, restituisce il valore.

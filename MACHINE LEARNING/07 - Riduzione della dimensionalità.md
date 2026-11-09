@@ -44,19 +44,19 @@ $$\Phi_k=[\boldsymbol{\varphi}_{i_1},\boldsymbol{\varphi}_{i_2},\dots,\boldsymbo
 > - gli **autovettori** sono gli **assi** dell'ellisse (le direzioni principali)
 > - gli **autovalori** sono le **varianze** lungo quegli assi (più è grande, più l'ellisse è "lunga" lì)
 > 
-> Tenere i $k$ assi con varianza maggiore = tenere le direzioni dove i dati "si muovono" di più, scartando quelle quasi piatte.
+> Tenere i $k$ assi con varianza maggiore significa tenere le direzioni dove i dati "si muovono" di più, scartando quelle quasi piatte.
+>
+>**RICORDA:** stiamo parlando di una riduzione da $d$ dimensioni a $k$
 
 ### Proiezione e retroproiezione
 
-**Proiezione** ($\to$) $\rightarrow$ da $\mathbb{R}^d$ a $\mathbb{R}^k$: prodotto della matrice di proiezione **trasposta** per il pattern a cui è stata **sottratta la media**.
+**Proiezione** ($\to$) da $\mathbb{R}^d$ a $\mathbb{R}^k$: prodotto della matrice di proiezione **trasposta** per il pattern a cui è stata **sottratta la media**.
 
 $$\mathbf{y}=\overrightarrow{PCA}(\mathbf{x},S_{\bar{\mathbf{x}},\Phi_k})=\Phi_k^t(\mathbf{x}-\bar{\mathbf{x}})$$
 
-**Retroproiezione** ($\leftarrow$) $\rightarrow$ da $\mathbb{R}^k$ a $\mathbb{R}^d$: si moltiplica per la matrice di proiezione e si **somma la media**.
+**Retroproiezione** ($\leftarrow$) da $\mathbb{R}^k$ a $\mathbb{R}^d$: si moltiplica per la matrice di proiezione e si **somma la media**.
 
 $$\mathbf{x}'=\overleftarrow{PCA}(\mathbf{y},S_{\bar{\mathbf{x}},\Phi_k})=\Phi_k\mathbf{y}+\bar{\mathbf{x}}$$
-
-> [!note] Dettaglio terminologico La vera proiezione geometrica di $\mathbf{x}$ sull'iperpiano è un vettore ancora in $d$ dimensioni. Qui si chiama "proiezione" il vettore **ridotto** $\mathbf{y}$ (le coordinate nello spazio PCA). La retroproiezione **non sposta** il vettore, che giace ancora sullo spazio PCA: fa solo un **cambio di coordinate** per codificarlo con le $d$ componenti dello spazio originale.
 
 > [!hint] In pratica
 > 

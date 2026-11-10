@@ -375,31 +375,7 @@ Le operazioni sono due, **atomiche**, chiamate `waitC` e `signalC` (a volte scri
 ## Usare i monitor
 
 ### Produttori-consumatori: il buffer limitato come monitor
-
-``` java
-monitor BoundedBuffer {
-    ElemType buffer := <EmptyBuffer>
-    cond notFull, notEmpty
-
-    procedure put(ElemType elem) {
-        if (buffer is full)
-            waitC(notFull)
-        append(buffer, elem)
-        signalC(notEmpty)
-    }
-
-    procedure take(): ElemType {
-        if (buffer is empty)
-            waitC(notEmpty)
-        ElemType el := head(buffer)
-        signalC(notFull)
-        return el
-    }
-}
-
-```
-![[Pasted image 20261110141947.png]]
-
+![[Pasted image 20261110142536.png]]
 **Come leggerlo.**
 
 - Ci sono **due condizioni**: `notFull` (c'è posto) e `notEmpty` (c'è almeno un elemento).

@@ -360,10 +360,9 @@ Le operazioni sono due, **atomiche**, chiamate `waitC` e `signalC` (a volte scri
 
 ## La disciplina di segnalazione
 
-### Il problema
 
-Quando un processo esegue `signalC`, ci possono essere **due processi che potrebbero proseguire**: il **segnalatore** (che è ancora dentro il monitor) e il **processo risvegliato**. Ma per la semantica del monitor **uno solo** può essere attivo. Quindi bisogna **scegliere** chi continua: o il segnalatore, o il risvegliato, **non entrambi**.
-
+> [!attention] Problema
+> Quando un processo esegue `signalC`, ci possono essere **due processi che potrebbero proseguire**: il **segnalatore** (che è ancora dentro il monitor) e il **processo risvegliato**. Ma per la semantica del monitor **uno solo** può essere attivo.
 ### Le tre semantiche
 
 |Disciplina|Chi prosegue|Caratteristiche|
@@ -371,21 +370,6 @@ Quando un processo esegue `signalC`, ci possono essere **due processi che potreb
 |**Signal and Continue**|Il **segnalatore** continua; il risvegliato eseguirà **più tardi**|**Non preemptive**|
 |**Signal and Wait**|Il **risvegliato** esegue **subito**; il segnalatore **aspetta**, e poi compete con gli altri per rientrare|**Preemptive**|
 |**Signal and Urgent Wait** (o _Immediate Resumption Requirement_)|Come Signal and Wait, ma il **segnalatore ha priorità** sugli altri processi in attesa di entrare|È la **soluzione classica** per i monitor|
-
-### Precedenze
-
-Siano:
-
-- $S$ = precedenza dei processi **segnalatori**;
-- $W$ = precedenza dei processi **in attesa sulla condizione**;
-- $E$ = precedenza dei processi **bloccati all'ingresso** del monitor.
-
-|Disciplina|Precedenze|
-|---|---|
-|Signal and Continue|$E < W < S$|
-|Signal and Wait|$E = S < W$|
-|Signal and Urgent Wait|$E < S < W$|
-
 ### Conseguenza pratica: `if` o `while`
 
 Il modo di scrivere l'attesa dipende dalla disciplina:

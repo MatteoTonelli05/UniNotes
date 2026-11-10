@@ -9,16 +9,16 @@ Il processo di progettazione si divide in **due macro-passi**:
 
 Si analizza il problema per **identificare la concorrenza sfruttabile**: decomposizione in task / dati e **dipendenze** tra di essi.
 
-> [!info] **Task** Una **sequenza di istruzioni** che operano insieme come gruppo, corrispondente a una **parte logica** di un algoritmo o programma. È un lavoro specifico da svolgere come dovere/responsabilità di un _agente_: definizione **più astratta e orientata al design**.
-
+> [!hint] Tipi di divisioni
+> Si può dividere per **task** (es. "mentre un componente scarica un file, un altro processa un’immagine") o per **dati** (es. "ho un array di 1 milione di elementi, ne do un quarto a testa a 4 processi diversi").
 ### Passo 2: Design
 
-Si sceglie un'**architettura concorrente** assegnando i task ad **agenti**:
+> [!abstract] Definizione di agenti
+>Un **agente** è un **componente software attivo e autonomo** responsabile dell'esecuzione di uno o più task. Incapsula al suo interno la logica di controllo (il _"cosa fare e quando farlo"_) ed è in grado di interagire con altri agenti attraverso componenti passivi (risorse condivise o mezzi di coordinamento).
 
-- **agenti** = componenti **attivi**, responsabili dell'esecuzione dei task (incapsulano **logica e controllo**);
-- per lavorare insieme, gli agenti usano componenti **passivi** condivisi:
-    - **risorse condivise** che incapsulano il risultato del lavoro degli agenti;
-    - **risorse/media di coordinamento** che modellano l'interazione e gestiscono le **dipendenze** tra task.
+Si sceglie un'**architettura concorrente** assegnando i task ad **agenti**, i quali, per lavorare insieme, sfruttano componenti **passivi** condivisi:
+- **risorse condivise** che incapsulano il risultato del lavoro degli agenti;
+- **risorse/media di coordinamento** che modellano l'interazione e gestiscono le **dipendenze** tra task.
 
 ### Disciplina componenti attivi vs. passivi
 
@@ -286,18 +286,7 @@ flowchart LR
 
 Esempio: **parallelizzazione di applicazioni event-driven**, ottenuta **parallelizzando l'esecuzione degli event handler**.
 
-### Riassunto delle architetture
-
-|Architettura|Agenti|Risorsa condivisa / mezzo|Esempi di problemi|
-|---|---|---|---|
-|**Master-Workers**|master + worker|**bag of tasks** (blackboard / bounded buffer)|(task-oriented)|
-|**Fork-Join**|worker che sono anche master (ricorsivo)|bag of tasks o diretto|quadratura adattiva, merge sort|
-|**Filter-Pipeline**|generator, filter, sink|**pipe / bounded buffer / canali**|image processing|
-|**Shared-Space**|agenti pari|**spazio condiviso** (tuple space, Linda)|coordinazione data-driven|
-|**Announcer-Listeners**|announcer + listener|**event service**|applicazioni event-driven|
-
 ---
-
 ## Rivisitare il Model-View-Controller
 
 > [!attention] **Problema** Come **separare gli aspetti model / view / controller** nel design di programmi concorrenti complessi?
@@ -308,26 +297,3 @@ Esempio: **parallelizzazione di applicazioni event-driven**, ottenuta **parallel
 - **Model** → **componenti passivi condivisi**: usati dagli agenti, incapsulano le **proprietà di mutex**, includono i **mezzi di coordinamento**;
 - **View** → **componenti passivi condivisi**: **abilitano e mediano** l'interazione con gli utenti, sono **osservati e usati** dagli agenti, possono accedere al model per leggerne lo stato.
 
-### Problemi (da discutere)
-
-> [!question] **Toolkit GUI e thread-safety** Una scelta comune nei toolkit GUI è avere **un solo componente attivo** responsabile della GUI, con tutti i componenti GUI **non thread-safe**. Come gestirlo con l'approccio visto finora?
-
-- Più in generale, MVC adotta un approccio **event-based** alle interazioni: **observer pattern**.
-- L'observer **originale** è **sincrono** e implica **accoppiamento del controllo** (_control coupling_).
-
-> [!tip] **Ripensare l'observer pattern per i sistemi concorrenti** Con un'architettura **produttore/consumatore**:
-> 
-> - il **bounded buffer** è una **coda di eventi**;
-> - i **produttori** generano gli eventi;
-> - i **consumatori** reagiscono e **consumano** gli eventi.
-
----
-
-## Bibliografia
-
-- **[CAR-89]** N. Carriero, D. Gelernter, _How to write parallel programs: a guide to the perplexed_, ACM Computing Surveys 21(3), 1989
-- **[GEL-92]** D. Gelernter, N. Carriero, _Coordination languages and their significance_, Commun. ACM 35(2), 1992
-- **[GEL-85]** D. Gelernter, _Generative communication in Linda_, ACM TOPLAS 7(1), 1985
-- **[MAT-05]** T. Mattson, B. Sanders, B. Massingill, _Patterns for Parallel Programming_, Addison Wesley, 2005
-- **[MAG-99]** J. Magee, J. Kramer, _Concurrency: State Models and Java Programs_, Wiley, 1999
-- **[MAL-93]** T. W. Malone, K. Crowston, _The interdisciplinary study of coordination_, MIT Sloan, 1993

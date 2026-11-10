@@ -325,104 +325,26 @@ Le variabili condizione sono **tipi di dato primitivi** che si usano **dentro i 
 
 Le operazioni sono due, **atomiche**, chiamate `waitC` e `signalC` (a volte scritte solo `wait` e `signal`; la `C` finale serve a distinguerle da quelle dei semafori).
 ![[Pasted image 20261109155833.png]]![[Pasted image 20261109155810.png|410]]
-
-> [!warning] `waitC` rilascia il lock del monitor È **essenziale**: se un processo che fa `waitC` **continuasse a tenere** il lock del monitor mentre dorme, nessun altro potrebbe entrare nel monitor per rendere vera la condizione (e quindi svegliarlo). Sarebbe un deadlock. Per questo c'è un **legame esplicito** tra la variabile condizione e il monitor che la contiene: la `waitC` **rilascia automaticamente** il monitor.
-
-### Esempio: cella sincronizzata
-
-Una cella che contiene un valore: chi legge (`get`) **aspetta** che qualcuno abbia scritto (`set`).
-
-![[Pasted image 20261109155904.png|236]]
-
-- `set` imposta il valore, segna `available` e **risveglia** un lettore in attesa.
-- `get`, se il valore non c'è ancora, **si sospende** sulla condizione `isAvail` (rilasciando il monitor) e, una volta risvegliato, restituisce il valore.
+> [!question] Perchè `waitC` rilascia il lock del monitor?
+> Se un processo che fa `waitC` **continuasse a tenere** il lock del monitor mentre dorme, nessun altro potrebbe entrare nel monitor per rendere vera la condizione (e quindi svegliarlo). Sarebbe un deadlock. Per questo c'è un **legame esplicito** tra la variabile condizione e il monitor che la contiene: la `waitC` **rilascia automaticamente** il monitor.
 
 > [!abstract] **Differenza con i semafori** 
 > il `signalC` **non ricorda** il segnale. Se nessuno sta aspettando, **non ha effetto**. Per questo serve la variabile `available`, che **tiene memoria** del fatto che il valore è stato scritto (così un `get` che arriva _dopo_ il `set` non si blocca).
 
 ### Altre primitive
 
-|Primitiva|Cosa fa|
-|---|---|
-|`emptyC(cond)`|Controlla se la coda della condizione è **vuota**|
-|`signalAllC(cond)`|Come `signalC`, ma **risveglia tutti** i processi in attesa|
-|`waitC(cond, rank)`|Si accoda **in ordine crescente di `rank`** (coda con priorità)|
-|`minrank(cond)`|Restituisce il `rank` del processo in **testa** alla coda|
-
-### Cella sincronizzata, varianti
-
-**Con `signalAllC`:** il `set` risveglia **tutti** i lettori in attesa.
-
-```text
-procedure set(int v) {
-    value := v
-    available := true
-    signalAllC(isAvail)
-}
-```
-
-**Senza `signalAllC` (segnalazione a catena):** si ottiene lo stesso effetto facendo **ri-segnalare** ogni processo che si è appena svegliato.
-
-```text
-procedure get(): int {
-    if (!available) {
-        waitC(isAvail)
-        signalC(isAvail)     // passo il "testimone" al prossimo in attesa
-    }
-    return value
-}
-```
-
-Il `set` ne sveglia **uno**; quello, appena sveglio, ne sveglia un altro, e così via: tutti i lettori in attesa proseguono.
-
+| Primitiva           | Cosa fa                                                         |
+| ------------------- | --------------------------------------------------------------- |
+| `emptyC(cond)`      | Controlla se la coda della condizione è **vuota**               |
+| `signalAllC(cond)`  | Come `signalC`, ma **risveglia tutti** i processi in attesa     |
+| `waitC(cond, rank)` | Si accoda **in ordine crescente di `rank`** (coda con priorità) |
+| `minrank(cond)`     | Restituisce il `rank` del processo in **testa** alla coda       |
 ### I semafori realizzati con i monitor
 
-Si può realizzare un semaforo con un monitor in due modi:
-
-**Versione 1**
-
-```text
-monitor Semaphore {
-    integer s := <InitValue>
-    cond notZero
-
-    procedure wait() {
-        if s = 0
-            waitC(notZero)
-        s := s - 1
-    }
-    procedure signal() {
-        s := s + 1
-        signalC(notZero)
-    }
-}
-```
-
-**Versione 2**
-
-```text
-monitor Semaphore {
-    integer s := <InitValue>
-    cond notZero
-
-    procedure wait() {
-        if s = 0
-            waitC(notZero)
-        else
-            s := s - 1
-    }
-    procedure signal() {
-        if emptyC(notZero)
-            s := s + 1
-        else
-            signalC(notZero)
-    }
-}
-```
-
+![[Pasted image 20261110134709.png]]
 > [!tip] La differenza
-> 
 > - **Versione 2** è **fedele alla definizione di semaforo**: se qualcuno è in attesa, `signal` **non incrementa** `s` ma **consegna direttamente** il permesso al processo sbloccato (che dopo la `waitC` non decrementa più).
+> 
 > - **Versione 1** incrementa sempre `s` e fa decrementare al processo risvegliato. Con una disciplina di segnalazione in cui un _terzo_ processo può inserirsi tra il `signalC` e la ripresa del risvegliato, quest'ultimo potrebbe trovare `s = 0` e **sbagliare** (qui si assume che il risvegliato riprenda subito).
 
 ### Semafori e variabili condizione a confronto

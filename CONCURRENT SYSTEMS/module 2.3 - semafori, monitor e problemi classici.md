@@ -320,7 +320,8 @@ Il monitor è un’**istanza di un tipo di dato astratto**:
 Le variabili condizione sono **tipi di dato primitivi** che si usano **dentro i monitor** per **sospendere** (`wait`) e **riprendere** (`signal`) processi.
 
 - Una variabile condizione rappresenta **una condizione (un evento) sullo stato del monitor** che aspetta di diventare vera: “il buffer non è vuoto”, “il valore è stato scritto”, “la risorsa è libera”.
-- **Ogni variabile condizione ha una coda FIFO** di processi bloccati su di essa.
+
+> [!abstract] **Ogni variabile condizione ha una coda FIFO** di processi bloccati su di essa.
 
 Le operazioni sono due, **atomiche**, chiamate `waitC` e `signalC` (a volte scritte solo `wait` e `signal`; la `C` finale serve a distinguerle da quelle dei semafori).
 ![[Pasted image 20261109155833.png]]![[Pasted image 20261109155810.png|410]]

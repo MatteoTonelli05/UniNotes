@@ -396,37 +396,7 @@ Le operazioni sono due, **atomiche**, chiamate `waitC` e `signalC` (a volte scri
 ### Lettori-scrittori come monitor
 
 **Versione con `while`** (corretta con qualsiasi disciplina di segnalazione):
-
-```text
-monitor RWLock {
-    int nr, nw = 0
-    cond okToRead, okToWrite
-
-    procedure request_read() {
-        while (nw > 0)
-            waitC(okToRead)
-        nr := nr + 1
-    }
-    procedure release_read() {
-        nr := nr - 1
-        if (nr = 0)
-            signalC(okToWrite)
-    }
-    procedure request_write() {
-        while (nr > 0 or nw > 0)
-            waitC(okToWrite)
-        nw := nw + 1
-    }
-    procedure release_write() {
-        nw := nw - 1
-        signalC(okToWrite)
-        signalAllC(okToRead)
-    }
-}
-```
-
-**Invariante:** `(nr == 0 or nw == 0) and (nw <= 1)`.
-
+![[Pasted image 20261110152403.png]]
 **Come funziona:**
 
 - un lettore può entrare se **non ci sono scrittori attivi**;

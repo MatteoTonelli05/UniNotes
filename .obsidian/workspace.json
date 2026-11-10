@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CONCURRENT SYSTEMS/module 2.3 - semafori, monitor e problemi classici.md",
+                "file": "CONCURRENT SYSTEMS/module 2.4 - DESIGN.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "module 2.3 - semafori, monitor e problemi classici"
+              "title": "module 2.4 - DESIGN"
             }
           }
         ]
@@ -119,6 +119,8 @@
   },
   "active": "6c50a5ddbb537f8f",
   "lastOpenFiles": [
+    "CONCURRENT SYSTEMS/module 2.3 - semafori, monitor e problemi classici.md",
+    "CONCURRENT SYSTEMS/module 2.4 - DESIGN.md",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261110155920.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261110155844.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261110155817.png",
@@ -129,12 +131,10 @@
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261110142536.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261110141947.png",
     "CONCURRENT SYSTEMS/Allegati/Pasted image 20261110134709.png",
-    "CONCURRENT SYSTEMS/Allegati/Pasted image 20261109155904.png",
     "SISTEMI INFORMATIVI/SISTEMI INFORMATIVI.md",
     "MACHINE LEARNING/07 - Riduzione della dimensionalità.md",
     "MACHINE LEARNING/06 - Clustering.md",
     "MACHINE LEARNING/05 - Regressione.md",
-    "CONCURRENT SYSTEMS/module 2.3 - semafori, monitor e problemi classici.md",
     "CONCURRENT SYSTEMS/module 2.1 - MODELLING & VERIFICATION .md",
     "CONCURRENT SYSTEMS/module 1.3 - ANALYSING.md",
     "CONCURRENT SYSTEMS/module 1.2 - Sintassi FSP - LTS .md",

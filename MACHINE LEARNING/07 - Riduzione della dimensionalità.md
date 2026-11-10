@@ -77,14 +77,13 @@ $$\mathbf{x}'=\overleftarrow{PCA}(\mathbf{y},S_{\bar{\mathbf{x}},\Phi_k})=\Phi_k
 ### Scelta di $k$
 
 - A volte è **obbligata**, ad esempio per la visualizzazione 2D o 3D.
-- Se invece si vuole scartare informazione inutile e dati correlati **mantenendo gran parte del contenuto informativo**: si fissa una percentuale $t$ da preservare (es. $t=95%$) e si prende il **minimo $k$** tale che la somma dei $k$ autovalori più grandi, rispetto alla somma di tutti, sia $\ge t$.
+- Se invece si vuole scartare informazione inutile e dati correlati **mantenendo gran parte del contenuto informativo**: si fissa una percentuale $t$ da preservare (es. $t=95$) e si prende il **minimo $k$** tale che la somma dei $k$ autovalori più grandi, rispetto alla somma di tutti, sia $\ge t$.
 
-$$k=\arg\min_z\left{\frac{\sum_{i=1}^{z}\lambda_i}{\sum_{i=1}^{d}\lambda_i}\ge t\right}\qquad(\text{autovalori in ordine decrescente})$$
+$$k=\arg\min_{z}\left\{z \;:\; \frac{\sum_{i=1}^{z}\lambda_{i}}{\sum_{i=1}^{d}\lambda_{i}} \geq \theta\right\}\qquad(\text{autovalori in ordine decrescente})$$
 
-> [!hint] Gli autovalori sono varianze: il rapporto è la **varianza conservata** rispetto alla varianza totale. Esempio: autovalori 60, 30, 8, ... con somma totale 100 $\rightarrow$ con $k=3$ si conserva il 98%.
-
-> [!tip] Extra: in scikit-learn si chiama `explained_variance_ratio_`. Il grafico della sua somma cumulata aiuta a scegliere $k$.
-
+> [!hint] Gli autovalori sono varianze
+>  il rapporto è la **varianza conservata** rispetto alla varianza totale. 
+>  Esempio: autovalori 60, 30, 8, ... con somma totale 100 $\rightarrow$ con $k=3$ si conserva il 98%.
 ### Codifica di un'immagine (eigenfaces)
 
 - Un'immagine di volto è un vettore $\mathbf{x}\in\mathbb{R}^{16500}$ (un valore per pixel).
@@ -240,8 +239,6 @@ plt.show()
 
 - UMAP preserva meglio anche la **struttura globale** dei cluster, cioè le **distanze inter-cluster**.
 - t-SNE può visualizzare cluster vicini o lontani **indipendentemente** dalla loro similarità nello spazio originale.
-
-> [!note] Esempio della mappa del mondo I punti di una mappa del mondo (Nord America, Sud America, Africa, Europa/Asia, Australia) vengono ridotti con PCA, t-SNE e UMAP. Il commento della slide ("Sud America tra Africa e Nord America?") sottolinea che t-SNE **riposiziona i continenti** in modo poco fedele all'originale, mentre UMAP mantiene una disposizione **più vicina a quella reale**.
 
 ---
 

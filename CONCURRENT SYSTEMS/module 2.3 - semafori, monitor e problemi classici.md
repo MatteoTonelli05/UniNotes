@@ -407,7 +407,8 @@ Le operazioni sono due, **atomiche**, chiamate `waitC` e `signalC` (a volte scri
 _che usa i processi lettori e scrittori con `startRead/endRead`, `startWrite/endWrite`
 
 ![[Pasted image 20261110153344.png]]
-Qui **`endWrite` dà la precedenza ai lettori in attesa** (se ce ne sono li risveglia tutti, altrimenti sveglia uno scrittore). Ogni lettore appena entrato risveglia il successivo (`signalC(okToRead)` in `startRead`).
+Qui **`endWrite` dà la precedenza ai lettori in attesa** (se ce ne sono li risveglia tutti, altrimenti 
+sveglia uno scrittore). Ogni lettore appena entrato risveglia il successivo (`signalC(okToRead)` in `startRead`).
 
 > [!tip] Rispetto ai semafori Il monitor rende **esplicita e leggibile** la politica (chi ha la priorità, quando si sveglia chi), mentre con i semafori andava dedotta da un intreccio di `wait` e `signal`. Cambiare politica (ad esempio dare la precedenza agli scrittori) significa modificare **solo il monitor**, non i processi che lo usano.
 
@@ -415,19 +416,7 @@ Qui **`endWrite` dà la precedenza ai lettori in attesa** (se ce ne sono li risv
 
 I monitor funzionano tipicamente da **allocatori di risorse**: impongono una **politica** per assegnare risorse ai processi che le richiedono.
 
-```text
-monitor ResourceAllocator {
-
-    procedure request(<Params>) {
-        < block the request until the resource or a resource
-          is available, according to some policy >
-    }
-
-    procedure release(<Params>) {
-        < possibly unblock some pending request >
-    }
-}
-```
+![[Pasted image 20261110155742.png]]
 
 ---
 
@@ -440,16 +429,7 @@ Un monitor si può costruire a partire dai semafori:
 
 ### Signal and Continue
 
-```text
-Prologue di ogni operazione:    wait(mutex)
-Epilogue di ogni operazione:    signal(mutex)
-
-waitC(cond) =                   signalC(cond) =
-    condcount++                     if (condcount > 0) {
-    signal(mutex)                       condcount--
-    wait(condsem)                       signal(condsem)
-    wait(mutex)                     }
-```
+![[Pasted image 20261110155844.png]]
 
 **Lettura.**
 
@@ -459,63 +439,12 @@ waitC(cond) =                   signalC(cond) =
 
 ### Signal and Wait
 
-```text
-waitC(cond) =                   signalC(cond) =
-    condcount++                     if (condcount > 0) {
-    signal(mutex)                       condcount--
-    wait(condsem)                       signal(condsem)
-                                        wait(mutex)
-                                    }
-```
+![[Pasted image 20261110155920.png]]
 
 **Differenza.**
 
 - Il processo risvegliato **non** fa `wait(mutex)`: **riceve direttamente il possesso del monitor** dal segnalatore (il mutex viene "ereditato").
 - Il **segnalatore**, dopo aver sbloccato il risvegliato, fa `wait(mutex)` e **si mette in attesa** di rientrare: cede il monitor al risvegliato.
 
-> [!tip] Perché non c'è il problema di un `signal` arrivato "troppo presto" In `waitC` c'è un piccolo intervallo tra `signal(mutex)` e `wait(condsem)`: un `signalC` potrebbe arrivare proprio lì. Non è un problema, perché il **semaforo ricorda** il `signal`: quando il processo arriva a `wait(condsem)` lo trova già a 1 e prosegue senza bloccarsi. È un'applicazione concreta di "il semaforo conta e ricorda".
-
----
-## I monitor in Java (aggiunta utile)
-
-Java incorpora i monitor in modo **parziale**: ogni oggetto ha un lock intrinseco e **una sola coda di attesa**.
-
-|Concetto|In Java|
-|---|---|
-|Mutua esclusione implicita|`synchronized` su metodo o blocco|
-|`waitC`|`wait()` (rilascia il lock dell'oggetto)|
-|`signalC`|`notify()`|
-|`signalAllC`|`notifyAll()`|
-|Disciplina|**Signal and Continue** → sempre `while`|
-|Più variabili condizione|`ReentrantLock` + `Condition` (`await`, `signal`, `signalAll`)|
-|Semafori|`java.util.concurrent.Semaphore` (`acquire`, `release`)|
-
-**Buffer limitato in Java:**
-
-```java
-class BoundedBuffer<T> {
-    private final java.util.LinkedList<T> items = new java.util.LinkedList<>();
-    private final int capacity;
-
-    BoundedBuffer(int capacity) { this.capacity = capacity; }
-
-    public synchronized void put(T elem) throws InterruptedException {
-        while (items.size() == capacity)   // while, non if
-            wait();
-        items.addLast(elem);
-        notifyAll();                       // sveglia chi aspetta (consumatori)
-    }
-
-    public synchronized T take() throws InterruptedException {
-        while (items.isEmpty())
-            wait();
-        T el = items.removeFirst();
-        notifyAll();                       // sveglia chi aspetta (produttori)
-        return el;
-    }
-}
-```
-
-> [!note] Perché `notifyAll` Con una **sola coda di attesa per oggetto**, produttori e consumatori aspettano sulla stessa coda: `notify()` potrebbe svegliare quello sbagliato (ad esempio un altro produttore quando il buffer è pieno) e il segnale andrebbe sprecato. `notifyAll()` sveglia tutti: ciascuno ricontrolla la condizione nel `while`. Con `ReentrantLock` e due `Condition` (`notFull`, `notEmpty`) si può essere più precisi.
-
----
+> [!tip] Perché non c'è il problema di un `signal` arrivato "troppo presto" 
+> In `waitC` c'è un piccolo intervallo tra `signal(mutex)` e `wait(condsem)`: un `signalC` potrebbe arrivare proprio lì. Non è un problema, perché il **semaforo ricorda** il `signal`: quando il processo arriva a `wait(condsem)` lo trova già a 1 e prosegue senza bloccarsi. È un'applicazione concreta di "il semaforo conta e ricorda".

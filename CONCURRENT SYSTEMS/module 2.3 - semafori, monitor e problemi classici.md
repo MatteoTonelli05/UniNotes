@@ -365,43 +365,18 @@ Le operazioni sono due, **atomiche**, chiamate `waitC` e `signalC` (a volte scri
 > Quando un processo esegue `signalC`, ci possono essere **due processi che potrebbero proseguire**: il **segnalatore** (che è ancora dentro il monitor) e il **processo risvegliato**. Ma per la semantica del monitor **uno solo** può essere attivo.
 ### Le tre semantiche
 
-|Disciplina|Chi prosegue|Caratteristiche|
-|---|---|---|
-|**Signal and Continue**|Il **segnalatore** continua; il risvegliato eseguirà **più tardi**|**Non preemptive**|
-|**Signal and Wait**|Il **risvegliato** esegue **subito**; il segnalatore **aspetta**, e poi compete con gli altri per rientrare|**Preemptive**|
-|**Signal and Urgent Wait** (o _Immediate Resumption Requirement_)|Come Signal and Wait, ma il **segnalatore ha priorità** sugli altri processi in attesa di entrare|È la **soluzione classica** per i monitor|
-### Conseguenza pratica: `if` o `while`
-
-Il modo di scrivere l'attesa dipende dalla disciplina:
-
-```text
-// Signal and Continue → serve while
-while (!B)
-    waitC(cond)
-<accesso>
-
-// Signal and Wait / Urgent Wait → basta if
-if (!B)
-    waitC(cond)
-<accesso>
-```
-
-**Perché.**
-
-- Con **Signal and Continue** il risvegliato riprende **dopo**: nel frattempo un altro processo potrebbe aver **cambiato lo stato** e **riportato la condizione a falsa**. Quindi dopo il risveglio bisogna **ricontrollare** la condizione: da qui il `while`.
-- Con **Signal and (Urgent) Wait** il risvegliato riprende **subito**, senza che nessuno si inserisca nel mezzo: la condizione è ancora vera, quindi basta un `if`.
-
-> [!warning] Java usa Signal and Continue In Java (`wait`/`notify`/`notifyAll`) la semantica è **Signal and Continue**, quindi si scrive **sempre** `while (!condizione) wait();`. In più possono esistere **risvegli spuri** (il thread si sveglia anche senza una `notify`): un altro motivo per usare il `while`.
+| Disciplina                                                        | Chi prosegue                                                                                                | Caratteristiche                           |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| **Signal and Continue**                                           | Il **segnalatore** continua; il risvegliato eseguirà **più tardi**                                          | **Non preemptive**                        |
+| **Signal and Wait**                                               | Il **risvegliato** esegue **subito**; il segnalatore **aspetta**, e poi compete con gli altri per rientrare | **Preemptive**                            |
+| **Signal and Urgent Wait** (o _Immediate Resumption Requirement_) | Come Signal and Wait, ma il **segnalatore ha priorità** sugli altri processi in attesa di entrare           | È la **soluzione classica** per i monitor |
 
 ---
-
 ## Usare i monitor
-
-I monitor servono per realizzare **qualsiasi risorsa o struttura dati** usata in concorrenza da più processi e di cui si vuole **incapsulare la politica di sincronizzazione**.
 
 ### Produttori-consumatori: il buffer limitato come monitor
 
-```text
+``` java
 monitor BoundedBuffer {
     ElemType buffer := <EmptyBuffer>
     cond notFull, notEmpty
@@ -422,11 +397,8 @@ monitor BoundedBuffer {
     }
 }
 
-Producer                              Consumer
-loop                                  loop
-  p1: ElemType el := produce            q1: ElemType el := BoundedBuffer.take()
-  p2: BoundedBuffer.put(el)             q2: consume(el)
 ```
+![[Pasted image 20261110141947.png]]
 
 **Come leggerlo.**
 
@@ -657,19 +629,5 @@ class BoundedBuffer<T> {
 ```
 
 > [!note] Perché `notifyAll` Con una **sola coda di attesa per oggetto**, produttori e consumatori aspettano sulla stessa coda: `notify()` potrebbe svegliare quello sbagliato (ad esempio un altro produttore quando il buffer è pieno) e il segnale andrebbe sprecato. `notifyAll()` sveglia tutti: ciascuno ricontrolla la condizione nel `while`. Con `ReentrantLock` e due `Condition` (`notFull`, `notEmpty`) si può essere più precisi.
-
----
-
-## Semafori e monitor a confronto
-
-||**Semafori**|**Monitor**|
-|---|---|---|
-|Livello|Primitiva di basso livello|Astrazione di alto livello|
-|Mutua esclusione|**Esplicita** (`wait`/`signal` attorno alla CS)|**Implicita** (ogni procedura è in mutua esclusione)|
-|Sincronizzazione|Esplicita, con semafori ad evento o contatori|Variabili condizione|
-|Dove sta la logica|**Sparsa** nel codice dei processi|**Incapsulata** nel monitor, insieme ai dati|
-|Memoria dei segnali|Il semaforo **ricorda** (valore)|La condizione **non ricorda** (serve una variabile di stato)|
-|Rischio di errori|Alto (ordine delle `wait`, `signal` dimenticate)|Più basso, ma restano la scelta `if`/`while` e la disciplina|
-|Modulo riutilizzabile|Difficile|Naturale (è un oggetto)|
 
 ---

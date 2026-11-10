@@ -377,45 +377,21 @@ Le operazioni sono due, **atomiche**, chiamate `waitC` e `signalC` (a volte scri
 ### Produttori-consumatori: il buffer limitato come monitor
 ![[Pasted image 20261110142536.png]]
 **Come leggerlo.**
-
 - Ci sono **due condizioni**: `notFull` (c'è posto) e `notEmpty` (c'è almeno un elemento).
 - `put` aspetta se pieno, inserisce e **segnala** che non è più vuoto.
 - `take` aspetta se vuoto, preleva e **segnala** che non è più pieno.
 - **La mutua esclusione sul buffer è implicita**, non serve nessun `mutex`: ecco il vantaggio rispetto alla versione con semafori.
 
-**Con un array circolare:**
-
-```text
-monitor BoundedBuffer {
-    int[] elems := new int[MAX_ELEMS]
-    int first := 0, last := 0
-    cond notFull, notEmpty
-
-    procedure put(int elem) {
-        if ((last + 1) % MAX_ELEMS) = first
-            waitC(notFull)
-        elems[last] = elem
-        last := (last + 1) % MAX_ELEMS
-        signalC(notEmpty)
-    }
-
-    procedure take(): int {
-        if (first = last)
-            waitC(notEmpty)
-        int elem = elems[first]
-        first = (first + 1) % MAX_ELEMS
-        signalC(notFull)
-        return elem
-    }
-}
-```
-
+#### **Con un array circolare:**
+![[Pasted image 20261110145613.png]]
 - `first` punta al prossimo elemento da prelevare, `last` alla prossima posizione libera.
 - Il buffer è **vuoto** quando `first = last`; **pieno** quando `(last + 1) % MAX = first`.
 
-> [!note] Capacità reale Con questa convenzione si lascia sempre **una cella libera** (per distinguere "pieno" da "vuoto"): la capacità utile è `MAX_ELEMS - 1`.
+> [!note] Capacità reale 
+> Con questa convenzione si lascia sempre **una cella libera** (per distinguere "pieno" da "vuoto"): la capacità utile è `MAX_ELEMS - 1`.
 
-> [!warning] `if` o `while`? Il codice usa `if`, quindi vale con **Signal and Urgent Wait**. In un linguaggio con **Signal and Continue** (come Java) occorre `while`.
+> [!warning] `if` o `while`? 
+> Il codice usa `if`, quindi vale con **Signal and Urgent Wait**. In un linguaggio con **Signal and Continue** (come Java) occorre `while`.
 
 ### Lettori-scrittori come monitor
 

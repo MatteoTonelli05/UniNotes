@@ -403,44 +403,10 @@ Le operazioni sono due, **atomiche**, chiamate `waitC` e `signalC` (a volte scri
 - uno scrittore può entrare se **non ci sono né lettori né scrittori attivi**;
 - all'uscita, l'ultimo lettore sveglia uno scrittore; uno scrittore che esce sveglia **sia** un altro scrittore **sia** tutti i lettori (entrerà chi trova per primo la condizione soddisfatta, grazie al `while`).
 
-**Versione con `if` e segnalazione a catena** (che usa i processi lettori e scrittori con `startRead/endRead`, `startWrite/endWrite`):
+#### **Versione con `if` e segnalazione a catena** 
+_che usa i processi lettori e scrittori con `startRead/endRead`, `startWrite/endWrite`
 
-```text
-monitor RWLock {
-    integer readers := 0
-    integer writers := 0
-    cond okToRead, okToWrite
-
-    procedure startRead() {
-        if writers != 0
-            waitC(okToRead)
-        readers := readers + 1
-        signalC(okToRead)             // a catena: sveglio il lettore successivo
-    }
-    procedure endRead() {
-        readers := readers - 1
-        if readers = 0
-            signalC(okToWrite)
-    }
-    procedure startWrite() {
-        if writers != 0 or readers != 0
-            waitC(okToWrite)
-        writers := writers + 1
-    }
-    procedure endWrite() {
-        writers := writers - 1
-        if !emptyC(okToRead)
-            then signalAllC(okToRead)
-            else signalC(okToWrite)
-    }
-}
-
-Reader                         Writer
-p1: RWLock.startRead           q1: RWLock.startWrite
-p2: read the dbase             q2: write the dbase
-p3: RWLock.endRead             q3: RWLock.endWrite
-```
-
+![[Pasted image 20261110153344.png]]
 Qui **`endWrite` dà la precedenza ai lettori in attesa** (se ce ne sono li risveglia tutti, altrimenti sveglia uno scrittore). Ogni lettore appena entrato risveglia il successivo (`signalC(okToRead)` in `startRead`).
 
 > [!tip] Rispetto ai semafori Il monitor rende **esplicita e leggibile** la politica (chi ha la priorità, quando si sveglia chi), mentre con i semafori andava dedotta da un intreccio di `wait` e `signal`. Cambiare politica (ad esempio dare la precedenza agli scrittori) significa modificare **solo il monitor**, non i processi che lo usano.

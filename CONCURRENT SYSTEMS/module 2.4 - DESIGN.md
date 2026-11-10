@@ -15,5 +15,5 @@
 
 > [!abstract] Una volta definiti i task, devi passare all'architettura concreta del programma, ovvero CHI fa COSA e COME si coordinano.
 
-
+1. 
 

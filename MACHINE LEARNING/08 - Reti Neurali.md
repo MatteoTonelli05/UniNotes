@@ -157,7 +157,7 @@ Quando la minimizzazione avviene con passi opposti al gradiente, la backpropagat
 ![[Pasted image 20261112165245.png]]
 ### Modifica dei pesi hidden-output
 ![[Pasted image 20261112170946.png]]
-> [!note] Bias Se si usano i bias, $w_{0k}$ si aggiorna ponendo $y_0=1$.
+> [!important] Se si usano i bias, $w_{0k}$ si aggiorna ponendo $y_0=1$.
 
 ### Modifica dei pesi input-hidden
 

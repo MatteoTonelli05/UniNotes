@@ -156,29 +156,12 @@ Quando la minimizzazione avviene con passi opposti al gradiente, la backpropagat
 
 ![[Pasted image 20261112165245.png]]
 ### Modifica dei pesi hidden-output
-![[Pasted image 20261112170946.png]]
+![[Pasted image 20261112172231.png]]
 > [!important] Se si usano i bias, $w_{0k}$ si aggiorna ponendo $y_0=1$.
 
 ### Modifica dei pesi input-hidden
 
-Qui il peso $w_{ij}$ influenza **tutte** le uscite (passa da $y_j$), quindi compare una somma su $c$:
-
-$$\frac{\partial J}{\partial w_{ij}}=-\sum_{c=1\dots s}(t_c-z_c),f'(net_c),\frac{\partial net_c}{\partial w_{ij}}$$
-
-con $\dfrac{\partial net_c}{\partial w_{ij}}=w_{jc}\cdot f'(net_j)\cdot x_i$ (solo $net_j$ dipende da $w_{ij}$). Quindi:
-
-$$\frac{\partial J}{\partial w_{ij}}=-x_i\cdot f'(net_j)\sum_{c=1\dots s}w_{jc}\cdot\delta_c$$
-
-Posto
-
-$$\delta_j=f'(net_j)\cdot\sum_{c=1\dots s}w_{jc}\cdot\delta_c\qquad\text{(Eq. 5)}$$
-
-($\delta_c$ vedi Eq. 2), si ottiene
-
-$$\frac{\partial J}{\partial w_{ij}}=-\delta_j\cdot x_i\qquad\text{(Eq. 6)}$$
-
-$$w_{ij}=w_{ij}+\eta\cdot\delta_j\cdot x_i\qquad\text{(Eq. 7)}$$
-
+![[Pasted image 20261112172306.png]]
 > [!tip] **Il filo logico del "back"**
 > 
 > - il $\delta$ del livello di **output** nasce dall'**errore** $(t-z)$ moltiplicato per la derivata dell'attivazione;

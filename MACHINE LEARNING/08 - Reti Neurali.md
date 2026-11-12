@@ -156,16 +156,7 @@ Quando la minimizzazione avviene con passi opposti al gradiente, la backpropagat
 
 ![[Pasted image 20261112165245.png]]
 ### Modifica dei pesi hidden-output
-
-Solo $z_k$ dipende da $w_{jk}$, quindi con la regola della catena:
-$$\frac{\partial J}{\partial w_{jk}}=-(t_k-z_k)\cdot\frac{\partial f(net_k)}{\partial net_k}\cdot\frac{\partial net_k}{\partial w_{jk}}=-(t_k-z_k)\cdot f'(net_k)\cdot y_j$$
-Posto
-$$\delta_k=(t_k-z_k)\cdot f'(net_k)\qquad\text{(Eq. 2)}$$
-si ha
-$$\frac{\partial J}{\partial w_{jk}}=-\delta_k\cdot y_j\qquad\text{(Eq. 3)}$$
-e l'aggiornamento (con $\eta$ = **learning rate**):
-$$w_{jk}=w_{jk}+\eta\cdot\delta_k\cdot y_j\qquad\text{(Eq. 4)}$$
-
+![[Pasted image 20261112170946.png]]
 > [!note] Bias Se si usano i bias, $w_{0k}$ si aggiorna ponendo $y_0=1$.
 
 ### Modifica dei pesi input-hidden

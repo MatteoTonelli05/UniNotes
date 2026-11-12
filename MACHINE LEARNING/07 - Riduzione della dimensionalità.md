@@ -200,25 +200,11 @@ Entrambi sono mapping lineari $\mathbb{R}^2\to\mathbb{R}^1$, ma la retta è dive
 
 ### t-SNE (t-distributed Stochastic Neighbor Embedding)
 
-- Tecnica **non lineare** e **non supervisionata**, introdotta nel **2008** da **van der Maaten e Hinton**.
-- **Esempio**: visualizzazione 2D di **MNIST** (cifre scritte a mano). Le 10 cifre appaiono come "isole" ben separate. I colori servono solo per colorare i punti, le etichette non sono usate per costruire la mappa.
+- Tecnica **non lineare** e **non supervisionata**
+![[Pasted image 20261112144044.png|437]]
 
-> [!tip] Idea di fondo (extra, non nelle slide) Nello spazio originale si costruisce una distribuzione di probabilità che dice **quanto due punti sono vicini**. Poi si cerca una disposizione in 2D/3D che riproduca le stesse relazioni di vicinanza, usando una **distribuzione t di Student** nello spazio ridotto (da qui la "t") e minimizzando la divergenza di Kullback-Leibler tra le due distribuzioni.
-
-**In sklearn** $\rightarrow$ visualizzazione 2D di un dataset con 1000 cani + 1000 gatti (immagini non controllate), con feature **HOG** (_Histogram of Oriented Gradients_) invece dei pixel:
-
-```python
-from sklearn.manifold import TSNE
-
-tsne = TSNE(n_components=2, perplexity=30.0, n_iter=1500,
-            init='random', random_state=1, verbose=2)
-
-X_embedded_hog = tsne.fit_transform(hog_features_x)
-
-plt.scatter(X_embedded_hog[0:1000, 0], X_embedded_hog[0:1000, 1], c="r")
-plt.scatter(X_embedded_hog[1000:2000, 0], X_embedded_hog[1000:2000, 1], c="g")
-plt.show()
-```
+> [!tip] Idea di fondo (extra, non nelle slide) 
+> Nello spazio originale si costruisce una distribuzione di probabilità che dice **quanto due punti sono vicini**. Poi si cerca una disposizione in 2D/3D che riproduca le stesse relazioni di vicinanza, usando una **distribuzione t di Student** nello spazio ridotto (da qui la "t") e minimizzando la divergenza di Kullback-Leibler tra le due distribuzioni.
 
 - I due cluster risultano **molto sovrapposti**.
 - I classificatori tradizionali (es. SVM) raggiungono circa il **70%**, sfruttando la maggiore densità dei pattern verdi (gatti) in una certa regione.

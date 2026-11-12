@@ -129,14 +129,16 @@ Dopo aver proiettato i pattern sullo spazio PCA (primi $k$ autovettori) basta **
 
 $$y_i^{white}=\frac{y_i}{\sqrt{\lambda_i}}$$
 
-> [!tip] La matrice di covarianza dei dati normalizzati è l'**identità**.
+> [!abstract] La matrice di covarianza dei dati normalizzati è l'**identità**.
 
-> [!hint] Perché serve? Molti algoritmi (ad esempio quelli basati su distanze euclidee come K-means) funzionano meglio con feature **scorrelate** e sulla **stessa scala**. Il whitening ruota (decorrela) e ridimensiona (normalizza).
+> [!question] Perché serve? 
+> Molti algoritmi (ad esempio quelli basati su distanze euclidee come K-means) funzionano meglio con feature **scorrelate** e sulla **stessa scala**. Il whitening ruota (decorrela) e ridimensiona (normalizza).
 
 ## LDA (Linear Discriminant Analysis)
 
 > [!abstract] Riduzione di dimensionalità **lineare** e **supervisionata** il cui obiettivo è **massimizzare la separazione tra le classi** (che nel TS sono etichettate). La soluzione ottimale per discriminare può essere molto diversa dalla soluzione PCA.
 
+![[Pasted image 20261112122126.png]]
 ### Matrici di scattering
 
 Una **matrice di scatter** si calcola come una matrice di covarianza **senza normalizzare** per il numero di pattern ("sparpagliamento").

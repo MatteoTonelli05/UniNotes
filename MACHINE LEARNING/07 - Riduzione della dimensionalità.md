@@ -153,13 +153,13 @@ Ne servono due, una per ogni obiettivo:
 
 Dato un training set di $n$ pattern $(\mathbf{x}_1,y_1)\dots(\mathbf{x}_n,y_n)$ con $\mathbf{x}_i\in\mathbb{R}^d$ e $y_i\in[1\dots s]$ (etichette delle $s$ classi), siano $n_i$ e $\bar{\mathbf{x}}_i$ numero di pattern e vettore medio della classe $i$.
 
-**Within-class**
+##### **Within-class**
 
 $$\mathbf{S}_w=\sum_{i=1}^{s}\mathbf{S}_i,\qquad \mathbf{S}_i=\sum_{\mathbf{x}_j,|,y_j=i}(\mathbf{x}_j-\bar{\mathbf{x}}_i)(\mathbf{x}_j-\bar{\mathbf{x}}_i)^t$$
 
 _(la somma interna è sui pattern della classe $i$)_
 
-**Between-class**
+##### **Between-class**
 
 $$\mathbf{S}_b=\sum_{i=1}^{s}n_i\cdot(\bar{\mathbf{x}}_i-\bar{\mathbf{x}}_0)(\bar{\mathbf{x}}_i-\bar{\mathbf{x}}_0)^t,\qquad \bar{\mathbf{x}}_0=\frac{1}{n}\sum_{i=1}^{s}n_i\cdot\bar{\mathbf{x}}_i$$
 
@@ -173,7 +173,8 @@ $$J_1=\text{tr}(\mathbf{S}_w^{-1}\mathbf{S}_b)=\sum_{i=1}^{d}\lambda_i$$
 
 dove $\text{tr}$ è la **traccia** (somma degli autovalori) della matrice.
 
-> [!hint] Intuizione Il criterio massimizza lo scattering **tra** le classi ($\mathbf{S}_b$) e minimizza al contempo (con la matrice inversa $\mathbf{S}_w^{-1}$) quello **all'interno** di ogni classe: direzioni dove le classi sono lontane tra loro e ben raccolte.
+> [!hint] Intuizione 
+> Il criterio massimizza lo scattering **tra** le classi ($\mathbf{S}_b$) e minimizza al contempo (con la matrice inversa $\mathbf{S}_w^{-1}$) quello **all'interno** di ogni classe: direzioni dove le classi sono lontane tra loro e ben raccolte.
 
 Si dimostra che per massimizzare $J_1$ lo spazio LDA è definito (**analogia con PCA**) dagli **autovettori** relativi ai primi $k$ autovalori della matrice $\mathbf{S}_w^{-1}\mathbf{S}_b$, con $k<n$, $k<s$, $k<d$.
 

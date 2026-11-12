@@ -99,12 +99,8 @@ _la retro-proiezione ricrea un volto sfocato_
 
 > [!fail] Per $d$ elevato (immagini, audio...) la matrice di covarianza è enorme: per $d=16500$, $\boldsymbol{\Sigma}\in\mathbb{R}^{16500\times16500}$, oltre **272 milioni di valori**.
 
-Se $n\ll d$ conviene calcolare la matrice di proiezione (primi $k$ autovettori) con la **DECOMPOSIZIONE SVD** della matrice rettangolare dei pattern centrati, **senza passare per $\boldsymbol{\Sigma}$**:
-
-$$\mathbf{X}=\big[\mathbf{x}_1-\bar{\mathbf{x}}\ ,\ \mathbf{x}_2-\bar{\mathbf{x}}\ ,\cdots\ , \mathbf{x}_n-\bar{\mathbf{x}}\big]\in\mathbb{R}^{d\times n}$$
-
-> [!warning] Formato **trasposto** rispetto alla $\mathbf{X}$ usata in regressione: qui **ogni pattern è una colonna**.
-
+Se $n\ll d$ conviene calcolare la matrice di proiezione (primi $k$ autovettori) con la **DECOMPOSIZIONE SVD** della matrice rettangolare dei pattern centrati $X\in\mathbb{R}^{d\times n}$, **senza passare per $\boldsymbol{\Sigma}$**:
+![[Pasted image 20261112121403.png]]
 Per $d>n$: $\mathbf{X}=\mathbf{U}\boldsymbol{\Gamma}\mathbf{V}^t$ con
 
 - $\mathbf{U}\in\mathbb{R}^{d\times n}$ ortonormale
@@ -125,7 +121,9 @@ Questa è la **decomposizione spettrale** della matrice quadrata $\boldsymbol{\S
 > [!abstract] Tecnica di **pre-normalizzazione** dei dati.
 
 1. **Rimuove le correlazioni** tra le dimensioni: ruota la nuvola di punti allineando gli assi principali (autovettori) agli **assi cartesiani**.
+![[Pasted image 20261112121514.png]]
 2. **Sfericizza** l'ellissoide: uniforma a **1** le varianze (gli autovalori) lungo tutti gli assi.
+![[Pasted image 20261112121531.png]]
 
 Dopo aver proiettato i pattern sullo spazio PCA (primi $k$ autovettori) basta **dividere ogni dimensione per $\sqrt{\lambda_i}$** (la deviazione standard):
 

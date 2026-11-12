@@ -21,7 +21,7 @@
 >**Trasformazioni supervisionate (Supervised):** Utilizzano attivamente i valori della variabile target ($y$) per guidare e ottimizzare la modifica delle feature ($X$). L'obiettivo è trasformare i dati in modo da massimizzare la separabilità delle classi o la correlazione con il risultato da predire.
 ### Definizione
 
-Dato un training set $TS={\mathbf{x}_i\in\mathbb{R}^d,\ i=1\dots n}$:
+Dato un training set $TS=\{\mathbf{x}_i\in\mathbb{R}^d,\ i=1\dots n\}$:
 
 $$\bar{\mathbf{x}}=\frac{1}{n}\sum_{i=1}^{n}\mathbf{x}_i \qquad \boldsymbol{\Sigma}=\frac{1}{n-1}\sum_{i=1}^{n}(\mathbf{x}_i-\bar{\mathbf{x}})(\mathbf{x}_i-\bar{\mathbf{x}})^t$$
 
@@ -40,6 +40,18 @@ Per un dato $k$ (con $0<k<d$ e $k<n$), lo spazio PCA $(S_{\bar{\mathbf{x}},\Phi_
 $$\Phi_k=[\boldsymbol{\varphi}_{i_1},\boldsymbol{\varphi}_{i_2},\dots,\boldsymbol{\varphi}_{i_k}], \qquad \lambda_{i_1}\ge\lambda_{i_2}\ge\dots\ge\lambda_{i_k}\ge\dots\ge\lambda_{i_d}$$
 - $\boldsymbol{\varphi}_{i_1}$ indica la direzione di **maggior varianza** nel training set.
 - I primi $k$ autovettori si chiamano **componenti principali**.
+
+![[Pasted image 20261112101528.png]]
+> [!question] Da dove arriva la matrice di proiezione?
+> Da dove viene, in 3 mosse
+>
+>1. Calcolo $\boldsymbol{\Sigma}$ dai dati (è $d\times d$).
+>2. La “scompongo” trovando i suoi autovettori $\boldsymbol{\varphi}_1,\dots,\boldsymbol{\varphi}_d$ (ognuno è un vettore con $d$ numeri) e i relativi autovalori $\lambda_1\ge\dots\ge\lambda_d$.
+>3. Prendo i $k$ autovettori con gli autovalori più grandi e li **metto affiancati come colonne**:
+>
+$$\Phi_k=\big[\boldsymbol{\varphi}_1\ \ \boldsymbol{\varphi}_2\ \cdots\ \boldsymbol{\varphi}_k\big]\in\mathbb{R}^{d\times k}$$
+>
+>Quindi $\Phi_k$ è solo **la lista degli assi che ho deciso di tenere**, impilata in una matrice. Ha $d$ righe (perché ogni asse vive nello spazio originale a $d$ dimensioni) e $k$ colonne (uno per asse tenuto).
 
 > [!hint] Intuizione su autovettori e autovalori di $\boldsymbol{\Sigma}$ Immagina la nuvola di punti come un'**ellisse**:
 > 

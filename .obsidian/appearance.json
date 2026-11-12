@@ -4,5 +4,6 @@
   "enabledCssSnippets": [
     "center-images"
   ],
-  "theme": "obsidian"
+  "theme": "obsidian",
+  "showRibbon": true
 }

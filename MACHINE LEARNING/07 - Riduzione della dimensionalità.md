@@ -200,17 +200,12 @@ Entrambi sono mapping lineari $\mathbb{R}^2\to\mathbb{R}^1$, ma la retta è dive
 
 ### t-SNE (t-distributed Stochastic Neighbor Embedding)
 
-- Tecnica **non lineare** e **non supervisionata**
+> [!abstract] t-SNE (t-distributed Stochastic Neighbor Embedding) è una tecnica **non lineare** e **non supervisionata**.
+
 ![[Pasted image 20261112144044.png|437]]
 
-> [!tip] Idea di fondo (extra, non nelle slide) 
+> [!tip] Idea di fondo 
 > Nello spazio originale si costruisce una distribuzione di probabilità che dice **quanto due punti sono vicini**. Poi si cerca una disposizione in 2D/3D che riproduca le stesse relazioni di vicinanza, usando una **distribuzione t di Student** nello spazio ridotto (da qui la "t") e minimizzando la divergenza di Kullback-Leibler tra le due distribuzioni.
-
-- I due cluster risultano **molto sovrapposti**.
-- I classificatori tradizionali (es. SVM) raggiungono circa il **70%**, sfruttando la maggiore densità dei pattern verdi (gatti) in una certa regione.
-- Per tarare i parametri (es. **perplexity**) vedi l'articolo _How to Use t-SNE Effectively_ su distill.pub.
-
-> [!hint] Cos'è la perplexity? Grosso modo controlla **quanti vicini** ciascun punto "considera" (tipicamente tra 5 e 50). Valori diversi possono dare mappe molto diverse: conviene **provarne più di uno**.
 
 > [!warning] Cautele nella lettura di una mappa t-SNE
 > 
@@ -223,22 +218,14 @@ Entrambi sono mapping lineari $\mathbb{R}^2\to\mathbb{R}^1$, ma la retta è dive
 > [!abstract] **UMAP** (_Uniform Manifold Approximation and Projection for Dimension Reduction_, McInnes e Healy, 2018) è una tecnica **non lineare** e **non supervisionata**, simile a t-SNE, utile per la visualizzazione 2D o 3D.
 
 **In comune con t-SNE**
-
 - preserva le **distanze locali**
 - individua **cluster** di dati localmente connessi
 
 **Differenza**
-
 - UMAP preserva meglio anche la **struttura globale** dei cluster, cioè le **distanze inter-cluster**.
 - t-SNE può visualizzare cluster vicini o lontani **indipendentemente** dalla loro similarità nello spazio originale.
 
 ---
-
-> [!tip] Come orientarsi
-> - **Supervisionata?** PCA no, LDA sì.
-> - **Lineare?** PCA, LDA e ICA sì; Kernel PCA, LLE, t-SNE e UMAP no.
-> - **Scopo?** PCA = rappresentare; LDA = separare; t-SNE/UMAP = visualizzare.
-
 ## Altre tecniche di interesse
 
 - **ICA** (Independent Component Analysis) $\rightarrow$ trasformazione lineare che proietta su componenti **statisticamente indipendenti**, anche **non ortogonali** (come invece in PCA e LDA). Considera statistiche **oltre il secondo ordine**, PCA si limita al secondo.

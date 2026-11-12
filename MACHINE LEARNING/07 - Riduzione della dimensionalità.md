@@ -136,12 +136,15 @@ $$y_i^{white}=\frac{y_i}{\sqrt{\lambda_i}}$$
 
 ## LDA (Linear Discriminant Analysis)
 
+> [!fail] La PCA cerca la direzione dove i dati **variano di più**, ma **ignora a quale classe appartiene ogni punto**. A volte la direzione di massima varianza è proprio quella _inutile_ per distinguere le classi.
+
 > [!abstract] Riduzione di dimensionalità **lineare** e **supervisionata** il cui obiettivo è **massimizzare la separazione tra le classi** (che nel TS sono etichettate). La soluzione ottimale per discriminare può essere molto diversa dalla soluzione PCA.
 
 ![[Pasted image 20261112122126.png]]
 ### Matrici di scattering
 
-Una **matrice di scatter** si calcola come una matrice di covarianza **senza normalizzare** per il numero di pattern ("sparpagliamento").
+Una **matrice di scatter** si calcola come una matrice di covarianza **senza normalizzare** per il numero di pattern ("sparpagliamento"). Misura lo “sparpagliamento” in valore assoluto.
+Ne servono due, una per ogni obiettivo:
 
 - **Within-class** $\mathbf{S}_w$ $\rightarrow$ come i vettori sono sparpagliati rispetto al **centro della propria classe**. Si vuole **piccola** (classi compatte).
 - **Between-class** $\mathbf{S}_b$ $\rightarrow$ come i **centri delle classi** sono sparpagliati rispetto al **centro generale** della distribuzione (quanto le classi sono lontane tra loro). Si vuole **grande**.
@@ -154,7 +157,7 @@ Dato un training set di $n$ pattern $(\mathbf{x}_1,y_1)\dots(\mathbf{x}_n,y_n)$ 
 
 $$\mathbf{S}_w=\sum_{i=1}^{s}\mathbf{S}_i,\qquad \mathbf{S}_i=\sum_{\mathbf{x}_j,|,y_j=i}(\mathbf{x}_j-\bar{\mathbf{x}}_i)(\mathbf{x}_j-\bar{\mathbf{x}}_i)^t$$
 
-(la somma interna è sui pattern della classe $i$)
+_(la somma interna è sui pattern della classe $i$)_
 
 **Between-class**
 

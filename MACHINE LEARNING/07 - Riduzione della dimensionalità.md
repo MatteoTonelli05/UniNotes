@@ -99,9 +99,9 @@ _la retro-proiezione ricrea un volto sfocato_
 
 > [!fail] Per $d$ elevato (immagini, audio...) la matrice di covarianza è enorme: per $d=16500$, $\boldsymbol{\Sigma}\in\mathbb{R}^{16500\times16500}$, oltre **272 milioni di valori**.
 
-Se $n\ll d$ conviene calcolare la matrice di proiezione (primi $k$ autovettori) con la **decomposizione SVD** della matrice rettangolare dei pattern centrati, **senza passare per $\boldsymbol{\Sigma}$**:
+Se $n\ll d$ conviene calcolare la matrice di proiezione (primi $k$ autovettori) con la **DECOMPOSIZIONE SVD** della matrice rettangolare dei pattern centrati, **senza passare per $\boldsymbol{\Sigma}$**:
 
-$$\mathbf{X}=\big[\mathbf{x}_1-\bar{\mathbf{x}}\ \ \mathbf{x}_2-\bar{\mathbf{x}}\ \cdots\ \mathbf{x}_n-\bar{\mathbf{x}}\big]\in\mathbb{R}^{d\times n}$$
+$$\mathbf{X}=\big[\mathbf{x}_1-\bar{\mathbf{x}}\ ,\ \mathbf{x}_2-\bar{\mathbf{x}}\ ,\cdots\ , \mathbf{x}_n-\bar{\mathbf{x}}\big]\in\mathbb{R}^{d\times n}$$
 
 > [!warning] Formato **trasposto** rispetto alla $\mathbf{X}$ usata in regressione: qui **ogni pattern è una colonna**.
 

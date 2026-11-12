@@ -89,13 +89,12 @@ $$k=\arg\min_{z}\left\{z \;:\; \frac{\sum_{i=1}^{z}\lambda_{i}}{\sum_{i=1}^{d}\l
 >  > Con $k=1$ e $k=2$ non arrivo al 95%. Con $k=3$ sì, quindi **$k=3$** (il minimo che funziona).
 ### Codifica di un'immagine (eigenfaces)
 
-- Un'immagine di volto è un vettore $\mathbf{x}\in\mathbb{R}^{16500}$ (un valore per pixel).
-- Con $k=15$ la proiezione è $\mathbf{y}\in\mathbb{R}^{15}$: **15 numeri** al posto di 16500.
-- La retroproiezione $\mathbf{x}'\in\mathbb{R}^{16500}$ è una **ricostruzione** sfocata ma riconoscibile del volto.
-- I primi autovettori, visualizzati come immagini, sono le **eigenfaces** (nome usato nel riconoscimento del volto).
+Un'immagine di volto è un vettore $\mathbf{x}\in\mathbb{R}^{16500}$ (un valore per pixel), le **eigenfaces** (nome usato nel riconoscimento del volto) sono gli 8 componenti principali.
 
 > [!hint] Ogni volto è approssimato come **volto medio + combinazione pesata di eigenfaces**. I 15 numeri di $\mathbf{y}$ sono i pesi.
 
+![[Pasted image 20261112113509.png|351]]
+_la retro-proiezione ricrea un volto sfocato_
 ### Calcolo PCA in pratica
 
 > [!fail] Per $d$ elevato (immagini, audio...) la matrice di covarianza è enorme: per $d=16500$, $\boldsymbol{\Sigma}\in\mathbb{R}^{16500\times16500}$, oltre **272 milioni di valori**.

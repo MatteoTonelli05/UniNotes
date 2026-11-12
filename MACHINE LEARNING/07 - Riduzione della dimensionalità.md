@@ -84,7 +84,9 @@ $$k=\arg\min_{z}\left\{z \;:\; \frac{\sum_{i=1}^{z}\lambda_{i}}{\sum_{i=1}^{d}\l
 
 > [!hint] Gli autovalori sono varianze
 >  il rapporto è la **varianza conservata** rispetto alla varianza totale. 
->  Esempio: autovalori 60, 30, 8, ... con somma totale 100 $\rightarrow$ con $k=3$ si conserva il 98%.
+>  > [!example] Esempio:
+>  > Supponi che gli autovalori siano **60, 30, 8, ...** e che la somma di tutti sia **100** (i puntini sono gli altri autovalori, piccolissimi: $100-60-30-8=2$ in totale).
+>  > Con $k=1$ e $k=2$ non arrivo al 95%. Con $k=3$ sì, quindi **$k=3$** (il minimo che funziona).
 ### Codifica di un'immagine (eigenfaces)
 
 - Un'immagine di volto è un vettore $\mathbf{x}\in\mathbb{R}^{16500}$ (un valore per pixel).

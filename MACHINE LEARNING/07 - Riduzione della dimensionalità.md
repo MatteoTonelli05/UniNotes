@@ -21,12 +21,14 @@
 >**Trasformazioni supervisionate (Supervised):** Utilizzano attivamente i valori della variabile target ($y$) per guidare e ottimizzare la modifica delle feature ($X$). L'obiettivo è trasformare i dati in modo da massimizzare la separabilità delle classi o la correlazione con il risultato da predire.
 ### Definizione
 
+> [!quote] La PCA trova le **direzioni in cui i dati variano di più** e tiene solo quelle.
+
 Dato un training set $TS=\{\mathbf{x}_i\in\mathbb{R}^d,\ i=1\dots n\}$:
 
 $$\bar{\mathbf{x}}=\frac{1}{n}\sum_{i=1}^{n}\mathbf{x}_i \qquad \boldsymbol{\Sigma}=\frac{1}{n-1}\sum_{i=1}^{n}(\mathbf{x}_i-\bar{\mathbf{x}})(\mathbf{x}_i-\bar{\mathbf{x}})^t$$
 
-- $\bar{\mathbf{x}}\in\mathbb{R}^d$ $\rightarrow$ vettore medio
-- $\boldsymbol{\Sigma}\in\mathbb{R}^{d\times d}$ $\rightarrow$ matrice di covarianza 
+- $\bar{\mathbf{x}}\in\mathbb{R}^d$ $\rightarrow$ vettore medio, ovvero il baricentro della nuvola di dati
+- $\boldsymbol{\Sigma}\in\mathbb{R}^{d\times d}$ $\rightarrow$ matrice di covarianza, approssima la forma della nuvola a partire dal centro
 
 > [!hint] Cosa c'è dentro la matrice di covarianza?
 >**Diagonale** $\Sigma_{jj}$: la **varianza** della feature $j$, cioè quanto si “sparpaglia” attorno alla sua media.
@@ -35,24 +37,20 @@ $$\bar{\mathbf{x}}=\frac{1}{n}\sum_{i=1}^{n}\mathbf{x}_i \qquad \boldsymbol{\Sig
  >   - $>0$: quando una cresce, tende a crescere anche l’altra (es. altezza e peso).
  >   - $<0$: quando una cresce, l’altra tende a scendere.
  >   - $\approx0$: nessuna relazione lineare.
+ >
+ > > [!important] Nota 
+ > > - gli **autovettori** di $\boldsymbol{\Sigma}$ sono gli **assi naturali** della nuvola (le direzioni principali);
+ > > - gli **autovalori** $\lambda$ sono le **varianze lungo quegli assi**: più è grande $\lambda$, più la nuvola è **lunga** in quella direzione.
 
-Per un dato $k$ (con $0<k<d$ e $k<n$), lo spazio PCA $(S_{\bar{\mathbf{x}},\Phi_k})$ è definito univocamente dal **vettore medio** e dalla **matrice di proiezione** $\Phi_k\in\mathbb{R}^{d\times k}$, le cui colonne sono gli **autovettori di $\boldsymbol{\Sigma}$** relativi ai $k$ **autovalori più grandi**:
+> [!attention] **Il problema** 
+> Le feature originali (altezza, peso...) sono gli assi del foglio, ma la nuvola può essere **inclinata** rispetto a questi assi. Gli assi "naturali" della nuvola sono altri.
+
+Per un dato $k$ (con $0<k<d$ e $k<n$), lo spazio PCA $(S_{\bar{\mathbf{x}},\Phi_k})$ è definito univocamente dal **vettore medio** e dalla **matrice di proiezione** $\Phi_k\in\mathbb{R}^{d\times k}$, le cui colonne sono gli **autovettori di $\boldsymbol{\Sigma}$** relativi ai $k$ **autovalori PIÙ GRANDI**:
 $$\Phi_k=[\boldsymbol{\varphi}_{i_1},\boldsymbol{\varphi}_{i_2},\dots,\boldsymbol{\varphi}_{i_k}], \qquad \lambda_{i_1}\ge\lambda_{i_2}\ge\dots\ge\lambda_{i_k}\ge\dots\ge\lambda_{i_d}$$
 - $\boldsymbol{\varphi}_{i_1}$ indica la direzione di **maggior varianza** nel training set.
-- I primi $k$ autovettori si chiamano **componenti principali**.
+- I primi $k$ autovettori si chiamano **componenti principali** (da qui il nome _Principal Component Analysis_).
 
 ![[Pasted image 20261112101528.png]]
-> [!question] Da dove arriva la matrice di proiezione?
-> Da dove viene, in 3 mosse
->
->1. Calcolo $\boldsymbol{\Sigma}$ dai dati (è $d\times d$).
->2. La “scompongo” trovando i suoi autovettori $\boldsymbol{\varphi}_1,\dots,\boldsymbol{\varphi}_d$ (ognuno è un vettore con $d$ numeri) e i relativi autovalori $\lambda_1\ge\dots\ge\lambda_d$.
->3. Prendo i $k$ autovettori con gli autovalori più grandi e li **metto affiancati come colonne**:
->
-$$\Phi_k=\big[\boldsymbol{\varphi}_1\ \ \boldsymbol{\varphi}_2\ \cdots\ \boldsymbol{\varphi}_k\big]\in\mathbb{R}^{d\times k}$$
->
->Quindi $\Phi_k$ è solo **la lista degli assi che ho deciso di tenere**, impilata in una matrice. Ha $d$ righe (perché ogni asse vive nello spazio originale a $d$ dimensioni) e $k$ colonne (uno per asse tenuto).
-
 > [!hint] Intuizione su autovettori e autovalori di $\boldsymbol{\Sigma}$ Immagina la nuvola di punti come un'**ellisse**:
 > 
 > - gli **autovettori** sono gli **assi** dell'ellisse (le direzioni principali)
@@ -61,33 +59,22 @@ $$\Phi_k=\big[\boldsymbol{\varphi}_1\ \ \boldsymbol{\varphi}_2\ \cdots\ \boldsym
 > Tenere i $k$ assi con varianza maggiore significa tenere le direzioni dove i dati "si muovono" di più, scartando quelle quasi piatte.
 >
 >**RICORDA:** stiamo parlando di una riduzione da $d$ dimensioni a $k$
+### Proiezione ($\to$) e retroproiezione ($\leftarrow$)
 
-### Proiezione e retroproiezione
-
-**Proiezione** ($\to$) da $\mathbb{R}^d$ a $\mathbb{R}^k$: prodotto della matrice di proiezione **trasposta** per il pattern a cui è stata **sottratta la media**.
-
+**Proiezione** ($\to$) da $\mathbb{R}^d$ a $\mathbb{R}^k$: una volta determinato lo spazio PCA, la proiezione di un pattern su tale spazio è semplicemente la proiezione geometrica di un vettore sull’iperpiano che definisce lo spazio.
 $$\mathbf{y}=\overrightarrow{PCA}(\mathbf{x},S_{\bar{\mathbf{x}},\Phi_k})=\Phi_k^t(\mathbf{x}-\bar{\mathbf{x}})$$
 
-**Retroproiezione** ($\leftarrow$) da $\mathbb{R}^k$ a $\mathbb{R}^d$: si moltiplica per la matrice di proiezione e si **somma la media**.
-
+**Retroproiezione** ($\leftarrow$) da $\mathbb{R}^k$ a $\mathbb{R}^d$:
 $$\mathbf{x}'=\overleftarrow{PCA}(\mathbf{y},S_{\bar{\mathbf{x}},\Phi_k})=\Phi_k\mathbf{y}+\bar{\mathbf{x}}$$
+
+> [!attention] La retroproiezione non sposta il vettore
+> Questa trasformazione non sposta spazialmente il vettore, che giace ancora sullo spazio PCA, ma opera un cambiamento di coordinate che ne permette la codifica in termini delle 𝑑 componenti dello spazio originale.
 
 > [!hint] In pratica
 > 
 > - $\mathbf{y}$ = versione **compressa** di $\mathbf{x}$ ($k$ numeri)
 > - $\mathbf{x}'$ = versione **ricostruita** (approssimata)
 > - $\mathbf{x}-\mathbf{x}'$ = informazione **persa** (errore di ricostruzione)
-
-### Esempio riduzione $2\to1$
-
-- L'ellisse rappresenta la distribuzione dei pattern nel training set.
-- $\boldsymbol{\varphi}_1,\boldsymbol{\varphi}_2$ $\rightarrow$ autovettori di $\boldsymbol{\Sigma}$ (assi dell'ellisse).
-- $\lambda_1,\lambda_2$ $\rightarrow$ varianze lungo gli assi (le semi-lunghezze dell'ellisse sono $\sqrt{\lambda_1}$ e $\sqrt{\lambda_2}$).
-- $y_1,y_2$ $\rightarrow$ proiezioni di $\mathbf{x}$ sugli assi $\boldsymbol{\varphi}_1,\boldsymbol{\varphi}_2$.
-- Se $\lambda_2$ è piccolo, $\mathbf{x}$ si può approssimare con $\mathbf{x}'$ (retroproiezione di $\mathbf{y}$) senza perdite significative.
-
-> [!tip] Si dimostra che, tra tutte le riduzioni di dimensionalità **lineari**, PCA è quella che **preserva al massimo l'informazione** dei vettori originali.
-
 ### Scelta di $k$
 
 - A volte è **obbligata**, ad esempio per la visualizzazione 2D o 3D.

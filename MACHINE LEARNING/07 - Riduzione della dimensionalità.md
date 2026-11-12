@@ -136,7 +136,7 @@ $$y_i^{white}=\frac{y_i}{\sqrt{\lambda_i}}$$
 
 ## LDA (Linear Discriminant Analysis)
 
-> [!fail] La PCA cerca la direzione dove i dati **variano di più**, ma **ignora a quale classe appartiene ogni punto**. A volte la direzione di massima varianza è proprio quella _inutile_ per distinguere le classi.
+> [!fail] La PCA cerca la direzione dove i dati **variano di più**, ma **ignora a quale classe appartiene ogni punto**. L'LDA serve a **ridurre le feature a $k$ senza perdere la capacità di distinguere le classi**.
 
 > [!abstract] Riduzione di dimensionalità **lineare** e **supervisionata** il cui obiettivo è **massimizzare la separazione tra le classi** (che nel TS sono etichettate). La soluzione ottimale per discriminare può essere molto diversa dalla soluzione PCA.
 
@@ -179,9 +179,6 @@ dove $\text{tr}$ è la **traccia** (somma degli autovalori) della matrice.
 > [!warning] Valore massimo di $k$ = $s-1$ Con $s$ classi si ottengono **al massimo $s-1$ dimensioni**. Con **due classi** si ha quindi **una sola direzione** (come nell'esempio PCA vs LDA).
 
 > [!hint] Perché $s-1$? $\mathbf{S}_b$ è costruita con $s$ vettori $(\bar{\mathbf{x}}_i-\bar{\mathbf{x}}_0)$ che **non sono indipendenti**: la loro somma pesata con $n_i$ vale zero (perché $\bar{\mathbf{x}}_0$ è la media pesata). Il rango di $\mathbf{S}_b$ è quindi al massimo $s-1$ e solo $s-1$ autovalori sono diversi da zero.
-
-> [!tip] Extra: $\mathbf{S}_w$ deve essere **invertibile**. Con $d$ grande e pochi pattern ($n\le d$) può non esserlo: in quel caso si applica prima una **PCA** per ridurre $d$ e poi la LDA.
-
 ## Esempio PCA vs LDA
 
 Riduzione $d=2 \to k=1$ su due classi (rosse e blu). 

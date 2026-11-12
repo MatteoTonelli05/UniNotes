@@ -44,7 +44,8 @@ Neurone moderno di indice $i$ (una rete ne contiene molti, quindi serve distingu
 
 ### Funzione di attivazione
 
-Nei neuroni **biologici** $f$ è una funzione **tutto-niente temporizzata**: quando $net_i$ supera una soglia il neurone "spara" uno spike e poi torna a riposo. Esistono le **spiking neural network** che modellano questo comportamento (informazione codificata in treni di impulsi). Domanda aperta della slide: è una "complicazione" necessaria o solo un risparmio energetico messo a punto dall'evoluzione?
+> [!abstract] La funzione di attivazione è una funzione **tutto-niente temporizzata**
+Quando $net_i$ supera una soglia il neurone "spara" uno spike e poi torna a riposo. 
 
 Le reti più usate operano con **livelli continui**, e $f$ è:
 
@@ -53,23 +54,17 @@ Le reti più usate operano con **livelli continui**, e $f$ è:
 
 #### Sigmoide (standard logistic function)
 
-Valori in $[0,1]$:
-
-$$f(net)=\sigma(net)=\frac{1}{1+e^{-net}}\qquad \sigma'(net)=\sigma(net)\big(1-\sigma(net)\big)$$
-
+![[Pasted image 20261112155030.png]]
 #### Tangente iperbolica (tanh)
 
 Valori in $[-1,1]$. Si ottiene dalla sigmoide con scala ($\times2$) e traslazione ($-1$):
+![[Pasted image 20261112155050.png]]
 
-$$f(net)=\tau(net)=2\sigma(2\cdot net)-1\qquad \tau'(net)=1-\tau(net)^2$$
+> [!question] Che differenza c'è tra **Sigmoid** e ** tanh**? 
+> Tanh è leggermente più complessa ma **preferibile** (convergenza più rapida) perché è **simmetrica rispetto allo zero**.
 
-> [!tip] **Sigmoid vs. tanh** Tanh è leggermente più complessa ma **preferibile** (convergenza più rapida) perché è **simmetrica rispetto allo zero**.
-
-> [!note] Funzioni più recenti (ReLU, ELU) Introdotte per le reti profonde (deep learning): vengono spiegate in seguito nel corso.
-
-### Perché le derivate "comode" contano
-
-Le derivate di sigmoid e tanh si esprimono con l'**output stesso** ($\sigma'=\sigma(1-\sigma)$, $\tau'=1-\tau^2$): durante la backpropagation basta riusare il valore già calcolato in forward.
+> [!question] Perché le derivate "comode" contano?
+>Le derivate di sigmoid e tanh si esprimono con l'**output stesso** $$\sigma'=\sigma(1-\sigma)\ ,\ \tau'=1-\tau^2$$ durante la backpropagation basta riusare il valore già calcolato in forward.
 
 ---
 
@@ -77,10 +72,11 @@ Le derivate di sigmoid e tanh si esprimono con l'**output stesso** ($\sigma'=\si
 
 Le reti sono gruppi di neuroni organizzati in **livelli**: un livello di **input**, uno di **output** e uno o più livelli **intermedi (hidden)**. Ogni livello contiene uno o più neuroni.
 
-|Tipo|Connessioni|Note|
-|---|---|---|
-|**Feedforward**|solo verso il livello **successivo**. **Niente** connessioni all'indietro né verso lo stesso livello|di gran lunga il tipo **più utilizzato**|
-|**Recurrent**|previste connessioni di **feedback** (in genere verso lo stesso livello, ma anche all'indietro)|flusso delle informazioni e addestramento più complicati (**unfolding in time**), ma adatte alle **sequenze** (audio, video, frasi) perché hanno un **effetto memoria** di breve termine: al tempo $t$ è disponibile l'informazione di $t-1, t-2,\dots$. Un tipo particolare è la **LSTM** (Long Short Term Memory)|
+![[Pasted image 20261112155535.png]]
+Le reti si distinguono principalmente in:
+1. **Feedforward** , con **connessioni** solo verso il livello successivo. 
+2. **Recurrent**, in cui sono previste connessioni di feedback (in genere verso lo stesso livello, ma anche all'indietro).
+	- **Note:** flusso delle informazioni e addestramento più complicati (_unfolding in time_), ma adatte alle sequenze *(es. audio, video, frasi)* perché hanno un effetto memoria di breve termine: al tempo $t$ è disponibile l'informazione di $t-1, t-2, \dots$. Un tipo particolare è la **LSTM** (_Long Short Term Memory_).
 
 ---
 
@@ -89,6 +85,7 @@ Le reti sono gruppi di neuroni organizzati in **livelli**: un livello di **input
 ### Dal percettrone all'MLP
 
 - **Percettrone** (Rosenblatt, **1956**): funzione di attivazione **lineare a soglia** (scalino). Un singolo percettrone, o una rete a **due soli livelli** (input e output), si addestra con una semplice **delta rule** (ispirata alla regola di Hebb).
+![[Pasted image 20261112160246.png|524]]
 - Una rete a due livelli di percettroni lineari a soglia impara **solo mapping lineari**: il numero di funzioni approssimabili è limitato.
 
 > [!abstract] **Definizione di MLP** Un **Multilayer Perceptron** è una rete **feedforward** con **almeno 3 livelli** (almeno 1 hidden) e **funzioni di attivazione non lineari**.

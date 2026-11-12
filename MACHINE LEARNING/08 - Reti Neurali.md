@@ -110,7 +110,7 @@ $$z_k=f\Big(\sum_{j=1\dots n_H}w_{jk}\cdot y_j+w_{0k}\Big)=f\Big(\sum_{j=1\dots 
 
 ## MLP: training
 
-Fissata la **topologia** (numero di livelli e neuroni), **addestrare** significa **determinare il valore dei pesi $\mathbf{w}$** che realizzano il **mapping desiderato** tra input e output.
+> [!abstract] Fissata la **topologia** (numero di livelli e neuroni), **addestrare** significa **determinare il valore dei pesi $\mathbf{w}$** che realizzano il **mapping desiderato** tra input e output.
 
 > [!question] Cosa vuol dire "mapping desiderato"? Dipende dal problema:
 > 
@@ -118,24 +118,19 @@ Fissata la **topologia** (numero di livelli e neuroni), **addestrare** significa
 > - **regressione** → l'output desiderato è il **valore corretto** della variabile dipendente, dato il valore della variabile indipendente in input.
 
 **Storia:** i primi neuroni artificiali sono degli anni '40, ma fino a metà anni '80 non c'erano algoritmi di training efficaci. Nel **1986** Rumelhart, Hinton e Williams introducono l'**Error Backpropagation**.
-
 - Risolve il **credit assignment problem** (quali pesi sono responsabili degli errori) attraverso un "**tiro alla fune**" dei training pattern, che cercano di spostare il comportamento della rete per minimizzare l'errore su di essi.
-- Matematicamente è l'applicazione della **regola di derivazione a catena** (idea che per decenni nessuno aveva applicato con successo in questo contesto).
-
-> [!tip] **Intuizione del training** Si presentano alla rete pattern etichettati (es. immagini di gatti e di cani); si calcola l'**errore** $|\text{output rete}-\text{output desiderato}|$; l'errore viene **retropropagato** e i pesi vengono aggiornati.
-
 ### Backpropagation: setup per la classificazione
 
-Problema di **classificazione supervisionata** con $s$ classi e pattern $d$-dimensionali:
+> [!tip] **Intuizione del training** 
+> Si presentano alla rete pattern etichettati (es. immagini di gatti e di cani); si calcola l'**errore** $|\text{output rete}-\text{output desiderato}|$; l'errore viene **retropropagato** e i pesi vengono aggiornati.
 
+Problema di **classificazione supervisionata** con $s$ classi e pattern $d$-dimensionali:
 - rete MLP $d:n_H:s$ → **tanti neuroni di input quante le feature**, **tanti di output quante le classi**;
 - $n_H$ è un **iperparametro**: un valore ragionevole è $n_H=\frac{1}{10}n$;
 - è utile la **pre-normalizzazione** dei pattern di input (_min-max scaling_, _standardization_ o _whitening_), che favorisce la convergenza;
 - l'addestramento è **supervisionato**: si presentano pattern di classe nota e si propagano in avanti con l'Eq. 1;
 - con **tanh** come attivazione, per un pattern di classe $g$ il vettore di output desiderato è:
-
 $$\mathbf{t}=[-1,-1,\dots,\underset{\text{posizione }g}{1},\dots,-1]$$
-
 - l'**errore** è la differenza tra output prodotto e desiderato; l'obiettivo è **modificare i pesi per minimizzare l'errore medio sui pattern del training set**;
 - i pesi iniziali sono **random in range specifici** (vedi sezione Inizializzazione).
 
@@ -158,7 +153,7 @@ $J(\mathbf{w})$ si riduce **modificando i pesi in direzione opposta al gradiente
 Quando la minimizzazione avviene con passi opposti al gradiente, la backpropagation si chiama anche **gradient descent**. Esistono tecniche del **secondo ordine** che possono accelerare la convergenza, ma sono applicabili in pratica solo a reti e training set di piccole/medie dimensioni.
 
 Si considerano prima i pesi **hidden-output** ($w_{jk}$), poi quelli **input-hidden** ($w_{ij}$).
-
+![[Pasted image 20261112165245.png]]
 ### Modifica dei pesi hidden-output
 
 Solo $z_k$ dipende da $w_{jk}$, quindi con la regola della catena:

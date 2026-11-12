@@ -5,18 +5,20 @@
 
 ## Definizioni
 
-**Perché si fa**
-
-- Alleviare la **curse of dimensionality**: in spazi ad elevata dimensionalità i pattern sono molto **sparsi** e servono ingenti moli di dati per l'addestramento.
-- Rendere più semplice l'addestramento degli algoritmi di ML.
-- Scartare dati **ridondanti** (informazioni correlate) e **rumorosi**: talvolta le prestazioni **migliorano**.
-- **Visualizzare** dati multidimensionali in 2D o 3D.
-
 > [!warning] Ridurre la dimensionalità **non** significa mantenere alcune "dimensioni" e cancellarne altre, ma **combinare** le dimensioni in modo opportuno. 
 > (Tenere solo alcune colonne sarebbe _feature selection_.)
+
+> [!fail] Problemi ricorrenti risoldi dalla *Riduzione della Dimensionalità*
+> - Dati **ridondanti** (informazioni correlate) e **rumorosi**
+> - **Curse of dimensionality**: in spazi ad elevata dimensionalità i pattern sono molto **sparsi** e servono ingenti moli di dati per l'addestramento.
 ## PCA (Principal Component Analysis)
 
-> [!abstract] trasformazione **lineare** e **non supervisionata**, detta anche **Karhunen-Loève (KL) transform**. l'obiettivo è **preservare al massimo l'informazione** dei pattern.
+> [!abstract] Trasformazione **lineare** e **non supervisionata**, detta anche **Karhunen-Loève (KL) transform**. l'obiettivo è **preservare al massimo l'informazione** dei pattern.
+
+> [!hint] Ricorda
+> **Trasformazioni non supervisionate (Unsupervised):** Modificano le feature ($X$) guardando esclusivamente la loro distribuzione interna, ignorando completamente il target ($y$). Servono a pulire, normalizzare o ridurre la dimensionalità dei dati senza alcun riferimento a ciò che il modello dovrà predire.
+>
+>**Trasformazioni supervisionate (Supervised):** Utilizzano attivamente i valori della variabile target ($y$) per guidare e ottimizzare la modifica delle feature ($X$). L'obiettivo è trasformare i dati in modo da massimizzare la separabilità delle classi o la correlazione con il risultato da predire.
 ### Definizione
 
 Dato un training set $TS={\mathbf{x}_i\in\mathbb{R}^d,\ i=1\dots n}$:

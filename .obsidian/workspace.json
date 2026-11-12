@@ -94,7 +94,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 413.5
+    "width": 413.5,
+    "collapsed": true
   },
   "right": {
     "id": "994e93d0a7538110",
@@ -118,6 +119,10 @@
   },
   "active": "6c50a5ddbb537f8f",
   "lastOpenFiles": [
+    "MACHINE LEARNING/Allegati/Pasted image 20261112153705.png",
+    "MACHINE LEARNING/Allegati/Screenshot 2026-11-12 152819.png",
+    "MACHINE LEARNING/Allegati/Pasted image 20261112152717.png",
+    "MACHINE LEARNING/Allegati/Pasted image 20261112151625.png",
     "MACHINE LEARNING/07 - Riduzione della dimensionalità.md",
     "MACHINE LEARNING/08 - Reti Neurali.md",
     "MACHINE LEARNING/Allegati/Pasted image 20261112144044.png",
@@ -128,11 +133,8 @@
     "MACHINE LEARNING/Allegati/Pasted image 20261112113509.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261112101528.png",
     "CONCURRENT SYSTEMS/module 2.4 - DESIGN.md",
-    "CONCURRENT SYSTEMS/Allegati/Pasted image 20261110181944.png",
-    "CONCURRENT SYSTEMS/Allegati/Pasted image 20261110181923.png",
     "CONCURRENT SYSTEMS/module 2.1 - MODELLING & VERIFICATION .md",
     "CONCURRENT SYSTEMS/module 2.3 - semafori, monitor e problemi classici.md",
-    "CONCURRENT SYSTEMS/Allegati/Pasted image 20261110155920.png",
     "SISTEMI INFORMATIVI/SISTEMI INFORMATIVI.md",
     "MACHINE LEARNING/06 - Clustering.md",
     "MACHINE LEARNING/05 - Regressione.md",
@@ -154,7 +156,6 @@
     "visione/Immagini/Istogramma.md",
     "visione/Immagini/Manipolazione Numpy (Esempi).md",
     "visione/Immagini/Operazioni su più immagini.md",
-    "visione/Immagini/Trasformazioni geometriche.md",
     "visione/Immagini",
     "visione/Analisi di immagini binarie",
     "visione/pasted_img",

@@ -149,7 +149,7 @@ Ne servono due, una per ogni obiettivo:
 - **Within-class** $\mathbf{S}_w$ $\rightarrow$ come i vettori sono sparpagliati rispetto al **centro della propria classe**. Si vuole **piccola** (classi compatte).
 - **Between-class** $\mathbf{S}_b$ $\rightarrow$ come i **centri delle classi** sono sparpagliati rispetto al **centro generale** della distribuzione (quanto le classi sono lontane tra loro). Si vuole **grande**.
 
-### Calcolo
+#### **Calcolo**
 
 Dato un training set di $n$ pattern $(\mathbf{x}_1,y_1)\dots(\mathbf{x}_n,y_n)$ con $\mathbf{x}_i\in\mathbb{R}^d$ e $y_i\in[1\dots s]$ (etichette delle $s$ classi), siano $n_i$ e $\bar{\mathbf{x}}_i$ numero di pattern e vettore medio della classe $i$.
 
@@ -165,7 +165,7 @@ $$\mathbf{S}_b=\sum_{i=1}^{s}n_i\cdot(\bar{\mathbf{x}}_i-\bar{\mathbf{x}}_0)(\ba
 
 ($\bar{\mathbf{x}}_0$ = **media globale**)
 
-### Criterio di ottimizzazione
+#### **Criterio di ottimizzazione**
 
 Il più usato è la massimizzazione di
 
@@ -175,8 +175,6 @@ dove $\text{tr}$ è la **traccia** (somma degli autovalori) della matrice.
 
 > [!hint] Intuizione 
 > Il criterio massimizza lo scattering **tra** le classi ($\mathbf{S}_b$) e minimizza al contempo (con la matrice inversa $\mathbf{S}_w^{-1}$) quello **all'interno** di ogni classe: direzioni dove le classi sono lontane tra loro e ben raccolte.
-
-Si dimostra che per massimizzare $J_1$ lo spazio LDA è definito (**analogia con PCA**) dagli **autovettori** relativi ai primi $k$ autovalori della matrice $\mathbf{S}_w^{-1}\mathbf{S}_b$, con $k<n$, $k<s$, $k<d$.
 
 > [!warning] Valore massimo di $k$ = $s-1$ Con $s$ classi si ottengono **al massimo $s-1$ dimensioni**. Con **due classi** si ha quindi **una sola direzione** (come nell'esempio PCA vs LDA).
 

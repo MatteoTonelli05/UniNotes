@@ -174,11 +174,16 @@ $$J_1=\text{tr}(\mathbf{S}_w^{-1}\mathbf{S}_b)=\sum_{i=1}^{d}\lambda_i$$
 dove $\text{tr}$ è la **traccia** (somma degli autovalori) della matrice.
 
 > [!hint] Intuizione 
-> Il criterio massimizza lo scattering **tra** le classi ($\mathbf{S}_b$) e minimizza al contempo (con la matrice inversa $\mathbf{S}_w^{-1}$) quello **all'interno** di ogni classe: direzioni dove le classi sono lontane tra loro e ben raccolte.
+>Scegli una direzione $\mathbf{w}$ (un asse su cui proiettare) e guarda i dati proiettati lì. 
+>Hai due quantità:
+>- quanto sono **distanti i centri** delle classi lungo $\mathbf{w}$ → $\mathbf{w}^t\mathbf{S}_b\mathbf{w}$;
+>- quanto sono **larghe** le classi lungo $\mathbf{w}$ → $\mathbf{w}^t\mathbf{S}_w\mathbf{w}$.
+>
+Il loro rapporto dice quanto quella direzione è buona per separare:
+$$\frac{\mathbf{w}^t\mathbf{S}_b\mathbf{w}}{\mathbf{w}^t\mathbf{S}_w\mathbf{w}}=\frac{\text{distanza tra i centri}}{\text{larghezza delle classi}}$$
+Si dimostra che **gli autovettori di $\mathbf{S}_w^{-1}\mathbf{S}_b$ sono le direzioni migliori e il loro autovalore $\lambda$ è proprio questo rapporto** lungo quella direzione. 
+Perciò **autovalore grande = direzione che separa bene le classi**
 
-> [!warning] Valore massimo di $k$ = $s-1$ Con $s$ classi si ottengono **al massimo $s-1$ dimensioni**. Con **due classi** si ha quindi **una sola direzione** (come nell'esempio PCA vs LDA).
-
-> [!hint] Perché $s-1$? $\mathbf{S}_b$ è costruita con $s$ vettori $(\bar{\mathbf{x}}_i-\bar{\mathbf{x}}_0)$ che **non sono indipendenti**: la loro somma pesata con $n_i$ vale zero (perché $\bar{\mathbf{x}}_0$ è la media pesata). Il rango di $\mathbf{S}_b$ è quindi al massimo $s-1$ e solo $s-1$ autovalori sono diversi da zero.
 ## Esempio PCA vs LDA
 
 Riduzione $d=2 \to k=1$ su due classi (rosse e blu). 

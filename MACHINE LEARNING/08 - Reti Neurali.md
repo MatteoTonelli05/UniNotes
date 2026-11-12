@@ -84,60 +84,27 @@ Le reti si distinguono principalmente in:
 
 ### Dal percettrone all'MLP
 
-- **Percettrone** (Rosenblatt, **1956**): funzione di attivazione **lineare a soglia** (scalino). Un singolo percettrone, o una rete a **due soli livelli** (input e output), si addestra con una semplice **delta rule** (ispirata alla regola di Hebb).
+**PERCETTRONE** (Rosenblatt, **1956**): funzione di attivazione **lineare a soglia** (scalino). Un singolo percettrone, o una rete a **due soli livelli** (input e output), si addestra con una semplice **delta rule** (ispirata alla regola di Hebb).
 ![[Pasted image 20261112160246.png|524]]
 - Una rete a due livelli di percettroni lineari a soglia impara **solo mapping lineari**: il numero di funzioni approssimabili è limitato.
 
-> [!abstract] **Definizione di MLP** Un **Multilayer Perceptron** è una rete **feedforward** con **almeno 3 livelli** (almeno 1 hidden) e **funzioni di attivazione non lineari**.
+**MLP** (**Multilayer Perceptron**) è una rete **feedforward** con **almeno 3 livelli** (almeno 1 hidden) e **funzioni di attivazione non lineari**.
 
-> [!info] **Universal approximation theorem** Ogni funzione **continua** che mappa intervalli di numeri reali su un intervallo di numeri reali può essere approssimata da un MLP con **un solo hidden layer**. Per molti decenni (fino al deep learning) ci si è fermati a reti a 3 livelli anche per questo. Ma **l'esistenza teorica di una soluzione non implica che esista un modo efficace per ottenerla**.
+> [!info] **Universal approximation theorem** 
+> Ogni funzione **continua** che mappa intervalli di numeri reali su un intervallo di numeri reali può essere approssimata da un MLP con **un solo hidden layer**. Per molti decenni (fino al deep learning) ci si è fermati a reti a 3 livelli anche per questo. Ma **l'esistenza teorica di una soluzione non implica che esista un modo efficace per ottenerla**.
 
 ### Forward propagation (inference)
 
 Con **forward propagation** (o _inference_) si intende la propagazione delle informazioni **in avanti**, dall'input all'output. Una volta addestrata, una rete elabora i pattern semplicemente con la forward propagation.
-
-Rete a 3 livelli ($d:n_H:s$): **$d$** neuroni di input, **$n_H$** neuroni hidden, **$s$** neuroni di output.
-
-```mermaid
-flowchart LR
-    subgraph IN [Input layer]
-        x1[x₁]
-        xi[xᵢ]
-        xd[x_d]
-    end
-    subgraph H [Hidden layer]
-        y1[y₁]
-        yj[yⱼ]
-        yn[y_nH]
-    end
-    subgraph OUT [Output layer]
-        z1[z₁]
-        zk[z_k]
-        zs[z_s]
-    end
-    xi -- wᵢⱼ --> yj
-    yj -- wⱼₖ --> zk
-    B1((1)) -- w₀ⱼ --> yj
-    B2((1)) -- w₀ₖ --> zk
-```
-
-**Numero di pesi (parametri):**
-
-$$d\times n_H+n_H\times s+n_H+s$$
-
-(gli ultimi due termini sono i pesi dei **bias**).
+![[Pasted image 20261112161108.png|529]]
+Nell’immagine una rete a 3 livelli $(𝑑: 𝑛_𝐻: 𝑠)$: **input** $𝑑$ neuroni, livello nascosto (**hidden**) $𝑛_𝐻$ neuroni, **output** $𝑠$ neuroni.
+- **Numero di pesi (parametri):**$\qquad d\times n_H+n_H\times s+n_H+s$ $\quad$_($(n_H + s)$ sono i pesi dei **bias**)._
 
 **$k$-esimo valore di output (Eq. 1):**
-
 $$z_k=f\Big(\sum_{j=1\dots n_H}w_{jk}\cdot y_j+w_{0k}\Big)=f\Big(\sum_{j=1\dots n_H}w_{jk}\cdot f\Big(\sum_{i=1\dots d}w_{ij}\cdot x_i+w_{0j}\Big)+w_{0k}\Big)$$
 
-> [!example] **Esempio grafico: rete 2:3:2:1 (2 livelli nascosti, senza bias)** Ogni neurone calcola $f(\text{somma pesata dei suoi ingressi})$, livello per livello:
-> 
-> - livello 1: $y_1=f_1(w_{(x1)1}x_1+w_{(x2)1}x_2)$, e analogamente $y_2,y_3$;
-> - livello 2: $y_4=f_4(w_{14}y_1+w_{24}y_2+w_{34}y_3)$, $y_5=f_5(w_{15}y_1+w_{25}y_2+w_{35}y_3)$;
-> - uscita: $y=f_6(w_{46}y_4+w_{56}y_5)$.
-> 
-> Notazione leggermente diversa dalla precedente ma facilmente comprensibile: $w_{ab}$ è il peso dal neurone $a$ al neurone $b$.
+> [!example] **Esempio grafico: rete 2:3:2:1 (2 livelli nascosti, senza bias)** 
+> ![[Pasted image 20261112161547.png]]
 
 ---
 

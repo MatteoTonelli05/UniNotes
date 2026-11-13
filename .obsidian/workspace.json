@@ -20,21 +20,8 @@
               "icon": "lucide-file",
               "title": "08 - Reti Neurali"
             }
-          },
-          {
-            "id": "95c4ee750de1134d",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.15.1"
-              },
-              "icon": "lucide-book-up",
-              "title": "Note di rilascio 1.15.1"
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -93,7 +80,7 @@
             }
           },
           {
-            "id": "61b1de7f4ca244f9",
+            "id": "c382a89345c3ec26",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
@@ -107,7 +94,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 413.5
+    "width": 413.5,
+    "collapsed": true
   },
   "right": {
     "id": "994e93d0a7538110",
@@ -213,7 +201,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "95c4ee750de1134d",
+  "active": "6c50a5ddbb537f8f",
   "lastOpenFiles": [
     "MACHINE LEARNING/Allegati/Pasted image 20261112172306.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261112172231.png",

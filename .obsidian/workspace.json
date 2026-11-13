@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "MACHINE LEARNING/08 - Reti Neurali.md",
+                "file": "CONCURRENT SYSTEMS/module 2.2 - MODELLING & VERIFICATION.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "08 - Reti Neurali"
+              "title": "module 2.2 - MODELLING & VERIFICATION"
             }
           }
         ]
@@ -80,7 +80,7 @@
             }
           },
           {
-            "id": "c382a89345c3ec26",
+            "id": "9efae0416c037808",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
@@ -94,8 +94,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 413.5,
-    "collapsed": true
+    "width": 413.5
   },
   "right": {
     "id": "994e93d0a7538110",
@@ -203,6 +202,9 @@
   },
   "active": "6c50a5ddbb537f8f",
   "lastOpenFiles": [
+    "CONCURRENT SYSTEMS/module 2.3 - semafori, monitor e problemi classici.md",
+    "CONCURRENT SYSTEMS/module 2.4 - DESIGN.md",
+    "MACHINE LEARNING/08 - Reti Neurali.md",
     "MACHINE LEARNING/Allegati/Pasted image 20261112172306.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261112172231.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261112170946.png",
@@ -213,12 +215,8 @@
     "MACHINE LEARNING/Allegati/Pasted image 20261112161108.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261112160246.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261112155757.png",
-    "MACHINE LEARNING/Allegati/Pasted image 20261112155535.png",
     "MACHINE LEARNING/07 - Riduzione della dimensionalità.md",
-    "MACHINE LEARNING/08 - Reti Neurali.md",
-    "CONCURRENT SYSTEMS/module 2.4 - DESIGN.md",
     "CONCURRENT SYSTEMS/module 2.1 - MODELLING & VERIFICATION .md",
-    "CONCURRENT SYSTEMS/module 2.3 - semafori, monitor e problemi classici.md",
     "SISTEMI INFORMATIVI/SISTEMI INFORMATIVI.md",
     "MACHINE LEARNING/06 - Clustering.md",
     "MACHINE LEARNING/05 - Regressione.md",

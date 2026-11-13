@@ -203,10 +203,23 @@ Sia $w$ la stringa data in input al `PDA` e $y$ tale che $w=xy$, allora il `PDA`
 
 >[!done] Se tutte le scommesse sono giuste, il `PDA` finisce l'input con la pila vuota
 #### Definizione Formale
+
 > [!cite] Definizione
 > Sia $G=(V,T,Q,S)$ una `CFG` definiamo $P_{G}$ come:
 > $$(\{ q \},T,V\cup T,\delta,q,S)$$
+>
+> Dove:
+>- $\delta(q,\epsilon,A)=\{ (q,\beta):A\to \beta \in Q\}$ per $A\in V$
+>- $\delta(q,a,a)=\{ (q,\epsilon) \}$ per $a\in T$
 
-Dove:
-- $\delta(q,\epsilon,A)=\{ (q,\beta):A\to \beta \in Q\}$ per $A\in V$
-- $\delta(q,a,a)=\{ (q,\epsilon) \}$ per $a\in T$
+> [!example]
+> ![[Pasted image 20261113181551.png]]
+
+---
+
+### da PDA a CFG
+
+> [!hint] Idea
+> comportamento dei **PDA** per rimuovere simbolo $Y$ dalla pila (usando una transizione che sostituisce $Y$ con $Y_1Y_2 ... Y_k$)
+> 
+![[Pasted image 20261113181720.png|313]]

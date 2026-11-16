@@ -121,11 +121,33 @@ I sistemi **SCADA** (Supervisory Control and Data Acquisition) sono usati per mo
 ---
 
 ### I sistemi ERP
-**Enterprise Resource Planning** (*nome coniato da Garner Group*) 
+**Enterprise Resource Planning** (*nome coniato da **Garner Group***) 
 
  > [!question] A cosa servono?
  > A evitare la digitalizzazione "a macchia di leopardo", in pratica un sistema ERP è un unico sistema che copra tutti i processi aziendale usando un sistema di dati centrato nell'organizzazione.
  > 
  > ![[Pasted image 20261116122506.png]]
  
+ > [!abstract] Tuttora è una delle componenti principali della digitalizzazione
  
+> [!quote] Il vantaggio dell’integrazione sta nella **circolarità dell’informazione**
+
+**UNICITÀ DEL DATO** - l'unicità dell'informazione è ottenuta utilizzando un'unica base di dati condivisa che offre i seguenti vantaggi:
+- Sincronizzazione dei dati
+- Assenza di ridondanza
+- Tracciabilità degli aggiornamenti
+- Affidabilità dell'informazione aziendale (non si rischia inconsistenza)
+
+Si parla di **MASTER DATA** (o _dato anagrafico/maestro_) è l'informazione aziendale centrale, strutturata e a lento mutamento che descrive le entità fondamentali su cui si basano i processi e le transazioni di un'organizzazione.
+
+#### Paradigma ERP
+
+> [!attention] Un sistema ERP non può essere SOLO un gestionale, ma deve essere esteso a tutto.
+> Ovviamente per coprire tutto si vanno a creare diversi moduli che vanno a comporre la soluzione ottimale.
+
+Per scegliere i moduli di interesse si utilizzano diverse strategie:
+##### 1. Incrementale
+
+##### 2. One stop shopping
+
+##### 3. Best of breed

@@ -24,7 +24,7 @@ _(gestione del cliente, amministrazione, gestione produzione, parte commerciale)
 ## SI direzionali
 
 > [!question] Perchè si affrontano dopo i SI operativi?
-> Perchè prende in input le informazioni prodotte dai SI operativi.
+> Perchè i SI direzionali prendono in input le informazioni prodotte dai SI operativi.
 
 I SI Direzionali operano secondo il modello del controllo di gestione:
 * Definizione degli obiettivi aziendali.
@@ -37,3 +37,4 @@ I SI Direzionali operano secondo il modello del controllo di gestione:
 escono fuori da quelli che è il perimetro aziendale perchè si misurano fenomenti esterni all'azienda
 
 i SI analitici vengono utilizzate da aziende con clientela numerosa
+

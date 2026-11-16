@@ -85,4 +85,27 @@ Gestiti da diversi sistemi software _(riquadri tratteggiati)_:
 ## Smart Manufactoring (AKA CIM)
 
 Vuol dire avere una catena di software che ci permettere di collegare le macchine che sono dotate di sensori e attuatori fino all'ordine, ovvero al SI in quanto tale.
-![[Pasted image 20261116104544.png]]
+![[Pasted image 20261116104544.png]] _da leggere dal basso verso l'alto_
+### Sistemi Scada
+
+I sistemi **SCADA** (Supervisory Control and Data Acquisition) sono usati per monitorare e controllare grandi impianti industriali e sistemi meccanici/elettronici distribuiti sul territorio.
+
+> [!question] Perchè servono?
+> - Riduzione delle esigenze di personale
+> - Maggiore reattività rispetto a situazioni anomale
+
+> [!example] I Digital Twin sono degli esempi perfetti
+> Ad esempio i produttori di ammortizzatori usano i DT per il testing perchè sistemi precisissimi.
+
+#### Architettura dei sistemi **SCADA**
+![[Pasted image 20261116110605.png]]
+> [!question] Perchè 3 server?
+> 1. **Front-end server:** Riceve i dati dai vari siti/impianti, ognuno nel proprio formato, e li traduce in un formato che il server SCADA può usare.
+> 2. **SCADA server:** monitora l’impianto e gestisce gli allarmi, lavorando in tempo reale con uno stream di dati.
+> 3. **Data server:** salva i dati nel tempo.
+
+> [!question] Che differenza c'è tra un sistema SCADA e IoT?
+> Il sistema SCADA fa da imbuto verso un sistema centralizzato.
+
+---
+

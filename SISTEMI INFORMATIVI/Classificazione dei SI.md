@@ -147,7 +147,20 @@ Si parla di **MASTER DATA** (o _dato anagrafico/maestro_) è l'informazione azie
 
 Per scegliere i moduli di interesse si utilizzano diverse strategie:
 ##### 1. Incrementale
+si acquistano progressivamente i moduli che nella precedente configurazione del SI mancavano o erano realizzati mediante sistemi legacy inadeguati
 
 ##### 2. One stop shopping
+si predilige la linearità acquistando i moduli di un solo vendor, possibilmente in un’unica tranche.
 
 ##### 3. Best of breed
+vengono utilizzati i moduli di diversi vendor che meglio si prestano alle esigenze dell’azienda o che vengono considerati i migliori
+
+> [!fail] Il metodo incrementale e one stop shopping coprono i processi ma non al meglio
+
+ > [!success] Il Best of Breed risolve questo problema, ovviamente l'integrazione dei moduli è a carico dell'azienda produttrice dei moduli
+ > > [!example] SAP ha diversi contratti con aziende di business intelligence
+ 
+ ![[Pasted image 20261116131949.png]]
+ 
+---
+

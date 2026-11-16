@@ -67,7 +67,6 @@ Valori in $[-1,1]$. Si ottiene dalla sigmoide con scala ($\times2$) e traslazion
 >Le derivate di sigmoid e tanh si esprimono con l'**output stesso** $$\sigma'=\sigma(1-\sigma)\ ,\ \tau'=1-\tau^2$$ durante la backpropagation basta riusare il valore già calcolato in forward.
 
 ---
-
 ## Tipologie di reti neurali
 
 Le reti sono gruppi di neuroni organizzati in **livelli**: un livello di **input**, uno di **output** e uno o più livelli **intermedi (hidden)**. Ogni livello contiene uno o più neuroni.
@@ -76,15 +75,16 @@ Le reti sono gruppi di neuroni organizzati in **livelli**: un livello di **input
 Le reti si distinguono principalmente in:
 1. **Feedforward** , con **connessioni** solo verso il livello successivo. 
 2. **Recurrent**, in cui sono previste connessioni di feedback (in genere verso lo stesso livello, ma anche all'indietro).
-	- **Note:** flusso delle informazioni e addestramento più complicati (_unfolding in time_), ma adatte alle sequenze *(es. audio, video, frasi)* perché hanno un effetto memoria di breve termine: al tempo $t$ è disponibile l'informazione di $t-1, t-2, \dots$. Un tipo particolare è la **LSTM** (_Long Short Term Memory_).
+
+> [!hint] **Nota sul Recurrent** 
+> Flusso delle informazioni e addestramento più complicati (_unfolding in time_), ma adatte alle sequenze *(es. audio, video, frasi)* perché hanno un effetto memoria di breve termine: al tempo $t$ è disponibile l'informazione di $t-1, t-2, \dots$. Un tipo particolare è la **LSTM** (_Long Short Term Memory_).
 
 ---
-
 ## Multilayer Perceptron (MLP)
 
 ### Dal percettrone all'MLP
 
-**PERCETTRONE** (Rosenblatt, **1956**): funzione di attivazione **lineare a soglia** (scalino). Un singolo percettrone, o una rete a **due soli livelli** (input e output), si addestra con una semplice **delta rule** (ispirata alla regola di Hebb).
+**PERCETTRONE**: funzione di attivazione **lineare a soglia** (scalino). Un singolo percettrone, o una rete a **due soli livelli** (input e output), si addestra con una semplice **delta rule** (ispirata alla regola di Hebb).
 ![[Pasted image 20261112160246.png|524]]
 - Una rete a due livelli di percettroni lineari a soglia impara **solo mapping lineari**: il numero di funzioni approssimabili è limitato.
 

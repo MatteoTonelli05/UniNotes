@@ -118,4 +118,14 @@ I sistemi **SCADA** (Supervisory Control and Data Acquisition) sono usati per mo
 
 > [!example] Sistema amazon, i sistemi MES ottimizza l'arrivo dei robottini che portano i pacchi
 
+---
+
+### I sistemi ERP
+**Enterprise Resource Planning** (*nome coniato da Garner Group*) 
+
+ > [!question] A cosa servono?
+ > A evitare la digitalizzazione "a macchia di leopardo", in pratica un sistema ERP è un unico sistema che copra tutti i processi aziendale usando un sistema di dati centrato nell'organizzazione.
+ > 
+ > ![[Pasted image 20261116122506.png]]
+ 
  

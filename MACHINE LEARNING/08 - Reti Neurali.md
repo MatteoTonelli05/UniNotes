@@ -303,5 +303,25 @@ Il bias $w_{0k}$ è un peso come gli altri con ingresso fisso a 1, quindi si agg
 
 **ITERAZIONE (iteration)** - la presentazione dei pattern costituenti un mini-batch e il conseguente aggiornamento dei pesi (1 volta)
 ![[Pasted image 20261116180001.png]]
+### Tarare il minibatch size
 
----
+> [!abstract] Tipologie di discesa del gradiente in base a $size_{mb}$
+>- **STOCHASTIC** - se $size_{mb} = 1$
+>- **FULL** - se $size_{mb} = n$
+
+La scelta del *minibatch size* dipende da:
+##### **Efficienza computazionale**
+    
+- Un $size_{mb}$ maggiore velocizza il training (meno aggiornamenti del gradiente e calcolo più efficiente su batch grandi).
+        
+> [!fail] _Limite hardware_
+> Nei modelli grandi, la dimensione massima è vincolata dalla memoria disponibile nella GPU (il gradiente di un batch viene memorizzato in variabili temporanee)
+        
+##### **Capacità di generalizzazione:**
+    
+- I modelli generalizzano meglio quando convergono verso **flat minima** (minimi piatti) anziché _sharp minima_ (minimi stretti/appuntiti).
+        
+- Mini-batch piccoli o medi introducono maggiore casualità (rumore), rendendo la ricerca più esplorativa ed evitando di restare intrappolati negli _sharp minima_ (da cui con batch grandi è difficile uscire).
+
+> [!hint] **Relazione con il Learning Rate ($\eta$):**
+> $size_{mb}$ e $\eta$ non sono indipendenti: con mini-batch più grandi il gradiente medio è più stabile, quindi si può usare un learning rate più alto 

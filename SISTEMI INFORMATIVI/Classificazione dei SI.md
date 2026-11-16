@@ -164,3 +164,5 @@ vengono utilizzati i moduli di diversi vendor che meglio si prestano alle esigen
  
 ---
 
+Lezione del 23092026 - 40:07
+

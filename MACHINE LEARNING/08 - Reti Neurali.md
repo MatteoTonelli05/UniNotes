@@ -166,7 +166,9 @@ Problema di **classificazione supervisionata** con $s$ classi e pattern $d$-dime
 
 ### Loss: somma dei quadrati degli errori
 
-Siano $\mathbf{z}=[z_1\dots z_s]$ l'output prodotto per il pattern $\mathbf{x}=[x_1\dots x_d]$ di classe $g$, e $\mathbf{t}=[t_1...t_s]$ l'output desiderato dove $t_i=1$ per $i=g$, $t_i=-1$ altrimenti.
+Siano $\mathbf{z}=[z_1\dots z_s]$ l'output prodotto per il pattern $\mathbf{x}=[x_1\dots x_d]$ di classe $g$, e $\mathbf{t}=[t_1\dots t_s]$ l'output desiderato dove $t_i=1$ per $i=g$, $t_i=-1$ altrimenti.
+
+**Calcoliamo l'errore sul pattern $\mathbf{x}$ come**
 
 $$J(\mathbf{w},\mathbf{x})\equiv\frac{1}{2}\sum_{c=1\dots s}(t_c-z_c)^2$$
 
@@ -174,7 +176,7 @@ $$J(\mathbf{w},\mathbf{x})\equiv\frac{1}{2}\sum_{c=1\dots s}(t_c-z_c)^2$$
 > 
 > - la dipendenza dai pesi $\mathbf{w}$ è **implicita in $\mathbf{z}$**;
 > - l'errore sull'intero training set $J(\mathbf{w})$ è la **media** di $J(\mathbf{w},\mathbf{x})$ su tutti i pattern;
-> - la somma dei quadrati **non è una loss ottimale** per la classificazione (vedi cross-entropy), ma si usa per semplicità;
+> - la somma dei quadrati **non è una loss ottimale** per la classificazione, ma si usa per semplicità;
 > - il $\frac12$ serve solo a **cancellare il 2** che esce derivando il quadrato.
 
 ---
@@ -182,17 +184,15 @@ $$J(\mathbf{w},\mathbf{x})\equiv\frac{1}{2}\sum_{c=1\dots s}(t_c-z_c)^2$$
 ### Discesa del gradiente
 
 $J(\mathbf{w})$ si riduce modificando i pesi in **direzione opposta al gradiente**: il gradiente indica la direzione di **maggior crescita** della funzione, quindi muovendosi in direzione opposta si riduce (al massimo) l'errore.
-
 $$w\leftarrow w-\eta\,\frac{\partial J}{\partial w}$$
+in cui $\eta$ è il tasso di apprendimento e $\frac{\partial J}{\partial w}$ è il gradiente positivo (dove cresce di più)
+![[Pasted image 20261112165245.png|527]]
+> [!info] **Gradient descent e secondo ordine** 
+> Quando la minimizzazione avviene con passi opposti al gradiente, la backpropagation si chiama anche **gradient descent**. Esistono tecniche del **secondo ordine** che possono accelerare la convergenza, ma sono applicabili in pratica solo a reti e training set di **piccole/medie dimensioni**.
 
-![[Pasted image 20261112165245.png]]
-
-> [!info] **Gradient descent e secondo ordine** Quando la minimizzazione avviene con passi opposti al gradiente, la backpropagation si chiama anche **gradient descent**. Esistono tecniche del **secondo ordine** che possono accelerare la convergenza, ma sono applicabili in pratica solo a reti e training set di **piccole/medie dimensioni**.
-
-Si considerano **prima** i pesi **hidden-output** ($w_{jk}$), **poi** quelli **input-hidden** ($w_{ij}$).
+> [!hint] Si considerano **prima** i pesi **hidden-output** ($w_{jk}$), **poi** quelli **input-hidden** ($w_{ij}$).
 
 ---
-
 ### Modifica dei pesi hidden-output
 
 ![[Pasted image 20261112172231.png]]

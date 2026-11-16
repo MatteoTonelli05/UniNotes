@@ -107,5 +107,13 @@ I sistemi **SCADA** (Supervisory Control and Data Acquisition) sono usati per mo
 > [!question] Che differenza c'è tra un sistema SCADA e IoT?
 > Il sistema SCADA fa da imbuto verso un sistema centralizzato.
 
+> [!fail] L'industria moderna va più verso IoT piuttosto che verso SCADA
+
 ---
+
+### I sistemi MES
+
+**Manufacturing Execution Systems** - sono sistemi per l'ottimizzazione nella gestione della fabbrica, raccolgono informazioni dallo SCADA e forniscono informazioni aggiornate all'ERP.
+
+> [!example] Sistema amazon, i sistemi MES ottimizza l'arrivo dei robottini che portano i pacchi
 

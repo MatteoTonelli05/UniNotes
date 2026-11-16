@@ -63,9 +63,19 @@ Si ottiene dalla sigmoide con scala ($\times2$) e traslazione ($-1$):
 
 > [!question] Che differenza c'è tra **Sigmoid** e ** tanh**? 
 > Tanh è leggermente più complessa ma **preferibile** (convergenza più rapida) perché è **simmetrica rispetto allo zero**.
+> 
+> Un input molto negativo dà un valore vicino a $-1$, uno molto positivo dà un valore vicino a $+1$, e $x=0$ dà $0$.
 
 > [!question] Perché le derivate "comode" contano?
->Le derivate di sigmoid e tanh si esprimono con l'**output stesso** $$\sigma'=\sigma(1-\sigma)\ ,\ \tau'=1-\tau^2$$ durante la backpropagation basta riusare il valore già calcolato in forward.
+>Per sigmoid e tanh la derivata è scritta **in funzione dell’output**:
+$$\sigma'(net)=\sigma(net)\big(1-\sigma(net)\big)\qquad\tau'(net)=1-\tau(net)^2$$
+>
+>Cioè, se $y=f(net)$ è l’output già calcolato:
+>
+>- **sigmoid**: $f'=y\,(1-y)$ → una sottrazione e una moltiplicazione;
+>- **tanh**: $f'=1-y^2$ → un quadrato e una sottrazione.
+>
+>Non devi più calcolare un esponenziale né ricalcolare $net$: il valore è già in memoria e basta un paio di operazioni aritmetiche.
 
 ---
 ## Tipologie di reti neurali
@@ -93,7 +103,7 @@ $$net=\sum_j w_j\,x_j+w_0\qquad out=\begin{cases}1&\text{se }net\ge0\\0&\text{al
 **MLP** (**Multilayer Perceptron**) - è una rete **feedforward** con **almeno 3 livelli** (almeno 1 hidden) e **funzioni di attivazione non lineari**.
 
 > [!info] **Universal approximation theorem** 
-> Ogni funzione **continua** che mappa intervalli di numeri reali su un intervallo di numeri reali può essere approssimata da un MLP con **un solo hidden layer**. Per molti decenni (fino al deep learning) ci si è fermati a reti a 3 livelli anche per questo. 
+> Ogni funzione **continua** che mappa intervalli di numeri reali su un intervallo di numeri reali può essere approssimata da un MLP con **un solo hidden layer**. 
 > > [!attention] Ma **l'esistenza teorica di una soluzione non implica che esista un modo efficace per ottenerla**.
 
 ### Forward propagation (inference)

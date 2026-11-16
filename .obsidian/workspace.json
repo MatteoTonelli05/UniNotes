@@ -80,7 +80,7 @@
             }
           },
           {
-            "id": "d4e289a47938dc33",
+            "id": "39e5e3800e1e0492",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
@@ -94,7 +94,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 413.5
+    "width": 413.5,
+    "collapsed": true
   },
   "right": {
     "id": "994e93d0a7538110",

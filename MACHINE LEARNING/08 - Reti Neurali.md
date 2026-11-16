@@ -84,14 +84,16 @@ Le reti si distinguono principalmente in:
 
 ### Dal percettrone all'MLP
 
-**PERCETTRONE**: funzione di attivazione **lineare a soglia** (scalino). Un singolo percettrone, o una rete a **due soli livelli** (input e output), si addestra con una semplice **delta rule** (ispirata alla regola di Hebb).
+**PERCETTRONE** - funzione di attivazione **lineare a soglia** (scalino). Un singolo percettrone, o una rete a **due soli livelli** (input e output), si addestra con una semplice **delta rule** (ispirata alla regola di Hebb).
+$$net=\sum_j w_j\,x_j+w_0\qquad out=\begin{cases}1&\text{se }net\ge0\\0&\text{altrimenti}\end{cases}$$
 ![[Pasted image 20261112160246.png|524]]
-- Una rete a due livelli di percettroni lineari a soglia impara **solo mapping lineari**: il numero di funzioni approssimabili è limitato.
+> [!fail] Un percettrone divide lo spazio degli input con **una retta** (in 2D; un piano in 3D, un iperpiano in generale). Da un lato risponde 1, dall’altro 0.
 
-**MLP** (**Multilayer Perceptron**) è una rete **feedforward** con **almeno 3 livelli** (almeno 1 hidden) e **funzioni di attivazione non lineari**.
+**MLP** (**Multilayer Perceptron**) - è una rete **feedforward** con **almeno 3 livelli** (almeno 1 hidden) e **funzioni di attivazione non lineari**.
 
 > [!info] **Universal approximation theorem** 
-> Ogni funzione **continua** che mappa intervalli di numeri reali su un intervallo di numeri reali può essere approssimata da un MLP con **un solo hidden layer**. Per molti decenni (fino al deep learning) ci si è fermati a reti a 3 livelli anche per questo. Ma **l'esistenza teorica di una soluzione non implica che esista un modo efficace per ottenerla**.
+> Ogni funzione **continua** che mappa intervalli di numeri reali su un intervallo di numeri reali può essere approssimata da un MLP con **un solo hidden layer**. Per molti decenni (fino al deep learning) ci si è fermati a reti a 3 livelli anche per questo. 
+> > [!attention] Ma **l'esistenza teorica di una soluzione non implica che esista un modo efficace per ottenerla**.
 
 ### Forward propagation (inference)
 

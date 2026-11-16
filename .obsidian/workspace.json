@@ -100,91 +100,7 @@
   "right": {
     "id": "994e93d0a7538110",
     "type": "split",
-    "children": [
-      {
-        "id": "9a477b161b458d58",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "587de17445d9155d",
-            "type": "leaf",
-            "state": {
-              "type": "backlink",
-              "state": {
-                "file": "MACHINE LEARNING/08 - Reti Neurali.md",
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              },
-              "icon": "links-coming-in",
-              "title": "Riferimenti"
-            }
-          },
-          {
-            "id": "f8e89e420b6a5140",
-            "type": "leaf",
-            "state": {
-              "type": "outgoing-link",
-              "state": {
-                "file": "MACHINE LEARNING/08 - Reti Neurali.md",
-                "linksCollapsed": false,
-                "unlinkedCollapsed": true
-              },
-              "icon": "links-going-out",
-              "title": "Collegamenti in uscita"
-            }
-          },
-          {
-            "id": "4f3a1988e61a3058",
-            "type": "leaf",
-            "state": {
-              "type": "tag",
-              "state": {
-                "sortOrder": "frequency",
-                "useHierarchy": true,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-tags",
-              "title": "Etichette"
-            }
-          },
-          {
-            "id": "84ba1acaa8673309",
-            "type": "leaf",
-            "state": {
-              "type": "all-properties",
-              "state": {
-                "sortOrder": "frequency",
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-archive",
-              "title": "Tutte le proprietà"
-            }
-          },
-          {
-            "id": "91bb52dce6b60985",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "MACHINE LEARNING/08 - Reti Neurali.md",
-                "followCursor": false,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-list",
-              "title": "Struttura"
-            }
-          }
-        ]
-      }
-    ],
+    "children": [],
     "direction": "horizontal",
     "width": 285.5,
     "collapsed": true
@@ -203,6 +119,7 @@
   },
   "active": "6c50a5ddbb537f8f",
   "lastOpenFiles": [
+    "MACHINE LEARNING/Allegati/Pasted image 20261116180001.png",
     "MACHINE LEARNING/04 - Support Vector Machine (SVM).md",
     "SISTEMI INFORMATIVI/Classificazione dei SI.md",
     "SISTEMI INFORMATIVI/Allegati/Pasted image 20261116131949.png",
@@ -239,7 +156,6 @@
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI.md",
     "visione/Filtri/Derivate.md",
     "visione/Numpy/Introduzione.md",
-    "visione/Immagini/Istogramma.md",
     "visione/Immagini",
     "visione/Analisi di immagini binarie",
     "visione/pasted_img",

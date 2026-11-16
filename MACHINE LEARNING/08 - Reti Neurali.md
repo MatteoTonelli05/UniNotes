@@ -57,8 +57,9 @@ Le reti più usate operano con **livelli continui**, e $f$ è:
 ![[Pasted image 20261112155030.png]]
 #### Tangente iperbolica (tanh)
 
-Valori in $[-1,1]$. Si ottiene dalla sigmoide con scala ($\times2$) e traslazione ($-1$):
+Si ottiene dalla sigmoide con scala ($\times2$) e traslazione ($-1$):
 ![[Pasted image 20261112155050.png]]
+> [!abstract] Ovviamente le funzioni sono prese nel range di valori in $[0...1]$
 
 > [!question] Che differenza c'è tra **Sigmoid** e ** tanh**? 
 > Tanh è leggermente più complessa ma **preferibile** (convergenza più rapida) perché è **simmetrica rispetto allo zero**.

@@ -84,7 +84,7 @@ Gestiti da diversi sistemi software _(riquadri tratteggiati)_:
 
 ## Smart Manufactoring (AKA CIM)
 
-Vuol dire avere una catena di software che ci permettere di collegare le macchine che sono dotate di sensori e attuatori fino all'ordine, ovvero al SI in quanto tale.
+Vuol dire avere una catena di software che ci permette di collegare le macchine che sono dotate di sensori e attuatori fino all'ordine, ovvero al SI in quanto tale.
 ![[Pasted image 20261116104544.png]] _da leggere dal basso verso l'alto_
 ### Sistemi Scada
 

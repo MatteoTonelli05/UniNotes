@@ -166,7 +166,7 @@ Problema di **classificazione supervisionata** con $s$ classi e pattern $d$-dime
 
 ### Loss: somma dei quadrati degli errori
 
-Siano $\mathbf{z}=[z_1\dots z_s]$ l'output prodotto per il pattern $\mathbf{x}=[x_1\dots x_d]$ di classe $g$, e $\mathbf{t}$ l'output desiderato ($t_i=1$ per $i=g$, $t_i=-1$ altrimenti).
+Siano $\mathbf{z}=[z_1\dots z_s]$ l'output prodotto per il pattern $\mathbf{x}=[x_1\dots x_d]$ di classe $g$, e $\mathbf{t}=[t_1...t_s]$ l'output desiderato dove $t_i=1$ per $i=g$, $t_i=-1$ altrimenti.
 
 $$J(\mathbf{w},\mathbf{x})\equiv\frac{1}{2}\sum_{c=1\dots s}(t_c-z_c)^2$$
 

@@ -110,7 +110,10 @@ $$net=\sum_j w_j\,x_j+w_0\qquad out=\begin{cases}1&\text{se }net\ge0\\0&\text{al
 
 Con **forward propagation** (o _inference_) si intende la propagazione delle informazioni **in avanti**, dall'input all'output. Una volta addestrata, una rete elabora i pattern semplicemente con la forward propagation.
 ![[Pasted image 20261112161108.png|529]]
-Nell’immagine una rete a 3 livelli $(𝑑: 𝑛_𝐻: 𝑠)$: **input** $𝑑$ neuroni, livello nascosto (**hidden**) $𝑛_𝐻$ neuroni, **output** $𝑠$ neuroni.
+Nell’immagine una rete a 3 livelli $(𝑑: 𝑛_𝐻: 𝑠)$: 
+- **input** $𝑑$ neuroni, 
+- livello nascosto (**hidden**) $𝑛_𝐻$ neuroni, 
+- **output** $𝑠$ neuroni.
 - **Numero di pesi (parametri):**$\qquad d\times n_H+n_H\times s+n_H+s$ $\quad$_($(n_H + s)$ sono i pesi dei **bias**)._
 
 **$k$-esimo valore di output (Eq. 1):**
@@ -120,22 +123,23 @@ $$z_k=f\Big(\sum_{j=1\dots n_H}w_{jk}\cdot y_j+w_{0k}\Big)=f\Big(\sum_{j=1\dots 
 > ![[Pasted image 20261112161547.png]]
 
 ---
-
 ## MLP: training
 
-> [!abstract] Fissata la **topologia** (numero di livelli e neuroni), **addestrare** significa **determinare il valore dei pesi $\mathbf{w}$** che realizzano il **mapping desiderato** tra input e output.
+> [!abstract] **Definizione di addestramento**
+> Fissata la **topologia** (numero di livelli e neuroni), **addestrare** significa **determinare il valore dei pesi $\mathbf{w}$** che realizzano il **mapping desiderato** tra input e output.
 
 > [!question] Cosa vuol dire "mapping desiderato"? Dipende dal problema:
 > 
 > - **classificatore** → l'output desiderato è l'**etichetta corretta** della classe del pattern;
 > - **regressione** → l'output desiderato è il **valore corretto** della variabile dipendente, dato il valore della variabile indipendente in input.
 
-**Storia:** i primi neuroni artificiali sono degli anni '40, ma fino a metà anni '80 non c'erano algoritmi di training efficaci. Nel **1986** Rumelhart, Hinton e Williams introducono l'**Error Backpropagation**.
-- Risolve il **credit assignment problem** (quali pesi sono responsabili degli errori) attraverso un "**tiro alla fune**" dei training pattern, che cercano di spostare il comportamento della rete per minimizzare l'errore su di essi.
+**STORIA** - i primi neuroni artificiali sono degli anni '40, ma fino a metà anni '80 non c'erano algoritmi di training efficaci. Nel **1986** Rumelhart, Hinton e Williams introducono l'**Error Backpropagation**.
+	
+- Risolve il **credit assignment problem** (quali pesi sono responsabili degli errori) spostando il comportamento della rete per minimizzare l'errore su di essi.
 ### Backpropagation: setup per la classificazione
 
 > [!tip] **Intuizione del training** 
-> Si presentano alla rete pattern etichettati (es. immagini di gatti e di cani); si calcola l'**errore** $|\text{output rete}-\text{output desiderato}|$; l'errore viene **retropropagato** e i pesi vengono aggiornati.
+> Si presentano alla rete pattern etichettati (es. immagini di gatti e di cani); si calcola l'**errore** $$errore =\quad \mid \text{output rete}-\text{output desiderato} \mid$$ l'errore viene **retropropagato** e i pesi vengono aggiornati.
 
 Problema di **classificazione supervisionata** con $s$ classi e pattern $d$-dimensionali:
 - rete MLP $d:n_H:s$ → **tanti neuroni di input quante le feature**, **tanti di output quante le classi**;
@@ -145,7 +149,7 @@ Problema di **classificazione supervisionata** con $s$ classi e pattern $d$-dime
 - con **tanh** come attivazione, per un pattern di classe $g$ il vettore di output desiderato è:
 $$\mathbf{t}=[-1,-1,\dots,\underset{\text{posizione }g}{1},\dots,-1]$$
 - l'**errore** è la differenza tra output prodotto e desiderato; l'obiettivo è **modificare i pesi per minimizzare l'errore medio sui pattern del training set**;
-- i pesi iniziali sono **random in range specifici** (vedi sezione Inizializzazione).
+- i pesi iniziali sono **random in range specifici**.
 
 ### Loss: somma dei quadrati degli errori
 

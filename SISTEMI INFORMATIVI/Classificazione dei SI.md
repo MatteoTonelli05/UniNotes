@@ -63,4 +63,26 @@ I SI analitici vengono utilizzate da aziende con clientela numerosa ad esempio:
 
 è un modo pratico che serve a costruire la **mappa** incrociando le fasi della catena di porter (colonne) con varie tipologie di attività, negli incroci incontriamo l'**esigenza informativa**.
 ![[Pasted image 20261116101032.png|577]]
-In questo modo potremo definire il grado di **Information Processing Capacity** che, se elevato, porterà ad un investimento 
+> [!attention] Ovviamente le tipologie di attività variano per tipo di azienda
+
+> [!question] A cosa serve?
+> In questo modo potremo definire il grado di **Information Processing Capacity** che, se elevato su un certo processo, porterà ad un investimento su quest'ultimo.
+
+#### Divisione del portafoglio
+![[Pasted image 20261116102245.png|574]]
+**PORTAFOGLIO DIREZIONALE:** Contiene le attività di governo dell’azienda, divise in:
+1. **PORTAFOGLIO ISTITUZIONALE:** Sono i processi di supporto, necessari a qualsiasi azienda, qualunque cosa produca.
+2. **PORTAFOGLIO OPERATIVO:** Sono i processi che creano e portano sul mercato il prodotto, cioè la catena del valore.
+
+Gestiti da diversi sistemi software _(riquadri tratteggiati)_:
+- **ERP** (Enterprise Resource Planning): è il grande gestionale integrato. Copre il portafoglio istituzionale e la parte “interna” dell’operativo (progettazione, approvvigionamento, fabbricazione). Serve a gestire risorse, magazzino, contabilità, ordini in modo unico.
+- **CRM** (Customer Relationship Management): copre il lato cliente, cioè Distribuzione e Vendita e Post-Vendita. Gestisce contatti, ordini, assistenza e fidelizzazione.
+- **CAD** (Computer Aided Design): software di progettazione tecnica, legato a “Progettazione e industrializzazione”.
+- **SCADA / CIM**: sistemi di controllo e supervisione della produzione in fabbrica (macchine, impianti, automazione). Legati alla “Fabbricazione”. CIM = Computer Integrated Manufacturing.
+
+---
+
+## Smart Manufactoring (AKA CIM)
+
+Vuol dire avere una catena di software che ci permettere di collegare le macchine che sono dotate di sensori e attuatori fino all'ordine, ovvero al SI in quanto tale.
+![[Pasted image 20261116104544.png]]

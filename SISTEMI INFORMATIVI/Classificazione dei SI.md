@@ -64,6 +64,7 @@ I SI analitici vengono utilizzate da aziende con clientela numerosa ad esempio:
 è un modo pratico che serve a costruire la **mappa** incrociando le fasi della catena di porter (colonne) con varie tipologie di attività, negli incroci incontriamo l'**esigenza informativa**.
 ![[Pasted image 20261116101032.png|577]]
 > [!attention] Ovviamente le tipologie di attività variano per tipo di azienda
+> > [!example] Un azienda siderurgica sarà interessata più alla gestione dei macchinari, un'azienda telefonica preferisce concentrarsi sull'erogazione del servizio.
 
 > [!question] A cosa serve?
 > In questo modo potremo definire il grado di **Information Processing Capacity** che, se elevato su un certo processo, porterà ad un investimento su quest'ultimo.
@@ -117,3 +118,4 @@ I sistemi **SCADA** (Supervisory Control and Data Acquisition) sono usati per mo
 
 > [!example] Sistema amazon, i sistemi MES ottimizza l'arrivo dei robottini che portano i pacchi
 
+ 

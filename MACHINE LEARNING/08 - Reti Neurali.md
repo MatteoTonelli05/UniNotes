@@ -325,3 +325,4 @@ La scelta del *minibatch size* dipende da:
 
 > [!hint] **Relazione con il Learning Rate ($\eta$):**
 > $size_{mb}$ e $\eta$ non sono indipendenti: con mini-batch più grandi il gradiente medio è più stabile, quindi si può usare un learning rate più alto 
+

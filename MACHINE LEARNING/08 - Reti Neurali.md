@@ -136,20 +136,33 @@ $$z_k=f\Big(\sum_{j=1\dots n_H}w_{jk}\cdot y_j+w_{0k}\Big)=f\Big(\sum_{j=1\dots 
 **STORIA** - i primi neuroni artificiali sono degli anni '40, ma fino a metà anni '80 non c'erano algoritmi di training efficaci. Nel **1986** Rumelhart, Hinton e Williams introducono l'**Error Backpropagation**.
 	
 - Risolve il **credit assignment problem** (quali pesi sono responsabili degli errori) spostando il comportamento della rete per minimizzare l'errore su di essi.
-### Backpropagation: setup per la classificazione
+### Setup per la classificazione
 
-> [!tip] **Intuizione del training** 
-> Si presentano alla rete pattern etichettati (es. immagini di gatti e di cani); si calcola l'**errore** $$errore =\quad \mid \text{output rete}-\text{output desiderato} \mid$$ l'errore viene **retropropagato** e i pesi vengono aggiornati.
+Problema di **classificazione supervisionata** con $s$ classi e pattern $d$-dimensionali.
+**Struttura della rete MLP $d:n_H:s$**
 
-Problema di **classificazione supervisionata** con $s$ classi e pattern $d$-dimensionali:
-- rete MLP $d:n_H:s$ → **tanti neuroni di input quante le feature**, **tanti di output quante le classi**;
-- $n_H$ è un **iperparametro**: un valore ragionevole è $n_H=\frac{1}{10}n$;
+- **tanti neuroni di input quante le feature** ($d$);
+- **tanti neuroni di output quante le classi** ($s$);
+- $n_H$ è un **iperparametro**: un valore ragionevole è $n_H=\frac{1}{10}n$.
+
+**Preparazione**
+
 - è utile la **pre-normalizzazione** dei pattern di input (_min-max scaling_, _standardization_ o _whitening_), che favorisce la convergenza;
-- l'addestramento è **supervisionato**: si presentano pattern di classe nota e si propagano in avanti con l'Eq. 1;
-- con **tanh** come attivazione, per un pattern di classe $g$ il vettore di output desiderato è:
-$$\mathbf{t}=[-1,-1,\dots,\underset{\text{posizione }g}{1},\dots,-1]$$
-- l'**errore** è la differenza tra output prodotto e desiderato; l'obiettivo è **modificare i pesi per minimizzare l'errore medio sui pattern del training set**;
-- i pesi iniziali sono **random in range specifici**.
+- i **pesi iniziali** sono random in range specifici (vedi Xavier / He).
+
+**Addestramento**
+
+- è **supervisionato**: si presentano pattern di classe nota e si propagano in avanti con l'**Eq. 1**;
+- l'**errore** è la differenza tra output prodotto e desiderato;
+- l'**obiettivo** è modificare i pesi per **minimizzare l'errore medio** sui pattern del training set.
+
+> [!example] **Output desiderato con tanh** Per un pattern di classe $g$:
+> 
+> $$\mathbf{t}=[-1,-1,\dots,\underset{\text{posizione }g}{1},\dots,-1]$$
+> 
+> Es. con $s=3$ e classe 2: $\mathbf{t}=[-1,\,1,\,-1]$.
+
+---
 
 ### Loss: somma dei quadrati degli errori
 
@@ -157,28 +170,68 @@ Siano $\mathbf{z}=[z_1\dots z_s]$ l'output prodotto per il pattern $\mathbf{x}=[
 
 $$J(\mathbf{w},\mathbf{x})\equiv\frac{1}{2}\sum_{c=1\dots s}(t_c-z_c)^2$$
 
-> [!hint] Note
+> [!hint] **Note**
 > 
 > - la dipendenza dai pesi $\mathbf{w}$ è **implicita in $\mathbf{z}$**;
 > - l'errore sull'intero training set $J(\mathbf{w})$ è la **media** di $J(\mathbf{w},\mathbf{x})$ su tutti i pattern;
-> - la somma dei quadrati **non è una loss ottimale** per la classificazione (vedi cross-entropy), ma si usa per semplicità.
+> - la somma dei quadrati **non è una loss ottimale** per la classificazione (vedi cross-entropy), ma si usa per semplicità;
+> - il $\frac12$ serve solo a **cancellare il 2** che esce derivando il quadrato.
+
+---
 
 ### Discesa del gradiente
 
-$J(\mathbf{w})$ si riduce **modificando i pesi in direzione opposta al gradiente**: il gradiente indica la direzione di **maggior crescita** della funzione, quindi muovendosi in direzione opposta si riduce (al massimo) l'errore.
+$J(\mathbf{w})$ si riduce modificando i pesi in **direzione opposta al gradiente**: il gradiente indica la direzione di **maggior crescita** della funzione, quindi muovendosi in direzione opposta si riduce (al massimo) l'errore.
 
-Quando la minimizzazione avviene con passi opposti al gradiente, la backpropagation si chiama anche **gradient descent**. Esistono tecniche del **secondo ordine** che possono accelerare la convergenza, ma sono applicabili in pratica solo a reti e training set di piccole/medie dimensioni.
-
-> [!important] Si considerano prima i pesi **hidden-output** ($w_{jk}$), poi quelli **input-hidden** ($w_{ij}$).
+$$w\leftarrow w-\eta\,\frac{\partial J}{\partial w}$$
 
 ![[Pasted image 20261112165245.png]]
+
+> [!info] **Gradient descent e secondo ordine** Quando la minimizzazione avviene con passi opposti al gradiente, la backpropagation si chiama anche **gradient descent**. Esistono tecniche del **secondo ordine** che possono accelerare la convergenza, ma sono applicabili in pratica solo a reti e training set di **piccole/medie dimensioni**.
+
+Si considerano **prima** i pesi **hidden-output** ($w_{jk}$), **poi** quelli **input-hidden** ($w_{ij}$).
+
+---
+
 ### Modifica dei pesi hidden-output
+
 ![[Pasted image 20261112172231.png]]
-> [!important] Se si usano i bias, $w_{0k}$ si aggiorna ponendo $y_0=1$.
+
+> [!note] **Bias** Se si usano i bias, $w_{0k}$ si aggiorna ponendo $y_0=1$.
+
+---
 
 ### Modifica dei pesi input-hidden
 
 ![[Pasted image 20261112172306.png]]
+
+---
+
+### Il filo logico del "back"
+
+1. il $\delta$ del livello di **output** nasce dall'**errore** $(t-z)$ moltiplicato per la **derivata dell'attivazione**;
+2. il $\delta$ di un neurone **hidden** è la **somma dei $\delta$ del livello dopo, pesati dai pesi che li collegano**, moltiplicata per la derivata dell'attivazione;
+3. l'**aggiornamento** di un peso è sempre: $$\eta\cdot\delta_{\text{(neurone a valle)}}\cdot(\text{valore in ingresso al peso})$$
+
+> [!tip] **In una frase** Con $\delta_k$ in funzione dei $\delta$ successivi, l'errore viene "**spinto all'indietro**" livello per livello.
+
+---
+
+### Esempio: backpropagation sulla rete 2:3:2:1 (senza bias)
+
+|Livello|$\delta$|
+|---|---|
+|**Uscita**|$\delta=(t-y)\cdot f_6'(net)$|
+|**2° hidden**|$\delta_4=w_{46}\,\delta\,f_4'(net_4)$, $\ \delta_5=w_{56}\,\delta\,f_5'(net_5)$|
+|**1° hidden**|$\delta_1=(w_{14}\delta_4+w_{15}\delta_5)\,f_1'(net_1)$, e analogamente $\delta_2,\delta_3$|
+
+**Aggiornamento**, per tutti i pesi:
+
+$$w'_{(x1)1}=w_{(x1)1}+\eta\,\delta_1\,x_1\qquad\text{ecc.}$$
+
+> [!attention] **Ordine delle operazioni** Prima si calcolano **tutti i $\delta$** (con i pesi ancora vecchi), poi si aggiornano i pesi.
+
+> [!question] **Per sperimentare** Molti di questi concetti si possono vedere "visivamente" nel simulatore [http://playground.tensorflow.org](http://playground.tensorflow.org)
 > [!tip] **Il filo logico del "back"**
 > 
 > - il $\delta$ del livello di **output** nasce dall'**errore** $(t-z)$ moltiplicato per la derivata dell'attivazione;

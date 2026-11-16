@@ -21,7 +21,7 @@ _(gestione del cliente, amministrazione, gestione produzione, parte commerciale)
 >
 ![[Pasted image 20260925124210.png]]
 
-## SI direzionali
+### SI direzionali
 
 > [!question] Perchè si affrontano dopo i SI operativi?
 > Perchè i SI direzionali prendono in input le informazioni prodotte dai SI operativi.
@@ -32,9 +32,35 @@ I SI Direzionali operano secondo il modello del controllo di gestione:
 * Confronto tra atteso ed effettivo (analisi degli scostamenti).
 * Azioni correttive.
 ![[Pasted image 20260925142355.png]]
-## SI analitici
+### SI analitici
 
-escono fuori da quelli che è il perimetro aziendale perchè si misurano fenomenti esterni all'azienda
+> [!question] Che **differenza** c'è con i SI direzionali?
+> I direzionali monitorano tutto ciò che succede nella vita aziendale (es. fatture)
+> Gli **analitici** monitorano tutto ciò che succede fuori (es. mercato, competitor, clienti)
 
-i SI analitici vengono utilizzate da aziende con clientela numerosa
+> [!quote] Escono fuori da quelli che è il perimetro aziendale perchè si misurano fenomenti esterni all'azienda
 
+I SI sono un esempio di trasformazione digitale che va oltre al perimetro aziendale.
+I SI analitici vengono utilizzate da aziende con clientela numerosa ad esempio:
+![[Pasted image 20261116100049.png]]
+
+---
+## La mappa dei SI
+
+> [!abstract] Quando parliamo di SI NON parliamo per forza di software, ma parliamo delle informazioni che sono necessarie a far funzionare i processi aziendali 
+
+> [!question] Cosa significa costruire la mappa dei **SI**
+> Significa che stiamo identificando le esigenze informative aziendali scomponendoli in cluster o gruppi. Sopra questi gruppi ci "appiccichiamo" dei moduli software
+
+### Esempio da SAP
+
+> [!abstract] SAP
+> è il più grosso produttore di sistemi gestionali (**LP**)
+
+> [!example] ![[Pasted image 20261116100651.png]]_L'esempio mostra i moduli che SAP consiglia per ogni necessità aziendale di automotive_
+
+### Portagoglio applicativo aziendale
+
+è un modo pratico che serve a costruire la **mappa** incrociando le fasi della catena di porter (colonne) con varie tipologie di attività, negli incroci incontriamo l'**esigenza informativa**.
+![[Pasted image 20261116101032.png|577]]
+In questo modo potremo definire il grado di **Information Processing Capacity** che, se elevato, porterà ad un investimento 

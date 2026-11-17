@@ -397,3 +397,26 @@ $$J=-\sum_{k=1\dots s}\Big[t_k\log z_k+(1-t_k)\log(1-z_k)\Big]$$
 Per ogni neurone vale ancora $\delta_k=t_k-z_k$; gli errori si combinano solo negli hidden (che sono condivisi).
 
 ##### Regressione
+
+> [!question] Cosa cambia rispetto alla classificazione?
+> La rete risponde a *"quanto vale?"*: l'output è uno o più **numeri reali**. 
+> Non ci sono classi, quindi **niente softmax e niente cross-entropy**. 
+
+**Attivazione finale: nessuna** ($z_k=net_k$, $f'=1$). Qualsiasi altra limiterebbe il range: sigmoid $(0,1)$, tanh $(-1,1)$, ReLU taglia i negativi.
+
+> [!hint] Perché riscalare comunque in $[0,1]$
+> Target di ordine di grandezza grande producono **gradienti enormi** e discesa instabile. Si riscala il target (es. $t'=\frac{t-t_{min}}{t_{max}-t_{min}}$), si addestra su $t'$ e **dopo l'inferenza si inverte** la trasformazione. Si riscala il **dato**, non l'ultimo livello.
+
+**Loss (a scelta):**
+
+| Loss | Formula | Caratteristiche |
+| --- | --- | --- |
+| **MSE** | $\frac1n\sum(t-z)^2$ | errori grandi pesano molto, sensibile agli outlier |
+| **MAE** | $\frac1n\sum\lvert t-z\rvert$ | errore lineare, più robusta agli outlier; gradiente costante in modulo |
+| **MAPE** | $\frac{100}{n}\sum\left\lvert\frac{t-z}{t}\right\rvert$ | errore **relativo** in %, problematica se $t\approx0$ |
+
+> [!tip] Backpropagation
+> Con $J=\frac12\sum(t_c-z_c)^2$ e $f'=1$: $\delta_k=t_k-z_k$. Qui $\boldsymbol\delta=[-2,+6]$: la temperatura (output troppo alto) viene spinta giù, l'umidità (troppo bassa) viene spinta su, con correzione 3 volte più forte. Aggiornamento sempre $w_{jk}=w_{jk}+\eta\,\delta_k\,y_j$.
+
+> [!info] Perché MSE ↔ identità
+> La MSE è la *negative log-likelihood* con **rumore gaussiano** sull'output, come la cross-entropy lo è per un modello categoriale. In entrambi i casi la coppia (attivazione finale, loss) dà $\delta=t-z$.

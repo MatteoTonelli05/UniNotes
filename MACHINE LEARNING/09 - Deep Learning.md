@@ -38,5 +38,7 @@ Servono 3 ingredienti principali:
 ![[Pasted image 20261117181910.png|466]]
  2. **GPU computing** - Il training di modelli complessi richiede elevate potenze computazionali.
 
-3. **Vanishing** (or exploding) **gradient** - 
+3. **Vanishing** (or exploding) **gradient** - la retro propagazione del gradiente (fondamentale per backpropagation) è problematica su reti profonde, servono quindi delle gestioni che ne evitino la scomparsa
+
+### Soluzioni al Vanishing 
 

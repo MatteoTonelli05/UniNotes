@@ -429,4 +429,5 @@ Per ogni neurone vale ancora $\delta_k=t_k-z_k$; gli errori si combinano solo ne
 
 L'inizializzazione standard può essere fatta randomicamente in **un range ottimale**, ma può portare a correzioni quasi nulle del gradiente, portando quindi la rete a non convergere.
 
+> [!example]
 #### Inizializzazione Xavier

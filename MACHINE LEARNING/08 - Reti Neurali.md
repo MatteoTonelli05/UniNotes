@@ -303,6 +303,7 @@ Il bias $w_{0k}$ è un peso come gli altri con ingresso fisso a 1, quindi si agg
 
 **ITERAZIONE (iteration)** - la presentazione dei pattern costituenti un mini-batch e il conseguente aggiornamento dei pesi (1 volta)
 ![[Pasted image 20261116180001.png]]
+$$num_{epoch}=\frac{num_{iter}\cdot size_{mb}}{n}$$
 ### Tarare il minibatch size
 
 > [!abstract] Tipologie di discesa del gradiente in base a $size_{mb}$

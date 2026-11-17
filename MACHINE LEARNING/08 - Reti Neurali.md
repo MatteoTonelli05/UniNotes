@@ -497,29 +497,15 @@ $$
 w^{(k+1)}=w^{(k)}-\eta v^{(k)}
 $$
 > [!hint] Si basa sullo stesso concetto di momentum, *quantità di moto*, in ***fisica***.
-
+![[Pasted image 20261117171859.png]]
 #### Learning Rate Adattivo
 
- >[!info] Learning Rate Basso 
-> La funzione costo diminuisce ma *richiede molto* più **tempo** per converge
-
->[!failure] Learning Rate Alto
-> La funzione costo  ***raggiunge un valore*** migliore di quello  iniziale,ma è ancora lontano da un valore ottimale.
-
->[!summary] Learning Rate Molto Alto
->La funzione costo *inizialmente diminuisce* poi inizia ad **aumentare**
-
->[!missing] Learning Rate Buono 
-> La funzione costo  ***diminuisce costantemente*** fino a raggiungere 
-il valore minimo possibile
-
-![[Pasted image 20261117170848.png|388]]
-##### Learning Rate Scheduling
-> Un learning rate alto è auspicabile all'inizio, uno basso è più appropriato nella fase finale.
+>[!abstract] Un learning rate alto è auspicabile all'inizio, uno basso è più appropriato nella fase finale.
 
 ##### Step Decay
->[!tldr] Idea
-> Riduce il learning rate iniziale $\eta_{0}$ di un fattore $\delta$ ogni numero predefinito di *epoche*.
+
+
+Riduce il learning rate iniziale $\eta_{0}$ di un fattore $\delta$ ogni numero predefinito di *epoche*.
 
 $$
 \eta=\eta_{0}\cdot\delta^{\left \lfloor\ \displaystyle\frac{n}{s} \right\rfloor} 

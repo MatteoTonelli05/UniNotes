@@ -29,3 +29,14 @@ Con il termine **DNN (Deep Neural Network)** si denotano reti «profonde» compo
 ![[Pasted image 20261117180348.png|375]]
 
 ---
+## Ingredienti del Deep Learning
+
+> [!abstract] Se provi a prendere un semplice MLP e ad aggiungere 10 livelli, banalmente non si parla di Deep Learning
+
+Servono 3 ingredienti principali:
+1. **BigData**
+![[Pasted image 20261117181910.png|466]]
+ 2. **GPU computing** - Il training di modelli complessi richiede elevate potenze computazionali.
+
+3. **Vanishing** (or exploding) **gradient** - 
+

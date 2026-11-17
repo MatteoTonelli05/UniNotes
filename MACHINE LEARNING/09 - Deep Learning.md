@@ -22,3 +22,10 @@ Con il termine **DNN (Deep Neural Network)** si denotano reti «profonde» compo
 ---
 ## Tipologie di **DNN**
 
+> [!attention] Deep Learning non significa una sola rete
+> Ci sono diversi tipi in base alla funzionalità (per immagini, per testo, generative, ecc.)
+> Ci concentreremo in particolare su quelle per immagini
+
+![[Pasted image 20261117180348.png|375]]
+
+---

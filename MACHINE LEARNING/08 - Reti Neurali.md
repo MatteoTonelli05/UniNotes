@@ -416,7 +416,7 @@ Per ogni neurone vale ancora $\delta_k=t_k-z_k$; gli errori si combinano solo ne
 | **MAPE** | $\frac{100}{n}\sum\left\lvert\frac{t-z}{t}\right\rvert$ | errore **relativo** in %, problematica se $t\approx0$                  |
 ## Rendere il training efficace: dettagli pratici
 
-> [!abstract] Il filo logico di questa sezione Abbiamo: una rete, una loss $J$, la backpropagation e la regola $w\leftarrow w-\eta,\partial J/\partial w$ (SGD). Ora si affrontano i **quattro modi in cui il training può andare male**, uno per sezione:
+> [!abstract] Abbiamo: una rete, una loss $J$, la backpropagation e la regola $w\leftarrow w-\eta,\partial J/\partial w$ (SGD). Ora si affrontano i **quattro modi in cui il training può andare male**, uno per sezione:
 > 
 > |Problema|Soluzione|
 > |---|---|
@@ -424,8 +424,6 @@ Per ogni neurone vale ancora $\delta_k=t_k-z_k$; gli errori si combinano solo ne
 > |la rete **memorizza** il training set (overfitting)|**regolarizzazione** (L1/L2, weight decay)|
 > |la discesa è **lenta, instabile o a zig-zag**|**learning rate**, **momentum**, **ottimizzatori adattivi**|
 > |non si capisce **cosa non va**|**check-list** finale|
-
----
 
 ### Inizializzazione dei pesi
 

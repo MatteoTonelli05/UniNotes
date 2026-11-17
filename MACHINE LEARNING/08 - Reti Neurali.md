@@ -354,6 +354,12 @@ $$H(p,q)=-\sum_v p(v)\,\log q(v)$$
 
 > [!hint] Quindi la loss dipende **solo dalla probabilità che la rete assegna alla classe giusta**. Delle altre uscite non importa direttamente nulla, ma poiché il softmax somma a 1, alzare $z_g$ abbassa automaticamente le altre.
 
-Con la cross-entropy è 
+Usando Softmax e Cross-Entropy **calcoliamo l'errore sul pattern $\mathbf{x}$ come**:
+$$J(w,x)=-\log(\frac{e^{net^g}}{\sum_{c=1\dots s}{e^{net_c}}})=-net^g+\log\sum_{c=1\dots s}e^{net_c}$$
 ### One-hot
 
+> [!abstract] Si dice che il target vector per $x$ assume la forma *one-hot* se il vettore $t$ ha tutti $0$ tranne un $1$ per la classe corretta $g$
+
+$$J(w,x)=H(t,z)=-log(z_g)$$
+
+---

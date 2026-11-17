@@ -332,3 +332,20 @@ La scelta del *minibatch size* dipende da:
 > [!fail] Problema
 > **Tanh** e **Sigmoid** non danno probabilità: la somma delle uscite NON è 1.
 
+Il livello di attivazione $net_k$ dei singoli neuroni dell'ultimo livello si calcola nel modo consueto, ma come funzione di attivazione per il neurone $k-esimo$ si utilizza:
+$$z_k=f(net_k) = \frac{e^{net_k}}{\sum_{c=1\dots s}e^{net_c}}$$
+
+$$z_k \in [0\dots 1]\quad \mid \quad \sum_i^{k}z_i=1$$
+-  $z_k$: è l'output finale per la classe $k$, ovvero la probabilità stimata che l'input appartenga alla classe $k$.
+
+- $f(net_k)$: indica l'applicazione della funzione di attivazione $f$ (la Softmax) all'input netto del neurone $k$.
+
+- $net_k$: è la somma pesata degli input (più il bias) che arriva al neurone $k$ prima dell'attivazione (spesso chiamata _logit_).
+
+## Cross-entropy, one-hot e riepilogo delle loss
+
+### Cross-entropy
+
+> [!abstract] È la loss che si abbina al softmax
+> Derivando softmax + cross-entropy, il tuo $\delta_k=(t_k-z_k)\,f'(net_k)$ diventa semplicemente $(t_k-z_k)$. La $f'$ sparisce, quindi il gradiente non si “spegne” quando il neurone satura.
+

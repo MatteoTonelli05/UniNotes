@@ -354,4 +354,6 @@ $$H(p,q)=-\sum_v p(v)\,\log q(v)$$
 
 > [!hint] Quindi la loss dipende **solo dalla probabilità che la rete assegna alla classe giusta**. Delle altre uscite non importa direttamente nulla, ma poiché il softmax somma a 1, alzare $z_g$ abbassa automaticamente le altre.
 
+Con la cross-entropy è 
 ### One-hot
+

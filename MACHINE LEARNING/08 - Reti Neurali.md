@@ -364,4 +364,88 @@ $$J(w,x)=-\log(\frac{e^{net^g}}{\sum_{c=1\dots s}{e^{net_c}}})=-net^g+\log\sum_{
 $$J(w,x)=H(t,z)=-log(z_g)$$
 
 ---
-## Reti neurali 
+## ## Output e Loss: scegliere in base al problema
+
+> [!hint] Ricorda il _"mapping desiderato"_, diceva che il comportamento dipende dal **problema**. 
+> **Attivazione finale e loss si scelgono in base al compito** (classificazione o regressione). 
+> Tutto il resto della rete (hidden, backpropagation, SGD) **non cambia**.
+
+La backpropagation funziona con **qualsiasi loss $J$ differenziabile**: prima di parlare di inizializzazione, regolarizzazione e learning rate bisogna quindi fissare **cosa stiamo minimizzando**.
+### Loss per la classificazione: riepilogo dei casi
+
+#### 1. Multiclasse (una sola classe corretta)
+
+- livello finale: **softmax**, $s$ neuroni;
+- loss: **cross-entropy**;
+- target **one-hot** (default) → semplificazione $J=-\log z_g$;
+- in caso di **incertezza** sulla classe corretta si usano **soft target**, con valori in $[0,1]$ e somma 1 (es. $\mathbf t=[0.7,0.3,0]$) e la **formula completa** $-\sum_c t_c\log z_c$.
+
+#### 2. Binaria (due classi)
+
+Si potrebbe trattare come multiclasse con 2 classi, ma è **preferibile** (spesso converge meglio):
+
+- **1 solo neurone** di uscita con **sigmoid**, che codifica la probabilità della **sola prima classe**: $z=P(\text{classe 1})$;
+- la seconda probabilità è il **complemento a 1**: $1-z$. La normalizzazione è quindi **implicita**;
+- $t$ e $z$ sono **scalari** in $[0,1]$:
+
+$$H(t,z)=-\big[,t\log z+(1-t)\log(1-z),\big]$$
+
+Se $t=1$ resta $-\log z$; se $t=0$ resta $-\log(1-z)$. È la cross-entropy generale applicata alle due probabilità $z$ e $1-z$.
+
+> [!info] Anche qui $\delta=t-z$ $\dfrac{\partial H}{\partial z}=\dfrac{z-t}{z(1-z)}$ e $\dfrac{\partial z}{\partial net}=z(1-z)$ (derivata della sigmoide in funzione dell'output). Il prodotto dà $\dfrac{\partial H}{\partial net}=z-t$, quindi $\delta=t-z$.
+
+#### 3. Multi-label (un pattern può avere più classi)
+
+Esempio: un'immagine con **un cane e un gatto** appartiene a 2 classi insieme.
+
+- ogni uscita è una **sigmoid indipendente**, con valori in $[0,1]$;
+- **cade il vincolo di somma a 1**: $z_{cane}=0.9$ e $z_{gatto}=0.8$ è un output valido;
+- il target è **multi-hot** (es. $\mathbf t=[1,1,0,0]$);
+- loss: **somma** di $H(t,z)$ su più neuroni.
+
+È come risolvere $s$ problemi binari indipendenti ("c'è un cane? c'è un gatto? ...") con una rete sola.
+
+||Softmax|Sigmoid multiple|
+|---|---|---|
+|Somma delle uscite|1|libera|
+|Classi vere per pattern|esattamente 1|0, 1 o più|
+|Le uscite sono|in competizione|indipendenti|
+
+---
+
+### Loss per la regressione
+
+Qui l'output non è una classe ma uno o più **valori numerici**.
+
+> [!info] Terminologia Input e output sono **vettori**: in statistica è una **multivariate multiple regression** (_multiple_ = più variabili indipendenti in input; _multivariate_ = più variabili dipendenti in output). Il termine _linear_ **non si applica**: la rete trova un mapping **non lineare**.
+
+**Attivazione finale: nessuna.** Se l'output assume valori reali non limitati, l'ultimo livello non ha funzione di attivazione ($z_k=net_k$) e il target $\mathbf t=[t_1,\dots,t_s]$ non ha vincoli. Qualsiasi attivazione limiterebbe il range: sigmoid $[0,1]$, tanh $[-1,1]$, ReLU taglia i negativi.
+
+> [!hint] Stabilità Per maggiore stabilità conviene comunque **riscalare l'output nel range $[0,1]$** (es. min-max sul target) e, dopo l'inferenza, riportare il valore alla scala originale. Stessa logica della pre-normalizzazione degli input.
+
+**Loss:** una qualsiasi di quelle introdotte per la regressione (richiamare dagli appunti precedenti):
+
+|Loss|Formula|Caratteristiche|
+|---|---|---|
+|**MSE**|$\frac1n\sum(t-z)^2$|penalizza molto gli errori grandi, sensibile agli outlier|
+|**MAE**|$\frac1n\sum\lvert t-z\rvert$|errori pesati linearmente, più robusta agli outlier|
+|**MAPE**|$\frac{100}{n}\sum\left\lvert\frac{t-z}{t}\right\rvert$|errore **relativo** in %, problematica se $t\approx0$|
+
+> [!tip] Anche qui $\delta=t-z$ Con attivazione identità ($f'=1$) e $J=\frac12\sum(t-z)^2$, $\delta_k=(t_k-z_k)\cdot1=t_k-z_k$.
+
+---
+
+### Riepilogo: attivazione finale + loss vanno in coppia
+
+|Problema|Neuroni di uscita|Attivazione finale|Loss|Target|
+|---|---|---|---|---|
+|**Multiclasse**|$s$|softmax|cross-entropy|one-hot (o soft)|
+|**Binaria**|1|sigmoid|cross-entropy binaria|scalare 0/1|
+|**Multi-label**|$s$|sigmoid (una per classe)|somma di CE binarie|multi-hot|
+|**Regressione**|numero di valori da predire|nessuna|MSE / MAE / MAPE|valori reali (meglio riscalati in $[0,1]$)|
+
+> [!tip] Regola unificante Le tre coppie (softmax + CE, sigmoid + CE binaria, identità + MSE) sono costruite in modo che $\delta_{\text{out}}=t-z$. La $f'$ non compare e il gradiente non si "spegne" per saturazione.
+
+> [!attention] Errore tipico da check-list Attivazione finale o loss sbagliate rispetto al tipo di etichette (es. sigmoid per binaria, **softmax per CE multiclasse**, **nulla per regressione**; label sparse vs one-hot) sono tra le cause più comuni di una rete che **non converge**.
+
+---

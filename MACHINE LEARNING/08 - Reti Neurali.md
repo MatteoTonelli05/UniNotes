@@ -427,7 +427,13 @@ Per ogni neurone vale ancora $\delta_k=t_k-z_k$; gli errori si combinano solo ne
 
 ### Inizializazione dei pesi
 
-L'inizializzazione standard può essere fatta randomicamente in **un range ottimale**, ma può portare a correzioni quasi nulle del gradiente, portando quindi la rete a non convergere.
+Addestrare una rete significa:
 
-> [!example]
+1. partire da **pesi casuali**;
+2. ripetere tante volte: calcolare l’errore e **correggere i pesi** di un piccolo passo.
+
+> [!fail] Problema
+> Non vanno bene numeri qualsiasi. Esempio: un neurone ha 100 ingressi e calcola una **somma di 100 prodotti** (peso × ingresso). Se i pesi sono grandi, la somma viene un numero enorme (diciamo 50).
+>
+> Per la sigmoide, un ingresso enorme cade nella zona dove il grafico è **piatto**. Dove è piatto, la derivata è quasi 0. E dato che la correzione dei pesi si calcola moltiplicando per la derivata, anche la correzione è quasi 0: **la rete non impara niente fin dall’inizio**.
 #### Inizializzazione Xavier

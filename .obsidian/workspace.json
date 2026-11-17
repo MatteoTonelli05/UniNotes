@@ -94,8 +94,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 413.5,
-    "collapsed": true
+    "width": 413.5
   },
   "right": {
     "id": "994e93d0a7538110",
@@ -119,13 +118,14 @@
   },
   "active": "6c50a5ddbb537f8f",
   "lastOpenFiles": [
+    "MACHINE LEARNING/09 - Deep Learning.md",
+    "MACHINE LEARNING/08 - Reti Neurali.md",
     "MACHINE LEARNING/Allegati/Pasted image 20261117171859.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261117170944.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261117170848.png",
     "MACHINE LEARNING/02 - Training e Valutazione Prestazioni.md",
     "MACHINE LEARNING/02 - Problemi di Learning.md",
     "MACHINE LEARNING/02 - Tipi di Learning.md",
-    "MACHINE LEARNING/08 - Reti Neurali.md",
     "MACHINE LEARNING/Allegati/Pasted image 20261116180001.png",
     "MACHINE LEARNING/04 - Support Vector Machine (SVM).md",
     "SISTEMI INFORMATIVI/Classificazione dei SI.md",
@@ -136,7 +136,6 @@
     "SISTEMI INFORMATIVI/Allegati/Pasted image 20261116110605.png",
     "SISTEMI INFORMATIVI/Allegati/Pasted image 20261116104544.png",
     "SISTEMI INFORMATIVI/Allegati/Pasted image 20261116102245.png",
-    "SISTEMI INFORMATIVI/Allegati/Pasted image 20261116101032.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/6 - Automi a pila.md",
     "CONCURRENT SYSTEMS/module 2.4 - DESIGN.md",
     "CONCURRENT SYSTEMS/module 2.2 - MODELLING & VERIFICATION.md",

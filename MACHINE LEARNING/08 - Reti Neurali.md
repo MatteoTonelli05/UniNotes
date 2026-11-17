@@ -500,12 +500,12 @@ $$
 ![[Pasted image 20261117171859.png]]
 #### Learning Rate Adattivo
 
->[!abstract] Un learning rate alto è auspicabile all'inizio, uno basso è più appropriato nella fase finale.
+Un learning rate alto è auspicabile all'inizio, uno basso è più appropriato nella fase finale.
 
 ##### Step Decay
 
-
-Riduce il learning rate iniziale $\eta_{0}$ di un fattore $\delta$ ogni numero predefinito di *epoche*.
+>[!tldr] Idea
+> Riduce il learning rate iniziale $\eta_{0}$ di un fattore $\delta$ ogni numero predefinito di *epoche*.
 
 $$
 \eta=\eta_{0}\cdot\delta^{\left \lfloor\ \displaystyle\frac{n}{s} \right\rfloor} 

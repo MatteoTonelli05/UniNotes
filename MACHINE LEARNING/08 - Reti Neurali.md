@@ -327,3 +327,8 @@ La scelta del *minibatch size* dipende da:
 > $size_{mb}$ e $\eta$ non sono indipendenti: con mini-batch più grandi il gradiente medio è più stabile, quindi si può usare un learning rate più alto 
 
 ---
+## Softmax
+
+> [!fail] Problema
+> **Tanh** e **Sigmoid** non danno probabilità: la somma delle uscite NON è 1.
+

@@ -441,7 +441,7 @@ Addestrare una rete significa:
 #### Inizializzazione Standard
 
 Esistono delle formule già scritte per ottimizzare l'inizializzazione
-
+z
 ##### Xavier
 Utile se la rete usa **sigmoid** o **tanh**
 

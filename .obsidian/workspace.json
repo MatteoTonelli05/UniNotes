@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "MACHINE LEARNING/08 - Reti Neurali.md",
+                "file": "MACHINE LEARNING/09 - Deep Learning.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "08 - Reti Neurali"
+              "title": "09 - Deep Learning"
             }
           }
         ]
@@ -80,7 +80,7 @@
             }
           },
           {
-            "id": "39e5e3800e1e0492",
+            "id": "225f2edb61287fd8",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
@@ -94,12 +94,97 @@
       }
     ],
     "direction": "horizontal",
-    "width": 413.5
+    "width": 413.5,
+    "collapsed": true
   },
   "right": {
     "id": "994e93d0a7538110",
     "type": "split",
-    "children": [],
+    "children": [
+      {
+        "id": "5e8a13c15ff6dab4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "83e3d3a75ef06af2",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "MACHINE LEARNING/09 - Deep Learning.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Riferimenti"
+            }
+          },
+          {
+            "id": "a61046e4c6a56600",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "MACHINE LEARNING/09 - Deep Learning.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Collegamenti in uscita"
+            }
+          },
+          {
+            "id": "40e3114bba1e0a88",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Etichette"
+            }
+          },
+          {
+            "id": "972633fa7e171756",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Tutte le proprietà"
+            }
+          },
+          {
+            "id": "1c39bbf205e60808",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "MACHINE LEARNING/09 - Deep Learning.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Struttura"
+            }
+          }
+        ]
+      }
+    ],
     "direction": "horizontal",
     "width": 285.5,
     "collapsed": true
@@ -118,8 +203,10 @@
   },
   "active": "6c50a5ddbb537f8f",
   "lastOpenFiles": [
-    "MACHINE LEARNING/09 - Deep Learning.md",
+    "MACHINE LEARNING/Allegati/Pasted image 20261117175354.png",
+    "MACHINE LEARNING/Allegati/Pasted image 20261117175352.png",
     "MACHINE LEARNING/08 - Reti Neurali.md",
+    "MACHINE LEARNING/09 - Deep Learning.md",
     "MACHINE LEARNING/Allegati/Pasted image 20261117171859.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261117170944.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261117170848.png",
@@ -135,7 +222,6 @@
     "SISTEMI INFORMATIVI/Introduzione.md",
     "SISTEMI INFORMATIVI/Allegati/Pasted image 20261116110605.png",
     "SISTEMI INFORMATIVI/Allegati/Pasted image 20261116104544.png",
-    "SISTEMI INFORMATIVI/Allegati/Pasted image 20261116102245.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/6 - Automi a pila.md",
     "CONCURRENT SYSTEMS/module 2.4 - DESIGN.md",
     "CONCURRENT SYSTEMS/module 2.2 - MODELLING & VERIFICATION.md",
@@ -153,7 +239,6 @@
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab/Lab 28-10-2026.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab/Lab 21-10-2026.md",
     "visione/Analisi di immagini binarie/Immagini binarie.md",
-    "MACHINE LEARNING/MACHINE LEARNING.md",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Lab/Allegati",
     "visione/Immagini",
     "visione/Analisi di immagini binarie",

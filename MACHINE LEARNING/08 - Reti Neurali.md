@@ -446,3 +446,4 @@ Esistono delle formule già scritte per ottimizzare l'inizializzazione
 Utile se la rete usa **sigmoid** o **tanh**
 
 ##### He
+Utile se usa **ReLU**

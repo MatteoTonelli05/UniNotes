@@ -59,3 +59,4 @@ Può essere di due tipologie principali:
 
 ![[Pasted image 20260921140550.png]]
 > [!attention] il termine **generativo** NON è uguale a **creativo**, poichè generativo può significare anche interpolazione.
+

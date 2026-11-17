@@ -364,3 +364,4 @@ $$J(w,x)=-\log(\frac{e^{net^g}}{\sum_{c=1\dots s}{e^{net_c}}})=-net^g+\log\sum_{
 $$J(w,x)=H(t,z)=-log(z_g)$$
 
 ---
+## Reti neurali 

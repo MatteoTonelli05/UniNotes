@@ -342,10 +342,16 @@ $$z_k \in [0\dots 1]\quad \mid \quad \sum_i^{k}z_i=1$$
 
 - $net_k$: è la somma pesata degli input (più il bias) che arriva al neurone $k$ prima dell'attivazione (spesso chiamata _logit_).
 
-## Cross-entropy, one-hot e riepilogo delle loss
-
-### Cross-entropy
+## Cross-entropy
 
 > [!abstract] È la loss che si abbina al softmax
-> Derivando softmax + cross-entropy, il tuo $\delta_k=(t_k-z_k)\,f'(net_k)$ diventa semplicemente $(t_k-z_k)$. La $f'$ sparisce, quindi il gradiente non si “spegne” quando il neurone satura.
+> Misura **quanto una distribuzione di probabilità $q$ (l’output della rete) si discosta da una distribuzione $p$ (il target)**. Più la rete assegna probabilità bassa alla risposta giusta, più la loss sale.
 
+$$H(p,q)=-\sum_v p(v)\,\log q(v)$$
+- $p=\mathbf t$ è il target, **fissato**;
+- $q=\mathbf z$ è l’output della rete, che deve essere una distribuzione. 
+	Per questo serve il **softmax**: $z_k\in(0,1)$ e $\sum_k z_k=1$.
+
+> [!hint] Quindi la loss dipende **solo dalla probabilità che la rete assegna alla classe giusta**. Delle altre uscite non importa direttamente nulla, ma poiché il softmax somma a 1, alzare $z_g$ abbassa automaticamente le altre.
+
+### One-hot

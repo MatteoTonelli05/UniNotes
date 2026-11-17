@@ -402,21 +402,178 @@ Per ogni neurone vale ancora $\delta_k=t_k-z_k$; gli errori si combinano solo ne
 > La rete risponde a *"quanto vale?"*: l'output è uno o più **numeri reali**. 
 > Non ci sono classi, quindi **niente softmax e niente cross-entropy**. 
 
-**Attivazione finale: nessuna** ($z_k=net_k$, $f'=1$). Qualsiasi altra limiterebbe il range: sigmoid $(0,1)$, tanh $(-1,1)$, ReLU taglia i negativi.
+**Nessuna attivazione finale** ($z_k=net_k$, $f'=1$), in quanto una funzione di attivazione ridurrebbe il range in output, mentre la regressione deve poter ritornare valori teoricamente infiniti.
 
 > [!hint] Perché riscalare comunque in $[0,1]$
-> Target di ordine di grandezza grande producono **gradienti enormi** e discesa instabile. Si riscala il target (es. $t'=\frac{t-t_{min}}{t_{max}-t_{min}}$), si addestra su $t'$ e **dopo l'inferenza si inverte** la trasformazione. Si riscala il **dato**, non l'ultimo livello.
+> Si parla di **preprocessing dei dati**. È solo per avere numeri piccoli e quindi gradienti gestibili, come per la normalizzazione degli input. Prima di addestrare dividi i prezzi per il massimo, e dopo l’inferenza moltiplichi per il massimo.
 
 **Loss (a scelta):**
 
-| Loss | Formula | Caratteristiche |
-| --- | --- | --- |
-| **MSE** | $\frac1n\sum(t-z)^2$ | errori grandi pesano molto, sensibile agli outlier |
-| **MAE** | $\frac1n\sum\lvert t-z\rvert$ | errore lineare, più robusta agli outlier; gradiente costante in modulo |
-| **MAPE** | $\frac{100}{n}\sum\left\lvert\frac{t-z}{t}\right\rvert$ | errore **relativo** in %, problematica se $t\approx0$ |
+| Loss     | Formula                                                 | Caratteristiche                                                        |
+| -------- | ------------------------------------------------------- | ---------------------------------------------------------------------- |
+| **MSE**  | $\frac1n\sum(t-z)^2$                                    | errori grandi pesano molto, sensibile agli outlier                     |
+| **MAE**  | $\frac1n\sum\lvert t-z\rvert$                           | errore lineare, più robusta agli outlier; gradiente costante in modulo |
+| **MAPE** | $\frac{100}{n}\sum\left\lvert\frac{t-z}{t}\right\rvert$ | errore **relativo** in %, problematica se $t\approx0$                  |
+## Rendere il training efficace: dettagli pratici
 
-> [!tip] Backpropagation
-> Con $J=\frac12\sum(t_c-z_c)^2$ e $f'=1$: $\delta_k=t_k-z_k$. Qui $\boldsymbol\delta=[-2,+6]$: la temperatura (output troppo alto) viene spinta giù, l'umidità (troppo bassa) viene spinta su, con correzione 3 volte più forte. Aggiornamento sempre $w_{jk}=w_{jk}+\eta\,\delta_k\,y_j$.
+> [!abstract] Il filo logico di questa sezione Abbiamo: una rete, una loss $J$, la backpropagation e la regola $w\leftarrow w-\eta,\partial J/\partial w$ (SGD). Ora si affrontano i **quattro modi in cui il training può andare male**, uno per sezione:
+> 
+> |Problema|Soluzione|
+> |---|---|
+> |la discesa **non parte** (gradienti ~0 fin dall'inizio)|**inizializzazione** dei pesi|
+> |la rete **memorizza** il training set (overfitting)|**regolarizzazione** (L1/L2, weight decay)|
+> |la discesa è **lenta, instabile o a zig-zag**|**learning rate**, **momentum**, **ottimizzatori adattivi**|
+> |non si capisce **cosa non va**|**check-list** finale|
 
-> [!info] Perché MSE ↔ identità
-> La MSE è la *negative log-likelihood* con **rumore gaussiano** sull'output, come la cross-entropy lo è per un modello categoriale. In entrambi i casi la coppia (attivazione finale, loss) dà $\delta=t-z$.
+---
+
+### Inizializzazione dei pesi
+
+I pesi di partenza sono **random**, ma il **range** conta moltissimo per la convergenza.
+
+> [!question] Cosa non va con la "vecchia" inizializzazione $\mathcal N(0,1)$? Un neurone con $fan_{in}$ ingressi calcola $net=\sum_j w_j x_j$. Se pesi e ingressi sono indipendenti con media 0:
+> 
+> $$\mathrm{Var}(net)\approx fan_{in}\cdot\mathrm{Var}(w)\cdot\mathrm{Var}(x)$$
+> 
+> Con $\mathrm{Var}(w)=1$ la varianza dell'uscita è $fan_{in}$ volte quella dell'ingresso. Esempio: $fan_{in}=100$ → la deviazione standard di $net$ è circa $10$ volte quella degli input.
+> 
+> Con **sigmoid o tanh** (funzioni **saturanti**) un $net$ di valore $\pm10$ cade nelle zone piatte dove $f'\approx0$: i $\delta$ si annullano, le correzioni sono quasi nulle e la rete **non converge**. Peggio ancora con più livelli, perché l'effetto si compone.
+
+**Idea:** scegliere $\mathrm{Var}(w)$ in modo che la varianza dell'output di un livello sia **simile a quella dell'input**.
+
+#### Xavier (o Glorot) — per sigmoid/tanh
+
+Glorot e Bengio (2010). Sia $fan_{avg}=\dfrac{fan_{in}+fan_{out}}{2}$ (media tra numero di input e di output del livello).
+
+- distribuzione **normale** a media 0 e deviazione standard $\sigma=\sqrt{\dfrac{1}{fan_{avg}}}$;
+- oppure distribuzione **uniforme** in $\Big[-\sqrt{\dfrac{3}{fan_{avg}}},;+\sqrt{\dfrac{3}{fan_{avg}}}\Big]$.
+
+> [!hint] Perché compare anche $fan_{out}$ $fan_{in}$ da solo manterrebbe la varianza nella **forward** propagation. Il compromesso con $fan_{out}$ la mantiene anche nei gradienti della **backward**.
+
+#### He — per ReLU (default)
+
+Con **ReLU** (funzione non saturante, introdotta nel deck Deep Learning) metà dei neuroni è spenta ($f=0$ per $net<0$) e la varianza si dimezza. Si compensa raddoppiando:
+
+$$\sigma=\sqrt{\frac{2}{fan_{in}}}$$
+
+|Attivazione|Inizializzazione|
+|---|---|
+|sigmoid, tanh|**Xavier**|
+|ReLU (e varianti)|**He**|
+
+> [!tip] Collegamento Questo è il punto che nella sezione "Setup per la classificazione" avevamo lasciato come _"i pesi iniziali sono random in range specifici (vedi Xavier / He)"_.
+
+---
+
+### Regolarizzazione
+
+> [!abstract] Obiettivo Ridurre il rischio di **overfitting** di reti con **molti parametri** (pesi). Importante soprattutto quando il training set non è grande rispetto alla capacità del modello.
+
+**Idea:** reti con pesi **piccoli** (vicini a 0) producono output più **regolare e stabile** e generalizzano meglio. Per spingere la rete verso pesi piccoli si **aggiunge un termine alla loss**:
+
+$$J_{Tot}=J_{Cross\text{-}Entropy}+J_{Reg}$$
+
+||Termine $J_{Reg}$|Nota|
+|---|---|---|
+|**L2**|$\lambda\sum_i w_i^2$|somma dei **quadrati** di tutti i pesi|
+|**L1**|$\lambda\sum_i \lvert w_i\rvert$|somma dei **valori assoluti**|
+
+$\lambda$ regola la **forza** della regolarizzazione ($\lambda$ grande → pesi molto piccoli, rischio di _underfitting_).
+
+> [!info] L1 vs L2 **L1 ha un effetto sparsificante** (porta molti pesi esattamente a 0) più forte di L2. Motivo: con L2 la spinta verso 0 è **proporzionale al peso**, quindi vicino allo zero diventa minuscola e il peso non si azzera mai del tutto. Con L1 la spinta ha **intensità costante** ($\pm\lambda$) qualunque sia il peso, e lo porta a 0.
+
+#### Weight decay
+
+Consideriamo L2. Il gradiente di $J_{Tot}$ rispetto a un parametro è la **somma** dei gradienti dei due termini. Quello di $J_{Reg}$ (scrivendo il termine come $\frac{\lambda}{2}\sum_i w_i^2$, che è la convenzione che rende il conto pulito, in modo analogo al $\frac12$ della SSE):
+
+$$\frac{\partial J_{Reg}}{\partial w_k}=\frac{\partial}{\partial w_k}\Big(\frac{\lambda}{2}\sum_i w_i^2\Big)=\lambda\cdot w_k$$
+
+L'aggiornamento di SGD:
+
+$$w_k=w_k-\eta,\frac{\partial J_{CE}}{\partial w_k}\qquad\text{diventa}\qquad w_k=w_k-\eta\Big(\frac{\partial J_{CE}}{\partial w_k}+\lambda,w_k\Big)$$
+
+Riordinando:
+
+$$w_k=\underbrace{(1-\eta\lambda)}_{<1},w_k-\eta,\frac{\partial J_{CE}}{\partial w_k}$$
+
+A ogni iterazione il peso viene **prima rimpicciolito** del fattore $(1-\eta\lambda)$ e poi corretto dal gradiente: è il **decadimento del peso** (_weight decay_), che lo tira verso 0.
+
+> [!example] Numeri $\eta=0.1$, $\lambda=0.01$, $w=2$, gradiente della loss $=0$ → $w=(1-0.001)\cdot2=1.998$. Piccolo ma costante: i pesi che **non servono** (gradiente ~0) decadono, quelli utili restano perché il gradiente li sostiene.
+
+> [!question] Per L1? La derivata di $\lambda\lvert w\rvert$ è $\lambda\cdot\mathrm{sign}(w_k)$: una spinta di valore **fisso** verso lo zero (in $w=0$ non è definita; in pratica si pone 0). Conferma l'effetto sparsificante.
+
+> [!attention] Nota sulla slide Il prof. scrive $J_{Reg}=\lambda\sum w_i^2$ e poi deriva come se ci fosse un $\frac12$. È solo una questione di convenzione (il fattore 2 si assorbe in $\lambda$): il risultato qualitativo è lo stesso.
+
+> [!tip] Collegamento Vedrai che il **Dropout** (deck Deep Learning) è un altro regolarizzatore, che agisce sui neuroni invece che sui pesi.
+
+---
+
+### Learning rate
+
+$\eta$ è l'iperparametro **più importante** da tarare.
+
+|$\eta$|Effetto|
+|---|---|
+|**troppo piccolo**|convergenza lenta, più facile restare intrappolati in minimi locali|
+|**troppo grande**|oscillazioni e/o divergenza|
+
+- Il valore ottimale dipende da architettura, loss, $size_{mb}$ ecc. (vedi la relazione con il minibatch nella sezione SGD).
+- **Consiglio:** tararlo **per ultimo**, dopo aver fissato tutto il resto.
+- Se si parte da un'architettura nota già usata su problemi simili, **partire dai valori consigliati** e provare ad aumentare/diminuire, monitorando convergenza e generalizzazione.
+
+> [!attention] La loss che scende non basta Il fatto che la loss diminuisca senza oscillare **non significa** che $\eta$ sia ottimale (specialmente nel tuning di reti pre-addestrate). Va monitorata l'**accuratezza sul validation set**.
+
+Aiutano: tecniche di **scheduling** del learning rate (si riduce $\eta$ durante il training) e **ottimizzatori con learning rate adattivo** (vedi dopo).
+
+---
+
+### Momentum
+
+> [!question] Problema SGD con mini-batch può scendere a **zig-zag** (il gradiente cambia direzione da un'iterazione all'altra), rallentando la convergenza e rendendola meno stabile.
+
+**Analogia fisica:** la discesa è una **biglia che rotola** su una superficie scoscesa. Per il **momento** la biglia ha un moto senza oscillazioni o cambi bruschi di direzione e, grazie all'inerzia, supera piccoli avvallamenti (minimi locali).
+
+**Implementazione:** per ogni parametro $w_k$ si tiene traccia dell'**ultimo aggiornamento** $\Delta w_k$. Il nuovo aggiornamento è una combinazione lineare del precedente (che dà **stabilità**) e del gradiente attuale (che **corregge la direzione**):
+
+$$\Delta w_k=\mu\cdot\Delta w_k-\eta,\frac{\partial J_{Tot}}{\partial w_k}\qquad\qquad w_k=w_k+\Delta w_k$$
+
+Valore tipico: $\mu=0.9$. Con $\mu=0$ si torna a SGD semplice.
+
+> [!example] Perché funziona
+> 
+> - **Gradiente costante** $g$ (si va sempre nella stessa direzione): l'aggiornamento converge a $-\dfrac{\eta g}{1-\mu}=-10,\eta g$ per $\mu=0.9$ → passi fino a **10 volte più lunghi**.
+> - **Gradiente che si inverte** a ogni passo (zig-zag): i contributi con segno opposto si **compensano** → oscillazioni smorzate.
+
+---
+
+### Learning rate adattativo (altri ottimizzatori)
+
+Oltre a Momentum esistono altri **optimizers** per l'aggiornamento dei pesi (vedi _Faster Optimizers_ in [A. Géron]):
+
+- Nesterov Accelerated Gradient (**NAG**)
+- Adaptive Gradient (**Adagrad**)
+- **Adadelta**
+- **RMSProp**
+- **Adam** (e **AdamW**)
+
+**Idea comune:** adattare $\eta$ **a ogni singolo parametro**: passi più lunghi lungo le direzioni (parametri) in cui il gradiente varia poco. Per farlo si mantengono **statistiche per parametro** sulla variazione del gradiente (costo in memoria).
+
+> [!info] Quale usare **Adam** è considerato lo stato dell'arte, ma **non sempre** dà risultati migliori del classico **SGD con Momentum**. Non c'è una scelta universale: dipende dal problema.
+
+---
+
+### La rete non converge: check-list
+
+Cose da verificare quando la loss sul training set **non parte** (la rete sembra bloccata). Ogni punto rimanda a una sezione:
+
+> [!todo] Check-list
+> 
+> - [ ] **Input normalizzati** (min-max, standard scaling)? → _Setup per la classificazione_
+> - [ ] **Pesi inizializzati** random in range ragionevoli (Xavier, He)? Altrimenti si può essere in **zona di saturazione** da cui non si esce → _Inizializzazione_
+> - [ ] Pattern delle diverse classi **mescolati random** nei minibatch? → _SGD_
+> - [ ] **Etichette** nel formato giusto (interi sparsi, one-hot, float per la regressione)?
+> - [ ] **Loss** corretta e adeguata al tipo di label (attenzione a label sparse vs vettori one-hot)? → _Output e Loss_
+> - [ ] **Attivazione finale** corretta: sigmoid per binaria, softmax per cross-entropy multiclasse, nessuna per regressione? → _Output e Loss_
+> - [ ] **Learning rate** adeguato? → _Learning rate_
+
+---

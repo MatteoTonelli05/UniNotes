@@ -70,3 +70,62 @@ Durante il training alcuni neuroni sono «spenti» (con una data probabilità, e
 
 ---
 
+## ML Frameworks
+
+Scrivere a mano una rete neurale semplice (il solo passaggio in avanti) è fattibile, ma scrivere da zero un sistema completo per reti profonde è estremamente complesso e richiede troppo tempo. Un buon framework deve permettere di:
+
+- Descrivere l'architettura ad alto livello (senza incastrare tutto in codice rigido).
+    
+- Eseguire il training con backpropagation includendo tutte le varianti moderne (Adam, Dropout, ecc.).
+    
+- Sfruttare in automatico le schede video (GPU), anche più di una contemporaneamente.
+    
+
+Per questo si usano librerie open-source già pronte come **TensorFlow** (Google) e **PyTorch** (Meta/Facebook), mentre altre storiche come **Caffe** sono ormai abbandonate.
+
+### Slide 11: Autodiff (Differenziazione Automatica)
+
+Nel pacco precedente avevi visto come derivare a mano le formule della backpropagation per una rete a 3 livelli. In passato, ogni volta che un ricercatore inventava un nuovo tipo di livello, doveva calcolare tutte le derivate a mano e scriverle nel codice.
+
+Oggi i framework risolvono questo problema con il **reverse-mode autodiff**:
+
+- Sfruttano la regola della catena per isolare ogni singolo livello $y = f(x, w)$ come un mattoncino indipendente.
+    
+- Se crei un nuovo livello, devi dire al framework solo due derivate locali: come cambia l'uscita rispetto all'ingresso ($\frac{dy}{dx}$) e rispetto ai pesi ($\frac{dy}{dw}$).
+    
+- Il framework si occupa automaticamente di moltiplicare e propagare questi gradienti all'indietro lungo tutta la rete ($\frac{dL}{dx} = \frac{dL}{dy} \cdot \frac{dy}{dx}$ e $\frac{dL}{dw} = \frac{dL}{dy} \cdot \frac{dy}{dw}$).
+    
+
+### Slide 12: Autodiff (2) – Tensori e Matrici Jacobiane
+
+In pratica, nei framework non si lavora con singoli numeri, ma con **tensori** (vettori, matrici e array multidimensionali):
+
+- I calcoli dei gradienti su interi livelli diventano prodotti tra **matrici Jacobiane** (matrici che contengono tutte le derivate parziali).
+    
+- Ad esempio, per un livello _fully connected_ ($y = Wx$), la derivata rispetto all'input $x$ è semplicemente la matrice dei pesi $W$, mentre rispetto a una riga di pesi $W_i$ è il vettore di input $x$.
+    
+- **Il collegamento con l'hardware:** Questo riduce quasi tutto l'addestramento a enormi moltiplicazioni tra matrici (chiamate **GEMM**, _General Matrix-Matrix Multiplications_), che sono esattamente il tipo di calcolo in cui le GPU eccellono.
+    
+
+### Slide 13: Hardware per il Training
+
+Addestrare reti con milioni di parametri su milioni di immagini (come ImageNet) su un normale processore (**CPU**, che fa meno di 1 TeraFLOPS) richiederebbe mesi. Servono le **GPU** (schede grafiche), che hanno migliaia di core progettati per fare calcoli paralleli su matrici, riducendo i tempi da mesi a giorni o ore (es. una Nvidia Titan RTX arriva a 16.3 TFLOPS).
+
+Per modelli ancora più grandi si scala su tre livelli:
+
+- **Workstation multi-GPU:** es. 4 GPU collegate direttamente tra loro tramite canali ultraveloci (_NVLink_) per non rallentare lo scambio dati.
+    
+- **Cloud:** noleggio di GPU su server Amazon, Google, ecc.
+    
+- **Supercomputer:** come _Leonardo_ al Cineca, che unisce migliaia di nodi con 4 GPU Nvidia A100 ciascuno.
+    
+
+### Slide 14: Inference on the Edge
+
+Una volta che la rete è stata addestrata (e i suoi pesi vengono "congelati"), usarla per fare predizioni (**inference**) richiede molta meno potenza di calcolo rispetto al training. Spesso basta una normale CPU, oppure, quando serve velocità in tempo reale su dispositivi a batteria (_Edge_), si usano chip dedicati a basso consumo:
+
+- **Smartphone:** integrano acceleratori neurali chiamati **NPU** (Neural Processing Units, come nei chip Apple Bionic) abbinati a librerie dedicate.
+    
+- **IoT, Robot e Droni:** usano schede compatte con GPU a basso consumo come **NVIDIA Jetson** o smart camera con chip dedicati (es. Intel Movidius).
+    
+- **Automotive:** chip progettati su misura per la guida autonoma, come quelli sviluppati da Tesla.

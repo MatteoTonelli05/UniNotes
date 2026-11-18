@@ -1,16 +1,17 @@
 ## Sequence to Sequence
 
 Le reti feedforward (MLP, CNN) lavorano su **vettori di dimensione fissa** (_one to one_). Molte applicazioni richiedono invece input e/o output come **sequenze di lunghezza variabile**.
-
-|Tipo|Esempio|
-|---|---|
-|**One to many**|_image captioning_: immagine → frase|
-|**Many to one**|_sentiment analysis_: testo → valore (positivo/negativo)|
-|**Many to many**|_language translation_: frase EN → frase IT|
+![[Pasted image 20261118174958.png]]
+> [!example] Esempi
+> **One to One** - da vettore immagine a vettore probabilità delle classi *(classificazione)*
+> **One to Many** - da vettore immagine a testo *(image captioning)*
+> **Many to One** - da  testo a valore continuo *(sentiment analysis)*
+> **Many to Many** - da testo a testo *(language translation)*
 
 ---
-
 ## Reti Ricorrenti (RNN)
+
+![[Pasted image 20261118175716.png]]
 
 Prevedono collegamenti **verso lo stesso livello** (o all'indietro). Ad ogni step $t$ il livello riceve l'input $x_{(t)}$ **e** il suo output precedente $y_{(t-1)}$.
 

@@ -40,18 +40,33 @@ Servono 3 ingredienti principali:
 
 3. **Vanishing** (or exploding) **gradient** - la retro propagazione del gradiente (fondamentale per backpropagation) è problematica su reti profonde, servono quindi delle gestioni che ne evitino la scomparsa
 
-### Soluzioni al Vanishing 
+### Vanishing 
+
+> [!fail] Il vanishing gradient nasce dalla **regola della catena** nella backpropagation: il gradiente di uno strato iniziale è un **prodotto di molti fattori**, uno per ogni strato attraversato. Se questi fattori sono in media $<1$, il prodotto decade esponenzialmente con la profondità.
 
 Nelle reti profonde, l’utilizzo della **sigmoide** è problematico per la retro propagazione del gradiente (problema del vanishing gradient)
 
-#### **Relu** (Rectified Linear)
+#### Soluzione 1 - Sostituzione funzione di attivazione
+##### **Relu** (Rectified Linear)
 ![[Pasted image 20261118113753.png|608]]
-#### **Leaky Relu**
+##### **Leaky Relu**
 
 Evita che nella parte negativa il gradiente sia 0, e quindi permette a neuroni «spenti» durante il training di potersi «risvegliare»
 ![[Pasted image 20261118113940.png]]
-#### **ELU** (Exponential Linear Unit)
+##### **ELU** (Exponential Linear Unit)
 
-Oltre a non avere gradiente nullo nella parte negativa, è più smoothed vicino allo 0 (no discontinuità per 𝛼 = 1)
+Oltre a non avere gradiente nullo nella parte negativa, è più *smoothed* vicino allo 0 (no discontinuità per 𝛼 = 1)
 
 ![[Pasted image 20261118114045.png]]
+#### Soluzione 2 - Dropout
+
+> [!abstract] Idea
+> Nel caso di modelli molto grandi addestrati su dataset relativamente piccoli si riconduce all'**overfitting**.
+
+Il dropout è una tecnica di regolarizzazione utile per controllare overfitting.
+Durante il training alcuni neuroni sono «spenti» (con una data probabilità, es. 50%), per far sì che l’output non dipenda da specifici neuroni, ma sia determinato in modo più robusto. 
+![[Pasted image 20261118121347.png|504]]
+> [!hint] In una CNN è solitamente applicato solo ai livelli fully connected nella parte finale della rete (ma non all’output).
+
+---
+

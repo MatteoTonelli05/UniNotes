@@ -42,3 +42,16 @@ Servono 3 ingredienti principali:
 
 ### Soluzioni al Vanishing 
 
+Nelle reti profonde, l’utilizzo della **sigmoide** è problematico per la retro propagazione del gradiente (problema del vanishing gradient)
+
+#### **Relu** (Rectified Linear)
+![[Pasted image 20261118113753.png|608]]
+#### **Leaky Relu**
+
+Evita che nella parte negativa il gradiente sia 0, e quindi permette a neuroni «spenti» durante il training di potersi «risvegliare»
+![[Pasted image 20261118113940.png]]
+#### **ELU** (Exponential Linear Unit)
+
+Oltre a non avere gradiente nullo nella parte negativa, è più smoothed vicino allo 0 (no discontinuità per 𝛼 = 1)
+
+![[Pasted image 20261118114045.png]]

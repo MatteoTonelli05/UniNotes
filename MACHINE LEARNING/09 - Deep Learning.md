@@ -100,34 +100,29 @@ Per questo si usano librerie open-source già pronte come **TensorFlow** (Google
 
 La propagazione e la combinazione con il resto della rete sono automatiche.
 
-**Cosa succede nel backward.** Il layer riceve dall’alto $\frac{dL}{dy}$ e restituisce:
+**Cosa succede nel backward.** Il layer riceve dall’alto $\frac{dL}{dy}$ (Loss in relazione all'output) e restituisce:
 
 $$\frac{dL}{dx} = \frac{dL}{dy}\cdot\frac{dy}{dx} \qquad\qquad \frac{dL}{dw} = \frac{dL}{dy}\cdot\frac{dy}{dw}$$
 
 Il primo termine va al layer precedente (continua la catena), il secondo serve ad aggiornare i pesi.
 
-**In pratica: tensori e Jacobiane.** Input, output e pesi sono tensori, quindi le derivate parziali sono organizzate in **matrici Jacobiane**. La chain rule diventa un **prodotto di Jacobiane** (con le dovute trasposizioni). Per questo le GPU sono adatte: eseguono bene le moltiplicazioni matrice-matrice (**gemm**).
+> [!abstract] **Tensori e Jacobiane.** 
+> Input, output e pesi sono tensori, quindi le derivate parziali sono organizzate in **matrici Jacobiane**. La chain rule diventa un **prodotto di Jacobiane** (con le dovute trasposizioni). Per questo le GPU sono adatte: eseguono bene le moltiplicazioni matrice-matrice (**gemm**).
 
-**Esempio: layer fully connected senza bias**, $\mathbf{y} = W\mathbf{x}$, con $\mathbf{x}\in\mathbb{R}^n$, $\mathbf{y}\in\mathbb{R}^m$, $W\in\mathbb{R}^{m\times n}$:
-
-$$  
+> [!example] **Esempio**
+> layer fully connected senza bias, $\mathbf{y} = W\mathbf{x}$, con $\mathbf{x}\in\mathbb{R}^n$, $\mathbf{y}\in\mathbb{R}^m$, $W\in\mathbb{R}^{m\times n}$:
+>
+>$$  
 \frac{d\mathbf{y}}{d\mathbf{x}} = \left[\frac{dy_i}{dx_j}\right] = [W_{ij}] = W  
 \qquad\qquad  
-\frac{d\mathbf{y}}{dW_i} = \mathbf{x},\quad i=1..m  
-$$
-
+\frac{d\mathbf{y}}{dW_i} = \mathbf{x},\quad i=1..m$$
 dove $W_i$ è la riga $i$-esima di $W$. In parole: la derivata rispetto all’input è la matrice dei pesi, quella rispetto ai pesi di un neurone è l’input stesso.
 
-**Da ricordare:**
-
-1. Ogni layer conosce solo le **sue** derivate locali.
-2. Il framework le concatena con la chain rule, da $L$ verso l’input (reverse mode).
-3. Il tutto si riduce a prodotti di Jacobiane, ideali per GPU.
-
-Nota: le slide non trattano il forward mode né il costo/memoria del reverse mode, quindi quella parte della spiegazione precedente è un’aggiunta mia e non fa parte di ciò che dice il corso.
-    
 ![[Pasted image 20261118130906.png|555]]
-### Slide 14: Inference on the Edge
+### Inference on the Edge
+
+> [!abstract] Idea
+> Il **training** è la parte pesante e richiede GPU potenti. L’**inference** è usare una rete già addestrata per classificare un nuovo input: è solo una forward pass, molto più leggera. “On the edge” significa farla direttamente sul dispositivo (telefono, robot, telecamera).
 
 Una volta che la rete è stata addestrata (e i suoi pesi vengono "congelati"), usarla per fare predizioni (**inference**) richiede molta meno potenza di calcolo rispetto al training. Spesso basta una normale CPU, oppure, quando serve velocità in tempo reale su dispositivi a batteria (_Edge_), si usano chip dedicati a basso consumo:
 
@@ -136,3 +131,74 @@ Una volta che la rete è stata addestrata (e i suoi pesi vengono "congelati"), u
 - **IoT, Robot e Droni:** usano schede compatte con GPU a basso consumo come **NVIDIA Jetson** o smart camera con chip dedicati (es. Intel Movidius).
     
 - **Automotive:** chip progettati su misura per la guida autonoma, come quelli sviluppati da Tesla.
+
+## CNN
+
+> [!fail] Le MLP sono troppo pesanti per analizzare immagini
+
+> [!question] Che **differenze** ci sono rispetto alla MLP?
+> 1. **Connessioni locali**: ogni neurone guarda solo un piccolo pezzo del livello precedente, quindi molte meno connessioni.
+>2. **Pesi condivisi**: neuroni diversi dello stesso livello usano gli **stessi pesi** su zone diverse dell’immagine, quindi molti meno pesi da apprendere.
+>3. **Alternanza di feature extraction e pooling**.
+>
+>![[Pasted image 20261118145003.png]]
+
+### Architettura CNN
+
+> [!info] Ispirazione biologica
+> Hubel e Wiesel (1962) scoprono nella corteccia visiva del gatto due tipi di neuroni:
+>
+>- **Simple cells**: rilevano feature locali (es. un bordo). Danno **selettività**.
+>- **Complex cells**: fondono (pooling) le uscite di più simple cells vicine. Danno **invarianza**: il bordo viene riconosciuto anche se si sposta un po’.
+
+Una CNN è composta da una gerarchia di livelli.
+- Il livello di input è direttamente collegato ai pixel dell’immagine
+- gli ultimi livelli sono generalmente fully-connected e operano come un classificatore MLP
+- nei livelli intermedi si utilizzano connessioni locali e pesi condivisi.
+![[Pasted image 20261118145221.png|594]] 
+> [!important] 
+> - Più si va avanti nella rete più il livello analizza un dettaglio più ristretto.
+> - Le connessioni locali e condivise fanno si che i neuroni processino nello stesso modo porzioni diverse dell'immagine
+>  
+>  ![[Pasted image 20261118145715.png]]
+
+### Convoluzione
+
+Un filtro digitale (una piccola maschera 2D di pesi) è fatto scorrere sulle diverse posizioni di input; per ogni posizione viene generato un valore di output, eseguendo il prodotto scalare tra la maschera e la porzione dell’input coperta (entrambi trattati come vettori).
+
+![[Pasted image 20261118145851.png|462]]
+> [!question] Perchè è in questa sezione?
+> Perchè i neuroni si comportano praticamente come un filtro di convoluzione
+> 
+> ![[Pasted image 20261118150051.png|443]]
+
+### Volumi di una CNN
+
+Le CNN lavorano in **3D**:
+- sui piani **width - height** si conserva l’organizzazione spaziale dell'immagine in input
+- su **depth** si individuano le **feature map**
+
+> [!hint] Un’immagine a colori non è una griglia piatta: ha **3 canali** (R, G, B), da qui proviene la matrice 3D.
+
+![[Pasted image 20261118150340.png|505]]
+#### **Convoluzione 3D**
+
+Il filtro in questo caso deve avere la stessa **depth** dell'immagine input, ogni filtro genererà quindi una matrice bidimensionale di dimensione:
+$$W_{out}=\frac{(W_{in}-F+2\cdot Padding)}{Stride}+1$$
+In cui 
+- $W_{out}$ è la dimensione (orizzontale o verticale) della feature map di output 
+- $W_{in}$ la corrispondente dimensione nell'input
+- $F$ la stessa dimensione ma nel filtro
+- $Stride$ è il passo con cui il filtro si sposta, di default 1
+- $Padding$ indica lo spessore (in pixel) del bordo
+![[Pasted image 20261118152152.png]]
+> [!question] Lo spessore della matrice in uscita da cosa deriva?
+> Solo ed esclusivamente dal numero di filtri utilizzati.
+
+### Pooling
+
+Il pooling **riduce la dimensione** delle feature map aggregando piccole zone in un solo valore. 
+Fondendo le risposte di più simple cells vicine, danno così **invarianza**.
+
+> [!question] A cosa serve?
+> Dopo una convoluzione, la feature map dice “qui c’è un bordo”. Ma se nell’immagine quel bordo si sposta di un pixel, la mappa cambia leggermente. Il pooling smussa questa differenza: tiene l’informazione “in questa zona c’è un bordo” senza badare alla posizione esatta. Così la rete diventa **robusta a piccole traslazioni**, ma conserva ciò che serve a distinguere i pattern. In più, mappe più piccole significano meno calcoli nei livelli successivi.

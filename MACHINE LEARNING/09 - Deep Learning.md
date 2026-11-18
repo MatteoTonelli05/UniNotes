@@ -93,29 +93,40 @@ Per questo si usano librerie open-source già pronte come **TensorFlow** (Google
 
 > [!fail] In passato ogni volta che veniva proposto un nuovo modello, era necessario derivare manualmente il gradiente e codificare le corrispondenti equazioni nel software.
 
-Oggi i framework risolvono questo problema con il **reverse-mode autodiff**:
+**Cosa serve per un nuovo layer.** Se definisci un layer $y = f(x, w)$ che il framework non ha, devi fornire solo i **gradienti locali**:
 
-- Sfruttano la regola della catena per isolare ogni singolo livello $y = f(x, w)$ come un mattoncino indipendente.
-    
-- Se crei un nuovo livello, devi dire al framework solo due derivate locali: come cambia l'uscita rispetto all'ingresso ($\frac{dy}{dx}$) e rispetto ai pesi ($\frac{dy}{dw}$).
-    
-- Il framework si occupa automaticamente di moltiplicare e propagare questi gradienti all'indietro lungo tutta la rete ($\frac{dL}{dx} = \frac{dL}{dy} \cdot \frac{dy}{dx}$ e $\frac{dL}{dw} = \frac{dL}{dy} \cdot \frac{dy}{dw}$).
+- $\dfrac{dy}{dx}$: output rispetto all’input
+- $\dfrac{dy}{dw}$: output rispetto ai parametri locali
+
+La propagazione e la combinazione con il resto della rete sono automatiche.
+
+**Cosa succede nel backward.** Il layer riceve dall’alto $\frac{dL}{dy}$ e restituisce:
+
+$$\frac{dL}{dx} = \frac{dL}{dy}\cdot\frac{dy}{dx} \qquad\qquad \frac{dL}{dw} = \frac{dL}{dy}\cdot\frac{dy}{dw}$$
+
+Il primo termine va al layer precedente (continua la catena), il secondo serve ad aggiornare i pesi.
+
+**In pratica: tensori e Jacobiane.** Input, output e pesi sono tensori, quindi le derivate parziali sono organizzate in **matrici Jacobiane**. La chain rule diventa un **prodotto di Jacobiane** (con le dovute trasposizioni). Per questo le GPU sono adatte: eseguono bene le moltiplicazioni matrice-matrice (**gemm**).
+
+**Esempio: layer fully connected senza bias**, $\mathbf{y} = W\mathbf{x}$, con $\mathbf{x}\in\mathbb{R}^n$, $\mathbf{y}\in\mathbb{R}^m$, $W\in\mathbb{R}^{m\times n}$:
+
+$$  
+\frac{d\mathbf{y}}{d\mathbf{x}} = \left[\frac{dy_i}{dx_j}\right] = [W_{ij}] = W  
+\qquad\qquad  
+\frac{d\mathbf{y}}{dW_i} = \mathbf{x},\quad i=1..m  
+$$
+
+dove $W_i$ è la riga $i$-esima di $W$. In parole: la derivata rispetto all’input è la matrice dei pesi, quella rispetto ai pesi di un neurone è l’input stesso.
+
+**Da ricordare:**
+
+1. Ogni layer conosce solo le **sue** derivate locali.
+2. Il framework le concatena con la chain rule, da $L$ verso l’input (reverse mode).
+3. Il tutto si riduce a prodotti di Jacobiane, ideali per GPU.
+
+Nota: le slide non trattano il forward mode né il costo/memoria del reverse mode, quindi quella parte della spiegazione precedente è un’aggiunta mia e non fa parte di ciò che dice il corso.
     
 ![[Pasted image 20261118130906.png|555]]
-In pratica, nei framework non si lavora con singoli numeri, ma con **tensori** (vettori, matrici e array multidimensionali):
-
-- I calcoli dei gradienti su interi livelli diventano prodotti tra **matrici Jacobiane** (matrici che contengono tutte le derivate parziali).
-    
-- Ad esempio, per un livello _fully connected_ ($y = Wx$), la derivata rispetto all'input $x$ è semplicemente la matrice dei pesi $W$, mentre rispetto a una riga di pesi $W_i$ è il vettore di input $x$.
-    
-- **Il collegamento con l'hardware:** Questo riduce quasi tutto l'addestramento a enormi moltiplicazioni tra matrici (chiamate **GEMM**, _General Matrix-Matrix Multiplications_), che sono esattamente il tipo di calcolo in cui le GPU eccellono.
-    
-
-### Hardware per il Training
-
-
-    
-
 ### Slide 14: Inference on the Edge
 
 Una volta che la rete è stata addestrata (e i suoi pesi vengono "congelati"), usarla per fare predizioni (**inference**) richiede molta meno potenza di calcolo rispetto al training. Spesso basta una normale CPU, oppure, quando serve velocità in tempo reale su dispositivi a batteria (_Edge_), si usano chip dedicati a basso consumo:

@@ -201,4 +201,8 @@ Il pooling **riduce la dimensione** delle feature map aggregando piccole zone in
 Fondendo le risposte di più simple cells vicine, danno così **invarianza**.
 
 > [!question] A cosa serve?
-> Dopo una convoluzione, la feature map dice “qui c’è un bordo”. Ma se nell’immagine quel bordo si sposta di un pixel, la mappa cambia leggermente. Il pooling smussa questa differenza: tiene l’informazione “in questa zona c’è un bordo” senza badare alla posizione esatta. Così la rete diventa **robusta a piccole traslazioni**, ma conserva ciò che serve a distinguere i pattern. In più, mappe più piccole significano meno calcoli nei livelli successivi.
+> Dopo una convoluzione, la feature map può indicare la posizione. Ma se nell’immagine quel bordo si sposta di un pixel, la mappa cambia leggermente. Il pooling, riducendo la matrice, tiene l’informazione “in questa zona c’è un bordo” senza badare alla posizione esatta. 
+> 
+> **Così la rete diventa robusta a piccole traslazioni, conservando le informazioni e semplificando i calcoli.**
+
+![[Pasted image 20261118154816.png|477]]

@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "MACHINE LEARNING/09 - Deep Learning.md",
+                "file": "MACHINE LEARNING/10 - DeepLearning.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "09 - Deep Learning"
+              "title": "10 - DeepLearning"
             }
           }
         ]
@@ -80,7 +80,7 @@
             }
           },
           {
-            "id": "225f2edb61287fd8",
+            "id": "a1c6221194ee03f5",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
@@ -111,7 +111,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MACHINE LEARNING/09 - Deep Learning.md",
+                "file": "MACHINE LEARNING/10 - DeepLearning.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -130,7 +130,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "MACHINE LEARNING/09 - Deep Learning.md",
+                "file": "MACHINE LEARNING/10 - DeepLearning.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -173,7 +173,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "MACHINE LEARNING/09 - Deep Learning.md",
+                "file": "MACHINE LEARNING/10 - DeepLearning.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -203,9 +203,11 @@
   },
   "active": "6c50a5ddbb537f8f",
   "lastOpenFiles": [
+    "MACHINE LEARNING/09 - Deep Learning.md",
+    "MACHINE LEARNING/10 - DeepLearning.md",
+    "MACHINE LEARNING/Allegati/Pasted image 20261118165142.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261118154816.png",
     "MACHINE LEARNING/05 - Regressione.md",
-    "MACHINE LEARNING/09 - Deep Learning.md",
     "MACHINE LEARNING/Allegati/Pasted image 20261118152152.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261117175352.png",
     "MACHINE LEARNING/MACHINE LEARNING.md",
@@ -222,8 +224,6 @@
     "MACHINE LEARNING/Allegati/Pasted image 20261118145851.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261118145715.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261118145221.png",
-    "MACHINE LEARNING/Allegati/Pasted image 20261118145003.png",
-    "MACHINE LEARNING/Allegati/Pasted image 20261118130906.png",
     "MACHINE LEARNING/08 - Reti Neurali.md",
     "MACHINE LEARNING/02 - Training e Valutazione Prestazioni.md",
     "MACHINE LEARNING/04 - Support Vector Machine (SVM).md",

@@ -242,12 +242,18 @@ Si spezza in due step:
 > [!fail] Problema
 > Un training di CNN grandi impiega **giorni/settimane** anche su GPU.  Se avessimo pochi dati sarebbe inefficiente far ripartire il training.
 
-**Fine-tuning**
+### **Fine-tuning**
 
-1. Sostituisci il livello di output con un nuovo softmax (numero di classi giusto).
-2. Inizializza i pesi con quelli della rete pre-trained, **tranne** quelli tra penultimo e ultimo livello (casuali).
-3. Poche iterazioni di SGD sul nuovo dataset (può essere piccolo).
+1. Si rimpiazza il livello di output con un nuovo livello di output **softmax** (adeguando il numero di classi).
+2. Come valori iniziali dei pesi si utilizzano quelli della rete **pre-trained**, tranne che per le connessioni tra il penultimo e ultimo livello i cui pesi sono inizializzati random.
+3. Si eseguono nuove iterazioni di addestramento (**SGD**) per ottimizzare i pesi rispetto alle peculiarità del nuovo dataset (non è necessario che sia di grandi dimensioni).
 
-**Riutilizzo delle feature**
+### **Riutilizzo delle feature**
 
-- Nessun retraining: si estraggono feature intermedie ($L^5,L^6,L^7$) e si addestra un classificatore esterno (es. **SVM**) sul nuovo dominio.
+1. Si utilizza una rete esistente (pre-trained) senza ulteriore fine-tuning. 
+2. Si estraggono (a livelli intermedi) le feature generate dalla rete durante il passo forward. 
+3. Si utilizzano queste feature per addestrare un classificatore esterno (es. SVM) a classificare i pattern del nuovo dominio applicativo.
+
+> [!example] Le feature generate dalla rete durante il passo forward (vedi $L^5, L^6, L^7$)
+> ![[Pasted image 20261118165142.png]]
+

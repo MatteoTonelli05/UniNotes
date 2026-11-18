@@ -206,3 +206,48 @@ Fondendo le risposte di più simple cells vicine, danno così **invarianza**.
 > **Così la rete diventa robusta a piccole traslazioni, conservando le informazioni e semplificando i calcoli.**
 
 ![[Pasted image 20261118154816.png|477]]
+## Innovazioni
+
+### Batch Normalization
+Dopo ogni livello si normalizzano gli output, così gli input del livello successivo non "slittano" troppo nello spazio (covariate shift).
+La normalizzazione avviene a livello di minibatch, e di singola feature map nelle CNN.
+
+> [!success] Training più stabile e veloce, con learning rate maggiore.
+### Skip Connections (ResNet)
+Si aggiungono collegamenti "laterali" che sommano l'input originario all'output del layer:
+$$\text{uscita} = x + F(x)$$
+Il blocco deve apprendere solo lo scostamento (residuo) rispetto all'identità, che è un compito più semplice.
+
+> [!success] Reti più profonde e vanishing gradient ridotto.
+>  Il gradiente può passare direttamente per la somma: $\frac{\partial}{\partial x}\big(x+F(x)\big)=1+F'(x)$, quindi non si smorza solo moltiplicando fattori piccoli.
+### Convoluzioni depthwise + 1×1
+
+> [!success] Riducono molto la complessità senza grossa perdita di prestazioni.
+
+Una convoluzione 3D standard: $M$ filtri di kernel $3\times3\times C$, costo $\propto M\cdot3\cdot3\cdot C$.
+
+Si spezza in due step:
+
+1. **Depthwise**: per ciascuna delle $C$ feature map di input, una convoluzione 2D $3\times3$ indipendente. Costo $\propto C\cdot3\cdot3$.
+2. **Pointwise**: per ciascuna delle $M$ feature map di output, una convoluzione con kernel $1\times1\times C$ che combina i canali. Costo $\propto M\cdot C$.
+
+> [!example] Esempio numerico $C=64$, $M=128$:
+>
+>Standard: $128\cdot9\cdot64=73.728$
+>Spezzata: $64\cdot9+128\cdot64=576+8.192=8.768$
+>Circa 8 volte meno operazioni.
+
+## Transfer Learning
+
+> [!fail] Problema
+> Un training di CNN grandi impiega **giorni/settimane** anche su GPU.  Se avessimo pochi dati sarebbe inefficiente far ripartire il training.
+
+**Fine-tuning**
+
+1. Sostituisci il livello di output con un nuovo softmax (numero di classi giusto).
+2. Inizializza i pesi con quelli della rete pre-trained, **tranne** quelli tra penultimo e ultimo livello (casuali).
+3. Poche iterazioni di SGD sul nuovo dataset (può essere piccolo).
+
+**Riutilizzo delle feature**
+
+- Nessun retraining: si estraggono feature intermedie ($L^5,L^6,L^7$) e si addestra un classificatore esterno (es. **SVM**) sul nuovo dominio.

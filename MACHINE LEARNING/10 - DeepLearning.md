@@ -69,7 +69,7 @@ Versione **semplificata** di LSTM (meno parametri e complessità):
 
 ### Deep RNN
 
-![[Pasted image 20261119133225.png]]
+![[Pasted image 20261119133225.png|521]]
 
 Più celle **stacked**: l'output di un livello è l'input del successivo → si apprendono relazioni più complesse.
 

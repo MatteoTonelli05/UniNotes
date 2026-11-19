@@ -19,13 +19,15 @@ Ad ogni step $t$ il livello riceve l'input $x_{(t)}$ **e** il suo output precede
 
 ### Unfolding in time
 
-![[Pasted image 20261119093150.png]]
-Una **cella** è la parte di rete che mantiene uno **stato (memoria) interno** $h_{(t)}$ per ogni istante temporale:
+Una **cella** è la parte ricorrente che mantiene uno **stato interno** h(t), composta da un numero fisso di neuroni:
 $$h_{(t)} = f(h_{(t-1)}, x_{(t)})\qquad\text{quindi $h_{(t)}$ dipende da $x_{(t)}$ e dallo stato precedente $h_{(t-1)}$}$$
+![[Pasted image 20261119093150.png]]
 
 Per addestrarla con backpropagation si fa l'**unfolding (unrolling)**: si fissa a priori il numero di passi temporali e si "srotola" la rete.
 
-> [!warning] Costo e vanishing gradient Una RNN unfolded su 20 step ≈ una DNN feedforward con **20 livelli** → training costoso e critico per la convergenza (**vanishing gradient**).
+> [!warning] Costo e vanishing gradient 
+> Una RNN unfolded su 20 step ≈ una DNN feedforward con **20 livelli**
+> Training costoso e critico per la convergenza (**vanishing gradient**).
 
 > [!tip] Nella rete unfolded I **pesi della cella sono condivisi** tra tutte le istanze (come i pesi condivisi nelle CNN).
 
@@ -34,7 +36,8 @@ Per addestrarla con backpropagation si fa l'**unfolding (unrolling)**: si fissa 
 $$h_{(t)} = \phi\left(x_{(t)}^T \cdot W_x + h_{(t-1)}^T \cdot W_h + b\right), \qquad y_{(t)} = h_{(t)}$$
 
 - $\phi$ = funzione di attivazione (es. ReLU)
-- $W_x, W_h, b$ = parametri da apprendere _(nelle slide c'è un refuso: scrive $W_y$ al posto di $W_h$)_
+- $W_x, W_h$ = vettori di parametri (da apprendere)
+- $b$ = il bias da apprendere
 
 > [!warning] Limite La memoria dei primi input **svanisce**, ma in una frase anche le prime parole possono essere cruciali → servono celle con **memoria a lungo termine**: **LSTM** e **GRU**.
 

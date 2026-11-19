@@ -13,21 +13,17 @@ Le reti feedforward (MLP, CNN) lavorano su **vettori di dimensione fissa** (_one
 
 ![[Pasted image 20261118175716.png]]
 
-Prevedono collegamenti **verso lo stesso livello** (o all'indietro). Ad ogni step $t$ il livello riceve l'input $x_{(t)}$ **e** il suo output precedente $y_{(t-1)}$.
+Prevedono collegamenti **verso lo stesso livello** (o all'indietro). 
+Ad ogni step $t$ il livello riceve l'input $x_{(t)}$ **e** il suo output precedente $y_{(t-1)}$.
 
-> [!important] Effetto memoria La rete decide in base alla **storia passata**: conta non solo _quali_ elementi ci sono nella sequenza, ma anche la loro **posizione reciproca**.
-
-> [!example] Quando serve una RNN?
-> 
-> - Frase: non basta la presenza delle parole, conta come sono legate → **RNN utile**
-> - Video su animali: basta la detection in qualche frame → **RNN non serve**
-> - Linguaggio dei segni: contano i movimenti tra frame → **RNN utile**
+> [!hint] Effetto memoria 
+> La rete decide in base alla **storia passata**: conta non solo _quali_ elementi ci sono nella sequenza, ma anche la loro **posizione reciproca**.
 
 ### Unfolding in time
 
-Una **cella** è la parte di rete che mantiene uno **stato (memoria) interno** $h_{(t)}$:
-
-$$h_{(t)} = f(h_{(t-1)}, x_{(t)})$$
+![[Pasted image 20261119093150.png]]
+Una **cella** è la parte di rete che mantiene uno **stato (memoria) interno** $h_{(t)}$ per ogni istante temporale:
+$$h_{(t)} = f(h_{(t-1)}, x_{(t)})\qquad\text{quindi $h_{(t)}$ dipende da $x_{(t)}$ e dallo stato precedente $h_{(t-1)}$}$$
 
 Per addestrarla con backpropagation si fa l'**unfolding (unrolling)**: si fissa a priori il numero di passi temporali e si "srotola" la rete.
 

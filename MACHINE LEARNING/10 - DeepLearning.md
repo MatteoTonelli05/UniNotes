@@ -81,22 +81,9 @@ Versione **semplificata** di LSTM (meno parametri e complessità):
 > - Se l’input sono parole, i vettori 𝐱(t) sono il risultato di word embedding (vedi nel seguito).
 
 ---
-### Classificazione/Regressione con Deep RNN
+## Serie Temporali
 
-Un MLP semplice (1 o pochi layer) è collegato a $Y_{(t)}$:
 
-- **Classificazione**: un neurone di output per classe
-- **Regressione**: un neurone per ogni _prediction ahead_ (es. 3 neuroni per $t+1, t+2, t+3$)
-
-### Dati statici + dinamici
-
-Esempio: info di base di un paziente (**statici**) + livelli di glucosio nel tempo (**dinamici**). Tre soluzioni:
-
-1. Replicare i dati statici in ogni $X_{(t)}$ → poco efficiente
-2. Darli all'MLP finale → la parte ricorrente **non ne è influenzata** (non ottimale)
-3. Usarli per definire lo **stato hidden iniziale** $h$ (non più 0) → di fatto un modello **encoder-decoder**: l'encoder opera su un solo istante (dati statici) e produce il **contesto** per il decoder ✅
-
----
 
 ## Natural Language Processing (NLP)
 

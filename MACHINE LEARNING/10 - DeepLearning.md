@@ -86,7 +86,7 @@ Versione **semplificata** di LSTM (meno parametri e complessità):
 ## Natural Language Processing (NLP)
 ### Tokenization
 
-Suddivisione del testo in **token** (unità più piccole): parole intere, parti di parole, singoli caratteri, simboli (emoticon).
+> [!abstract] Suddivisione del testo in **token** (unità più piccole) che costituiscono le sequenza di input fornita ai modelli di NLP e quella prodotta in output dagli stessi.
 
 > [!tip] Perché token e non parole?
 > 

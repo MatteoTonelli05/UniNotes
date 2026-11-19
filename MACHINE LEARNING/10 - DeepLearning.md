@@ -60,12 +60,16 @@ Tre gate (appresi durante il training):
 
 ### GRU (Gated Recurrent Unit)
 
+![[Pasted image 20261119133201.png|499]]
+
 Versione **semplificata** di LSTM (meno parametri e complessità):
 
 - **un solo stato** $h_{(t)}$
 - **un solo gate** con logica invertita per decidere quanto dimenticare e quanto aggiungere (_se devo aggiungere, prima devo dimenticare_)
 
 ### Deep RNN
+
+![[Pasted image 20261119133225.png]]
 
 Più celle **stacked**: l'output di un livello è l'input del successivo → si apprendono relazioni più complesse.
 

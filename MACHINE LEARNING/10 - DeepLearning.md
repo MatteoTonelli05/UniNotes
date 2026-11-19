@@ -83,6 +83,75 @@ Versione **semplificata** di LSTM (meno parametri e complessità):
 ---
 ## Serie Temporali
 
+Le **Time Series** una sequenza di valori misurati a intervalli regolari, come una funzione campionata nel tempo:.
+
+Il **problema** è "_conosco i valori fino all’istante t, quanto varrà il valore a t+1?_"
+
+Nota: i valori non sono per forza un solo numero. A ogni istante puoi avere un **vettore** (es. temperatura, umidità e pressione insieme), non solo input 1D.
+
+**Esempio della slide 9:** Géron genera una curva fatta di sinusoidi (t·sin(t)/3 + 2·sin(5t)). Ogni esempio di training è un pezzo di curva (i pallini blu) e il valore da predire è il punto successivo (la stella). Dopo l’addestramento, le predizioni (puntini rossi) cadono quasi sopra i valori reali.
+
+### 2. Prima di usare una RNN: i baseline (slide 10)
+
+Il prof. insiste su un punto: **non partire dal modello complesso**, perché rischia l’overfitting. Prova prima:
+
+- **Persistence model:** la predizione per domani è semplicemente il valore di oggi.
+- **Modello lineare:** una regressione lineare semplice.
+
+Se la tua RNN non batte nettamente questi due, non ti serve.
+
+Inoltre esistono i **metodi statistici classici**, studiati da decenni, spesso più semplici e talvolta migliori delle reti ricorrenti.
+
+### 3. Il trucco della decorrelazione (slide 10)
+
+Questo è il punto più sottile.
+
+**Il problema:** in molte serie, valori vicini nel tempo sono molto simili. Il prezzo di un titolo oggi è quasi uguale a quello di ieri. Quindi il persistence model (“domani = oggi”) ottiene un errore (MSE) bassissimo e _sembra_ un ottimo predittore. Ma in realtà non sta prevedendo nulla: sta solo copiando.
+
+**La soluzione:** invece del valore assoluto, usi la **differenza**:
+
+**valore(t) − valore(t−1)**
+
+Questa operazione si chiama _time differencing_. Nella slide vedi a sinistra la serie originale (un trend che sale) e a destra la serie differenziata (un’oscillazione attorno allo zero, senza trend).
+
+Su questa versione non puoi più “barare” copiando il valore precedente. Se il modello predice bene anche le differenze, allora sta davvero imparando qualcosa.
+
+**Intuizione:** non ti chiedi “quanto varrà il titolo?” (facile da copiare), ma “di quanto salirà o scenderà?” (difficile).
+
+### 4. Come si costruisce la rete (slide 11)
+
+Si usa una **Deep RNN** (più layer ricorrenti impilati, per esempio LSTM o GRU). Sopra l’ultimo vettore di output, **Y(t)**, si collega un piccolo **MLP** (uno o pochi layer) che produce il risultato finale.
+
+Il numero di neuroni di output dipende dal compito:
+
+|Compito|Neuroni di output|
+|---|---|
+|**Classificazione**|uno per classe|
+|**Regressione**|uno per ogni istante futuro da predire|
+
+Esempio di regressione: se voglio prevedere t+1, t+2 e t+3, uso **3 neuroni** di output.
+
+### 5. Dati statici e dinamici (slide 12)
+
+Spesso non tutto cambia nel tempo. Esempio dalla slide:
+
+- **Dati statici:** informazioni di base del paziente (età, sesso, peso...). Non variano nel periodo osservato.
+- **Dati dinamici:** l’evoluzione dei livelli di glucosio. Cambiano a ogni istante.
+
+Come dare alla rete entrambi? Tre strategie:
+
+|#|Strategia|Giudizio|
+|---|---|---|
+|1|**Replicare** i dati statici in ogni osservazione, da X(0) a X(t)|Poco efficiente: ripeti la stessa informazione a ogni step|
+|2|**Darli all’MLP finale**, insieme all’output della RNN|Non ottimale: la parte ricorrente non ne è influenzata mentre elabora la sequenza|
+|3|**Usarli per inizializzare lo stato hidden** della RNN|La soluzione migliore|
+
+**Spiegazione della strategia 3:** normalmente lo stato hidden iniziale h è messo a zero. Invece lo si calcola a partire dai dati statici. Così la RNN parte già “sapendo il contesto” (chi è il paziente) e interpreta i valori di glucosio di conseguenza.
+
+Dal punto di vista architetturale diventa un **encoder-decoder**:
+
+- l’**encoder** elabora un solo istante (il vettore dei dati statici) e produce lo stato iniziale
+- il **decoder** è la RNN che elabora la sequenza dinamica a partire da quello stato
 
 
 ## Natural Language Processing (NLP)

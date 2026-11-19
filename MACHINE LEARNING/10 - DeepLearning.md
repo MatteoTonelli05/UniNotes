@@ -89,13 +89,15 @@ Versione **semplificata** di LSTM (meno parametri e complessità):
 > [!abstract] Suddivisione del testo in **token** (unità più piccole) che costituiscono le sequenza di input fornita ai modelli di NLP e quella prodotta in output dagli stessi.
 
 > [!tip] Perché token e non parole?
-> 
-> - Lavorare con **più lingue** e alfabeti diversi, e con simboli dei linguaggi di programmazione
-> - Creare **nuove parole** unendo token
+> - Token può significare intere parole, parti di parole, singoli caratteri o simboli
+> - Si permette di lavorare con **più lingue** e alfabeti diversi, e con simboli dei linguaggi di programmazione
+> > [!example] In GPT-3, per l'inglese un token ≈ **4 caratteri**
 
-- Il numero di token utilizzabili = **vocabolario** (GPT-2 e GPT-3: ~**50K**)
+![[Pasted image 20261119172709.png]]
+#### Terminologia
+
+- Il numero di token utilizzabili viene chiamato **VOCABOLARIO** (GPT-2 e GPT-3: ~**50K**)
 - **BPE (Byte Pair Encoding)** costruisce il vocabolario e permette a GPT-3 di supportare fino a 46 lingue senza aumentare i token
-- In GPT-3, per l'inglese un token ≈ **4 caratteri**
 
 > [!example] BPE: come si crea il dizionario Corpus: `low`(5), `lower`(2), `newest`(6), `widest`(3)
 > 
@@ -107,16 +109,24 @@ Versione **semplificata** di LSTM (meno parametri e complessità):
 
 ### Word (token) Embedding
 
-ID dei token o **one-hot vector** non codificano **semantica e similarità** (sinonimi).
+> [!fail] Fornire ai modelli gli ID dei token non è efficace
 
-L'**embedding** associa a ogni token un **vettore di dimensione contenuta** (es. 512); token di significato simile → **vettori vicini**.
+> [!abstract] La tecniche di word (o token) embedding associano a ogni parola/token del vocabolario un vettore di dimensionalità contenuta. 
+> Parole/token di significato simile sono associate a vettori vicini nello spazio.
 
+![[Pasted image 20261119172937.png|472]]
 - **Word2Vec**: uno dei primi modelli (rete a due livelli, **unsupervised**)
 - Nei modelli recenti (GPT-3 e successivi) l'embedding è **appreso insieme agli altri parametri**
 
-> [!important] Algebra dei vettori Similarità semantica = **distanza euclidea**, e i concetti si manipolano con operazioni algebriche: $$\text{King} - \text{Man} + \text{Woman} \approx \text{Queen}$$ Vale anche per input multimediali nello spazio latente (es. uomo con occhiali − uomo senza + donna senza = donna con occhiali).
+> [!important] Algebra dei vettori 
+> Similarità semantica = **distanza euclidea**, e i concetti si manipolano con operazioni algebriche: 
+> 
+> ![[Pasted image 20261119173808.png|467]]
 
 ### Generazione autoregressiva
+
+In un modello generativo **sequence-to-sequence** il risultato viene normalmente prodotto token by token in maniera autoregressiva, ovvero il token i-esimo prodotto è appeso all’input che produce il token (i+1)-esimo e continua iterando in questo modo.
+![[Pasted image 20261119174007.png|606]]
 
 Il risultato è prodotto **token per token**: il token $i$-esimo generato viene **appeso all'input** per produrre il token $i+1$, e così via. Inizio e fine sono gestiti da token speciali: `<SOS>` (Start-Of-Sequence) e `<EOS>` (End-Of-Sequence).
 

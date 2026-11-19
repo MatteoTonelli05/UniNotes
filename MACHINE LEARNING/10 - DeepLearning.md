@@ -81,19 +81,6 @@ Versione **semplificata** di LSTM (meno parametri e complessità):
 > - Se l’input sono parole, i vettori 𝐱(t) sono il risultato di word embedding (vedi nel seguito).
 
 ---
-
-## Time Series
-
-Una serie temporale (borsa, temperatura, consumo energetico…) è una funzione campionata nel tempo: noti i valori fino a $t$, si vuole predire $t+1$ (anche con input non 1D).
-
-> [!important] Prima di usare modelli complessi (rischio overfitting) Provare **baseline semplici** e valutarne la generalizzazione:
-> 
-> - **Persistence model**: predizione a $t+1$ = valore a $t$
-> - **Linear model**: regressore lineare
-> - **Modelli statistici classici**: studiati da decenni, spesso preferibili alle RNN
-
-> [!warning] Decorrelazione Se i valori sono correlati nel tempo sembra di predire bene (es. titolo di borsa: anche il persistence model ha buon MSE). Si **decorrela** sostituendo il valore in $t$ con la differenza $x_t - x_{t-1}$ (_time differencing_), così si vede la reale capacità predittiva.
-
 ### Classificazione/Regressione con Deep RNN
 
 Un MLP semplice (1 o pochi layer) è collegato a $Y_{(t)}$:

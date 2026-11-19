@@ -71,11 +71,14 @@ Versione **semplificata** di LSTM (meno parametri e complessità):
 
 ![[Pasted image 20261119133225.png|521]]
 
-Più celle **stacked**: l'output di un livello è l'input del successivo → si apprendono relazioni più complesse.
+> [!abstract] RNN con più celle **stacked** l'output di un livello è l'input del successivo 
+> Così facendo si apprendono relazioni più complesse.
 
 - Il training supervisionato fornisce l'output desiderato **solo per l'ultimo livello**
-- Input = **immagini** → $x_{(t)}$ sono feature di alto livello estratte da una **CNN** (non pixel)
-- Input = **parole** → $x_{(t)}$ sono **word embedding**
+
+> [!example]
+> - Se l’input sono immagini, i vettori 𝐱(t) in genere non corrispondono ai pixel ma a feature di alto livello estratte da una CNN. 
+> - Se l’input sono parole, i vettori 𝐱(t) sono il risultato di word embedding (vedi nel seguito).
 
 ---
 

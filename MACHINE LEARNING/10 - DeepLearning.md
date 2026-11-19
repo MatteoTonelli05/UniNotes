@@ -128,20 +128,26 @@ Versione **semplificata** di LSTM (meno parametri e complessità):
 In un modello generativo **sequence-to-sequence** il risultato viene normalmente prodotto token by token in maniera autoregressiva, ovvero il token i-esimo prodotto è appeso all’input che produce il token (i+1)-esimo e continua iterando in questo modo.
 ![[Pasted image 20261119174007.png|606]]
 
-Il risultato è prodotto **token per token**: il token $i$-esimo generato viene **appeso all'input** per produrre il token $i+1$, e così via. Inizio e fine sono gestiti da token speciali: `<SOS>` (Start-Of-Sequence) e `<EOS>` (End-Of-Sequence).
+1. il modello legge **tutto ciò che c’è finora** (prompt + token già generati)
+2. produce **un solo token**, il più probabile come continuazione
+3. quel token viene **appeso all’input**
+4. si ripete
 
 ---
-
 ## Neural Machine Translation con RNN
 
 Elaborazione **many-to-many** a lunghezza variabile.
 
-- Architettura **Encoder-Decoder** RNN (storicamente la più usata) con meccanismi di **attenzione** (per ogni parola assegna un peso alle altre parole importanti nella frase)
+La **traduzione** da una **lingua** a un'altra è l'applicazione più nota
+- Architettura **Encoder-Decoder** RNN (storicamente la più usata) con meccanismi di **attenzione** 
 - Il decoder è **autoregressivo**: genera un token per volta e lo riporta in input
-- Pipeline: testo → ID token → **embedding lookup** → RNN → **softmax** sul vocabolario
+
+> [!important] **PIPELINE**
+> testo → ID token → **embedding lookup** → RNN → **softmax** sul vocabolario
+88
+![[Pasted image 20261119174923.png|627]]
 
 ---
-
 ## Transformers
 
 > [!question] Perché superare LSTM? Le LSTM modellano male le relazioni tra porzioni **lontane** dell'input e la computazione è **sequenziale** → difficile addestrare grandi modelli.

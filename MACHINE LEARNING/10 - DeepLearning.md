@@ -44,9 +44,8 @@ $$h_{(t)} = \phi\left(x_{(t)}^T \cdot W_x + h_{(t-1)}^T \cdot W_h + b\right), \q
 > [!abstract] Servono celle con **memoria a lungo termine**: **LSTM** e **GRU**.
 
 ### LSTM (Long Short-Term Memory)
-
+![[Pasted image 20261119110257.png|534]]
 Lo stato è diviso in due vettori:
-
 - $h_{(t)}$ → memoria a **breve** termine (= output $y_{(t)}$)
 - $c_{(t)}$ → memoria a **lungo** termine
 

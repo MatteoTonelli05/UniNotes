@@ -54,7 +54,7 @@ Gli input sono **x(t)**, **h(t−1)** e **c(t−1)**. Dentro la cella ci sono qu
 
 Tre gate (appresi durante il training):
 
-1. **Forget gate**: cosa dimenticare di $c_{(t-1)}$
+1. **Forget gate**: decide cosa dimenticare di $c_{(t-1)}$
 2. **Input gate**: cosa estrarre dall'input $x_{(t)}$ e aggiungere
 3. **Output gate**: combina input corrente e memoria a lungo termine per calcolare $y_{(t)} = h_{(t)}$
 

@@ -39,7 +39,9 @@ $$h_{(t)} = \phi\left(x_{(t)}^T \cdot W_x + h_{(t-1)}^T \cdot W_h + b\right), \q
 - $W_x, W_h$ = vettori di parametri (da apprendere)
 - $b$ = il bias da apprendere
 
-> [!warning] Limite La memoria dei primi input **svanisce**, ma in una frase anche le prime parole possono essere cruciali → servono celle con **memoria a lungo termine**: **LSTM** e **GRU**.
+> [!fail] Senza ulteriori gestioni la memoria dei primi input **svanisce**, ma in una frase anche le prime parole possono essere cruciali. 
+
+> [!abstract] Servono celle con **memoria a lungo termine**: **LSTM** e **GRU**.
 
 ### LSTM (Long Short-Term Memory)
 

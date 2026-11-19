@@ -11,11 +11,9 @@ Le reti feedforward (MLP, CNN) lavorano su **vettori di dimensione fissa** (_one
 ---
 ## Reti Ricorrenti (RNN)
 
-![[Pasted image 20261118175716.png]]
-
 Prevedono collegamenti **verso lo stesso livello** (o all'indietro). 
 Ad ogni step $t$ il livello riceve l'input $x_{(t)}$ **e** il suo output precedente $y_{(t-1)}$.
-
+![[Pasted image 20261118175716.png]]
 > [!hint] Effetto memoria 
 > La rete decide in base alla **storia passata**: conta non solo _quali_ elementi ci sono nella sequenza, ma anche la loro **posizione reciproca**.
 

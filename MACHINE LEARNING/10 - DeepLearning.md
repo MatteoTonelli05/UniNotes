@@ -39,15 +39,18 @@ $$h_{(t)} = \phi\left(x_{(t)}^T \cdot W_x + h_{(t-1)}^T \cdot W_h + b\right), \q
 - $W_x, W_h$ = vettori di parametri (da apprendere)
 - $b$ = il bias da apprendere
 
-> [!fail] Senza ulteriori gestioni la memoria dei primi input **svanisce**, ma in una frase anche le prime parole possono essere cruciali. 
+> [!fail] Nella cella base di una RNN l’informazione passa attraverso lo stato h(t) a ogni step, venendo continuamente trasformata e “diluita”. Dopo molti passi la memoria dei primi input **svanisce** (vanishing gradient), anche se in una frase le prime parole possono essere decisive.
 
 > [!abstract] Servono celle con **memoria a lungo termine**: **LSTM** e **GRU**.
 
 ### LSTM (Long Short-Term Memory)
 ![[Pasted image 20261119110257.png|534]]
 Lo stato è diviso in due vettori:
-- $h_{(t)}$ → memoria a **breve** termine (= output $y_{(t)}$)
-- $c_{(t)}$ → memoria a **lungo** termine
+
+- **c(t)**, memoria a **lungo termine**: è una sorta di “corsia veloce” che attraversa la cella con poche modifiche
+- **h(t)**, memoria a **breve termine**: coincide con l’output della cella, y(t) = h(t)
+
+Gli input sono **x(t)**, **h(t−1)** e **c(t−1)**. Dentro la cella ci sono quattro layer fully connected (FC) che ricevono tutti x(t) e h(t−1):
 
 Tre gate (appresi durante il training):
 

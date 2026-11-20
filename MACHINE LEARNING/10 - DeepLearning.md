@@ -144,7 +144,7 @@ La **traduzione** da una **lingua** a un'altra è l'applicazione più nota
 
 > [!important] **PIPELINE**
 > testo → ID token → **embedding lookup** → RNN → **softmax** sul vocabolario
-88
+
 ![[Pasted image 20261119174923.png|627]]
 
 ---

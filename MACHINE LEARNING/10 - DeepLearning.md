@@ -142,10 +142,22 @@ La **traduzione** da una **lingua** a un'altra è l'applicazione più nota
 - Architettura **Encoder-Decoder** RNN (storicamente la più usata) con meccanismi di **attenzione** 
 - Il decoder è **autoregressivo**: genera un token per volta e lo riporta in input
 
-> [!important] **PIPELINE**
-> testo → ID token → **embedding lookup** → RNN → **softmax** sul vocabolario
+> [!important] **ARCHITETTURA**
+> #### Encoder 
+>
+>È una RNN che **legge la frase di partenza**, una parola per volta, e la **riassume in uno stato** (un vettore che contiene il “significato” della frase).
+>
+>Lo stato finale verrà poi passato al decoder.
+>
+>#### Decoder 
+>
+>È un’altra RNN che **parte dallo stato dell’encoder** e genera la traduzione. Lo stato ricevuto è il suo “contesto”: sa cosa deve tradurre.
+>
+>Il decoder lavora in modo **autoregressivo** (vedi spiegazione precedente): genera **un token per volta** e lo riporta in input.
 
 ![[Pasted image 20261119174923.png|627]]
+> [!hint] La scritta “milk drink I”, è **invertita**. Dando in ingresso la frase al contrario, la prima parola da tradurre (“I” → “Je”) finisce per essere l’ultima letta, quindi la più “fresca” nella memoria dell’encoder
+
 
 ---
 ## Transformers

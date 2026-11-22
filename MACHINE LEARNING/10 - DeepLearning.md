@@ -162,7 +162,8 @@ La **traduzione** da una **lingua** a un'altra è l'applicazione più nota
 ---
 ## Transformers
 
-> [!question] Perché superare LSTM? Le LSTM modellano male le relazioni tra porzioni **lontane** dell'input e la computazione è **sequenziale** → difficile addestrare grandi modelli.
+> [!question] Perché superare LSTM? 
+> Le LSTM modellano male le relazioni tra porzioni **lontane** dell'input e la computazione è **sequenziale**, perciò è difficile addestrare grandi modelli.
 
 L'evoluzione dei **meccanismi di attenzione** (a quali token devo far attenzione e quali ignorare) ha portato ai **transformer** (Google Brain, **2017**).
 

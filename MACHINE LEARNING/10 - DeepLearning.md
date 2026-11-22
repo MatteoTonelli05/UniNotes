@@ -182,6 +182,7 @@ L'evoluzione dei **meccanismi di attenzione** (a quali token devo far attenzione
 
 > [!tip] Residual stream = canale ad alta capacità Dimensione $d_{model} = 12288$ in GPT-3. Attention e MLP leggono/scrivono su **sottospazi** (anche senza interferire con l'informazione presente: _message passing_) e possono anche **cancellare** informazione scrivendone la versione negativa. Fonte: _A Mathematical Framework for Transformer Circuits_ (Elhage et al., Anthropic, 2021).
 
+![[Pasted image 20261122191551.png]]
 ### Dove sono i pesi?
 
 Esempio: LLM di medie dimensioni, **90B parametri**, **100 layer**.

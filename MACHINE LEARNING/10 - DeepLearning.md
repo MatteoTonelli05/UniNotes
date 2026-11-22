@@ -171,8 +171,6 @@ L'evoluzione dei **meccanismi di attenzione** (a quali token devo far attenzione
 >
  ![[Pasted image 20261122175209.png|432]]
 
-Oggi usati nella maggior parte delle applicazioni NLP e con buone prestazioni anche in **visione e speech** (architettura unificata del futuro? Stanno sostituendo lentamente le CNN).
-
 ### Architettura decoder-only
 
 - **Colonnare**: una colonna per token; **pesi condivisi** tra tutte le colonne; generazione **autoregressiva**

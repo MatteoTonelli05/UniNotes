@@ -203,32 +203,30 @@ L'evoluzione dei **meccanismi di attenzione** (a quali token devo far attenzione
 >
 >![[Pasted image 20261123002254.png|278]]
 
-### Transformer vs RNN
 
-||RNN|Transformer|
-|---|---|---|
-|**Attention**|l’informazione si diluisce durante la propagazione|**globale**: nessuna diluizione|
-|**Parallelismo**|propagazione “a wavefront” (diagonale): poco efficiente su GPU|**tutto il layer** può essere elaborato in parallelo|
-
-Nel Transformer le celle di un livello dipendono solo dal livello precedente, non da quelle dello stesso livello.
+> [!abstract] Transformer vs RNN
+> Il Trasformer migliora significativamente due aspetti (rispetto a RNN): 
+>- Il meccanismo di attention (globale) non diluisce informazioni durante la propagazione. 
+>- Tutte le celle dello stesso livello possono essere elaborate in parallelo, perché non dipendono dalle precedenti nello stesso livello ma da quelle del livello precedente.
 
 ---
 
 ## Large Language Models (LLM)
 
-Modelli linguistici **autoregressivi** di enormi dimensioni (miliardi di parametri), addestrati su grandi corpus (news, libri, articoli, codice…).
+> [!abstract] Modelli linguistici **autoregressivi** di enormi dimensioni (miliardi di parametri), addestrati su grandi corpus (news, libri, articoli, codice…).
 
-Efficacia dovuta a: architettura **transformer** + tecnica di addestramento (**predici il token successivo**) + **scala** (parametri e dataset) → risultati oltre le aspettative anche in problem solving, reasoning, coding.
-
-> [!example] Numeri dello stato dell'arte (2025)
-> 
-> - **Parametri**: 100–2000 miliardi
-> - **Corpus**: 10.000–100.000 miliardi di token (rapporto di almeno **20:1** rispetto ai parametri)
-> - **Costo training**: 100–500 M$ (decine di migliaia di GPU per mesi)
+Efficacia dovuta a: 
+1. architettura **transformer** 
+2. tecnica di addestramento basata sulla **predizione del token successivo** 
+3. **scala** sia dei parametri che del dataset
 
 ### Next token prediction
 
-Parte più corposa del training: si fa scorrere sul testo una **finestra a lunghezza fissa** e si predice il token successivo. È **self-supervised**: non serve etichettatura manuale (il testo è tutto noto).
+> [!question] Come funziona?
+> Si fa scorrere sul testo una **finestra a lunghezza fissa** e si predice il token successivo. 
+> È **self-supervised**: non serve etichettatura manuale (il testo è tutto noto).
+>
+> ![[Pasted image 20261123003440.png|439]]
 
 > [!important] Perché funziona (nonostante sembri troppo semplice) Impara non solo le proprietà **linguistiche e statistiche**, ma forza il modello a fare previsioni corrette in **matematica, logica, coding, senso comune**, dove (senza oracolo o memorizzazione esaustiva) si può predire bene **solo apprendendo un modello del problema sottostante**.
 

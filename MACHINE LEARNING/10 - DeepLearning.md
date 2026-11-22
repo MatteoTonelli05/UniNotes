@@ -162,8 +162,11 @@ La **traduzione** da una **lingua** a un'altra è l'applicazione più nota
 ---
 ## Transformers
 
-> [!question] Perché superare LSTM? 
-> Le LSTM modellano male le relazioni tra porzioni **lontane** dell'input e la computazione è **sequenziale**, perciò è difficile addestrare grandi modelli.
+> [!question] Perché si usano? 
+> Le RNN, anche con LSTM, hanno due limiti:
+>
+>1. **Relazioni a lunga distanza**: se due parole importanti sono lontane nella frase, l’informazione passa attraverso tanti step e si diluisce.
+>2. **Calcolo sequenziale**: per elaborare il token 5 devi aver già elaborato il 4. Questo rende difficile sfruttare le GPU e addestrare modelli enormi.
 
 L'evoluzione dei **meccanismi di attenzione** (a quali token devo far attenzione e quali ignorare) ha portato ai **transformer** (Google Brain, **2017**).
 
@@ -173,30 +176,39 @@ L'evoluzione dei **meccanismi di attenzione** (a quali token devo far attenzione
 
 ### Architettura decoder-only
 
-- **Colonnare**: una colonna per token; **pesi condivisi** tra tutte le colonne; generazione **autoregressiva**
-- **Residual stream** (per colonna): spazio multidimensionale che veicola l'informazione dall'input all'output
-- Per ogni layer due blocchi:
-    - **MLP**: legge e scrive **solo sul proprio** residual stream
-    - **Attention**: **legge** dai residual stream di **tutti i token precedenti** e scrive sul proprio
-- Nei modelli recenti: oltre **100 layer** e oltre **100.000 token** (colonne)
-
-> [!tip] Residual stream = canale ad alta capacità Dimensione $d_{model} = 12288$ in GPT-3. Attention e MLP leggono/scrivono su **sottospazi** (anche senza interferire con l'informazione presente: _message passing_) e possono anche **cancellare** informazione scrivendone la versione negativa. Fonte: _A Mathematical Framework for Transformer Circuits_ (Elhage et al., Anthropic, 2021).
+> [!abstract] Architettura usata dalla maggior parte dei transformers moderni
+> Un'architettura **COLONNARE**, in cui i pesisono condivisi da tutte le colonne e la generazione è autoregressiva (un token per volta)
 
 ![[Pasted image 20261122191551.png]]
-### Dove sono i pesi?
+**RESIDUAL STREAM** $\rightarrow$ Il canale verticale che porta l'informazione dall'input (in basso) all'output (in alto)
 
-Esempio: LLM di medie dimensioni, **90B parametri**, **100 layer**.
+**LAYER** $\rightarrow$ il canale è diviso in layer, ognuno contenente due blocchi:
+    - **MLP**: legge e scrive **solo sul proprio** residual stream
+    - **Attention**: **legge** dai residual stream di **tutti i token precedenti** e scrive sul proprio
 
-- I pesi sono condivisi tra colonne → **non dipendono dalla lunghezza del prompt**
-- Trascurando encoding/decoding: $90B / 100 = $ **900M per layer**
-- Proporzione tipica: **2/3 MLP** (600M) + **1/3 Attention** (300M)
+> [!example] Nei modelli recenti: oltre **100 layer** e oltre **100.000 token** (colonne)
+
+> [!tip] I blocchi dei layer
+> Attention e MLP leggono/scrivono su **sottospazi** (anche senza interferire con l'informazione presente: _message passing_) e possono anche **cancellare** informazione scrivendone la versione negativa. 
+>
+> ![[Pasted image 20261123002334.png|460]]
+
+
+> [!question] Dove sono i pesi?
+> Esempio: LLM di medie dimensioni, **90B parametri**, **100 layer**.
+>
+>- I pesi sono condivisi tra colonne → **non dipendono dalla lunghezza del prompt**
+>- Trascurando encoding/decoding: $90B / 100 = $ **900M per layer**
+>- Proporzione tipica: **2/3 MLP** (600M) + **1/3 Attention** (300M)
+>
+>![[Pasted image 20261123002254.png|278]]
 
 ### Transformer vs RNN
 
 ||RNN|Transformer|
 |---|---|---|
-|Informazione|si **diluisce** durante la propagazione|attention **globale**, non diluisce|
-|Parallelismo|**wavefront**, poco efficiente su GPU|**tutto il layer** processabile in parallelo|
+|**Attention**|l’informazione si diluisce durante la propagazione|**globale**: nessuna diluizione|
+|**Parallelismo**|propagazione “a wavefront” (diagonale): poco efficiente su GPU|**tutto il layer** può essere elaborato in parallelo|
 
 Nel Transformer le celle di un livello dipendono solo dal livello precedente, non da quelle dello stesso livello.
 

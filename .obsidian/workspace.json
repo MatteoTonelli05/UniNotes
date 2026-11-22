@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "687ee9032ef0b87b",
+        "id": "a1d4db9b5ebc0bcb",
         "type": "tabs",
         "children": [
           {
-            "id": "6c50a5ddbb537f8f",
+            "id": "6949f51621d36270",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -201,8 +201,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "6c50a5ddbb537f8f",
+  "active": "6949f51621d36270",
   "lastOpenFiles": [
+    "MACHINE LEARNING/Allegati/Pasted image 20261122175209.png",
+    "MACHINE LEARNING/10 - DeepLearning.md",
     "MACHINE LEARNING/Allegati/Pasted image 20261119174923.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261119174007.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261119173808.png",
@@ -212,10 +214,7 @@
     "MACHINE LEARNING/Allegati/Pasted image 20261119145711.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261119133225.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261119133201.png",
-    "MACHINE LEARNING/Allegati/Pasted image 20261119110257.png",
-    "MACHINE LEARNING/Allegati/Pasted image 20261119093150.png",
     "MACHINE LEARNING/09 - Deep Learning.md",
-    "MACHINE LEARNING/10 - DeepLearning.md",
     "MACHINE LEARNING/05 - Regressione.md",
     "MACHINE LEARNING/MACHINE LEARNING.md",
     "MACHINE LEARNING/03 - Classificatore NN.md",

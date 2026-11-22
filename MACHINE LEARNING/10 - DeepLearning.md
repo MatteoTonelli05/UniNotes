@@ -167,10 +167,9 @@ La **traduzione** da una **lingua** a un'altra è l'applicazione più nota
 
 L'evoluzione dei **meccanismi di attenzione** (a quali token devo far attenzione e quali ignorare) ha portato ai **transformer** (Google Brain, **2017**).
 
-> [!important] Self-attention 
-> Elemento chiave: mette in relazione le parole della frase tra loro per **specificarne la semantica** 
+> [!important] L'elemento chiave è mettere in relazione le parole della frase tra loro per **specificarne la semantica** 
 >
-> ![[Pasted image 20261122175209.png]]
+ ![[Pasted image 20261122175209.png|432]]
 
 Oggi usati nella maggior parte delle applicazioni NLP e con buone prestazioni anche in **visione e speech** (architettura unificata del futuro? Stanno sostituendo lentamente le CNN).
 

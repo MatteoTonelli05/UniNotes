@@ -153,7 +153,7 @@ La **traduzione** da una **lingua** a un'altra è l'applicazione più nota
 >
 >È un’altra RNN che **parte dallo stato dell’encoder** e genera la traduzione. Lo stato ricevuto è il suo “contesto”: sa cosa deve tradurre.
 >
->Il decoder lavora in modo **autoregressivo** (vedi spiegazione precedente): genera **un token per volta** e lo riporta in input.
+>Il decoder lavora in modo **autoregressivo**: genera **un token per volta** e lo riporta in input, partendo da un token vuoto (`<go>`).
 
 ![[Pasted image 20261119174923.png|627]]
 > [!hint] La scritta “milk drink I”, è **invertita**. Dando in ingresso la frase al contrario, la prima parola da tradurre (“I” → “Je”) finisce per essere l’ultima letta, quindi la più “fresca” nella memoria dell’encoder

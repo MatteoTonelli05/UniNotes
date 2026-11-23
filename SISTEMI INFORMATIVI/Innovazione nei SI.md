@@ -8,3 +8,4 @@
 > [!abstract] Law of Accelerating Returns
 > Il progresso tecnologico accelera in modo esponenziale anziché lineare perché ogni nuova innovazione fornisce gli strumenti per sviluppare le innovazioni successive a un ritmo sempre più rapido (sistemi auto-amplificanti e convergenza tra diverse tecnologie come AI, biologia e nanotecnologia).
 
+---

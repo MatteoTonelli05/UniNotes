@@ -182,4 +182,41 @@ Solitamente gli ERP vengono utilizzati nelle imprese medie-grandi, dove la stand
 ---
 ### Sistemi CRM
 
+> [!abstract] Il termine **CRM (Customer Relationship Management)** indica il processo integrato e strutturato per la gestione della relazione con la clientela, il cui scopo è costruire relazioni personalizzate di lungo periodo, capaci di aumentare la soddisfazione del cliente
+
+> [!example] ![[Pasted image 20261123143456.png|562]]
+> In generale tutte quelle aziende con grande numerosità della clientela, continuità e frequenza della relazione
+
+I sistemi CRM possono essere:
+- software dedicati al compito
+- modulo facente parte di un **ERP**
+
+
+#### Architettura dei CRM
+
+In un sistema CRM esistono tre moduli principali:
+- **CRM operativo** - informatizza i canali attraverso cui avvengono i contatti con il cliente
+- **CRM analitico** - informatizza l'analisi della clientela al fine di definire le politiche di promozione e di contatto *(Es. cerca di capire i piani tariffari più richiesti)*
+- **CRM direzionale** - permette al management di valutare la performance dell'azienda rispetto al cliente *(Es. tempo medio di un apertura di un ticket)*
+
+![[Pasted image 20261123143940.png|569]]
+> [!attention] Attenzione
+> Il CRM non è semplicemente una vetrina passiva (es. sito internet), ma qualsiasi canale con cui tradurre la mia richiesta con un servizio concreto che l'azienda mi offre. 
+
+#### Il paradigma CRM
+
+Le caratteristiche che denotano un sistema CRM sono:
+	
+- **MULTICANALITÀ**: il cliente sceglie di volta in volta il canale di contatto più conveniente. Il servizio deve essere erogabile 24h (omni-channel).
+	
+-  **COMPLETEZZA E UNICITÀ** dei dati su prodotti e clienti: per rendere possibile la multicanalità le informazioni sul cliente devono essere condivise dai diversi sistemi di contatto che utilizzeranno una base di dati comune.
+	
+-  **CATENE DI SERVIZIO**: le richieste sottoposte ai front-end generano una serie di attività complesse sui sistemi di back-end. L’efficienza del sistema CRM dipende quindi dalla capacità di integrare i servizi del SI.
+
+> [!question] Cos'è il canale di contatto?
+> Banalmente telefono, pc, applicazione, AI ecc.
+
+#### Sales Force Automation (SFA)
+
+
 

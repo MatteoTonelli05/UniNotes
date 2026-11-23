@@ -14,3 +14,12 @@
 ## Ciclo dell'innovazione
 
 ![[Pasted image 20261123164006.png]]
+Solitamente nelle aziende occidentali il ciclo ha la tempistica dell'anno
+
+1. **PIANIFICAZIONE** - prendiamo un gruppo di potenziali iniziative e ne assegniamo: 
+	- una priorità
+	- un valore economico
+	- delle tempistiche
+2. **ATTUAZIONE** - la fase più lunga (anche pluriennale), in cui si svolgono le attività di processo
+3. **VERIFICA** - l'analisi e la diagnosi dell'*as-is* e definisco gli interventi
+4. **INTERVENTO** - 

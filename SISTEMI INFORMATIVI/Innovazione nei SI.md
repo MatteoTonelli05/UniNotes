@@ -2,3 +2,5 @@
 > 
 ![[Pasted image 20261123152415.png]]
 
+> [!question] Da dove arriva la legge di Martec?
+> 

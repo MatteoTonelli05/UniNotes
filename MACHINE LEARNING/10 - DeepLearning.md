@@ -228,40 +228,41 @@ Efficacia dovuta a:
 >
 > ![[Pasted image 20261123003440.png|439]]
 
-> [!important] Perché funziona (nonostante sembri troppo semplice) Impara non solo le proprietà **linguistiche e statistiche**, ma forza il modello a fare previsioni corrette in **matematica, logica, coding, senso comune**, dove (senza oracolo o memorizzazione esaustiva) si può predire bene **solo apprendendo un modello del problema sottostante**.
+> [!question] Perché funziona (nonostante sembri troppo semplice)?
+>  Impara non solo le proprietà **linguistiche e statistiche**, ma forza il modello a fare previsioni corrette in **matematica, logica, coding, senso comune**, dove (senza oracolo o memorizzazione esaustiva) si può predire bene **solo apprendendo un modello del problema sottostante**.
 
 ---
-
 ## Prompt Engineering
 
-Costruire prompt efficaci è "_more of an art than a science_". Conviene inserire elementi che **dirigono** la risposta:
+Costruire prompt efficaci è "_more of an art than a science_". 
+Conviene inserire elementi nel prompt che **dirigono** la risposta:
 
-- terminare con un punto elenco → il modello capisce che vogliamo una lista
+- "terminare con un punto elenco" → il modello capisce che vogliamo una lista
 - istruzioni esplicite: "elenca i passi che ti hanno portato alla soluzione"
 - inserire **esempi** nel prompt → **Chain-of-Thought**, che facilita anche la **verifica** della correttezza
 
-### Zero, One, Few-shot
-
-Si aggiungono esempi `Q: … A: …` direttamente nel prompt:
+Si possono aggiungere esempi `Q: … A: …` direttamente nel prompt:
 
 - **Zero-shot**: nessun esempio, domanda diretta
 - **One-shot**: un solo esempio
 - **Few-shot**: alcuni esempi (in genere < 5)
-
+![[Pasted image 20261123010402.png|445]]
 ---
 
 ## Embedding, Indexing, Tuning
 
 ### Document Embedding
 
-Un LLM estrae da un intero testo un **vettore di feature semantiche**. Utile per trovare analogie o **raggruppare testi per similarità** (es. richieste a un call center).
+> [!abstract] Un LLM estrae da un intero testo un **vettore di feature semantiche**. Utile per trovare analogie o **raggruppare testi per similarità** (es. richieste a un call center).
 
 > [!warning] Non confondere Il **document embedding** (testo intero) è diverso dal **token embedding** applicato in ingresso ai singoli token.
 
-- Si calcolano **distanze** (euclidea o coseno) e/o si applica **clustering**
-- Operativamente: si **pre-calcola** l'embedding dei documenti d'archivio; per un nuovo documento si calcola **solo il suo** embedding e lo si confronta con quelli memorizzati
 
-### Interrogare una knowledge base proprietaria (RAG)
+
+**Operativamente**: si **pre-calcola** l'embedding dei documenti d'archivio; per un nuovo documento si calcola **solo il suo** embedding e lo si confronta con quelli memorizzati
+- Si calcolano **distanze** (euclidea o coseno) e/o si applica **clustering**
+![[Pasted image 20261123010938.png|421]]
+### Interrogare una knowledge-base proprietaria (RAG)
 
 Problema: usare un LLM potente su un argomento specifico che non conosce (es. manuale di 1000 pagine).
 

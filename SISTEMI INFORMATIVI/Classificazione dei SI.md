@@ -162,6 +162,8 @@ vengono utilizzati i moduli di diversi vendor che meglio si prestano alle esigen
  
  ![[Pasted image 20261116131949.png]]
 #### Prescrittività dei sistemi ERP
+
+
 ![[Pasted image 20261123134757.png|566]]
 
 Lezione del 23092026 - 40:07

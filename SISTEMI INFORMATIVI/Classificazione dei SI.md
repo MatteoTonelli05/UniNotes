@@ -219,8 +219,9 @@ Le caratteristiche che denotano un sistema CRM sono:
 #### Sales Force Automation (SFA)
 
 Il cliente interagisce direttamente con l’azienda, tramite il venditore. 
-L’automazione è rivolta soprattutto al venditore, quindi si parla di _Sales Force Automation (SFA)_. Nati negli anni ‘80, questi sistemi sono usati per prodotti complessi (es. informatori medici, promotori finanziari). Il venditore ha un portatile che:
+L’automazione è rivolta soprattutto al venditore, quindi si parla di _Sales Force Automation (SFA)_. 
 
+Il venditore ha un portatile che:
 - permette di preparare le offerte
 - contiene schede informative e dimostrazioni dei prodotti
 - raccoglie ordini e informazioni sull’andamento delle visite
@@ -230,7 +231,9 @@ L’automazione è rivolta soprattutto al venditore, quindi si parla di _Sales F
 >- _Voce_: il cliente telefona a un **call center**, con operatori assistiti dal CRM e sistemi automatici integrati con la telefonia. Il sistema smista le chiamate per servizio richiesto, offre servizi self-service, rende trasparente la _multilocalizzazione_ dei call center e supporta l’operatore. Ad esempio, nell’assistenza post-vendita l’operatore vede i dati del cliente, registra la richiesta e questa genera in automatico gli ordini di lavoro per le squadre di manutenzione.
 >- _Corrispondenza_: il cliente scrive via e-mail e gli operatori smistano la posta in entrata. L’azienda può anche inviare messaggi in automatico (campagne di marketing, servizi informativi).
 
-**Web**: è diventato il canale principale, detto anche _commercio elettronico_. Offre:
+##### WEB
+
+Il **Web** è diventato il canale principale, detto anche _commercio elettronico_. Offre:
 - vendita self-service 24 ore su 24
 - personalizzazione per singolo utente
 - visibilità dello stato degli ordini

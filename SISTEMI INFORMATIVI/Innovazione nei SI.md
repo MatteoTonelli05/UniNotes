@@ -16,16 +16,16 @@
 ![[Pasted image 20261123164006.png]]
 Solitamente nelle aziende occidentali il ciclo ha la tempistica dell'anno
 
-- **1. Pianificazione:** Si formalizzano le strategie, si validano i progetti selezionati e si assegnano:
-  - priorità di intervento;
-  - risorse, budget e valore economico;
-  - tempistiche e responsabilità.
+1. **PIANIFICAZIONE:** Si formalizzano le strategie, si validano i progetti selezionati e si assegnano:
+	  - priorità di intervento;
+	  - risorse, budget e valore economico;
+	  - tempistiche e responsabilità.
         
-- **2. Attuazione (o Realizzazione):** È la fase operativa più lunga (spesso pluriennale per i progetti strategici), in cui si eseguono gli studi di fattibilità, si acquisiscono/sviluppano i sistemi dal mercato e si erogano i servizi.
+2. **ATTUAZIONE (o Realizzazione):** È la fase operativa più lunga (spesso pluriennale per i progetti strategici), in cui si eseguono gli studi di fattibilità, si acquisiscono/sviluppano i sistemi dal mercato e si erogano i servizi.
     
-- **3. Verifica:** Si raccolgono dati e misure per monitorare e diagnosticare lo stato attuale (**as-is**) di processi, risorse informative e sistemi informatici (efficacia, efficienza, qualità e costi), individuando eventuali criticità.
+3. **VERIFICA:** Si raccolgono dati e misure per monitorare e diagnosticare lo stato attuale (**as-is**) di processi, risorse informative e sistemi informatici (efficacia, efficienza, qualità e costi), individuando eventuali criticità.
     
-- **4. Intervento:** Sulla base della diagnosi precedente, si progettano e avviano le azioni correttive (**to-be**), ovvero la reingegnerizzazione dei processi di servizio e l'adeguamento delle infrastrutture informatiche.
+4. **INTERVENTO:** Sulla base della diagnosi precedente, si progettano e avviano le azioni correttive (**to-be**), ovvero la reingegnerizzazione dei processi di servizio e l'adeguamento delle infrastrutture informatiche.
 
 ---
 

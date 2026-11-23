@@ -163,8 +163,23 @@ vengono utilizzati i moduli di diversi vendor che meglio si prestano alle esigen
  ![[Pasted image 20261116131949.png]]
 #### Prescrittività dei sistemi ERP
 
+> [!attention] I software ERP sono sistemi già programmati e predefiniti
+> Nel momento della vendità vengono garantite alcune flessibilità, ovvero
+> - la compatibilità con le prossime *tot* versioni.
+>- la parametrizzazione del software per adattarlo alle esigenze
 
-![[Pasted image 20261123134757.png|566]]
+> [!example] 
+> ![[Pasted image 20261123134757.png|566]]
 
-Lezione del 23092026 - 40:07
+> [!question] E se volessi superare la **parametrizzazione**?
+> Si passa alla personalizzazione, in quel caso si entra in quello che è chiamato **Lock in**, ovvero incompatibilità con le versioni successive
+> > [!example] Conad è chiuso alle sue personalizzazioni, il programmatore responsabile delle personalizzazioni va in pensione tra due anni e loro sono completamente dipendenti da quest'ultimo
+
+> [!abstract] Rivedere i processi in base a quelli che sono stati già pensati fa si che il momento di adozione di un **ERP** diventi anche un momento di **Business Process Reengineering (BPR)**
+
+Solitamente gli ERP vengono utilizzati nelle imprese medie-grandi, dove la standardizzazione dei dati è resa necessaria dalla grande mole di dati.
+
+---
+### Sistemi CRM
+
 

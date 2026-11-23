@@ -1,3 +1,5 @@
+## Legge di Martec
+
 > [!quote] Il problema sta nel fatto che la tecnologia evolve esponenzialmente mentre le persone si evolvono in scala logaritmica, per cui c'è un'avversione al cambiamento
 > 
 ![[Pasted image 20261123152415.png]]
@@ -9,3 +11,6 @@
 > Il progresso tecnologico accelera in modo esponenziale anziché lineare perché ogni nuova innovazione fornisce gli strumenti per sviluppare le innovazioni successive a un ritmo sempre più rapido (sistemi auto-amplificanti e convergenza tra diverse tecnologie come AI, biologia e nanotecnologia).
 
 ---
+## Ciclo dell'innovazione
+
+![[Pasted image 20261123164006.png]]

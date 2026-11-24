@@ -68,13 +68,18 @@ In particolare possiamo definire due tipi di scelta della variabile da derivare:
 ![[Pasted image 20261015111809.png|565]]
 
 ---
-
-## Proprietà dei CFL
-
-### Forma Normale di Chomsky (CNF)
+## Forma Normale di Chomsky (CNF)
 
 Ogni CFL **senza $\epsilon$** è generato da una CFG in cui **tutte** le produzioni hanno una di queste due forme:
 
-- **A → BC** (il corpo è formato da due variabili)
-- **A → a** (il corpo è un solo terminale)
+- **A → BC** 
+- **A → a**
 
+dove A,B e C sono variabili, e $a$ è un simbolo terminale.
+Questa è detta forma normale di Chomsky
+
+### Come si ottiene? Semplificazioni su CFG
+
+#### 1. Eliminazioni simboli inutili
+
+Un simbolo $X$

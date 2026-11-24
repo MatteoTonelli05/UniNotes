@@ -24,7 +24,7 @@ _(il linguaggio delle stringhe palindrome)_
 
 Le CFG sono un modo formale per definizioni come quella per $L_{pal}$ 
 ![[Pasted image 20261015102919.png|542]]
-Una CFG è un **quadrubla** $$G = (V,T,P,S)$$dove:
+Una CFG è un **quadrupla** $$G = (V,T,P,S)$$dove:
 - $V$ è un insieme finito di variabili (chiamate anche *non-terminali* o *categorie sintattiche*)
 - $T$ è un insieme finito di terminali
 - $P$ è un insieme finito di produzioni (chiamate anche *regole*) della forma $A \rightarrow a$, dove $A$ è una variabile e $a \in (V\cup T)^*$

@@ -18,7 +18,8 @@ Supponiamo che $G$ sia in **CNF** e che $|w| = n$.
 
 Un albero sintattico in CNF è **binario**: per una stringa di lunghezza $n$ ci sono **$2n - 1$ nodi interni**.
 
-> Perché $2n - 1$: ci sono $n - 1$ usi di $A \to BC$ e $n$ usi di $A \to a$, e ogni passo di derivazione è un nodo interno.
+> [!question] Perché $2n - 1$? 
+> Ci sono $n - 1$ usi di $A \to BC$ e $n$ usi di $A \to a$, e ogni passo di derivazione è un nodo interno.
 
 Basta generare **tutti** gli alberi sintattici di $G$ con $2n - 1$ nodi interni e controllare se almeno uno ha prodotto $w$.
 

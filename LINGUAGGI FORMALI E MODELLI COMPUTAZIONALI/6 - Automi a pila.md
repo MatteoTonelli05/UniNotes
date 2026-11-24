@@ -239,7 +239,7 @@ Sia $w$ la stringa data in input al `PDA` e $y$ tale che $w=xy$, allora il `PDA`
 La costruzione di una grammatica equivalente usa variabili (*triple*: $[pXq]$) che rappresentano un "***evento***" che consiste in:
 1. La rimozione di un simbolo $X$ dallo stack
 2. Il cambiamento di stato da uno stato $p$ a uno stato $q$ quando $X$ viene rimpiazzato da $\epsilon$ nello stack.
-### Definizione formale
+#### Definizione formale
 
 > [!cite] Teorema
 > Sia $P=(Q,\Sigma,\Gamma,\delta,q_{0},Z_{0})$ un `PDA`.
@@ -260,7 +260,7 @@ La costruzione di una grammatica equivalente usa variabili (*triple*: $[pXq]$) c
 #### Dimostrazione
 
  Costruiamo $G=(V,\Sigma,R,S)$ dove l'insieme delle variabili $V$ consiste di:
-
+ 
 1. Il simbolo iniziale $S$
 2. Tutti i simboli della forma $[pXq]$, dove $p$ e $q$ sono stati in $Q$ e $X$ è un simbolo dello stack in $\Gamma$
 
@@ -268,7 +268,9 @@ Le ***produzioni*** di $G$ si definiscono come di seguito:
 1. Per tutti gli stati $p$, $G$ ha una produzione $S\to[q_{0},Z_{0},p]$ che genera tutte le stringhe $w$ che causano la rimozione di $Z_{0}$ dalla pila mentre passa dallo stato $q_{0}$ allo stato $p$.
 
 > [!hint] Formalmente: $(q_{0},w,Z_{0})\vdash^{*}(p,\epsilon,\epsilon)$.
-> Queste produzioni indicano che il simbolo iniziale $S$ ***genera tutte le stringhe*** $w$ che portano $P$ a ***svuotare la pila*** partendo dalla sua `ID` iniziale.
+> $[pXq]$ genera esattamente le stringhe w tali che **(p, w, X) ⊢* (q, ε, ε)**
+> 
+> Cioè partendo dallo stato $p$ con la pila che contiene solo $X$, leggendo $w$ si arriva nello stato $q$ con la pila vuota.
 
 2. Sia $(r,Y_{1}Y_{2}\dots Y_{k})\in\delta(q,a,X)$ dove:
 	- $a\in\Sigma\cup\{ \epsilon \}$
@@ -283,8 +285,9 @@ Se $k=0$ la produzione sarà:
 > [!hint] Idea
 > Questa produzione indica che ***un modo di rimuovere*** $X$ e passare da uno stato $q$ a uno stato $r_{k}$ è quello di **leggere** $a$, e usare un input per **rimuovere** $Y_{1}$ dalla pila **passando dallo stato** $r$ allo **stato** $r_{1}$ e poi leggere un altro input che rimuove $Y_{2}$ dallo stack e passare da $r_{1}$ a $r_{2}$ e così via.
 
-##### Esempio
-> Convertiamo $P=(\{ p,q \}, \{ 0,1 \}, \{ X,Z_{0} \}, \delta,q,Z_{0})$  in una `CFG`dove $\delta$ è:
+####  Esempio
+
+> [!example] Convertiamo $P=(\{ p,q \}, \{ 0,1 \}, \{ X,Z_{0} \}, \delta,q,Z_{0})$  in una `CFG`dove $\delta$ è:
 
 1. $\delta(q,1,Z_{0})=\{ (q,XZ_{0}) \}$
 2. $\delta(q,1,X)=\{ (q,XX) \}$
@@ -351,4 +354,7 @@ $$
 &[pZ_{0}p] \to 0[qZ_{0}p]
 \end{align}
 $$
+
+---
+
 

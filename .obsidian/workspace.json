@@ -173,7 +173,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "MACHINE LEARNING/10 - DeepLearning.md",
+                "file": "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/6 - Automi a pila.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -182,12 +182,12 @@
               "title": "Struttura"
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 285.5,
-    "collapsed": true
+    "width": 285.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -201,7 +201,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "6949f51621d36270",
+  "active": "1c39bbf205e60808",
   "lastOpenFiles": [
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/Allegati/Pasted image 20261124125232.png",
     "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/4 - Linguaggi Liberi.md",

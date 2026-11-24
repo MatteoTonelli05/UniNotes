@@ -240,12 +240,14 @@ La costruzione di una grammatica equivalente usa variabili (*triple*: $[pXq]$) c
 1. La rimozione di un simbolo $X$ dallo stack
 2. Il cambiamento di stato da uno stato $p$ a uno stato $q$ quando $X$ viene rimpiazzato da $\epsilon$ nello stack.
 ### Definizione formale
+
 > [!cite] Teorema
 > Sia $P=(Q,\Sigma,\Gamma,\delta,q_{0},Z_{0})$ un `PDA`.
 > Allora esiste una `CFG` $G$ tale che $L(G)=N(P)$
 
 #### Dimostrazione
-> Costruiamo $G=(V,\Sigma,R,S)$ dove l'insieme delle variabili $V$ consiste di:
+
+ Costruiamo $G=(V,\Sigma,R,S)$ dove l'insieme delle variabili $V$ consiste di:
 
 1. Il simbolo $S$, *simbolo iniziale*
 2. Tutti i simboli della forma $[pXq]$, dove $p$ e $q$ sono stati in $Q$ e $X$ è un simbolo dello stack in $\Gamma$

@@ -245,11 +245,23 @@ La costruzione di una grammatica equivalente usa variabili (*triple*: $[pXq]$) c
 > Sia $P=(Q,\Sigma,\Gamma,\delta,q_{0},Z_{0})$ un `PDA`.
 > Allora esiste una `CFG` $G$ tale che $L(G)=N(P)$
 
+> [!info] Ricorda
+> $P$ è una 6-upla **senza $F$**: accetta per pila vuota.
+> - $Q$: stati.
+> - $\Sigma$: alfabeto di input.
+>- $\Gamma$ : alfabeto di pila.
+>- $\delta$: transizioni.
+>- $q_0$: stato iniziale.
+>- $Z_0$: simbolo iniziale della pila.
+>
+>$N(P) = {w : (q₀, w, Z₀) ⊢^* (q, ε, ε)}$: le stringhe con cui il PDA, leggendo tutto l'input, svuota la pila.
+>
+>Il teorema dice che i linguaggi accettati per pila vuota da un PDA sono generabili da una grammatica, cioè sono CFL.
 #### Dimostrazione
 
  Costruiamo $G=(V,\Sigma,R,S)$ dove l'insieme delle variabili $V$ consiste di:
 
-1. Il simbolo $S$, *simbolo iniziale*
+1. Il simbolo iniziale $S$
 2. Tutti i simboli della forma $[pXq]$, dove $p$ e $q$ sono stati in $Q$ e $X$ è un simbolo dello stack in $\Gamma$
 
 Le ***produzioni*** di $G$ si definiscono come di seguito:

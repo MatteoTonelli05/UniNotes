@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SISTEMI INFORMATIVI/Innovazione nei SI.md",
+                "file": "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/6 - Automi a pila.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Innovazione nei SI"
+              "title": "6 - Automi a pila"
             }
           }
         ]
@@ -203,9 +203,11 @@
   },
   "active": "6949f51621d36270",
   "lastOpenFiles": [
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/4 - Linguaggi Liberi.md",
+    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/6 - Automi a pila.md",
+    "SISTEMI INFORMATIVI/Innovazione nei SI.md",
     "SISTEMI INFORMATIVI/Allegati/Pasted image 20261123164006.png",
     "SISTEMI INFORMATIVI/Classificazione dei SI.md",
-    "SISTEMI INFORMATIVI/Innovazione nei SI.md",
     "SISTEMI INFORMATIVI/Allegati/Pasted image 20261123152415.png",
     "SISTEMI INFORMATIVI/Allegati/Pasted image 20261123143940.png",
     "SISTEMI INFORMATIVI/Allegati/Pasted image 20261123143456.png",
@@ -217,7 +219,6 @@
     "MACHINE LEARNING/Allegati/Pasted image 20261123003440.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261123002334.png",
     "MACHINE LEARNING/Allegati/Pasted image 20261123002254.png",
-    "MACHINE LEARNING/Allegati/Pasted image 20261122191551.png",
     "MACHINE LEARNING/09 - Deep Learning.md",
     "MACHINE LEARNING/05 - Regressione.md",
     "MACHINE LEARNING/MACHINE LEARNING.md",
@@ -232,7 +233,6 @@
     "MACHINE LEARNING/02 - Training e Valutazione Prestazioni.md",
     "MACHINE LEARNING/04 - Support Vector Machine (SVM).md",
     "SISTEMI INFORMATIVI/Introduzione.md",
-    "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/6 - Automi a pila.md",
     "CONCURRENT SYSTEMS/module 2.4 - DESIGN.md",
     "CONCURRENT SYSTEMS/module 2.2 - MODELLING & VERIFICATION.md",
     "CONCURRENT SYSTEMS/module 2.3 - semafori, monitor e problemi classici.md",

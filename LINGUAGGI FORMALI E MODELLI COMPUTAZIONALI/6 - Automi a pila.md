@@ -220,6 +220,8 @@ Sia $w$ la stringa data in input al `PDA` e $y$ tale che $w=xy$, allora il `PDA`
 ### da PDA a CFG
 
 > [!hint] Idea
-> comportamento dei **PDA** per rimuovere simbolo $Y$ dalla pila (usando una transizione che sostituisce $Y$ con $Y_1Y_2 ... Y_k$)
+> comportamento dei **PDA** per rimuovere simbolo $Y$ dalla pila (usando una transizione che sostituisce $Y$ con $Y_1, Y_2 ... Y_k$)
 > 
 ![[Pasted image 20261113181720.png|313]]
+
+

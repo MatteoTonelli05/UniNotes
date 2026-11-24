@@ -25,7 +25,8 @@ Basta generare **tutti** gli alberi sintattici di $G$ con $2n - 1$ nodi interni 
 
 Il numero di alberi/etichettature possibili è **esponenziale** in $n$, quindi l'algoritmo è esponenziale.
 
-> Perché serve la CNF: senza, le produzioni $\epsilon$ e unità renderebbero la lunghezza delle derivazioni non limitata, e la ricerca non avrebbe un limite.
+> [!question] Perché serve la CNF? 
+> Senza le produzioni $\epsilon$ e unità renderebbero la lunghezza delle derivazioni non limitata, e la ricerca non avrebbe un limite.
 
 ---
 
@@ -41,14 +42,7 @@ $$A \Rightarrow^*_G a_i a_{i+1} \cdots a_j$$
 
 cioè le variabili che possono generare la sottostringa da $i$ a $j$.
 
-```
-X15
-X14 X25
-X13 X24 X35
-X12 X23 X34 X45
-X11 X22 X33 X44 X55
- a1  a2  a3  a4  a5
-```
+![[Pasted image 20261124181551.png]]
 
 La cella $X_{ij}$ si trova nella **riga $j - i + 1$**, cioè la lunghezza della sottostringa.
 

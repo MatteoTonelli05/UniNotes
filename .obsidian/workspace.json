@@ -100,94 +100,10 @@
   "right": {
     "id": "994e93d0a7538110",
     "type": "split",
-    "children": [
-      {
-        "id": "5e8a13c15ff6dab4",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "83e3d3a75ef06af2",
-            "type": "leaf",
-            "state": {
-              "type": "backlink",
-              "state": {
-                "file": "MACHINE LEARNING/10 - DeepLearning.md",
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              },
-              "icon": "links-coming-in",
-              "title": "Riferimenti"
-            }
-          },
-          {
-            "id": "a61046e4c6a56600",
-            "type": "leaf",
-            "state": {
-              "type": "outgoing-link",
-              "state": {
-                "file": "MACHINE LEARNING/10 - DeepLearning.md",
-                "linksCollapsed": false,
-                "unlinkedCollapsed": true
-              },
-              "icon": "links-going-out",
-              "title": "Collegamenti in uscita"
-            }
-          },
-          {
-            "id": "40e3114bba1e0a88",
-            "type": "leaf",
-            "state": {
-              "type": "tag",
-              "state": {
-                "sortOrder": "frequency",
-                "useHierarchy": true,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-tags",
-              "title": "Etichette"
-            }
-          },
-          {
-            "id": "972633fa7e171756",
-            "type": "leaf",
-            "state": {
-              "type": "all-properties",
-              "state": {
-                "sortOrder": "frequency",
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-archive",
-              "title": "Tutte le proprietà"
-            }
-          },
-          {
-            "id": "1c39bbf205e60808",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/4 - Linguaggi Liberi.md",
-                "followCursor": false,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-list",
-              "title": "Struttura"
-            }
-          }
-        ],
-        "currentTab": 4
-      }
-    ],
+    "children": [],
     "direction": "horizontal",
-    "width": 285.5
+    "width": 285.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {

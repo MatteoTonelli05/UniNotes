@@ -226,9 +226,7 @@ Per ogni terminale $a$ che compare in un corpo di lunghezza $\geq 2$:
 #### Passo 3: spezzare i corpi di lunghezza $\geq 3$
 
 Per ogni regola
-
 $$A \to B_1 B_2 \dots B_k, \qquad k \geq 3$$
-
 si introducono le nuove variabili $C_1, C_2, \dots, C_{k-2}$ e la si sostituisce con
 
 $$\begin{align} A &\to B_1 C_1 \\ C_1 &\to B_2 C_2 \\ &\dots \\ C_{k-3} &\to B_{k-2} C_{k-2} \\ C_{k-2} &\to B_{k-1} B_k \end{align}$$

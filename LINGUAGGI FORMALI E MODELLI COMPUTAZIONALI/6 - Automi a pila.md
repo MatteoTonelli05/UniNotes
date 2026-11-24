@@ -227,24 +227,14 @@ Sia $w$ la stringa data in input al `PDA` e $y$ tale che $w=xy$, allora il `PDA`
 > Parto da uno stato $q$ e con $Y$ in cima alla pila, ho una transizione $a,Y/Y_{1}Y_{2}\dots Y_{k}$ che mi porta in $p_{0}$
 > L'obbiettivo è quello di ***eliminare interamente*** $Y$ dalla pila.
 
-Per ogni carattere $Y_{i}$ aggiunto dovrò applicare lo stesso ragionamento prede
 ![[Pasted image 20261124125232.png]]
-
-La figura suggerisce come possiamo fare il "*pop*" di una sequenza di simboli $Y_{1},\dots,Y_{k}$ dalla pila.
-- $x_{1}$ rappresenta l'input consumato dall'automa in un cammino che rimuove completamente $Y_{1}$ dalla pila.
+- si parte dallo stato **p₀** con Y₁ in cima;
+- il PDA lavora (legge un pezzo di input **x₁**, magari facendo anche altre cose sulla pila sopra Y₁) finché Y₁ viene tolto, e si trova nello stato **p₁**;
+- da p₁ lo stesso per Y₂, che consuma **x₂** e porta in **p₂**;
+- e così via fino a Y_k, che consuma x_k e porta in **p_k**.
 
 > [!hint] Osservazione
 > La rimozione di $Y_{1}$ è l'effetto di ***diverse azioni***.
-
-> Per esempio 
-- La prima mossa cambia $Y_{1}$ in un altro simbolo $Z$
-- Poi viene rimpiazzato $Z$ con $UV$
-- Altre mosse successive hanno l'effetto di rimuovere $U$ e poi $V$
-- L'***effetto finale*** è stato sostanzialmente la rimozione di $Y_{1}$.
-
-Osserviamo anche che dopo la rimozione di $Y_{1}$ finiamo nello stato $p_{1}$
-
-Questa computazione continua fino alla rimozione di ciascuno dei simboli dello stack.
 
 La costruzione di una grammatica equivalente usa variabili (*triple*: $[pXq]$) che rappresentano un "***evento***" che consiste in:
 1. La rimozione di un simbolo $X$ dallo stack

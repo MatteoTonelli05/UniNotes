@@ -133,41 +133,16 @@ $$L(G) \neq \emptyset \iff \text{il simbolo iniziale } S \text{ è generante}$$
 (Qui $n$ è la dimensione della grammatica.)
 
 ---
-
-## Da ricordare
-
-- **Appartenenza** $w \in L(G)$: decidibile. Tecnica ingenua: esponenziale. **CYK**: $O(n^3)$, richiede $G$ in **CNF**.
-- **CYK**: tabella $X_{ij}$, base $X_{ii} = {A : A \to a_i}$, induzione sui tagli $k$ con $A \to BC$, $B \in X_{ik}$, $C \in X_{(k+1)j}$. Risposta: $S \in X_{1n}$.
-- **Backpointers**: servono per il parsing (costruire gli alberi). Foresta polinomiale, alberi anche esponenziali.
-- **Vuoto**: $L(G) \neq \emptyset \iff S$ generante.
-
----
-
 ## Proprietà di chiusura dei CFL
 
-**Chiuso** rispetto a un'operazione: applicandola a CFL si ottiene ancora un CFL. Per i regolari erano chiusi unione, concatenazione, star, intersezione, complemento. Per i CFL **solo alcune** valgono.
+> [!question] Cosa significa chiusura?
+> **Chiuso** rispetto a un'operazione, significa che applicandola a CFL si ottiene ancora un CFL. 
 
-### Ciò che vale
-
-**Teorema 7.24.** I CFL sono chiusi rispetto a:
-
-1. **unione**
-2. **concatenazione**
-3. **chiusura di Kleene** $^*$ e **chiusura positiva** $^+$
-
-_Prova: per esercizio._ Schema (dal libro): si rinominano le variabili in modo che siano disgiunte, si aggiunge una nuova variabile iniziale $S$ e le regole
-
-- unione: $S \to S_1 \mid S_2$
-- concatenazione: $S \to S_1 S_2$
-- star: $S \to S_1 S \mid \epsilon$
-- plus: $S \to S_1 S \mid S_1$
-
-**Teorema (rovesciamento).** Se $L$ è CFL, allora lo è anche $L^R$.
+![[Pasted image 20261125162335.png|626]]
+**TEOREMA (rovesciamento).** Se $L$ è CFL, allora lo è anche $L^R$.
 
 _Prova._ Sia $L$ generato da $G = (V, T, P, S)$. Costruiamo $G^R = (V, T, P^R, S)$ dove
-
 $$P^R = {A \to \alpha^R : A \to \alpha \in P}$$
-
 cioè si **rovesciano i corpi** delle produzioni. Si mostra per induzione sulla lunghezza delle derivazioni in $G$ e in $G^R$ che $(L(G))^R = L(G^R)$.
 
 ---

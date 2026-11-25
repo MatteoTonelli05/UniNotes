@@ -65,46 +65,38 @@ $$B \in X_{ik} \quad \text{e} \quad C \in X_{(k+1)j}$$
 ---
 #### Esempio
 $G$ ha le produzioni
-$$\begin{align} S &\to AB \mid BC \ A &\to BA \mid a \ B &\to CC \mid b \ C &\to AB \mid a \end{align}$$
+$$\begin{align} S &\to AB \mid BC &\ A &\to BA \mid a &\ B &\to CC \mid b &\ C &\to AB \mid a \end{align}$$
 
 con $w = baaba$ (quindi $a_1 = b$, $a_2 = a$, $a_3 = a$, $a_4 = b$, $a_5 = a$).
 
-Tabella (colonna = posizione di partenza $i$, riga = lunghezza):
-
 ![[Pasted image 20261125135614.png|499]]
-
-
-**Riga 1 (base).** $B \to b$ dà $X_{11} = X_{44} = {B}$. $A \to a$ e $C \to a$ danno $X_{22} = X_{33} = X_{55} = {A, C}$.
-
-**Alcuni calcoli per capire la regola:**
-
-- $X_{12}$: $X_{11} \times X_{22} = {B} \times {A, C}$, cioè $BA$ e $BC$. Da $A \to BA$ e $S \to BC$ si ottiene ${S, A}$.
-- $X_{23}$: ${A,C} \times {A,C}$, cioè $AA, AC, CA, CC$. Solo $CC$ compare in un corpo ($B \to CC$), quindi ${B}$.
-- $X_{34}$: ${A,C} \times {B}$, cioè $AB$ e $CB$. $AB$ compare in $S \to AB$ e $C \to AB$, quindi ${S, C}$.
-- $X_{13}$: due tagli. $k=1$: $X_{11} \times X_{23} = BB$ (nessuna regola). $k=2$: $X_{12} \times X_{33} = {S,A} \times {A,C}$ (nessuna regola). Quindi $\emptyset$.
-- $X_{25}$: tre tagli. $k=2$: ${A,C} \times {B}$ dà $AB$, quindi $S$ e $C$. $k=3$: ${B} \times {S,A}$ dà $BA$, quindi $A$. $k=4$: ${B} \times {A,C}$ dà $BA$ e $BC$, quindi $A$ e $S$. Unione: ${S, A, C}$.
-- $X_{15}$: $k=1$: $X_{11} \times X_{25} = {B} \times {S,A,C}$ dà $BS, BA, BC$, quindi $A$ e $S$. $k=2$: $X_{12} \times X_{35} = {S,A} \times {B}$ dà $SB, AB$, quindi $S$ e $C$. $k=3$ e $k=4$ danno $\emptyset$ (perché $X_{13} = X_{14} = \emptyset$). Unione: ${S, A, C}$.
-
 $S \in X_{15}$, quindi **$baaba \in L(G)$**.
 
+> [!quote] Riempimento in parole povere
+> **Passo 1** -  guardi ogni lettera e scrivi le variabili che hanno una regola `**A → lettera**`
+> **Passo 2** -  Ti chiedi: **quale variabile può produrre "una variabile della prima + una variabile della seconda"?**
+> > [!example] **"ba" (lettere 1 e 2):**
+> > - la "b" è produttibile da {B}, la "a" da {A, C};
+> >- le coppie possibili sono B·A e B·C;
+> >- dalla tabellina: BA lo produce **A**, BC lo produce **S**;
+> >- quindi la cella è **{S, A}**.
+> 
+> **Passo 3** - adatta il passo 2 agli altri livelli
+
+ 
 ---
 
 #### Costo computazionale
 
 Per calcolare $X_{ij}$ si analizzano al più $n$ coppie di insiemi già calcolati:
-
 $$(X_{ii}, X_{i+1,j}),\ (X_{i,i+1}, X_{i+2,j}),\ \dots,\ (X_{i,j-1}, X_{jj})$$
 
 Per $w = a_1 \cdots a_n$ ci sono $O(n^2)$ insiemi $X_{ij}$ da calcolare, e per ognuno si analizzano $n$ coppie.
+Il costo computazionale totale è quindi $O(n^3)$
 
-Il costo computazionale totale è quindi
-
-$$O(n^3)$$
-
-(polinomiale, molto meglio dell'esponenziale della tecnica ingenua; la dimensione della grammatica è considerata costante).
+> [!hint] è polinomiale, molto meglio dell'esponenziale della tecnica ingenua; la dimensione della grammatica è considerata costante.
 
 ---
-
 ### Generare gli alberi sintattici tramite backpointers
 
 Se $w \in L(G)$ si può usare CYK per generare **tutti i possibili alberi sintattici** di $w$ (**parsing** di $w$).

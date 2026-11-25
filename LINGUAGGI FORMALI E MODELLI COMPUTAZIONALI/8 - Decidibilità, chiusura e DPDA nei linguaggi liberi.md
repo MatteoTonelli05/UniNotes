@@ -45,18 +45,19 @@ cioè le variabili che possono generare la sottostringa da $i$ a $j$.
 > [!abstract] Idea
 > Per sapere se S genera tutta la stringa, ti chiedi quali variabili generano **ogni sua sottostringa**, partendo da quelle di una lettera e allargando.
 
-Si riempie **riga per riga, dal basso verso l'alto**. La prima riga è il passo base, le successive il passo induttivo.
+Si riempie **riga per riga, dal basso verso l'alto**. 
+La prima riga è il passo base, le successive il passo induttivo.
 
 **BASE:**$\qquad X_{ii} = \{A : A \to a_i \text{ è in } G\}$
 
-**INDUZIONE:** calcoliamo $X_{ij}$ (riga $j - i + 1$). Si ha $A \in X_{ij}$ se e solo se:
+**INDUZIONE:** $\qquad$ calcoliamo $X_{ij}$ (riga $j - i + 1$). Si ha $A \in X_{ij}$ se e solo se:
 
 - $A \Rightarrow^* a_i a_{i+1} \cdots a_j$, che equivale a dire che $A \to BC$ e, per qualche $i \leq k < j$, vale $B \Rightarrow^* a_i \cdots a_k$ e $C \Rightarrow^* a_{k+1} \cdots a_j$;
 - ma questo equivale a controllare che esista una produzione $A \to BC$ e un $k$ con $i \leq k < j$ tale che
-
 $$B \in X_{ik} \quad \text{e} \quad C \in X_{(k+1)j}$$
 
-> Perché è giusto: se la sottostringa ha lunghezza $\geq 2$, in CNF il primo passo di $A \Rightarrow^* a_i \cdots a_j$ è per forza $A \to BC$. Allora $B$ deriva un prefisso non vuoto (da $i$ a $k$) e $C$ il resto (da $k+1$ a $j$). Per questo si provano **tutti** i punti di taglio $k$.
+> [!question] Perchè è giusto? 
+> Se la sottostringa ha lunghezza $\geq 2$, in CNF il primo passo di $A \Rightarrow^* a_i \cdots a_j$ è per forza $A \to BC$. Allora $B$ deriva un prefisso non vuoto (da $i$ a $k$) e $C$ il resto (da $k+1$ a $j$). Per questo si provano **tutti** i punti di taglio $k$.
 
 **Obiettivo:** calcolare $X_{1n}$.
 

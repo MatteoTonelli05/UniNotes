@@ -64,21 +64,15 @@ $$B \in X_{ik} \quad \text{e} \quad C \in X_{(k+1)j}$$
 
 ---
 #### Esempio
-
+$G$ ha le produzioni
 $$\begin{align} S &\to AB \mid BC \ A &\to BA \mid a \ B &\to CC \mid b \ C &\to AB \mid a \end{align}$$
 
 con $w = baaba$ (quindi $a_1 = b$, $a_2 = a$, $a_3 = a$, $a_4 = b$, $a_5 = a$).
 
 Tabella (colonna = posizione di partenza $i$, riga = lunghezza):
 
-|lunghezza|$i=1$|$i=2$|$i=3$|$i=4$|$i=5$|
-|---|---|---|---|---|---|
-|5|${S,A,C}$|||||
-|4|$\emptyset$|${S,A,C}$||||
-|3|$\emptyset$|${B}$|${B}$|||
-|2|${S,A}$|${B}$|${S,C}$|${S,A}$||
-|1|${B}$|${A,C}$|${A,C}$|${B}$|${A,C}$|
-||$b$|$a$|$a$|$b$|$a$|
+![[Pasted image 20261125135614.png|499]]
+
 
 **Riga 1 (base).** $B \to b$ dà $X_{11} = X_{44} = {B}$. $A \to a$ e $C \to a$ danno $X_{22} = X_{33} = X_{55} = {A, C}$.
 

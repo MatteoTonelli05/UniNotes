@@ -4,7 +4,7 @@
 >Un problema è **decidibile** se esiste un algoritmo che risponde sempre correttamente sì/no.
 
 Analizzeremo i seguenti problemi **decidibili**:
-1. verificare se $w \in L(G)$, per una stringa $w$ e una CFG $G$;
+1. verificare se $w \in L(G)$, cioè se la grammatica $G$ può generare $w$.
 2. verificare se $L(G) \neq \emptyset$, per una CFG $G$.
 E elencheremo alcuni problemi **indecidibili**
 
@@ -41,6 +41,9 @@ cioè le variabili che possono generare la sottostringa da $i$ a $j$.
 > [!hint] La cella $X_{ij}$ si trova nella **riga $j - i + 1$**, cioè la lunghezza della sottostringa.
 
 #### Come si riempie
+
+> [!abstract] Idea
+> Per sapere se S genera tutta la stringa, ti chiedi quali variabili generano **ogni sua sottostringa**, partendo da quelle di una lettera e allargando.
 
 Si riempie **riga per riga, dal basso verso l'alto**. La prima riga è il passo base, le successive il passo induttivo.
 

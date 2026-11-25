@@ -4,13 +4,13 @@
 >Un problema è **decidibile** se esiste un algoritmo che risponde sempre correttamente sì/no.
 
 Analizzeremo i seguenti problemi **decidibili**:
-- verificare se $w \in L(G)$, per una stringa $w$ e una CFG $G$;
-- verificare se $L(G) \neq \emptyset$, per una CFG $G$.
-E elencheremo alcuni problemi **indecidibili** (vedi sezione finale).
+1. verificare se $w \in L(G)$, per una stringa $w$ e una CFG $G$;
+2. verificare se $L(G) \neq \emptyset$, per una CFG $G$.
+E elencheremo alcuni problemi **indecidibili**
 
 ---
 
-## Appartenenza: $w \in L(G)$?
+## 1. Appartenenza: $w \in L(G)$?
 
 ### Tecnica inefficiente
 
@@ -23,38 +23,30 @@ Un albero sintattico in CNF è **binario**: per una stringa di lunghezza $n$ ci 
 
 Basta generare **tutti** gli alberi sintattici di $G$ con $2n - 1$ nodi interni e controllare se almeno uno ha prodotto $w$.
 
-Il numero di alberi/etichettature possibili è **esponenziale** in $n$, quindi l'algoritmo è esponenziale.
+> [!fail] Il numero di alberi/etichettature possibili è **esponenziale** in $n$, quindi l'algoritmo è esponenziale.
 
 > [!question] Perché serve la CNF? 
 > Senza le produzioni $\epsilon$ e unità renderebbero la lunghezza delle derivazioni non limitata, e la ricerca non avrebbe un limite.
 
 ---
-
 ### Algoritmo CYK
 
-Nome dagli inventori: **C**ocke, **Y**ounger, **K**asami.
-
-Assumiamo $G$ in CNF e $w = a_1 a_2 \cdots a_n$.
+Assumiamo $G$ in CNF e che $w = a_1 a_2 \cdots a_n$.
 
 Costruiamo una **tabella triangolare** dove $X_{ij}$ è l'insieme di tutte le variabili $A$ tali che
-
 $$A \Rightarrow^*_G a_i a_{i+1} \cdots a_j$$
-
 cioè le variabili che possono generare la sottostringa da $i$ a $j$.
 
 ![[Pasted image 20261124181551.png]]
-
-La cella $X_{ij}$ si trova nella **riga $j - i + 1$**, cioè la lunghezza della sottostringa.
+> [!hint] La cella $X_{ij}$ si trova nella **riga $j - i + 1$**, cioè la lunghezza della sottostringa.
 
 #### Come si riempie
 
 Si riempie **riga per riga, dal basso verso l'alto**. La prima riga è il passo base, le successive il passo induttivo.
 
-**Base:**
+**BASE:**$\qquad X_{ii} = \{A : A \to a_i \text{ è in } G\}$
 
-$$X_{ii} = {A : A \to a_i \text{ è in } G}$$
-
-**Induzione:** calcoliamo $X_{ij}$ (riga $j - i + 1$). Si ha $A \in X_{ij}$ se e solo se:
+**INDUZIONE:** calcoliamo $X_{ij}$ (riga $j - i + 1$). Si ha $A \in X_{ij}$ se e solo se:
 
 - $A \Rightarrow^* a_i a_{i+1} \cdots a_j$, che equivale a dire che $A \to BC$ e, per qualche $i \leq k < j$, vale $B \Rightarrow^* a_i \cdots a_k$ e $C \Rightarrow^* a_{k+1} \cdots a_j$;
 - ma questo equivale a controllare che esista una produzione $A \to BC$ e un $k$ con $i \leq k < j$ tale che

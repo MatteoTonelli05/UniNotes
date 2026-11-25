@@ -57,14 +57,12 @@ La prima riga è il passo base, le successive il passo induttivo.
 $$B \in X_{ik} \quad \text{e} \quad C \in X_{(k+1)j}$$
 
 > [!question] Perchè è giusto? 
-> Se la sottostringa ha lunghezza $\geq 2$, in CNF il primo passo di $A \Rightarrow^* a_i \cdots a_j$ è per forza $A \to BC$. Allora $B$ deriva un prefisso non vuoto (da $i$ a $k$) e $C$ il resto (da $k+1$ a $j$). Per questo si provano **tutti** i punti di taglio $k$.
+> Se la sottostringa ha lunghezza $\geq 2$, in CNF il primo passo di 
+> $A \Rightarrow^* a_i \cdots a_j$ è per forza $A \to BC$. Allora $B$ deriva un prefisso non vuoto (da $i$ a $k$) e $C$ il resto (da $k+1$ a $j$). Per questo si provano **tutti** i punti di taglio $k$.
 
-**Obiettivo:** calcolare $X_{1n}$.
-
-$$w \in L(G) \iff S \in X_{1n}$$
+**Obiettivo:** calcolare $X_{1n}$ : si ha $w \in L(G) \text{ se e solo se } S \in X_{1n}$
 
 ---
-
 #### Esempio
 
 $$\begin{align} S &\to AB \mid BC \ A &\to BA \mid a \ B &\to CC \mid b \ C &\to AB \mid a \end{align}$$

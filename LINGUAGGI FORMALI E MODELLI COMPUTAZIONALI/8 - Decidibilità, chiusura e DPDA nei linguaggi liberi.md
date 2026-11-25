@@ -124,10 +124,9 @@ Se $w \in L(G)$ si può usare CYK per generare **tutti i possibili alberi sintat
 
 ## Verificare se un CFL è non vuoto
 
+> [!hint] Ricorda $\iff$ significa "se e solo se"
+
 $$L(G) \neq \emptyset \iff \text{il simbolo iniziale } S \text{ è generante}$$
-
-(definizione di "generante": vedi nota _CNF e semplificazioni CFG_, sezione simboli inutili).
-
 - Un'implementazione naive del calcolo dei simboli generanti di $G$ richiede tempo $O(n^2)$.
 - Ottimizzando le strutture dati di appoggio si può calcolare in tempo $O(n)$.
 

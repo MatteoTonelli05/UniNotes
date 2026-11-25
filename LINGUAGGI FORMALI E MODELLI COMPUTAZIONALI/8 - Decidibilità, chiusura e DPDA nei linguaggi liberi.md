@@ -334,13 +334,3 @@ Regolari
 ```
 
 ---
-
-## Da ricordare (blocco chiusura, indecidibilità, DPDA)
-
-- **Chiusi**: unione, concatenazione, $^*$, $^+$, rovesciamento, intersezione con un regolare, differenza con un regolare.
-- **Non chiusi**: intersezione di due CFL (controesempio $0^n 1^n 2^n$), complemento, differenza di due CFL.
-- **Intersezione CFL $\cap$ regolare**: prodotto PDA $\times$ DFA, stati a coppie, accetta se entrambi accettano.
-- **Indecidibili**: ambiguità di una CFG, ambiguità inerente, intersezione vuota, uguaglianza, universalità.
-- **DPDA**: $\le 1$ mossa per situazione, nessuna scelta tra input e $\epsilon$. Regolari $\subset L(\text{DPDA}) \subset$ CFL.
-- **$L_{wcw^R} \in L(\text{DPDA})$**, **$L_{ww^R} \notin L(\text{DPDA})$** (serve il non determinismo).
-- **DPDA $\Rightarrow$ grammatica non ambigua**, ma non viceversa.

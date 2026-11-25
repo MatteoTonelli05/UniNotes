@@ -102,19 +102,22 @@ Il costo computazionale totale è quindi $O(n^3)$
 Se $w \in L(G)$ si può usare CYK per generare **tutti i possibili alberi sintattici** di $w$ (**parsing** di $w$).
 
 - Si memorizzano esplicitamente i **backpointers** ai simboli che hanno causato l'aggiunta di una variabile a un insieme.
+![[Pasted image 20261125142923.png|358]]
 - Se una variabile viene aggiunta **più volte** allo stesso insieme (come, nell'esempio, la variabile $S$ nel ${S,A,C}$ di $X_{15}$), si memorizzano **tutte le coppie alternative** di backpointers.
 - Poi si fa **traceback** a partire da $S$ nell'insieme $X_{1n}$, seguendo i backpointers, per costruire tutti gli alberi sintattici di $w$.
+![[Pasted image 20261125143516.png]]
 
-Nell'esempio, $S \in X_{15}$ ha due alternative:
+> [!attention] Nell'esempio, $S \in X_{15}$ ha due alternative:
+>
+>- $S \to BC$ con $B \in X_{11}$ e $C \in X_{25}$;
+>- $S \to AB$ con $A \in X_{12}$ e $B \in X_{35}$.
+>
+>Quindi $baaba$ ha **due alberi sintattici** ed è ambigua in $G$ (stesso concetto dell'ambiguità vista all'inizio del capitolo, ora rilevato da un algoritmo).
 
-- $S \to BC$ con $B \in X_{11}$ e $C \in X_{25}$;
-- $S \to AB$ con $A \in X_{12}$ e $B \in X_{35}$.
+##### **Note**
 
-Quindi $baaba$ ha **due alberi sintattici** ed è ambigua in $G$ (stesso concetto dell'ambiguità vista all'inizio del capitolo, ora rilevato da un algoritmo).
-
-**Note:**
-
-- Il traceback costruisce una quantità **esponenziale** di alberi (una specifica alternativa per ogni variabile che ne ha più d'una), ma a partire da una rappresentazione **polinomiale** della "foresta" di alberi (i sottoalberi sono condivisi).
+- Il traceback costruisce una quantità teoricamente **esponenziale** di alberi (una specifica alternativa per ogni variabile che ne ha più d'una), ma a partire da una rappresentazione **polinomiale** della "foresta" di alberi (i sottoalberi sono condivisi).
+	
 - La grammatica era stata trasformata in CNF. Conservando abbastanza informazioni **durante la conversione** si possono poi ricostruire gli alberi sintattici di $w$ nella grammatica **originale** $G$.
 
 ---

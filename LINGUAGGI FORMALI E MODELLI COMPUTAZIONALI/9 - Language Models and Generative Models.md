@@ -82,7 +82,7 @@ con il vincolo:
 > [!quote] In altre parole 
 > Una PCFG definisce, per ogni variabile $A$, una **distribuzione di probabilità sulle produzioni di $A$**.
 
-> [!example] **Esempio - la variabile Adjs
+> [!example] **Esempio - la variabile Adjs**
 > **Adjs** è la variabile che genera **una sequenza di aggettivi** (per esempio "smelly", oppure "smelly dead", oppure "smelly dead big"...). 
 > Ha due produzioni:
 > 
@@ -91,16 +91,14 @@ con il vincolo:
 >- **$Adjs \to Adjective$ [0.80]**: con probabilità 0.80 la sequenza è **un solo aggettivo** e finisce lì.
 >- **$Adjs \to Adjective\ Adjs$ [0.20]**: con probabilità 0.20 si mette **un aggettivo e poi si ricomincia** con un'altra $Adjs$, quindi ne seguono altri.
 
-All'interno dei 
-**Lessicale vs sintattico:** le categorie lessicali (quelle che producono token) e quelle sintattiche (quelle che producono altre categorie) sono insieme le **variabili** della grammatica. La distinzione riguarda **solo l'interpretazione linguistica**, non la forma della grammatica.
+Distinguiamo due categorie nel linguaggio:
+- **Lessicale vs sintattico:** le categorie lessicali (quelle che producono token) e quelle sintattiche (quelle che producono altre categorie) sono insieme le **variabili** della grammatica. La distinzione riguarda **solo l'interpretazione linguistica**, non la forma della grammatica.
 
 ### Il lessico
 
 Il **lessico** della lingua è specificato da:
-
 - l'**insieme finito $\Sigma$** dei simboli terminali, cioè i **token** (parole del vocabolario, punteggiatura, ecc.);
 - le produzioni che dicono, per ogni categoria lessicale, **quali token appartengono a quella categoria**.
-
 $$C \to t\ [p]$$
 
 significa: **quando si genera un token di categoria $C$, si sceglie $t$ con probabilità $p$**. Esprime quindi **quanto spesso** quello specifico $t$ compare quando si ha un token di categoria $C$.

@@ -196,8 +196,9 @@ Il **supporto** di un linguaggio formale probabilistico $P$, detto **underlying 
 
 $$L = \{ w \mid P(w) > 0 \}$$
 
-- Per l'Esempio 1 è $\{[hello][bye],\ [hello][hello][bye]\}$.
-- Per l'Esempio 2 è $L(G)$, dove $G$ è la CFG ottenuta **togliendo le probabilità** dalla tiny English PCFG.
+> [!example] Esempio
+>- Per l'Esempio 1 è $\{[hello][bye],\ [hello][hello][bye]\}$.
+>- Per l'Esempio 2 è $L(G)$, dove $G$ è la CFG ottenuta **togliendo le probabilità** dalla tiny English PCFG.
 
 ---
 ## PCFG problematiche: probabilità di terminazione e consistenza

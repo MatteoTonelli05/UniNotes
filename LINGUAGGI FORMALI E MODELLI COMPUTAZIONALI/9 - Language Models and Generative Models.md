@@ -101,15 +101,11 @@ Il **lessico** della lingua è specificato da:
 - le produzioni che dicono, per ogni categoria lessicale, **quali token appartengono a quella categoria**.
 $$C \to t\ [p]$$
 
-significa: **quando si genera un token di categoria $C$, si sceglie $t$ con probabilità $p$**. Esprime quindi **quanto spesso** quello specifico $t$ compare quando si ha un token di categoria $C$.
-
-### Da dove vengono le grammatiche
-
-Storicamente, le categorie e la forma delle produzioni sono state studiate **annotando a mano** frasi in linguaggio naturale. La fonte più nota è il **Penn Treebank**: un corpus di circa **100 mila frasi** annotate con la struttura dell'albero sintattico.
+> [!attention] Significa
+> **Quando si genera un token di categoria $C$, si sceglie $t$ con probabilità $p$**. Esprime quindi **quanto spesso** quello specifico $t$ compare quando si ha un token di categoria $C$.
 
 ---
-
-## 5. Probabilità di una derivazione e di un albero
+## Probabilità di una derivazione e di un albero
 
 ### Derivazione
 

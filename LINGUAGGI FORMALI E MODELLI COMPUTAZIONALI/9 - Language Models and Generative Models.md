@@ -209,11 +209,12 @@ $$L = \{ w \mid P(w) > 0 \}$$
 
 $$\begin{align} S &\to a\ [0.4] \\ S &\to A\ [0.6] \\ A &\to A\ [1] \end{align}$$
 
-- $G$ può generare **solo la stringa "a"**, e solo con **un albero** (quello che applica subito $S \to a$).
+$G$ può generare **solo la stringa "a"**, e solo con **un albero** (quello che applica subito $S \to a$).
 - Quindi $\sum_{w} P_G(w) = 0.4$, non 1.
 - Il restante $0.6$ di probabilità va in derivazioni **che non terminano mai** ($S \to A \to A \to A \dots$).
 
-> In generale certe regole ricorsive fanno **perdere massa di probabilità** a causa di derivazioni che non terminano.
+> [!quote] In parole 
+> Certe regole ricorsive fanno **perdere massa di probabilità** a causa di derivazioni che non terminano.
 
 ### Probabilità di terminazione
 

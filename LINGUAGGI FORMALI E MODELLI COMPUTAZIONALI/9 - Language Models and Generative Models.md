@@ -156,30 +156,15 @@ La probabilità di generare $w$ è la **somma** delle probabilità di tutti i su
 $$P_G(w) = \sum_{T \in Tree_G(w)} P_G(T)$$
 dove $Tree_G(w)$ è l'insieme degli alberi di $G$ che generano $w$. Se $w$ non ha alberi ($Tree_G(w) = \emptyset$) la somma vale 0.
 
-**Nota sulla complessità.** Il numero di alberi in $Tree_G(w)$ è in generale **esponenziale** in $|w|$, ma $P_G(w)$ si può calcolare in **tempo polinomiale** con una **variante probabilistica di CYK**. Le slide lo annunciano, ma il calcolo non è svolto in questo PDF.
+> [!hint] **Nota sulla complessità** 
+> Il numero di alberi in $Tree_G(w)$ è in generale **esponenziale** in $|w|$, ma $P_G(w)$ si può calcolare in **tempo polinomiale** con una **variante probabilistica di CYK**. 
 
-### Esempio: "I can fish"
-
-Grammatica con probabilità:
-
-$$\begin{align} S &\to NP\ VP\ [1.0] \\ NP &\to Noun\ [0.6] \mid Pronoun\ [0.4] \\ VP &\to Verb\ NP\ [0.8] \mid Modal\ Verb\ [0.2] \\ Noun &\to fish\ [0.3] \mid \dots \\ Pronoun &\to I\ [0.4] \mid they\ [0.3] \mid \dots \\ Verb &\to can\ [0.01] \mid fish\ [0.1] \mid \dots \\ Modal &\to can\ [0.3] \mid \dots \end{align}$$
-
-Probabilità dei due alberi:
-
-$$P(T_1) = 1 \cdot 0.4 \cdot 0.4 \cdot 0.2 \cdot 0.3 \cdot 0.1 = 0.00096 \quad \text{(il più probabile)}$$
-
-$$P(T_2) = 1 \cdot 0.4 \cdot 0.4 \cdot 0.8 \cdot 0.01 \cdot 0.6 \cdot 0.3 = 0.0002304$$
-
-$$P(\text{"I can fish"}) = 0.00096 + 0.0002304 = 0.0011904$$
-
-Come leggere i fattori di $T_1$: $S \to NP\,VP$ (1), $NP \to Pronoun$ (0.4), $Pronoun \to I$ (0.4), $VP \to Modal\,Verb$ (0.2), $Modal \to can$ (0.3), $Verb \to fish$ (0.1).
-Per $T_2$: $S \to NP\,VP$ (1), $NP \to Pronoun$ (0.4), $Pronoun \to I$ (0.4), $VP \to Verb\,NP$ (0.8), $Verb \to can$ (0.01), $NP \to Noun$ (0.6), $Noun \to fish$ (0.3).
-
-**Uso pratico.** Per interpretare la frase si sceglie $T_1$ (il **più probabile**: "io posso pescare"). La probabilità totale della stringa è la somma.
+> [!example] Esempio: "I can fish"
+![[Pasted image 20261126165953.png]]
 
 ---
 
-## 7. Linguaggi formali probabilistici
+## Linguaggi formali probabilistici
 
 ### Definizione
 

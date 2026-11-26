@@ -1,18 +1,10 @@
 ## Applicazioni alla linguistica formale: Language Models e Generative Models
 
-**Filo conduttore.** Finora le grammatiche decidevano se una stringa appartiene a un linguaggio (sì/no). Qui si aggiungono le **probabilità**: la grammatica diventa un modello che dice **quanto è probabile** ogni stringa. Da lì si arriva ai **language model**, che sono un caso particolare dei **generative model** (compresi gli HMM e, come cenno, le reti neurali / LLM).
-
-Collegamenti con le note precedenti:
-
-- **CFG, alberi sintattici, ambiguità** → diventano PCFG, alberi con probabilità, ambiguità risolta scegliendo l'albero più probabile.
-- **Grammatiche regolari** → diventano PRG (probabilistic regular grammar), equivalenti agli HMM.
-- **CYK** → si accenna a una variante probabilistica per calcolare $P(w)$ in tempo polinomiale.
-- **Simboli generanti / raggiungibili, eliminazione dei simboli inutili** → qui compaiono nelle condizioni di consistenza.
-- **Gerarchia di Chomsky** → PRL $\subset$ PCFL, e HMM tra BOW e PCFG.
+Finora le grammatiche decidevano se una stringa appartiene a un linguaggio. 
+Qui si aggiungono le **PROBABILITÀ**: la grammatica diventa un modello che dice **quanto è probabile** ogni stringa. 
 
 ---
-
-## 1. Phrase structure grammars
+## Phrase structure grammars
 
 - **Noam Chomsky** introdusse il termine *phrase structure grammar* per indicare grammatiche come le **CFG**.
 - Nei linguaggi naturali (per esempio l'inglese) le **categorie sintattiche** come **NP** (*noun phrase*, sintagma nominale) e **VP** (*verb phrase*, sintagma verbale) sono le **variabili** della grammatica.

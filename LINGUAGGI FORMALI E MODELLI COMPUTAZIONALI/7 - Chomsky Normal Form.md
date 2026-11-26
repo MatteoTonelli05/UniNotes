@@ -220,38 +220,35 @@ $$\alpha \to \beta \in P \qquad \text{con } \alpha \in (V \cup T)^+ \text{ e } \
 - A destra **qualsiasi sequenza**, anche vuota ($\beta = \epsilon$ è ammesso).
 - È la classe più generale.
 
+> [!hint] Ricorda
+> - $X^*$ è l'insieme di tutte le sequenze formate da **zero o più** elementi di $X$, compresa la **stringa vuota** $\epsilon$.
+> - $X^+$ è lo stesso insieme ma con **una o più** ripetizioni, quindi **senza la stringa vuota**:
+> $$X^+ = X^* \setminus \{\epsilon\}$$
 ### Tipo 1: grammatiche dipendenti dal contesto / monotone
 
 Si restringe a produzioni $\alpha \to \beta$ con
-
 $$|\beta| \geq |\alpha|$$
 
 cioè **la lunghezza non diminuisce mai** durante una derivazione (per questo "monotone").
 
-In particolare sono ammesse le produzioni **dipendenti dal contesto**
-
+> [!attention] In particolare sono ammesse le produzioni **dipendenti dal contesto**
 $$\alpha_1 A \alpha_2 \to \alpha_1 \beta \alpha_2 \qquad \text{con } A \in V,\ \beta \in (V \cup T)^+,\ \alpha_1, \alpha_2 \in (V \cup T)^*$$
+> > [!hint] Come leggerle
+> > La variabile $A$ si riscrive in $\beta$ **solo se** si trova tra $\alpha_1$ e $\alpha_2$. La riscrittura **dipende dal contesto**, da cui il nome.
 
-Come leggerle: la variabile $A$ si riscrive in $\beta$ **solo se** si trova tra $\alpha_1$ e $\alpha_2$. La riscrittura **dipende dal contesto**, da cui il nome.
-
-> Le produzioni dipendenti dal contesto sono anche monotone: $\beta$ non è vuota, quindi $|\alpha_1\beta\alpha_2| \geq |\alpha_1 A \alpha_2|$. Le due definizioni (monotone e dipendenti dal contesto) danno la stessa classe di linguaggi, ed è per questo che la slide le mette insieme.
+> Le produzioni dipendenti dal contesto sono anche monotone: $\beta$ non è vuota, quindi $|\alpha_1\beta\alpha_2| \geq |\alpha_1 A \alpha_2|$. Le due definizioni (monotone e dipendenti dal contesto) danno la stessa classe di linguaggi.
 
 ### Tipo 2: grammatiche libere dal contesto (CFG)
 
 Produzioni
-
 $$A \to \beta \qquad \text{con } A \in V \text{ e } \beta \in (V \cup T)^+$$
 
 - A sinistra **una sola variabile**.
 - La riscrittura vale **sempre**, qualunque cosa ci sia attorno ad $A$: è **libera dal contesto**.
-- Sono le CFG del corso.
-
-> **Differenza con le slide del corso:** qui $\beta$ non può essere vuota ($(V \cup T)^+$), mentre nel corso era ammesso $A \to \epsilon$. Le due versioni hanno la **stessa potenza espressiva**: le produzioni $\epsilon$ si eliminano (vedi nota _CNF e semplificazioni CFG_), perdendo al più la stringa vuota, che si riaggiunge con la regola speciale $S \to \epsilon$ descritta qui sotto.
 
 ### Tipo 3: grammatiche regolari
 
 Produzioni
-
 $$A \to a \qquad \text{oppure} \qquad A \to aB \qquad \text{con } A, B \in V \text{ e } a \in T$$
 
 - Un terminale, eventualmente seguito da **una sola variabile** a destra (grammatiche _lineari a destra_).
@@ -259,15 +256,13 @@ $$A \to a \qquad \text{oppure} \qquad A \to aB \qquad \text{con } A, B \in V \te
 
 ---
 
-### La nota (*) sulla stringa vuota
+### La nota sulla stringa vuota
 
-I tipi 1, 2 e 3 sono marcati con (*):
+> [!abstract] I tipi 1, 2 e 3 
+> Ammettono anche una possibile produzione $S \to \epsilon$ per il simbolo iniziale $S$ (per rappresentare linguaggi che contengono $\epsilon$), **purché non esista alcuna $\alpha \to \beta \in P$ con $S$ che compare in $\beta$**.
 
-> (*) ammettono anche una possibile produzione $S \to \epsilon$ per il simbolo iniziale $S$ (per rappresentare linguaggi che contengono $\epsilon$), **purché non esista alcuna $\alpha \to \beta \in P$ con $S$ che compare in $\beta$**.
-
-Cioè: l'unica produzione che può generare $\epsilon$ è $S \to \epsilon$, e solo se $S$ non compare mai a destra di nessuna regola.
-
-**Perché la condizione.** Se $S$ potesse comparire a destra, $S \to \epsilon$ potrebbe essere usata "in mezzo" a una derivazione e far **accorciare** la forma sentenziale, rompendo la proprietà che caratterizza i tipi 1, 2 e 3 (ad esempio la monotonia del tipo 1).
+> [!question]**Perché la condizione?** 
+> Se $S$ potesse comparire a destra, $S \to \epsilon$ potrebbe essere usata "in mezzo" a una derivazione e far **accorciare** la forma sentenziale, rompendo la proprietà che caratterizza i tipi 1, 2 e 3 (ad esempio la monotonia del tipo 1).
 
 ---
 

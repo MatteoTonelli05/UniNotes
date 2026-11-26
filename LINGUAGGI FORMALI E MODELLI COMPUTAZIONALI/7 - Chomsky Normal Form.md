@@ -202,4 +202,208 @@ $$\begin{align} E &\to EC_1 \mid TC_2 \mid LC_3 \mid a \mid b \mid IA \mid IB \m
 
 ## Chomsky Grammar Hierarchy
 
+La gerarchia di Chomsky **classifica le grammatiche in 4 tipi** in base alla forma delle produzioni. 
+A ogni tipo corrisponde una **classe di linguaggi** e una **macchina** che li riconosce. 
+Le classi sono una dentro l'altra.
 
+---
+
+> [!attention] In tutti i casi si parla di $G = (V, T, P, S)$, con $V$ variabili, $T$ terminali, $P$ produzioni, $S$ simbolo iniziale. 
+> Cambia **solo la forma ammessa per le produzioni**.
+
+### Tipo 0: grammatiche senza restrizioni
+
+Produzioni
+$$\alpha \to \beta \in P \qquad \text{con } \alpha \in (V \cup T)^+ \text{ e } \beta \in (V \cup T)^*$$
+
+- A sinistra può esserci **qualsiasi sequenza non vuota** di variabili e terminali.
+- A destra **qualsiasi sequenza**, anche vuota ($\beta = \epsilon$ è ammesso).
+- È la classe più generale.
+
+### Tipo 1: grammatiche dipendenti dal contesto / monotone
+
+Si restringe a produzioni $\alpha \to \beta$ con
+
+$$|\beta| \geq |\alpha|$$
+
+cioè **la lunghezza non diminuisce mai** durante una derivazione (per questo "monotone").
+
+In particolare sono ammesse le produzioni **dipendenti dal contesto**
+
+$$\alpha_1 A \alpha_2 \to \alpha_1 \beta \alpha_2 \qquad \text{con } A \in V,\ \beta \in (V \cup T)^+,\ \alpha_1, \alpha_2 \in (V \cup T)^*$$
+
+Come leggerle: la variabile $A$ si riscrive in $\beta$ **solo se** si trova tra $\alpha_1$ e $\alpha_2$. La riscrittura **dipende dal contesto**, da cui il nome.
+
+> Le produzioni dipendenti dal contesto sono anche monotone: $\beta$ non è vuota, quindi $|\alpha_1\beta\alpha_2| \geq |\alpha_1 A \alpha_2|$. Le due definizioni (monotone e dipendenti dal contesto) danno la stessa classe di linguaggi, ed è per questo che la slide le mette insieme.
+
+### Tipo 2: grammatiche libere dal contesto (CFG)
+
+Produzioni
+
+$$A \to \beta \qquad \text{con } A \in V \text{ e } \beta \in (V \cup T)^+$$
+
+- A sinistra **una sola variabile**.
+- La riscrittura vale **sempre**, qualunque cosa ci sia attorno ad $A$: è **libera dal contesto**.
+- Sono le CFG del corso.
+
+> **Differenza con le slide del corso:** qui $\beta$ non può essere vuota ($(V \cup T)^+$), mentre nel corso era ammesso $A \to \epsilon$. Le due versioni hanno la **stessa potenza espressiva**: le produzioni $\epsilon$ si eliminano (vedi nota _CNF e semplificazioni CFG_), perdendo al più la stringa vuota, che si riaggiunge con la regola speciale $S \to \epsilon$ descritta qui sotto.
+
+### Tipo 3: grammatiche regolari
+
+Produzioni
+
+$$A \to a \qquad \text{oppure} \qquad A \to aB \qquad \text{con } A, B \in V \text{ e } a \in T$$
+
+- Un terminale, eventualmente seguito da **una sola variabile** a destra (grammatiche _lineari a destra_).
+- Sono le grammatiche che generano esattamente i linguaggi riconosciuti dagli automi a stati finiti.
+
+---
+
+### La nota (*) sulla stringa vuota
+
+I tipi 1, 2 e 3 sono marcati con (*):
+
+> (*) ammettono anche una possibile produzione $S \to \epsilon$ per il simbolo iniziale $S$ (per rappresentare linguaggi che contengono $\epsilon$), **purché non esista alcuna $\alpha \to \beta \in P$ con $S$ che compare in $\beta$**.
+
+Cioè: l'unica produzione che può generare $\epsilon$ è $S \to \epsilon$, e solo se $S$ non compare mai a destra di nessuna regola.
+
+**Perché la condizione.** Se $S$ potesse comparire a destra, $S \to \epsilon$ potrebbe essere usata "in mezzo" a una derivazione e far **accorciare** la forma sentenziale, rompendo la proprietà che caratterizza i tipi 1, 2 e 3 (ad esempio la monotonia del tipo 1).
+
+---
+
+## Esempi di grammatiche specifiche
+
+### Esempio di grammatica monotone (tipo 1)
+
+$$\begin{align} S &\to aSBc \mid aBc \\ cB &\to Bc \\ aB &\to ab \\ bB &\to bb \end{align}$$
+
+Genera
+
+$$L(G) = \{a^n b^n c^n \mid n \geq 1\}$$
+
+**Cosa fa ogni regola:**
+
+|Regola|Effetto|
+|---|---|
+|$S \to aSBc \mid aBc$|genera $a^n (Bc)^n$ per ogni $n \geq 1$ (per $n = 2$: $aaBcBc$)|
+|$cB \to Bc$|scambia una $c$ con una $B$ che la segue: ripetuta, porta **tutte le $B$ prima delle $c$**|
+|$aB \to ab$|trasforma in $b$ la $B$ più a sinistra, quella subito dopo l'ultima $a$|
+|$bB \to bb$|trasforma in $b$ le altre $B$, **solo se** hanno già una $b$ subito prima|
+
+**Derivazione di $aabbcc$:**
+
+$$S \Rightarrow aSBc \Rightarrow aaBcBc \Rightarrow aaBBcc \Rightarrow aabBcc \Rightarrow aabbcc$$
+
+Passo per passo:
+
+1. $S \to aSBc$
+2. $S \to aBc$ dentro: $a\,(aBc)\,Bc = aaBcBc$
+3. $cB \to Bc$ sulla $c$ seguita da $B$: $aaBBcc$
+4. $aB \to ab$ sulla $B$ dopo l'ultima $a$: $aabBcc$
+5. $bB \to bb$: $aabbcc$
+
+**Perché è monotone:** $S \to aSBc$ passa da 1 a 4 simboli e le altre regole sostituiscono 2 simboli con 2 simboli. Nessuna accorcia.
+
+**Perché non è libera dal contesto:** $cB \to Bc$ e le altre hanno **due simboli a sinistra**. E non potrebbe esserlo: $\{a^n b^n c^n\}$ **non è un CFL** (si dimostra con l'intersezione di due CFL, vedi nota _Linguaggi liberi 75-93_, sezione sulla non chiusura rispetto all'intersezione).
+
+> Perché l'ordine delle regole è importante: le $B$ non possono trasformarsi in $b$ finché non sono state portate tutte a sinistra delle $c$ e adiacenti alle $a$ (o a una $b$ già prodotta). In questo modo si ottengono solo stringhe con tutte le $a$, poi tutte le $b$, poi tutte le $c$, nello stesso numero.
+
+### Esempio di grammatica regolare (tipo 3)
+
+$$S \to aS \mid a$$
+
+Genera
+
+$$L(G) = \{a^n \mid n \geq 1\} = \{a\}^+$$
+
+Ogni regola è della forma $A \to aB$ ($S \to aS$) oppure $A \to a$ ($S \to a$).
+
+---
+
+## Aggiungere $\epsilon$ al linguaggio
+
+Non basta aggiungere $S \to \epsilon$ a una grammatica $G$, perché $S$ compare a destra (per esempio in $aS$) e violerebbe la condizione della nota (*).
+
+**Costruzione.** Da $G = (V, T, P, S)$ si ottiene $G'$ con un **nuovo simbolo iniziale $S'$** (che non compare in nessun corpo) e le produzioni:
+
+- $S' \to \epsilon$;
+- $S' \to \alpha$ per **ogni** produzione $S \to \alpha \in P$;
+- tutte le produzioni di $G$ restano.
+
+Risultato:
+
+$$L(G') = L(G) \cup \{\epsilon\}$$
+
+**Perché funziona.** $S'$ viene usato solo come **primo passo**: o si ottiene $\epsilon$, oppure si fa la stessa mossa che avrebbe fatto $S$. Dopo il primo passo la derivazione prosegue come in $G$. Inoltre $S'$ non compare mai a destra, quindi la condizione di (*) è rispettata.
+
+### Esempi con $\epsilon$
+
+**Monotone $G'$:**
+
+$$\begin{align} S' &\to aSBc \mid aBc \mid \epsilon \\ S &\to aSBc \mid aBc \\ cB &\to Bc \\ aB &\to ab \\ bB &\to bb \end{align}$$ $$L(G') = \{a^n b^n c^n \mid n \geq 0\}$$
+
+**Regolare $G'$:**
+
+$$\begin{align} S' &\to aS \mid a \mid \epsilon \\ S &\to aS \mid a \end{align}$$ $$L(G') = \{a^n \mid n \geq 0\} = \{a\}^*$$
+
+---
+
+## La gerarchia dei linguaggi
+
+A ogni tipo di grammatica corrisponde una classe di linguaggi, con una macchina che la riconosce.
+
+|Tipo|Classe di linguaggi|Chi li riconosce|
+|---|---|---|
+|**0**|**Semi-decidibili**|procedura (**macchina di Turing**) che, se la stringa appartiene al linguaggio, **si ferma e accetta**; altrimenti rifiuta **oppure non si ferma**|
+|**1**|**Dipendenti dal contesto**|algoritmo **non deterministico** (macchina di Turing che **si ferma sempre**) con complessità di spazio **lineare**, cioè $\text{NSPACE}(n)$|
+|**2**|**Liberi dal contesto**|**PDA** non deterministico|
+|**3**|**Regolari**|**automa a stati finiti** (DFA o NFA) oppure descritti da una **espressione regolare**|
+
+### Commento classe per classe
+
+**Tipo 3, regolari.** Memoria finita. DFA, NFA ed espressioni regolari sono equivalenti. Sono i linguaggi della prima parte del corso.
+
+**Tipo 2, liberi dal contesto.** Memoria = **una pila**. Il PDA è quello **non deterministico** del capitolo. I DPDA riconoscono meno linguaggi (Regolari $\subset L(\text{DPDA}) \subset$ CFL, vedi nota _Linguaggi liberi 75-93_).
+
+**Tipo 1, dipendenti dal contesto.** Macchina di Turing non deterministica che usa **spazio lineare** nella lunghezza dell'input: può leggere e scrivere, ma solo su un nastro grande quanto l'input (nel libro sono gli _automi limitati linearmente_). Il non determinismo è quello visto per gli NFA e i PDA: la macchina "sceglie bene" tra più mosse. Gli algoritmi di questa classe **terminano sempre**, quindi i linguaggi di tipo 1 sono **decidibili**.
+
+**Tipo 0, semi-decidibili.** Macchine di Turing senza limiti di spazio. Se la stringa è nel linguaggio la macchina prima o poi si ferma e accetta. Se non lo è, **può non fermarsi mai**, quindi non si può essere sicuri di un "no". Per questo "semi-decidibile": si decide solo il sì.
+
+### Ogni classe contiene la precedente (inclusioni strette)
+
+$$\text{Regolari} \subset \text{Liberi dal contesto} \subset \text{Dipendenti dal contesto} \subset \text{Semi-decidibili}$$
+
+**Perché per le grammatiche si vede subito:**
+
+- Tipo 3 $\subseteq$ tipo 2: $A \to aB$ e $A \to a$ sono già della forma $A \to \beta$ con $\beta$ non vuota.
+- Tipo 2 $\subseteq$ tipo 1: $A \to \beta$ con $|\beta| \geq 1 = |A|$, quindi non accorcia.
+- Tipo 1 $\subseteq$ tipo 0: le restrizioni del tipo 1 sono un caso particolare di nessuna restrizione.
+
+Che le inclusioni siano **strette**, cioè che ogni classe abbia linguaggi che non stanno nella precedente, lo mostrano gli esempi qui sotto.
+
+---
+
+## Schema con gli esempi di linguaggi
+
+Lo schema dell'ultima pagina è una serie di insiemi concentrici, dall'interno all'esterno:
+
+```
+Semi-decidibili                        FOL-VALID, FOL-SAT
+  Dipendenti dal contesto              {a^n b^n c^n}
+    Liberi dal contesto                {a^n b^n}
+      Regolari                         {a^n}
+```
+
+|Classe|Esempio|Perché sta lì (e non in quella più interna)|
+|---|---|---|
+|Regolari|$\{a^n\}$|lo riconosce un DFA con un solo ciclo|
+|Liberi dal contesto|$\{a^n b^n\}$|lo riconosce un PDA (si impilano le $a$, si tolgono con le $b$). **Non è regolare**: si dimostra con il pumping lemma, come per le palindrome|
+|Dipendenti dal contesto|$\{a^n b^n c^n\}$|lo genera la grammatica monotone vista sopra. **Non è libero dal contesto**: intersezione di due CFL (vedi nota _Linguaggi liberi 75-93_)|
+|Semi-decidibili|FOL-VALID, FOL-SAT|problemi della logica del primo ordine, fuori dalle classi decidibili|
+
+### FOL-VALID e FOL-SAT
+
+- **FOL-VALID:** dire se una formula della logica del primo ordine (FOL) è **valida**, cioè vera in ogni interpretazione.
+- **FOL-SAT:** dire se è **soddisfacibile**, cioè vera in almeno un'interpretazione.
+
+Nota mia, non dalle slide: in senso stretto la validità di FOL è semi-decidibile (si possono enumerare le dimostrazioni, e se la formula è valida se ne trova una), ma non decidibile. La soddisfacibilità è il problema "complementare" di uno semi-decidibile (la formula è insoddisfacibile se e solo se la negazione è valida). La slide li colloca entrambi nella zona esterna dello schema, per indicare i problemi **oltre** le classi decidibili.

@@ -149,7 +149,9 @@ cioè si **rovesciano i corpi** delle produzioni. Si mostra per induzione sulla 
 
 ### I CFL NON sono chiusi rispetto all'intersezione
 
-Sia $L_1 = {0^n 1^n 2^i : n \geq 1, i \geq 1}$. È CFL, con grammatica
+> [!abstract] Dimostrazione mediante controesempio
+
+Sia $L_1 = \{0^n 1^n 2^i\} : n \geq 1, i \geq 1$. È CFL, con grammatica
 
 $$\begin{align} S &\to AB \ A &\to 0A1 \mid 01 \ B &\to 2B \mid 2 \end{align}$$
 
@@ -169,52 +171,43 @@ $$L_1 \cap L_2 = {0^n 1^n 2^n : n \geq 1}$$
 
 ### Operazioni su liberi e regolari
 
-**Teorema 7.27.** Se $L$ è CFL e $R$ è regolare, allora $L \cap R$ è CFL.
+![[Pasted image 20261126103745.png]]
+##### Dimostrazione del teorema 7.27
 
-_Prova._ Sia $L$ accettato dal PDA
-
+Sia $L$ accettato dal PDA
 $$P = (Q_P, \Sigma, \Gamma, \delta_P, q_P, Z_0, F_P)$$
-
 per stato finale, e sia $R$ accettato dal DFA
-
 $$A = (Q_A, \Sigma, \delta_A, q_A, F_A)$$
-
-Costruiamo un PDA per $L \cap R$: i due automi girano **in parallelo** (nella figura: stato del PDA e stato del DFA, con un AND finale sull'accettazione). La pila la gestisce solo il PDA.
+Costruiamo un PDA per $L \cap R$, i due automi girano **in parallelo**. La pila la gestisce solo il PDA.
+![[Pasted image 20261126104138.png|444]]
 
 Formalmente:
-
 $$P' = (Q_P \times Q_A, \Sigma, \Gamma, \delta, (q_P, q_A), Z_0, F_P \times F_A)$$
-
 dove
 
 $$\delta((q, p), a, X) = {((r, \hat{\delta}_A(p, a)), \gamma) : (r, \gamma) \in \delta_P(q, a, X)}$$
 
-In parole:
+> [!quote] In parole
+>
+>- lo stato di $P'$ è una **coppia** (stato di $P$, stato di $A$);
+>- quando $P$ fa una mossa leggendo $a$, il DFA fa la mossa su $a$ (se $a = \epsilon$ il DFA non si muove: $\hat{\delta}_A(p, \epsilon) = p$);
+>- $P'$ accetta se **entrambi** sono in stati finali.
 
-- lo stato di $P'$ è una **coppia** (stato di $P$, stato di $A$);
-- quando $P$ fa una mossa leggendo $a$, il DFA fa la mossa su $a$ (se $a = \epsilon$ il DFA non si muove: $\hat{\delta}_A(p, \epsilon) = p$);
-- $P'$ accetta se **entrambi** sono in stati finali.
-
-> Collegamento: è la costruzione del **prodotto** tra due DFA vista per i regolari. Qui basta che **uno solo** sia un DFA, perché un solo automa può usare la pila. Con due PDA servirebbero due pile: è il motivo per cui l'intersezione tra due CFL non è chiusa.
+> [!warning] Con due PDA servirebbero due pile: è il motivo per cui l'intersezione tra due CFL non è chiusa.
 
 ---
 
-**Teorema 7.29.** Siano $L, L_1, L_2$ CFL e $R$ regolare. Allora:
+![[Pasted image 20261126104712.png]]
+> [!hint] $\overline{L}$ è il complementare di $L$
+##### Dimostrazione del teorema 7.29
 
-1. $L \setminus R$ è CFL.
-2. $\overline{L}$ **non** è necessariamente CFL.
-3. $L_1 \setminus L_2$ **non** è necessariamente CFL.
-
-_Prova._
-
-1. $\overline{R}$ è regolare, $L \cap \overline{R}$ è CFL (Teo. 7.27) e $L \cap \overline{R} = L \setminus R$.
+1. $\overline{R}$ è regolare, $L \cap \overline{R}$ è CFL  e $L \cap \overline{R} = L \setminus R$.
 2. Se $\overline{L}$ fosse sempre CFL, allora per De Morgan
-
 $$L_1 \cap L_2 = \overline{\overline{L_1} \cup \overline{L_2}}$$
 
-sarebbe sempre CFL (l'unione è chiusa). Ma l'intersezione non è chiusa. Contraddizione.
+sarebbe sempre CFL (l'unione è chiusa). Ma l'intersezione non è chiusa. **Contraddizione**
 
-3. $\Sigma^_$ è CFL (è regolare). Se $L_1 \setminus L_2$ fosse sempre CFL, allora lo sarebbe sempre anche $\Sigma^_ \setminus L = \overline{L}$, contro il punto 2.
+3. $\Sigma^*$ è CFL (è regolare). Se $L_1 \setminus L_2$ fosse sempre CFL, allora lo sarebbe sempre anche $\Sigma^* \setminus L = \overline{L}$, contro il punto 2.
 
 **Riassunto chiusure:**
 
@@ -232,7 +225,8 @@ sarebbe sempre CFL (l'unione è chiusa). Ma l'intersezione non è chiusa. Contra
 
 ## Problemi indecidibili per CFL
 
-**Indecidibile** = non esiste alcun algoritmo che risponda sempre correttamente.
+> [!abstract] **Indecidibile**  
+> Non esiste alcun algoritmo che risponda sempre correttamente.
 
 I seguenti problemi sono indecidibili:
 
@@ -242,61 +236,49 @@ I seguenti problemi sono indecidibili:
 4. Due CFL sono **uguali**?
 5. Un CFL è **universale** (cioè uguale a $\Sigma^*$)?
 
-Collegamenti:
 
-- Il punto 1 spiega perché non esiste un algoritmo per eliminare l'ambiguità: non ne esiste nemmeno uno per riconoscerla.
-- Il punto 2 si riferisce all'ambiguità inerente (esempio ${a^n b^n c^m d^m} \cup {a^n b^m c^m d^n}$).
-- I punti 4 e 5 sono decidibili per i linguaggi regolari, ma non per i CFL.
-- Contrastano con i problemi **decidibili** visti sopra: appartenenza e vuoto.
+> [!hint]
+>- Il punto 1 spiega perché non esiste un algoritmo per eliminare l'ambiguità: non ne esiste nemmeno uno per riconoscerla.
+>- Il punto 2 si riferisce all'ambiguità inerente (esempio ${a^n b^n c^m d^m} \cup {a^n b^m c^m d^n}$).
+>- I punti 4 e 5 sono decidibili per i linguaggi regolari, ma non per i CFL.
+>- Contrastano con i problemi **decidibili** visti sopra: appartenenza e vuoto.
 
 ---
-
 ## PDA deterministici (DPDA)
 
 Un PDA $P = (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F)$ è **deterministico** se e solo se:
 
-1. ogni $\delta(q, a, X)$, con $a \in \Sigma \cup {\epsilon}$, contiene **al più un elemento**;
+1. ogni $\delta(q, a, X)$, con $a \in \Sigma \cup \{\epsilon\}$, contiene **al più un elemento**;
 2. se $\delta(q, a, X)$ è non vuoto per un $a \in \Sigma$, allora $\delta(q, \epsilon, X)$ è **vuoto** (non si può scegliere tra consumare un simbolo e fare una mossa $\epsilon$).
 
-Quindi in ogni situazione la mossa successiva è determinata (o non c'è nessuna mossa).
+> [!hint] Quindi è deterministico se in ogni situazione la mossa successiva è determinata (o non c'è nessuna mossa).
 
-### Esempio
-
+> [!example] Esempio
+> Definiamo
 $$L_{wcw^R} = {wcw^R : w \in {0,1}^*}$$
+![[Pasted image 20261126110244.png]]
 
-(come $L_{ww^R}$, ma con un **marcatore $c$** al centro). È riconosciuto da un DPDA con 3 stati ($q_0$, $q_1$, $q_2$):
 
-- in $q_0$: si impilano gli 0 e gli 1 letti
-    - $0, Z_0 / 0Z_0$ e $1, Z_0 / 1Z_0$
-    - $0, 0 / 00$ e $0, 1 / 01$ e $1, 0 / 10$ e $1, 1 / 11$
-- $q_0 \to q_1$ leggendo la $c$: $c, Z_0 / Z_0$ e $c, 0 / 0$ e $c, 1 / 1$
-- in $q_1$: si toglie dalla pila se coincide con l'input: $0, 0 / \epsilon$ e $1, 1 / \epsilon$
-- $q_1 \to q_2$ (finale): $\epsilon, Z_0 / Z_0$
-
-> Perché ora è deterministico: nel PDA per $L_{ww^R}$ bisognava **indovinare** dov'è la metà con una transizione $\epsilon$. Qui la $c$ dice dove sta il centro, e non c'è più nulla da indovinare.
+> [!questino] Perché ora è deterministico?
+>  Nel PDA per $L_{ww^R}$ bisognava **indovinare** dov'è la metà con una transizione $\epsilon$. Qui la $c$ dice dove sta il centro, e non c'è più nulla da indovinare.
 
 ---
 
 ### Regolari $\subseteq L(\text{DPDA}) \subseteq$ CFL
 
-Mostreremo che
+![[Pasted image 20261126110441.png]]
 
+Mostreremo che
 $$\text{Regolari} \subset L(\text{DPDA}) \subset \text{CFL}$$
 
-**Teorema 6.17.** Se $L$ è regolare, allora $L = L(P)$ per qualche DPDA $P$.
+##### Dimostrazione Teorema 6.17
 
-_Prova._ Dato che $L$ è regolare, esiste un DFA $A$ tale che $L = L(A)$. Sia
-
+Dato che $L$ è regolare, esiste un DFA $A$ tale che $L = L(A)$. Sia
 $$A = (Q, \Sigma, \delta_A, q_0, F)$$
-
 Definiamo il DPDA
-
 $$P = (Q, \Sigma, {Z_0}, \delta_P, q_0, Z_0, F)$$
-
 dove
-
 $$\delta_P(q, a, Z_0) = {(\delta_A(q, a), Z_0)}$$
-
 La pila contiene sempre solo $Z_0$: il DPDA simula il DFA e **ignora la pila**.
 
 ---
@@ -306,31 +288,22 @@ La pila contiene sempre solo $Z_0$: il DPDA simula il DFA e **ignora la pila**.
 - Abbiamo visto che $\text{Regolari} \subseteq L(\text{DPDA})$.
 - Ovviamente $L(\text{DPDA}) \subseteq \text{CFL}$ (un DPDA è un PDA).
 - $L_{wcw^R} \in L(\text{DPDA}) \setminus \text{Regolari}$ (non è regolare: stesso argomento del pumping usato per le palindrome).
-- Ci sono linguaggi in $\text{CFL} \setminus L(\text{DPDA})$? **Sì**, per esempio $L_{ww^R}$ (la slide lo afferma senza dimostrarlo; intuizione: senza marcatore una macchina deterministica non può sapere dove è la metà).
+- Ci sono linguaggi in $\text{CFL} \setminus L(\text{DPDA})$? **Sì**, per esempio $L_{ww^R}$ 
 
 ---
 
 ### DPDA e non ambiguità
+![[Pasted image 20261126110659.png]]
+> [!hint] Essendo $P$ deterministico è possibile ottenere una CFG $G$ con **derivazioni a sinistra uniche** per ogni stringa (ricorda: albero unico $\iff$ derivazione a sinistra unica).
 
-**Teorema 6.21.** Se $L = L(P)$ per qualche DPDA $P$, allora $L$ ha una CFG **non ambigua** $G$.
+> [!warning] **Il viceversa non vale.**
 
-_Intuizione._ Essendo $P$ deterministico è possibile ottenere una CFG $G$ con **derivazioni a sinistra uniche** per ogni stringa (collegamento al teorema: albero unico $\iff$ derivazione a sinistra unica).
-
-**Il viceversa non vale.**
-
-Esempio: $L_{ww^R}$ ha una grammatica non ambigua
-
-$$S \to 0S0 \mid 1S1 \mid \epsilon$$
-
+> [!example] Esempio
+> $L_{ww^R}$ ha una grammatica non ambigua
+>$$S \to 0S0 \mid 1S1 \mid \epsilon$$
 ma **non appartiene** a $L(\text{DPDA})$.
-
+>
 Quindi $L(\text{DPDA})$ è una **sottoclasse stretta** dei CFL aventi grammatiche non ambigue (cioè non inerentemente ambigui).
-
-```
-Regolari
-  ⊂ L(DPDA)                         (es. w c w^R)
-  ⊂ CFL non inerentemente ambigui   (es. w w^R: grammatica non ambigua, ma niente DPDA)
-  ⊂ CFL                             (es. {a^n b^n c^m d^m} ∪ {a^n b^m c^m d^n}: inerentemente ambiguo)
-```
+>
 
 ---

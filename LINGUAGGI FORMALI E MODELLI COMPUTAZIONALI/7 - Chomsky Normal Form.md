@@ -199,3 +199,7 @@ più le regole $A \to a$, $B \to b$, $Z \to 0$, $O \to 1$, $P \to +$, $M \to \as
 $$\begin{align} E &\to EC_1 \mid TC_2 \mid LC_3 \mid a \mid b \mid IA \mid IB \mid IZ \mid IO \\ T &\to TC_2 \mid LC_3 \mid a \mid b \mid IA \mid IB \mid IZ \mid IO \\ F &\to LC_3 \mid a \mid b \mid IA \mid IB \mid IZ \mid IO \\ I &\to a \mid b \mid IA \mid IB \mid IZ \mid IO \\ C_1 &\to PT, \quad C_2 \to MF, \quad C_3 \to ER \\ A &\to a, \quad B \to b, \quad Z \to 0, \quad O \to 1 \\ P &\to +, \quad M \to \ast, \quad L \to (, \quad R \to ) \end{align}$$
 
 ---
+
+## Chomsky Grammar Hierarchy
+
+

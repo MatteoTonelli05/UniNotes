@@ -276,51 +276,16 @@ A ogni tipo di grammatica corrisponde una classe di linguaggi, con una macchina 
 |**2**|**Liberi dal contesto**|**PDA** non deterministico|
 |**3**|**Regolari**|**automa a stati finiti** (DFA o NFA) oppure descritti da una **espressione regolare**|
 
-### Commento classe per classe
-
-**Tipo 3, regolari.** Memoria finita. DFA, NFA ed espressioni regolari sono equivalenti. Sono i linguaggi della prima parte del corso.
-
-**Tipo 2, liberi dal contesto.** Memoria = **una pila**. Il PDA è quello **non deterministico** del capitolo. I DPDA riconoscono meno linguaggi (Regolari $\subset L(\text{DPDA}) \subset$ CFL, vedi nota _Linguaggi liberi 75-93_).
-
-**Tipo 1, dipendenti dal contesto.** Macchina di Turing non deterministica che usa **spazio lineare** nella lunghezza dell'input: può leggere e scrivere, ma solo su un nastro grande quanto l'input (nel libro sono gli _automi limitati linearmente_). Il non determinismo è quello visto per gli NFA e i PDA: la macchina "sceglie bene" tra più mosse. Gli algoritmi di questa classe **terminano sempre**, quindi i linguaggi di tipo 1 sono **decidibili**.
-
-**Tipo 0, semi-decidibili.** Macchine di Turing senza limiti di spazio. Se la stringa è nel linguaggio la macchina prima o poi si ferma e accetta. Se non lo è, **può non fermarsi mai**, quindi non si può essere sicuri di un "no". Per questo "semi-decidibile": si decide solo il sì.
-
-### Ogni classe contiene la precedente (inclusioni strette)
-
-$$\text{Regolari} \subset \text{Liberi dal contesto} \subset \text{Dipendenti dal contesto} \subset \text{Semi-decidibili}$$
-
-**Perché per le grammatiche si vede subito:**
-
-- Tipo 3 $\subseteq$ tipo 2: $A \to aB$ e $A \to a$ sono già della forma $A \to \beta$ con $\beta$ non vuota.
-- Tipo 2 $\subseteq$ tipo 1: $A \to \beta$ con $|\beta| \geq 1 = |A|$, quindi non accorcia.
-- Tipo 1 $\subseteq$ tipo 0: le restrizioni del tipo 1 sono un caso particolare di nessuna restrizione.
-
-Che le inclusioni siano **strette**, cioè che ogni classe abbia linguaggi che non stanno nella precedente, lo mostrano gli esempi qui sotto.
-
----
-
-## Schema con gli esempi di linguaggi
-
-Lo schema dell'ultima pagina è una serie di insiemi concentrici, dall'interno all'esterno:
-
-```
-Semi-decidibili                        FOL-VALID, FOL-SAT
-  Dipendenti dal contesto              {a^n b^n c^n}
-    Liberi dal contesto                {a^n b^n}
-      Regolari                         {a^n}
-```
-
-|Classe|Esempio|Perché sta lì (e non in quella più interna)|
-|---|---|---|
-|Regolari|$\{a^n\}$|lo riconosce un DFA con un solo ciclo|
-|Liberi dal contesto|$\{a^n b^n\}$|lo riconosce un PDA (si impilano le $a$, si tolgono con le $b$). **Non è regolare**: si dimostra con il pumping lemma, come per le palindrome|
-|Dipendenti dal contesto|$\{a^n b^n c^n\}$|lo genera la grammatica monotone vista sopra. **Non è libero dal contesto**: intersezione di due CFL (vedi nota _Linguaggi liberi 75-93_)|
-|Semi-decidibili|FOL-VALID, FOL-SAT|problemi della logica del primo ordine, fuori dalle classi decidibili|
+![[Pasted image 20261126122639.png|536]]
 
 ### FOL-VALID e FOL-SAT
+
+Sono due tipologie di problemi che però si possono vedere come **linguaggi**, ovvero l'insieme delle stringhe che codificano le formule valide (o soddisfacibili).
 
 - **FOL-VALID:** dire se una formula della logica del primo ordine (FOL) è **valida**, cioè vera in ogni interpretazione.
 - **FOL-SAT:** dire se è **soddisfacibile**, cioè vera in almeno un'interpretazione.
 
-Nota mia, non dalle slide: in senso stretto la validità di FOL è semi-decidibile (si possono enumerare le dimostrazioni, e se la formula è valida se ne trova una), ma non decidibile. La soddisfacibilità è il problema "complementare" di uno semi-decidibile (la formula è insoddisfacibile se e solo se la negazione è valida). La slide li colloca entrambi nella zona esterna dello schema, per indicare i problemi **oltre** le classi decidibili.
+> [!hint] Nota mia, non dalle slide
+>  In senso stretto la validità di FOL è semi-decidibile (si possono enumerare le dimostrazioni, e se la formula è valida se ne trova una), ma non decidibile. La soddisfacibilità è il problema "complementare" di uno semi-decidibile (la formula è insoddisfacibile se e solo se la negazione è valida). La slide li colloca entrambi nella zona esterna dello schema, per indicare i problemi **oltre** le classi decidibili.
+
+

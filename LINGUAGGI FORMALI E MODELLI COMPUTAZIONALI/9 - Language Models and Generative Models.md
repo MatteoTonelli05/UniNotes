@@ -203,7 +203,7 @@ $$L = \{ w \mid P(w) > 0 \}$$
 ---
 ## PCFG problematiche: probabilità di terminazione e consistenza
 
-**Non tutte le PCFG rappresentano un linguaggio formale probabilistico.**
+> [!fail] **Non tutte le PCFG rappresentano un linguaggio formale probabilistico.**
 
 ### Esempio
 

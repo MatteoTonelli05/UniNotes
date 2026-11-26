@@ -36,8 +36,8 @@ Per l'inglese è abbastanza semplice, per esempio dividendo il testo in corrispo
 
 Si assume che i token appartengano a un **insieme finito** (es. il vocabolario della lingua), in questo modo i token formano l'**alfabeto** $\Sigma$, e le frasi sono **stringhe in $\Sigma^*$**. 
 
-Per la frase sopra:
-$$\Sigma = \{[a], [from], [great], [it], [person], [qualities], [start], [succeed], [the], [to], [took], [with], [,], \dots\}$$
+> [!example] Per la frase sopra
+> $$\Sigma = \{[a], [from], [great], [it], [person], [qualities], [start], [succeed], [the], [to], [took], [with], [,], \dots\}$$
 
 - Può avvenire una **normalizzazione**: per esempio "From" e "from" sono rappresentati dallo stesso token $[from]$.
 - Spesso si scrive il token (per esempio $[from]$) semplicemente con la parola o punteggiatura che rappresenta ("From").

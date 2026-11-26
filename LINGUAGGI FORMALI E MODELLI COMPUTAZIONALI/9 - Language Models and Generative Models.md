@@ -169,10 +169,10 @@ dove $Tree_G(w)$ è l'insieme degli alberi di $G$ che generano $w$. Se $w$ non h
 ### Definizione
 
 Dato un alfabeto $\Sigma$, un **linguaggio formale probabilistico** è una **distribuzione di probabilità $P$ su $\Sigma^*$**, cioè una funzione $P : \Sigma^* \to [0,1]$ tale che
-
 $$\sum_{w \in \Sigma^*} P(w) = 1$$
 
-> Differenza con i linguaggi formali visti finora: un linguaggio classico è un **insieme** di stringhe (una stringa c'è o non c'è). Qui a ogni stringa è associato un **numero** (quanto è probabile).
+> [!question] Qual'è la differenza con i linguaggi formali visti finora? 
+> Un linguaggio classico è un **insieme** di stringhe (una stringa c'è o non c'è). Qui a ogni stringa è associato un **numero** (quanto è probabile).
 
 ### Esempio 1
 

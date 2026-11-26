@@ -111,28 +111,26 @@ $$C \to t\ [p]$$
 
 Una derivazione $S \Rightarrow^* \alpha$, con $\alpha \in (V \cup \Sigma)^*$, in una PCFG è definita **come per le CFG**.
 
-> La probabilità $P_G(S \Rightarrow^* \alpha)$ di una derivazione è il **prodotto delle probabilità delle produzioni applicate**.
+La probabilità $P_G(S \Rightarrow^* \alpha)$ di una derivazione è il **prodotto delle probabilità delle produzioni applicate**.
 
-Il prodotto vale perché si assume l'**indipendenza** della scelta della produzione a ogni sostituzione di variabile.
+> [!hint] Il prodotto vale perché si assume l'**indipendenza** della scelta della produzione a ogni sostituzione di variabile.
 
-### Esempio: "every wumpus smells"
-
-Derivazione:
-
-$$S \Rightarrow NP\ VP \Rightarrow Article\ Noun\ VP \Rightarrow every\ Noun\ VP \Rightarrow every\ wumpus\ VP \Rightarrow every\ wumpus\ Verb \Rightarrow every\ wumpus\ smells$$
-
-Produzioni usate e probabilità:
-
-| Passo | Produzione | Probabilità |
-|---|---|---|
-| 1 | $S \to NP\ VP$ | 0.90 |
-| 2 | $NP \to Article\ Noun$ | 0.25 |
-| 3 | $Article \to every$ | 0.05 |
-| 4 | $Noun \to wumpus$ | 0.15 |
-| 5 | $VP \to Verb$ | 0.40 |
-| 6 | $Verb \to smells$ | 0.10 |
-
-$$0.90 \cdot 0.25 \cdot 0.05 \cdot 0.15 \cdot 0.40 \cdot 0.10 = 0.0000675$$
+> [!example]
+>Derivazione:
+>$$S \Rightarrow NP\ VP \Rightarrow Article\ Noun\ VP \Rightarrow every\ Noun\ VP \Rightarrow every\ wumpus\ VP $$$$every\ wumpus\ VP \Rightarrow every\ wumpus\ Verb \Rightarrow every\ wumpus\ smells$$
+>
+>Produzioni usate e probabilità:
+>
+>| Passo | Produzione             | Probabilità |
+>| ----- | ---------------------- | ----------- |
+>| 1     | $S \to NP\ VP$         | 0.90        |
+>| 2     | $NP \to Article\ Noun$ | 0.25        |
+>| 3     | $Article \to every$    | 0.05        |
+>| 4     | $Noun \to wumpus$      | 0.15        |
+>| 5     | $VP \to Verb$          | 0.40        |
+>| 6     | $Verb \to smells$      | 0.10        |
+>
+>$$0.90 \cdot 0.25 \cdot 0.05 \cdot 0.15 \cdot 0.40 \cdot 0.10 = 0.0000675$$
 
 ### Albero sintattico (parse tree)
 

@@ -6,40 +6,37 @@ Qui si aggiungono le **PROBABILITÀ**: la grammatica diventa un modello che dice
 ---
 ## Phrase structure grammars
 
-- **Noam Chomsky** introdusse il termine *phrase structure grammar* per indicare grammatiche come le **CFG**.
-- Nei linguaggi naturali (per esempio l'inglese) le **categorie sintattiche** come **NP** (*noun phrase*, sintagma nominale) e **VP** (*verb phrase*, sintagma verbale) sono le **variabili** della grammatica.
-- Rappresentano parti di frasi, dette **costituenti**.
-- Una grammatica esprime quindi la **struttura a sintagmi** (*phrase structure*): la relazione tra i nodi (*constituency relation*) di un albero sintattico. Esempio: una frase (radice $S$) è formata da un NP (figlio sinistro) seguito da un VP (figlio destro).
+> [!quote] **Noam Chomsky** introdusse il termine *phrase structure grammar* per indicare grammatiche come le **CFG**.
 
-La slide chiude con una domanda: **e i simboli terminali della grammatica?** La risposta è nella sezione successiva: sono i **token**.
+> [!abstract] Linguaggi naturali
+> Nei linguaggi naturali (per esempio l'inglese) le **categorie sintattiche** come **NP** (*noun phrase*, sintagma nominale) e **VP** (*verb phrase*, sintagma verbale) sono le **variabili** della grammatica.
+>
+>Rappresentano parti di frasi, dette **costituenti**.
+>
+>Una grammatica esprime quindi la **struttura a sintagmi** (*phrase structure*): la relazione tra i nodi (*constituency relation*) di un albero sintattico. 
+>
+>>[!example] una frase (radice $S$) è formata da un NP (figlio sinistro) seguito da un VP (figlio destro).
 
----
+## Tokenizzazione
 
-## 2. Tokenizzazione
+La **tokenizzazione** è il processo che divide un testo in una sequenza di parole (**token**)
 
-La **tokenizzazione** è il processo che divide un testo in una sequenza di parole (**token**): segmenta il flusso di caratteri in parole, punteggiatura, ecc.
-
-Esempio:
-
-```
-From the start, it took a person with great qualities to succeed
-```
-
+> [!example] Esempio
+>```
+>From the start, it took a person with great qualities to succeed
+>```
+>
 diventa
+>
+>```
+>From | the | start | , | it | took | a | person | with | great | qualities | to | succeed
+>```
 
-```
-From | the | start | , | it | took | a | person | with | great | qualities | to | succeed
-```
+Per l'inglese è abbastanza semplice, per esempio dividendo il testo in corrispondenza degli spazi.
 
-- Per l'inglese è abbastanza semplice, per esempio dividendo il testo in corrispondenza degli spazi.
-- Si assume che i token appartengano a un **insieme finito**:
-  - le parole del **vocabolario** della lingua (corrette secondo il suo dizionario, per esempio il dizionario open source **WordNet**, più regole morfologiche come la flessione);
-  - la punteggiatura, ecc.
+Si assume che i token appartengano a un **insieme finito** (es. il vocabolario della lingua), in questo modo i token formano l'**alfabeto** $\Sigma$, e le frasi sono **stringhe in $\Sigma^*$**. 
 
-### I token sono l'alfabeto
-
-I token formano l'**alfabeto** $\Sigma$, e le frasi sono **stringhe in $\Sigma^*$**. Per la frase sopra:
-
+Per la frase sopra:
 $$\Sigma = \{[a], [from], [great], [it], [person], [qualities], [start], [succeed], [the], [to], [took], [with], [,], \dots\}$$
 
 - Può avvenire una **normalizzazione**: per esempio "From" e "from" sono rappresentati dallo stesso token $[from]$.

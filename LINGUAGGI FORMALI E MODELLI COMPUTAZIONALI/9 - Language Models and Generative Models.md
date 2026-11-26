@@ -174,7 +174,7 @@ $$\sum_{w \in \Sigma^*} P(w) = 1$$
 > [!question] Qual'è la differenza con i linguaggi formali visti finora? 
 > Un linguaggio classico è un **insieme** di stringhe (una stringa c'è o non c'è). Qui a ogni stringa è associato un **numero** (quanto è probabile).
 
-### Esempio 1
+#### Esempio 1
 
 $\Sigma = \{[hello], [bye]\}$, con
 
@@ -184,12 +184,11 @@ $\Sigma = \{[hello], [bye]\}$, con
 
 Le probabilità sommano a $0.9 + 0.1 = 1$: è un linguaggio formale probabilistico.
 
-### Esempio 2
+#### Esempio 2
 
-Con $\Sigma$ l'alfabeto della *tiny English PCFG* $G$, la funzione $P_G(w)$ è un linguaggio formale probabilistico. L'intuizione: il processo di derivazione genera **sempre** un albero di qualche stringa $w \in \Sigma^*$, quindi la somma delle probabilità degli alberi è 1:
+Con $\Sigma$ l'alfabeto della *tiny English PCFG* $G$, la funzione $P_G(w)$ è un linguaggio formale probabilistico. 
 
-- la somma delle probabilità delle produzioni di $S$ è 1;
-- scegliendo tra le produzioni alternative di una variabile $A$ si **suddivide** ulteriormente la probabilità totale dell'albero secondo probabilità che sommano a 1.
+> [!hint] Generare una frase significa fare **una serie di scelte casuali**, e ogni scelta è fatta secondo probabilità che sommano a 1. Se alla fine **si arriva sempre a una frase**, allora le probabilità di tutte le frasi possibili devono sommare a 1.
 
 ### Linguaggio sottostante (underlying language)
 
@@ -201,8 +200,7 @@ $$L = \{ w \mid P(w) > 0 \}$$
 - Per l'Esempio 2 è $L(G)$, dove $G$ è la CFG ottenuta **togliendo le probabilità** dalla tiny English PCFG.
 
 ---
-
-## 8. PCFG problematiche: probabilità di terminazione e consistenza
+## PCFG problematiche: probabilità di terminazione e consistenza
 
 **Non tutte le PCFG rappresentano un linguaggio formale probabilistico.**
 

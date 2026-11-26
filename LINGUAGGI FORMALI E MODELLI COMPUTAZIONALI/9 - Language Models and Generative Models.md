@@ -40,41 +40,31 @@ Si assume che i token appartengano a un **insieme finito** (es. il vocabolario d
 > $$\Sigma = \{[a], [from], [great], [it], [person], [qualities], [start], [succeed], [the], [to], [took], [with], [,], \dots\}$$
 
 - Può avvenire una **normalizzazione**: per esempio "From" e "from" sono rappresentati dallo stesso token $[from]$.
-- Spesso si scrive il token (per esempio $[from]$) semplicemente con la parola o punteggiatura che rappresenta ("From").
-
-Collegamento: è qui che si colma il vuoto della sezione 1. I **terminali** della grammatica sono i token, e le **produzioni lessicali** associano le categorie ai token.
 
 ---
+## Ambiguità nei linguaggi naturali
 
-## 3. Ambiguità nei linguaggi naturali
-
-I linguaggi naturali sono **ambigui**: è normale che una frase abbia **più alberi sintattici** (stesso concetto visto per le CFG).
+I linguaggi naturali sono **ambigui**: è normale che una frase abbia **più alberi sintattici**.
 
 Grammatica d'esempio:
-
-$$\begin{align} S &\to NP\ VP \\ NP &\to Noun \mid Pronoun \\ VP &\to Verb\ NP \mid Modal\ Verb \\ Noun &\to [fish] \mid \dots \\ Pronoun &\to [I] \mid [they] \mid \dots \\ Verb &\to [can] \mid [fish] \mid \dots \\ Modal &\to [can] \mid \dots \end{align}$$
-
-La frase **"I can fish"** ha **due alberi sintattici**:
-
-| Albero | Struttura | Significato |
-|---|---|---|
-| $T_1$ | $S \to NP\ VP$, $NP \to Pronoun\ (I)$, $VP \to Modal\ (can)\ Verb\ (fish)$ | "io **posso** pescare" |
-| $T_2$ | $S \to NP\ VP$, $NP \to Pronoun\ (I)$, $VP \to Verb\ (can)\ NP$, $NP \to Noun\ (fish)$ | "io **inscatolo** (fish) pesce" |
-
+![[Pasted image 20261126143255.png|366]]
+La frase **"I can fish"** ha **due alberi sintattici**, con due significati diversi:
+- io so pescare
+- io inscatolo pesci (can = scatoletta)
+![[Pasted image 20261126143421.png|579]]
 Si noti che c'è anche **ambiguità lessicale**: lo stesso token ($can$, $fish$) può appartenere a **più categorie lessicali** (*Modal* o *Verb*; *Verb* o *Noun*).
 
-**Come si gestisce l'ambiguità:** con un approccio **probabilistico**, assegnando probabilità alle produzioni della grammatica, per esempio per **scegliere l'albero sintattico più probabile**.
+> [!question] **Come si gestisce l'ambiguità?** 
+> Con un approccio **probabilistico**, assegnando probabilità alle produzioni della grammatica, per esempio per **scegliere l'albero sintattico più probabile**.
 
 ---
 
-## 4. Grammatiche probabilistiche (PCFG)
+## Grammatiche probabilistiche (PCFG)
 
 ### Definizione
 
 Una **PCFG** (*Probabilistic Context-Free Grammar*) è una **5-upla**
-
 $$G = (V, \Sigma, P, S, D)$$
-
 dove:
 
 - $(V, \Sigma, P, S)$ è una **CFG**;
@@ -84,13 +74,13 @@ con il vincolo:
 
 > per ogni variabile $A \in V$, la **somma delle probabilità delle produzioni di $A$ deve essere 1**.
 
-**Notazione:**
+> [!abstract] **Notazione**
+>$$A \to \beta\ [p]$$
+>
+>Significa: data la variabile $A$, essa viene espansa nella sequenza $\beta$ con probabilità $p$.
 
-$$A \to \beta\ [p]$$
-
-significa: data la variabile $A$, essa viene espansa nella sequenza $\beta$ con probabilità $p$.
-
-In altre parole: una PCFG definisce, per ogni variabile $A$, una **distribuzione di probabilità sulle produzioni di $A$**.
+> [!quote] In altre parole 
+> Una PCFG definisce, per ogni variabile $A$, una **distribuzione di probabilità sulle produzioni di $A$**.
 
 ### Esempio: la variabile Adjs
 

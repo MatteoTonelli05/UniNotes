@@ -80,7 +80,7 @@
             }
           },
           {
-            "id": "96e51f3bbfd02459",
+            "id": "b93569f01fe05865",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
@@ -100,7 +100,91 @@
   "right": {
     "id": "994e93d0a7538110",
     "type": "split",
-    "children": [],
+    "children": [
+      {
+        "id": "3b3e922583efb06d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fe31b53e3e36b8be",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/8 - Decidibilità, chiusura e DPDA nei linguaggi liberi.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Riferimenti"
+            }
+          },
+          {
+            "id": "3df87389cd084ab7",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/8 - Decidibilità, chiusura e DPDA nei linguaggi liberi.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Collegamenti in uscita"
+            }
+          },
+          {
+            "id": "b471b9b64502458d",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Etichette"
+            }
+          },
+          {
+            "id": "5e56ff7c5fbe4f07",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Tutte le proprietà"
+            }
+          },
+          {
+            "id": "d0ce3abd9871e011",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "LINGUAGGI FORMALI E MODELLI COMPUTAZIONALI/8 - Decidibilità, chiusura e DPDA nei linguaggi liberi.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Struttura"
+            }
+          }
+        ]
+      }
+    ],
     "direction": "horizontal",
     "width": 285.5,
     "collapsed": true

@@ -261,11 +261,10 @@ $$A \to a \qquad \text{oppure} \qquad A \to aB \qquad \text{con } A, B \in V \te
 > [!abstract] I tipi 1, 2 e 3 
 > Ammettono anche una possibile produzione $S \to \epsilon$ per il simbolo iniziale $S$ (per rappresentare linguaggi che contengono $\epsilon$), **purché non esista alcuna $\alpha \to \beta \in P$ con $S$ che compare in $\beta$**.
 
-> [!question]**Perché la condizione?** 
+> [!question] **Perché la condizione?** 
 > Se $S$ potesse comparire a destra, $S \to \epsilon$ potrebbe essere usata "in mezzo" a una derivazione e far **accorciare** la forma sentenziale, rompendo la proprietà che caratterizza i tipi 1, 2 e 3 (ad esempio la monotonia del tipo 1).
 
 ---
-
 ## Esempi di grammatiche specifiche
 
 ### Esempio di grammatica monotone (tipo 1)

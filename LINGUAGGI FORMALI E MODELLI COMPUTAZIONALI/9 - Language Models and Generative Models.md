@@ -82,48 +82,16 @@ con il vincolo:
 > [!quote] In altre parole 
 > Una PCFG definisce, per ogni variabile $A$, una **distribuzione di probabilità sulle produzioni di $A$**.
 
-### Esempio: la variabile Adjs
+> [!example] **Esempio - la variabile Adjs
+> **Adjs** è la variabile che genera **una sequenza di aggettivi** (per esempio "smelly", oppure "smelly dead", oppure "smelly dead big"...). 
+> Ha due produzioni:
+> 
+> ![[Pasted image 20261126145043.png]]
+> Le probabilità delle produzioni di $Adjs$ sommano a $0.80 + 0.20 = 1$. 
+>- **$Adjs \to Adjective$ [0.80]**: con probabilità 0.80 la sequenza è **un solo aggettivo** e finisce lì.
+>- **$Adjs \to Adjective\ Adjs$ [0.20]**: con probabilità 0.20 si mette **un aggettivo e poi si ricomincia** con un'altra $Adjs$, quindi ne seguono altri.
 
-$$\begin{align} Adjs &\to Adjective\ \ [0.80] \\ &\mid\ Adjective\ Adjs\ \ [0.20] \end{align}$$
-
-Le probabilità delle produzioni di $Adjs$ sommano a $0.80 + 0.20 = 1$. Significato: con probabilità 0.8 la sequenza di aggettivi finisce con un aggettivo; con probabilità 0.2 ce ne sono altri.
-
-### Esempio del libro: "tiny English grammar" per il Wumpus World
-
-Un piccolo frammento di inglese per **interagire con un agente** che esplora il *Wumpus world* (comandi e informazioni dei sensori). Il Wumpus world è descritto qui sotto, nella sezione 12.
-
-**Categorie sintattiche:**
-
-$$\begin{align} S &\to NP\ VP\ [0.90] \mid S\ Conj\ S\ [0.10] \\ \\ NP &\to Pronoun\ [0.25] \mid Name\ [0.10] \mid Noun\ [0.10] \mid Article\ Noun\ [0.25] \\ &\quad\mid Article\ Adjs\ Noun\ [0.05] \mid Digit\ Digit\ [0.05] \mid NP\ PP\ [0.10] \\ &\quad\mid NP\ RelClause\ [0.05] \mid NP\ Conj\ NP\ [0.05] \\ \\ VP &\to Verb\ [0.40] \mid VP\ NP\ [0.35] \mid VP\ Adjective\ [0.05] \mid VP\ PP\ [0.10] \mid VP\ Adverb\ [0.10] \\ \\ Adjs &\to Adjective\ [0.80] \mid Adjective\ Adjs\ [0.20] \\ PP &\to Prep\ NP\ [1.00] \\ RelClause &\to RelPro\ VP\ [1.00] \end{align}$$
-
-Esempi di frasi per ogni produzione (dalla slide):
-
-| Produzione | Esempio |
-|---|---|
-| $S \to NP\ VP$ | *I + feel a breeze* |
-| $S \to S\ Conj\ S$ | *I feel a breeze + and + It stinks* |
-| $NP \to Pronoun$ | *I* |
-| $NP \to Name$ | *Ali* |
-| $NP \to Article\ Noun$ | *the + wumpus* |
-| $NP \to Article\ Adjs\ Noun$ | *the + smelly dead + wumpus* |
-| $NP \to Digit\ Digit$ | *3 4* |
-| $NP \to NP\ PP$ | *the wumpus + in 1 3* |
-| $NP \to NP\ RelClause$ | *the wumpus + that is smelly* |
-| $NP \to NP\ Conj\ NP$ | *the wumpus + and + I* |
-| $VP \to Verb$ | *stinks* |
-| $VP \to VP\ NP$ | *feel + a breeze* |
-| $VP \to VP\ Adjective$ | *smells + dead* |
-| $VP \to VP\ PP$ | *is + in 1 3* |
-| $VP \to VP\ Adverb$ | *go + ahead* |
-| $PP \to Prep\ NP$ | *to + the east* |
-| $RelClause \to RelPro\ VP$ | *that + is smelly* |
-
-**Categorie lessicali** (le produzioni che portano ai token):
-
-$$\begin{align} Noun &\to stench\ [0.05] \mid breeze\ [0.10] \mid wumpus\ [0.15] \mid pits\ [0.05] \mid \dots \\ Verb &\to is\ [0.10] \mid feel\ [0.10] \mid smells\ [0.10] \mid stinks\ [0.05] \mid \dots \\ Adjective &\to right\ [0.10] \mid dead\ [0.05] \mid smelly\ [0.02] \mid breezy\ [0.02] \dots \\ Adverb &\to here\ [0.05] \mid ahead\ [0.05] \mid nearby\ [0.02] \mid \dots \\ Pronoun &\to me\ [0.10] \mid you\ [0.03] \mid I\ [0.10] \mid it\ [0.10] \mid \dots \\ RelPro &\to that\ [0.40] \mid which\ [0.15] \mid who\ [0.20] \mid whom\ [0.02] \mid \dots \\ Name &\to Ali\ [0.01] \mid Bo\ [0.01] \mid Boston\ [0.01] \mid \dots \\ Article &\to the\ [0.40] \mid a\ [0.30] \mid an\ [0.10] \mid every\ [0.05] \mid \dots \\ Prep &\to to\ [0.20] \mid in\ [0.10] \mid on\ [0.05] \mid near\ [0.10] \mid \dots \\ Conj &\to and\ [0.50] \mid or\ [0.10] \mid but\ [0.20] \mid yet\ [0.02] \mid \dots \\ Digit &\to 0\ [0.20] \mid 1\ [0.20] \mid 2\ [0.20] \mid 3\ [0.20] \mid 4\ [0.20] \mid \dots \end{align}$$
-
-> I puntini ($\dots$) indicano che le liste di token sono parziali: nel libro la grammatica ne ha altri, quindi le probabilità elencate non sommano a 1.
-
+All'interno dei 
 **Lessicale vs sintattico:** le categorie lessicali (quelle che producono token) e quelle sintattiche (quelle che producono altre categorie) sono insieme le **variabili** della grammatica. La distinzione riguarda **solo l'interpretazione linguistica**, non la forma della grammatica.
 
 ### Il lessico

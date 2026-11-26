@@ -219,13 +219,9 @@ $G$ può generare **solo la stringa "a"**, e solo con **un albero** (quello che 
 ### Probabilità di terminazione
 
 La **termination probability** $P_G$ di una PCFG è la probabilità totale che $G$ generi **qualche stringa terminale**:
-
 $$P_G = \sum_{w \in \Sigma^*} P_G(w)$$
-
 Si può calcolare direttamente dagli alberi sintattici:
-
 $$P_G = \sum_{w \in \Sigma^*} \sum_{T \in Tree_G(w)} P_G(T) = \sum_{T \in Tree_G} P_G(T)$$
-
 dove $Tree_G$ è l'insieme di **tutti** gli alberi sintattici di $G$.
 
 Significato: è la probabilità totale che il processo di derivazione **termini con successo**, producendo un vero albero sintattico $T$, cioè un albero **finito** che genera una stringa $w \in \Sigma^*$.

@@ -134,9 +134,11 @@ La probabilità $P_G(S \Rightarrow^* \alpha)$ di una derivazione è il **prodott
 
 ### Albero sintattico (parse tree)
 
-- Gli **alberi sintattici** di una PCFG (in NLP detti **parse tree**) sono definiti **come per le CFG**: quelli che generano una stringa $w \in \Sigma^*$ e (salvo diversa indicazione) hanno $S$ come radice.
+Gli **alberi sintattici** di una PCFG (in NLP detti **parse tree**) sono definiti **come per le CFG**: quelli che generano una stringa $w \in \Sigma^*$ e (salvo diversa indicazione) hanno $S$ come radice.
+![[Pasted image 20261126154009.png]]
 - La probabilità $P_G(T)$ di un albero $T$ è la **probabilità di una qualsiasi derivazione** che lo genera, cioè il **prodotto delle probabilità di tutte le produzioni dell'albero**.
-- Si omette il pedice $G$ quando è chiaro dal contesto.
+
+ > [!hint] **Nota**: Si omette il pedice $G$ quando è chiaro dal contesto.
 
 L'albero di "Every wumpus smells" ha come archi: $S \xrightarrow{0.90} NP\ VP$, $NP \xrightarrow{0.25} Article\ Noun$, $VP \xrightarrow{0.40} Verb$, e le foglie lessicali $Article \xrightarrow{0.05} Every$, $Noun \xrightarrow{0.15} wumpus$, $Verb \xrightarrow{0.10} smells$. Il prodotto è lo stesso: $0.0000675$.
 

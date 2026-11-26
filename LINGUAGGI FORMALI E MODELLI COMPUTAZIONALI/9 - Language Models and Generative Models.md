@@ -140,21 +140,20 @@ Gli **alberi sintattici** di una PCFG (in NLP detti **parse tree**) sono definit
 
  > [!hint] **Nota**: Si omette il pedice $G$ quando è chiaro dal contesto.
 
-L'albero di "Every wumpus smells" ha come archi: $S \xrightarrow{0.90} NP\ VP$, $NP \xrightarrow{0.25} Article\ Noun$, $VP \xrightarrow{0.40} Verb$, e le foglie lessicali $Article \xrightarrow{0.05} Every$, $Noun \xrightarrow{0.15} wumpus$, $Verb \xrightarrow{0.10} smells$. Il prodotto è lo stesso: $0.0000675$.
-
-Collegamento: ricorda quanto visto sui CFG, un albero corrisponde a una sola derivazione a sinistra (e a una a destra), quindi non serve distinguere tra "probabilità dell'albero" e "probabilità di una sua derivazione".
+> [!attention] Ricorda 
+> Quanto visto sui CFG, un albero corrisponde a una sola derivazione a sinistra (e a una a destra), quindi non serve distinguere tra "probabilità dell'albero" e "probabilità di una sua derivazione".
 
 ---
 
-## 6. Ambiguità nelle PCFG
+## Ambiguità nelle PCFG
 
 "Every wumpus smells" aveva **un solo** albero, ma in generale i linguaggi naturali sono ambigui.
 
-- L'ambiguità nelle PCFG è definita **come per le CFG**: una stringa $w \in \Sigma^*$ può avere più derivazioni a sinistra (o a destra) o, equivalentemente, **più alberi sintattici**.
-- La probabilità di generare $w$ è la **somma** delle probabilità di tutti i suoi alberi (o derivazioni a sinistra/destra).
+> [!abstract] L'ambiguità nelle PCFG è definita **come per le CFG**
+> Una stringa $w \in \Sigma^*$ può avere più derivazioni a sinistra (o a destra) o, equivalentemente, **più alberi sintattici**.
 
+La probabilità di generare $w$ è la **somma** delle probabilità di tutti i suoi alberi (o derivazioni a sinistra/destra).
 $$P_G(w) = \sum_{T \in Tree_G(w)} P_G(T)$$
-
 dove $Tree_G(w)$ è l'insieme degli alberi di $G$ che generano $w$. Se $w$ non ha alberi ($Tree_G(w) = \emptyset$) la somma vale 0.
 
 **Nota sulla complessità.** Il numero di alberi in $Tree_G(w)$ è in generale **esponenziale** in $|w|$, ma $P_G(w)$ si può calcolare in **tempo polinomiale** con una **variante probabilistica di CYK**. Le slide lo annunciano, ma il calcolo non è svolto in questo PDF.
